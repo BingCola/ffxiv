@@ -1,2 +1,2 @@
 # ffxiv
-A website about ffxiv. Provide applications such as transmogrification gallery.
+A website for ffxiv gamers. Provide applications such as transmogrification gallery.
