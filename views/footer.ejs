@@ -1,0 +1,7 @@
+    <%if(typeof script != 'undefined'){%>
+        <%script.forEach(function(link){%>
+            <script type="text/javascript" src="<%=path%><%=link%>"></script>
+        <%})%>
+    <%}%>
+</body>
+</html>
