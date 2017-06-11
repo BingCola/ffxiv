@@ -1,25 +1,25 @@
 <% include header %>
     <div id="navTop" class="navTop">
         <div class="navBrand">
-            <img src="{{cdn}}/images/common/logo.png">
+            <img src="<%=path%>/images/common/logo.png">
         </div>
         <div class="navContent">
-            <div class="navItem" data-event="link" data-link=""><span class="text">首页</span></div>
+            <div class="navItem" data-target=""><div class="nav">首页</div></div>
             <!--<div id="btnFilter" class="navItem"><span class="text">搜索</span></div>-->
             <div class="navItem dropdown">
-                <div class="main">图鉴</div>
-                <div class="sub">
-                    <div class="navSubItem navItem" data-event="page" data-page="/views/page/messageBoard.html">散件</div>
-                    <div class="navSubItem navItem" data-event="page" data-page="/views/page/messageBoard.html">套装</div>
+                <div class="nav">图鉴</div>
+                <div class="navSubMenu">
+                    <div class="nav sub" data-event="page" data-target="/views/page/messageBoard.html">散件</div>
+                    <div class="nav sub" data-event="page" data-target="/views/page/messageBoard.html">套装</div>
                 </div>
             </div>
             <div class="navItem dropdown">
-                <div class="main">帮助</div>
-                <div class="sub">
-                    <div class="navSubItem navItem" data-event="page" data-page="/views/page/messageBoard.html">留言板</div>
-                    <div class="navSubItem navItem" data-event="page" data-page="/views/page/messageBoard.html">投稿指南</div>
-                    <div class="navSubItem navItem" data-event="page" data-page="/views/page/messageBoard.html">联系我们</div>
-                    <div class="navSubItem navItem" data-event="page" data-page="/views/page/messageBoard.html">关于</div>
+                <div class="nav">帮助</div>
+                <div class="navSubMenu">
+                    <div class="nav sub" data-event="page" data-page="/views/page/messageBoard.html">留言板</div>
+                    <div class="nav sub" data-event="page" data-page="/views/page/messageBoard.html">投稿指南</div>
+                    <div class="nav sub" data-event="page" data-page="/views/page/messageBoard.html">联系我们</div>
+                    <div class="nav sub" data-event="page" data-page="/views/page/messageBoard.html">关于</div>
                 </div>
             </div>
             <div class="navItem search">
@@ -27,59 +27,6 @@
                 <span class="glyphicon glyphicon-search"></span>
             </div>
             <!--<div id="btnLogin" class="navItem" data-event="action" data-action="login">登录</div>-->
-        </div>
-
-        <div class="userProfile" style="display: none;">
-            <div class="userInfo navItem dropdown">
-                <div class="main">
-                    <img class="portrait" src="/static/images/index/item_5.png" />
-                    <span class="name" style="display: none"></span>
-                </div>
-                <div class="sub">
-                    <span class="name"></span>
-                    <span class="role"></span>
-                    <span class="level">
-                        <span class="label">等级</span>
-                    <span class="number"></span>
-                    <span class="levelBar">
-                            <span class="levelScore"></span>
-                    </span>
-                    <span class="help">积分有什么用</span>
-                    <span class="tip"></span>
-                    </span>
-                    <span class="router">
-                        <span class="personalStation routerItem">个人中心</span>
-                    <span class="contributeManager routerItem">投稿管理</span>
-                    <span class="contributeManager routerItem">稿件审核</span>
-                    <span class="contributeManager routerItem">关注管理</span>
-                    </span>
-                    <span class="btnLogout">注销</span>
-                </div>
-            </div>
-            <div class="navItem" data-event="action" data-action="login"><span class="text">登录/注册</span></div>
-            <div class="navItem dropdown navMessage">
-                <div class="main">
-                    <span class="text">消息</span>
-                    <span class="badge"></span>
-                </div>
-                <div class="sub">
-                    <div class="navSubItem navItem" data-msg="mail" data-event="page">
-                        <span class="text">私信</span><span class="badge"></span>
-                    </div>
-                    <div class="navSubItem navItem" data-msg="reply" data-event="page">
-                        <span class="text">回复我的</span><span class="badge"></span>
-                    </div>
-                    <div class="navSubItem navItem" data-msg="call" data-event="page">
-                        <span class="text">@我的</span><span class="badge"></span>
-                    </div>
-                    <div class="navSubItem navItem" data-msg="praise" data-event="page">
-                        <span class="text">收到的赞</span><span class="badge"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="navItem" data-event="action" data-action="collect"><span class="text">收藏夹</span></div>
-            <div class="navItem" data-event="action" data-action="history"><span class="text">历史</span></div>
-            <div class="navItem" data-event="action" data-action="contribute"><span class="text">投稿</span></div>
         </div>
     </div>
     <div id="mainContainer" class="mainContainer"></div>

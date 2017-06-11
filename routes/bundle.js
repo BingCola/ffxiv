@@ -5,13 +5,23 @@ var bundle = {
             '/lib/jquery-3.0.0.min.js',
             '/lib/bootstrap/js/bootstrap.min.js'
         ],
-        "gallery": []
+        "gallery": [
+            '/plugin/webAPI.js',
+            '/plugin/router.js',
+
+            '/application/Gallery/constant.js',
+            '/application/Gallery/app.js'
+        ]
     },
     'style': {
         "base": [
-            '/lib/bootstrap/css/bootstrap.min.css'
+            '/lib/bootstrap/css/bootstrap.min.css',
+            '/icon/iconFont/iconfont.css',
+            '/style/common.css'
         ],
-        "gallery": []
+        "gallery": [
+            '/application/Gallery/style/common.css'
+        ]
     }
 }
 
