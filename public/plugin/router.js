@@ -1,10 +1,12 @@
 /**
  * Created by BingCola on 2017/1/24.
  */
-var CurPage;
 var Router = (function() {
+    var _this = this;
+
     function Router() {
         this.path = [];
+        this.current = undefined;
     }
     Router.prototype = {
         to: function() {
@@ -16,27 +18,33 @@ var Router = (function() {
             }
             this.path.push([].concat(arguments));
             if (typeof page == 'string') {
-                CurPage = {};
                 WebAPI.get(page).done(function(html) {
-                    CurPage && CurPage.close && CurPage.close();
+                    _this.current = {};
                     MainContainer.innerHTML = html;
                 })
             } else {
                 var pageObj = Object.create(page.prototype);
-                CurPage && CurPage.close && CurPage.close();
-                CurPage = (page.apply(pageObj, param) || pageObj);
-                CurPage.show();
+                _this.current && _this.current.close && _this.current.close();
+                _this.current = (page.apply(pageObj, param) || pageObj);
+                _this.current.show();
             }
             return this;
         },
+        open: function(url, blank) {
+            window.open(url, blank ? "_blank" : "")
+        },
         back: function() {
             this.path.pop();
-            this.to(this.path[this.path.length])
+            this.to(this.path[this.path.length - 1])
             return this;
         },
         empty: function() {
             this.path = [];
+            this.current = undefined;
             return this;
+        },
+        destory: function() {
+
         }
     };
     return Router

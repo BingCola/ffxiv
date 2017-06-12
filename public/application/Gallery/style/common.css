@@ -1,0 +1,31 @@
+html {
+    height: 100%;
+    width: 100%;
+    font-family: Helvetica, "Microsoft Yahei";
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    font-family: Helvetica, "Microsoft Yahei";
+    background: linear-gradient(black, #2e2e33);
+    color: white;
+}
+
+
+/*导航条*/
+
+.navTop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 48px;
+}
+
+
+/*导航条*/
+
+.mainContainer {}

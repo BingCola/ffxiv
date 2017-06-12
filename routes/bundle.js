@@ -8,16 +8,20 @@ var bundle = {
         "gallery": [
             '/plugin/webAPI.js',
             '/plugin/router.js',
+            '/plugin/account.js',
+            '/plugin/nav.js',
+            '/plugin/waterfall.js',
 
             '/application/Gallery/constant.js',
-            '/application/Gallery/app.js'
+            '/application/Gallery/app.js',
+            '/application/Gallery/script/page/gallery/pageGallery.js',
+            '/application/Gallery/script/page/gallery/dataManager.js'
         ]
     },
     'style': {
         "base": [
             '/lib/bootstrap/css/bootstrap.min.css',
             '/icon/iconFont/iconfont.css',
-            '/style/common.css'
         ],
         "gallery": [
             '/application/Gallery/style/common.css'

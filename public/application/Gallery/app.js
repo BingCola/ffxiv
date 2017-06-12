@@ -15,14 +15,23 @@ var App = function() {
         },
         initPlugin: function() {
             Plugin.router = new Router()
+            window.Router = Plugin.router;
+
+            Plugin.webAPI = window.webAPI;
+            Plugin.nav = new Nav();
+            Plugin.account = new Account();
         },
         attachEvent: function() {
 
         },
         initPage: function() {
-
+            var page = location.hash.split('?')[0];
+            if (!page || !window[page]) {
+                page = 'PageGallery'
+            }
+            Router.empty().to(window[page])
         },
-        destory: function() {
+        exit: function() {
 
         },
     }
