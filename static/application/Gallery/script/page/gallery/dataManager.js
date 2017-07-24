@@ -6,12 +6,11 @@ var DataManager = (function() {
     DataManager.prototype = {
         init: function() {
             this.initQuery();
-            this.search();
         },
         initQuery: function() {
             this.query = {
                 page: 0,
-                interval: 20,
+                limit: 20,
                 sort: 'id',
                 asc: true,
                 filter: '',
@@ -21,7 +20,15 @@ var DataManager = (function() {
 
         },
         search: function() {
-
+            var deferred = $.Deferred();
+            WebAPI.post('/gallery/getItem/overview', this.query).done(function(result) {
+                if (result.data) {
+                    deferred.resolve(this.screen, [result.data])
+                } else {
+                    deferred.reject()
+                }
+            })
+            return deferred.promise()
         },
         setHistory: function() {
 

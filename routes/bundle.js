@@ -3,28 +3,36 @@ var bundle = {
     'script': {
         "base": [
             '/lib/jquery-3.0.0.min.js',
-            '/lib/bootstrap/js/bootstrap.min.js'
+            '/lib/bootstrap/js/bootstrap.min.js',
+
+            '/component/common.js'
         ],
         "gallery": [
-            '/plugin/webAPI.js',
-            '/plugin/router.js',
-            '/plugin/account.js',
-            '/plugin/nav.js',
-            '/plugin/waterfall.js',
+            '/component/webAPI.js',
+            '/component/router.js',
+            '/component/account.js',
+            '/component/nav.js',
+            '/component/waterfall.js',
 
             '/application/Gallery/constant.js',
             '/application/Gallery/app.js',
+
             '/application/Gallery/script/page/gallery/pageGallery.js',
-            '/application/Gallery/script/page/gallery/dataManager.js'
+            '/application/Gallery/script/page/gallery/dataManager.js',
+
+            '/application/Gallery/script/page/homepage/pageHomepage.js'
         ]
     },
     'style': {
         "base": [
             '/lib/bootstrap/css/bootstrap.min.css',
             '/icon/iconFont/iconfont.css',
+
+            '/style/common.css',
+            '/style/component.css',
         ],
         "gallery": [
-            '/application/Gallery/style/common.css'
+            '/application/Gallery/style/common.css',
         ]
     }
 }

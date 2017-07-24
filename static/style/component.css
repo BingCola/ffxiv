@@ -1,0 +1,263 @@
+/*component nav*/
+
+.navTop {
+    height: 44px;
+    width: 100%;
+    position: fixed;
+    background-color: black;
+    box-shadow: 0 0 10px 1px rgba(255, 255, 255, 1);
+    z-index: 1;
+    display: flex;
+    display: -webkit-flex;
+}
+
+.navTop .navBg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.navTop .navField {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+.navBrand {
+    display: inline-block;
+    height: 100%;
+    padding: 10px;
+    float: left;
+}
+
+.navBrand>img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.navTop .userProfile {
+    display: inline-flex;
+    display: -webkit-inline-flex;
+    align-items: center;
+    -webkit-align-items: center;
+    height: 100%;
+    position: absolute;
+    right: 0;
+}
+
+.navTop .userInfo {
+    display: none;
+}
+
+.navTop .main .badge {
+    margin-left: 0;
+}
+
+.navTop .badge {
+    background-color: transparent;
+    border-radius: 0;
+    padding: 0;
+    line-height: 17px;
+    margin-left: 5px;
+    color: coral;
+}
+
+.navTop .userInfo .main {
+    display: inline-flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.navTop .isLogin .userInfo {
+    display: inline-block;
+}
+
+.navTop .portrait {
+    height: 90%;
+}
+
+.navContent {
+    display: inline-block;
+    height: 100%;
+    margin-left: 30px;
+}
+
+.wrapNavItem {
+    font-size: 14px;
+    padding: 5px 12px;
+    height: 100%;
+    display: inline-flex;
+    display: -webkit-inline-flex;
+    align-items: center;
+    -webkit-align-items: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+    position: relative;
+    cursor: pointer;
+    float: left;
+}
+
+.wrapNavItem.dropdown>.navSubMenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    background-color: rgba(0, 0, 0, 1);
+    box-shadow: 0 0 1px 1px white inset;
+    padding: 1px;
+    cursor: default;
+}
+
+.wrapNavItem:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.wrapNavItem.dropdown:hover>.navSubMenu {
+    display: block;
+}
+
+.navItem.sub {
+    font-size: 12px;
+    display: block;
+    white-space: nowrap;
+    text-align: center;
+    padding: 10px 15px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.navItem.sub:hover {
+    background: rgba(255, 255, 255, .25);
+}
+
+.navTop .userProfile .navItem {
+    display: none;
+}
+
+.navTop .userProfile .navItem[data-action="login"] {
+    display: inline-flex;
+    display: -webkit-inline-flex;
+}
+
+.navTop .userProfile.isLogin .navItem {
+    display: inline-flex;
+    display: -webkit-inline-flex;
+}
+
+.navTop .userProfile.isLogin .navItem[data-action="login"] {
+    display: none;
+}
+
+.navTop .userProfile.isLogin.isVisitor .navItem[data-action="login"] {
+    display: inline-flex;
+    display: -webkit-inline-flex;
+}
+
+.navTop .userProfile .spinner {
+    padding: 5px 10px;
+    background: black;
+}
+
+.navTop .userInfo .sub {
+    width: 200px;
+    padding: 15px;
+    text-align: center;
+}
+
+.navTop .userInfo .sub .name {
+    display: block;
+    font-weight: bold;
+}
+
+.navTop .userInfo .sub .role {
+    display: block;
+    font-size: 12px;
+}
+
+.navTop .userInfo .sub .level {
+    position: relative;
+    display: block;
+    margin-top: 15px;
+}
+
+.navTop .userInfo .sub .level .label {
+    position: absolute;
+    left: 0;
+    padding: 0;
+    font-weight: normal;
+}
+
+.navTop .userInfo .sub .level .number {
+    position: absolute;
+    border-radius: 50%;
+    height: 24px;
+    width: 24px;
+    line-height: 24px;
+    box-shadow: 0 0 5px 1px white;
+    display: inline-block;
+    background: #1c1c59;
+    left: 35px;
+    top: -6px;
+}
+
+.navTop .userInfo .sub .level .levelBar {
+    margin-left: 60px;
+    display: block;
+    height: 10px;
+    background: #a7a7ff;
+    margin-bottom: 15px;
+}
+
+.navTop .userInfo .sub .level .levelScore {
+    width: 70%;
+    height: 100%;
+    display: inline-block;
+    background: #1c1c59;
+    float: left;
+}
+
+.navTop .userInfo .sub .level .tip {
+    display: inline-block;
+    float: right;
+    font-size: 12px;
+}
+
+.navTop .userInfo .sub .level .help {
+    display: inline-block;
+    float: left;
+    font-size: 12px;
+    cursor: pointer;
+    color: cornflowerblue;
+}
+
+.navTop .userInfo .sub .router {
+    display: block;
+    padding-top: 10px;
+    margin-top: 40px;
+    font-size: 14px;
+    border-top: 1px solid #aaa;
+}
+
+.navTop .userInfo .sub .routerItem {
+    display: inline-block;
+    cursor: pointer;
+    width: 50%;
+}
+
+.navTop .userInfo .sub .routerItem:nth-child(even) {
+    float: right;
+}
+
+.navTop .userInfo .sub .btnLogout {
+    display: block;
+    text-align: right;
+    font-size: 14px;
+    margin: 10px -15px -15px -15px;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}

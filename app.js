@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/route');
 var users = require('./routes/users');
-var data = require('./routes/data');
+var mod_gallery = require('./routes/gallery');
 
 var app = express();
 
@@ -21,11 +21,11 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'static')));
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/', data)
+app.use('/gallery', mod_gallery);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

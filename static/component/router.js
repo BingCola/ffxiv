@@ -7,8 +7,23 @@ var Router = (function() {
     function Router() {
         this.path = [];
         this.current = undefined;
+        this.attachEvent();
     }
     Router.prototype = {
+        attachEvent: function() {
+            var _this = this;
+            window.onhashchange = function() {
+                var pageOpt = location.hash.split('#page=')[1];
+                var page = '';
+                if (pageOpt) {
+                    page = pageOpt.split('&')[0]
+                }
+                if (!page || !window[page]) {
+                    page = 'PageHomepage'
+                }
+                _this.to(window[page])
+            }
+        },
         to: function() {
             var page = arguments[0];
             if (!page) return;

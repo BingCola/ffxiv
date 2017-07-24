@@ -14,18 +14,4 @@ body {
     color: white;
 }
 
-
-/*导航条*/
-
-.navTop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 48px;
-}
-
-
-/*导航条*/
-
 .mainContainer {}
