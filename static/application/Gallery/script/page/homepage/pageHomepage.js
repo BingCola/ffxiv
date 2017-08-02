@@ -1,4 +1,4 @@
-var PageHomepage = function() {
+(function(exports) {
     function PageHomepage() {
 
     }
@@ -73,5 +73,5 @@ var PageHomepage = function() {
 
         },
     }
-    return PageHomepage
-}()
+    exports.homepage = PageHomepage
+})(namespace('gallery'))

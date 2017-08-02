@@ -1,4 +1,4 @@
-var CmptNav = function() {
+(function(exports) {
     function CmptNav(page, container, opt) {
         this.page = page;
         this.navTop = container.top;
@@ -20,13 +20,14 @@ var CmptNav = function() {
             $(this.navTop).off('click').on('click', '.navItem', function(e) {
                 var target = e.currentTarget;
                 if (target.dataset.target) {
-                    location.hash = 'page=' + target.dataset.target;
+                    location.href = location.origin + target.dataset.target
                 } else {
-                    location.hash = '';
+                    location.href = location.origin;
                 }
             })
         },
         initNavBottom: function() {
+            if (!this.navBottom) return;
             this.attachNavBottomEvent();
         },
         attachNavBottomEvent: function() {
@@ -43,5 +44,5 @@ var CmptNav = function() {
             }
         },
     }
-    return CmptNav
-}()
+    exports.nav = CmptNav
+})(namespace('component'))

@@ -1,4 +1,4 @@
-var CmptAccount = (function() {
+(function(exports) {
     function CmptAccount(page, opt) {
 
     }
@@ -13,5 +13,5 @@ var CmptAccount = (function() {
 
         }
     }
-    return CmptAccount
-}())
+    exports.account = CmptAccount
+}(namespace('component')))

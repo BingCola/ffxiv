@@ -1,8 +1,7 @@
 /**
  * Created by BingCola on 2017/1/24.
  */
-var Router = (function() {
-    var _this = this;
+(function(exports) {
 
     function Router() {
         this.path = [];
@@ -10,21 +9,31 @@ var Router = (function() {
         this.attachEvent();
     }
     Router.prototype = {
+        init: function() {
+            var pageOpt = location.hash.split('#page=')[1];
+            var app = location.pathname.split('/')[1];
+            if (!app) {
+                app = 'gallery'
+            }
+            var page = '';
+            if (pageOpt) {
+                page = pageOpt.split('&')[0]
+            }
+            if (!page) {
+                page = 'homepage'
+            }
+            var obj = namespace(app + '.' + page)
+            if (typeof obj != 'function') return;
+            this.to(obj)
+        },
         attachEvent: function() {
             var _this = this;
             window.onhashchange = function() {
-                var pageOpt = location.hash.split('#page=')[1];
-                var page = '';
-                if (pageOpt) {
-                    page = pageOpt.split('&')[0]
-                }
-                if (!page || !window[page]) {
-                    page = 'PageHomepage'
-                }
-                _this.to(window[page])
+                _this.init();
             }
         },
         to: function() {
+            var _this = this;
             var page = arguments[0];
             if (!page) return;
             var param = [];
@@ -62,5 +71,5 @@ var Router = (function() {
 
         }
     };
-    return Router
-})();
+    exports.router = Router
+})(namespace('component'));

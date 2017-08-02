@@ -1,6 +1,6 @@
 <style>
     .mainContainer {
-        top: 0;
+        /*top: 0;*/
     }
     
     .navTop {
@@ -17,7 +17,7 @@
         height: 100%;
     }
     
-    #containerBanner {
+    #ctnBanner {
         position: relative;
         text-align: center;
         height: 180px;
@@ -27,14 +27,92 @@
         width: 100%;
         height: 100%;
     }
+    
+    #ctnItemList {
+        width: calc(100% - 240px);
+        height: 100%;
+        left: 240px;
+        position: relative;
+    }
+    
+    #ctnItemList .wrapItem .itemImg {
+        position: absolute;
+        left: 0;
+        width: 0;
+        height: 100%;
+        width: 100%;
+    }
+    
+    #ctnFilter {
+        width: 240px;
+        position: absolute;
+        height: 100%;
+        z-index: 5;
+        background-color: rgba(0, 0, 0, 0.9)
+    }
+    
+    #ctnFilter .workspace {
+        height: 100%;
+        width: 100%;
+    }
+    
+    .navBottom {
+        display: none;
+    }
 </style>
 <img class="pageBg" src="/image/gallery/background.jpg" />
 <!--<div id="containerBanner">
     <img class="imgBanner" src="/image/gallery/banner.jpg" />
 </div>-->
-<div id="containerRecommend">
+<div id="ctnRecommend">
     <div class="wrapRecommendSlide"></div>
 </div>
-<div id="containerItemList">
+<div id="ctnFilter">
+    <div class="workspace">
+        <div class="wrapQueryItem" data-mode="text">
+            <input class="iptQuery" type="text" placeholder="请输入名字/作者/标签">
+        </div>
+        <div class="wrapQueryItem" data-mode="single">
+            <div class="divQueryItem">
+                <span class="item">综合排序</span>
+                <span class="item">最多点赞</span>
+                <span class="item">最多收藏</span>
+                <span class="item">最多阅览</span>
+                <span class="item">最多评论</span>
+            </div>
+        </div>
+        <div class="wrapQueryItem" data-mode="single">
+            <div class="divQueryItem">
+                <span class="item">不限</span>
+                <span class="item">一日</span>
+                <span class="item">三日</span>
+                <span class="item">一周</span>
+            </div>
+        </div>
+        <div class="wrapQueryItem" data-mode="multi" data-field="job">
+            <div class="divQueryItem">
+            </div>
+        </div>
+        <div class="wrapQueryItem" data-mode="single" data-field="race">
+            <div class="divQueryItem">
+            </div>
+        </div>
+        <div class="wrapQueryItem" data-mode="multi" data-field="gender">
+            <div class="divQueryItem">
+            </div>
+        </div>
+        <div class="wrapQueryItem" data-mode="multi" data-field="color">
+            <div class="divQueryItem">
+            </div>
+        </div>
+        <div class="wrapQueryItem" data-mode="multi" data-field="tag">
+            <div class="divQueryItem">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="ctnItemList" class="waterfallGrid scrollBar">
 
 </div>
+<div id="ctnAysncTip" class="waterfallCmpt aysncTip"></div>
+<div id="ctnPagination" class="waterfallCmpt pagination"></div>

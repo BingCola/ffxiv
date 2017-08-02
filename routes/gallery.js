@@ -4,9 +4,26 @@ var router = express.Router();
 
 router.post('/getItem/overview', function(req, res, next) {
     var data = []
+    var arrSize = [
+        { 'width': 1920, 'height': 1080 },
+        { 'width': 1440, 'height': 990 },
+        { 'width': 1920, 'height': 1080 },
+        { 'width': 533, 'height': 330 },
+        { 'width': 1920, 'height': 1080 },
+        { 'width': 1070, 'height': 751 },
+        { 'width': 720, 'height': 450 },
+        { 'width': 1920, 'height': 1080 },
+        { 'width': 658, 'height': 370 },
+        { 'width': 1920, 'height': 1080 }
+    ]
     for (var i = 0; i < req.body.limit; i++) {
         data.push({
             'id': i,
+            'img': {
+                'name': parseInt(i % 10 + 1) + '.jpg',
+                'height': arrSize[i % 10].height,
+                'width': arrSize[i % 10].width,
+            },
             'name': '测试图片' + i,
             'author': { 'name': '作者' + i, 'id': parseInt(i) },
             'time': new Date(),
@@ -28,7 +45,7 @@ router.post('/getItem/overview', function(req, res, next) {
     }
     res.send({
         success: true,
-        data: data
+        data: { list: data, total: 60 }
     });
 });
 router.post('/getItem/prime', function(req, res, next) {

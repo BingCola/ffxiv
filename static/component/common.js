@@ -485,3 +485,18 @@ var getUrlParams = function() {
 
     return rs;
 };
+
+(function(exports) {
+    exports.namespace = function(path) {
+        var obj = window;
+        path = path.split('.');
+
+        path.forEach(function(p, i) {
+            p = p.trim();
+            if (i === 0 && p === 'window') return;
+            obj = obj[p] = obj[p] || {};
+        });
+
+        return obj;
+    };
+}(window));

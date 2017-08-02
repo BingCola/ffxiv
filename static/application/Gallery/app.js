@@ -1,7 +1,5 @@
-$(document).ready(function() {
-    new App();
-})
-var App = function() {
+;
+(function(exports) {
     function App() {
         this.init()
     }
@@ -10,17 +8,17 @@ var App = function() {
             this.initGlobalVariable();
             this.initPlugin();
             this.attachEvent();
-            this.initPage();
+            Router.init();
         },
         initGlobalVariable: function() {
             window.Plugin = {};
             window.AppConfig = {
-                'staticSrc': '/static'
+                'staticSrc': ''
             };
             window.MainContainer = document.getElementById('mainContainer');
         },
         initPlugin: function() {
-            Plugin.router = new Router()
+            Plugin.router = new(namespace('component.router'))()
             window.Router = Plugin.router;
 
             Plugin.webAPI = window.webAPI;
@@ -33,31 +31,25 @@ var App = function() {
                 top: document.getElementById('navTop'),
                 bottom: document.getElementById('navBottom')
             }
-            Plugin.nav = new CmptNav(Router.current, dictContainer);
+            Plugin.nav = new(namespace('component.nav'))(Router.current, dictContainer);
             Plugin.nav.init();
         },
         initAccountPlugin: function() {
-            Plugin.account = new CmptAccount(Router.current);
+            Plugin.account = new(namespace('component.account'))(Router.current);
             Plugin.account.init();
         },
         attachEvent: function() {
 
-        },
-        initPage: function() {
-            var pageOpt = location.hash.split('#page=')[1];
-            var page = '';
-            if (pageOpt) {
-                page = pageOpt.split('&')[0]
-            }
-            if (!page || !window[page]) {
-                page = 'PageHomepage'
-            }
-            Router.empty().to(window[page])
         },
         exit: function() {
 
         },
     }
 
-    return App
-}()
+    exports.gallery = App
+}(window))
+
+
+$(document).ready(function() {
+    new(namespace('gallery'))();
+})
