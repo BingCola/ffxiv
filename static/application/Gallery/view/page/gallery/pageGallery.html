@@ -7,6 +7,10 @@
         background: transparent;
     }
     
+    .navTop .navField {
+        max-width: initial;
+    }
+    
     .navTop .navBg {
         background: rgba(255, 255, 255, .15);
     }
@@ -56,8 +60,93 @@
         width: 100%;
     }
     
+    #ctnFilter .wrapQueryItem {
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+    
+    #ctnFilter .wrapQueryItem .title {
+        font-size: 16px;
+    }
+    
+    #ctnFilter .divQueryItem .item {
+        padding-right: 5px;
+        display: inline-block;
+    }
+    
     .navBottom {
         display: none;
+    }
+    
+    #ctnItemList .infoBox {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 5px 10px;
+        background: rgba(0, 0, 0, 0.5);
+    }
+    
+    #ctnItemList .infoBox .name {
+        display: block;
+    }
+    
+    #ctnItemList .infoBox .author {
+        font-size: 12px;
+    }
+    
+    #ctnItemList .infoBox .wrapAction {
+        display: inline-block;
+        font-size: 12px;
+        float: right;
+    }
+    
+    #ctnItemList .infoBox .actionItem {
+        margin-left: 5px;
+        cursor: pointer;
+    }
+    
+    #ctnItemList .infoBox .icon {
+        font-size: 12px;
+    }
+    
+    #ctnQuery {
+        position: absolute;
+        z-index: 1;
+        width: calc(100% - 270px);
+        left: 255px;
+        top: 5px;
+        background: rgba(0, 0, 0, 0.75);
+        padding: 5px 20px;
+    }
+    
+    #ctnQuery .divQueryItem {
+        display: inline-block;
+    }
+    
+    #ctnQuery .divQueryItem[data-field="keyword"] {
+        width: calc(100% - 150px);
+        position: relative;
+    }
+    
+    #ctnQuery .divQueryItem .list {
+        display: none;
+    }
+    
+    #ctnQuery .iptQuery {
+        background: transparent;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        width: 100%;
+    }
+    
+    #ctnQuery .btnSearch {
+        position: absolute;
+        color: #ccc;
+        font-size: 16px;
+        line-height: 24px;
+        left: 160px;
+        cursor: pointer;
     }
 </style>
 <img class="pageBg" src="/image/gallery/background.jpg" />
@@ -67,9 +156,34 @@
 <div id="ctnRecommend">
     <div class="wrapRecommendSlide"></div>
 </div>
+<div id="ctnQuery">
+    <div class="divQueryItem" data-field="keyword">
+        <input class="iptQuery" type="text" placeholder="请输入名字/作者/标签">
+        <span class="btnSearch glyphicon glyphicon-search"></span>
+    </div>
+    <div class="divQueryItem" data-field="sort">
+        <div class="value">综合排序</div>
+        <div class="list">
+            <span class="item">综合排序</span>
+            <span class="item">最多点赞</span>
+            <span class="item">最多收藏</span>
+            <span class="item">最多阅览</span>
+            <span class="item">最多评论</span>
+        </div>
+    </div>
+    <div class="divQueryItem" data-field="sort">
+        <div class="value">全部时间</div>
+        <div class="list">
+            <span class="item">全部时间</span>
+            <span class="item">一日</span>
+            <span class="item">三日</span>
+            <span class="item">一周</span>
+        </div>
+    </div>
+</div>
 <div id="ctnFilter">
     <div class="workspace">
-        <div class="wrapQueryItem" data-mode="text">
+        <!--div class="wrapQueryItem" data-mode="text">
             <input class="iptQuery" type="text" placeholder="请输入名字/作者/标签">
         </div>
         <div class="wrapQueryItem" data-mode="single">
@@ -88,26 +202,26 @@
                 <span class="item">三日</span>
                 <span class="item">一周</span>
             </div>
-        </div>
+        </div>-->
         <div class="wrapQueryItem" data-mode="multi" data-field="job">
-            <div class="divQueryItem">
-            </div>
+            <span class="title">职业</span>
+            <div class="divQueryItem"></div>
         </div>
         <div class="wrapQueryItem" data-mode="single" data-field="race">
-            <div class="divQueryItem">
-            </div>
+            <span class="title">种族</span>
+            <div class="divQueryItem"></div>
         </div>
         <div class="wrapQueryItem" data-mode="multi" data-field="gender">
-            <div class="divQueryItem">
-            </div>
+            <span class="title">性别</span>
+            <div class="divQueryItem"></div>
         </div>
         <div class="wrapQueryItem" data-mode="multi" data-field="color">
-            <div class="divQueryItem">
-            </div>
+            <span class="title">色系</span>
+            <div class="divQueryItem"></div>
         </div>
         <div class="wrapQueryItem" data-mode="multi" data-field="tag">
-            <div class="divQueryItem">
-            </div>
+            <span class="title">标签</span>
+            <div class="divQueryItem"></div>
         </div>
     </div>
 </div>

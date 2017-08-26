@@ -25,6 +25,7 @@
             var container = document.getElementById('ctnFilter');
             var fields = [{
                     field: 'job',
+                    title: '职业',
                     list: [
                         { content: '不限', val: 0 },
                         { content: '骑士', val: 1 },
@@ -46,6 +47,7 @@
                 },
                 {
                     field: 'gender',
+                    title: '性别',
                     list: [
                         { content: '不限', val: 0 },
                         { content: '男性', val: 1 },
@@ -54,6 +56,7 @@
                 },
                 {
                     field: 'race',
+                    title: '种族',
                     list: [
                         { content: '不限', val: 0 },
                         { content: '人类', val: 1 },
@@ -66,6 +69,7 @@
                 },
                 {
                     field: 'tag',
+                    title: '标签',
                     list: [
                         { content: '清新', val: 1 },
                         { content: '多人', val: 2 },
@@ -171,18 +175,20 @@
                 dom.dataset.id = item.id
                 dom.innerHTML = '\
                 <img class="itemImg" src="' + AppConfig.staticSrc + '/image/galleryStore/' + item.img.name + '">\
-                    <div class="wrapBaseInfo">\
-                        <span class="name">' + item.name + '</span>\
-                        <span class="author" data-id="' + item.author.id + '">' + item.author.name + '</span>\
-                    </div>\
+                <div class="infoBox">\
+                    <span class="name">' + item.name + '</span>\
+                    <span class="author" data-id="' + item.author.id + '">' + item.author.name + '</span>\
                     <div class="wrapAction">\
-                        <div class="actionItem" data-action="praise">\
-                            <span class="icon heart"></span>\
-                        </div>\
-                        <div class="actionItem" data-action="collect">\
-                            <span class="icon star"></span>\
-                        </div>\
-                    </div>'
+                        <span class="actionItem" data-action="praise">\
+                            <span class="icon iconfont icon-heart"></span>\
+                            <span class="num">' + (item.remark.praise > 999 ? '999+' : item.remark.praise) + '</span>\
+                        </span>\
+                        <span class="actionItem" data-action="comment">\
+                            <span class="icon iconfont icon-comment"></span>\
+                            <span class="num">' + (item.remark.comment > 999 ? '999+' : item.remark.comment) + '</span>\
+                        </span>\
+                    </div>\
+                </div>'
 
                 return dom;
             }

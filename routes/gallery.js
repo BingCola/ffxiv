@@ -28,12 +28,12 @@ router.post('/getItem/overview', function(req, res, next) {
             'author': { 'name': '作者' + i, 'id': parseInt(i) },
             'time': new Date(),
             'remark': {
-                'comment': parseInt(Math.random() * 1000),
-                'praise': parseInt(Math.random() * 1000),
-                'collect': parseInt(Math.random() * 1000),
-                'shield': parseInt(Math.random() * 1000),
-                'view': parseInt(Math.random() * 1000),
-                'share': parseInt(Math.random() * 1000),
+                'comment': parseInt(Math.random() * 2000),
+                'praise': parseInt(Math.random() * 2000),
+                'collect': parseInt(Math.random() * 2000),
+                'shield': parseInt(Math.random() * 2000),
+                'view': parseInt(Math.random() * 2000),
+                'share': parseInt(Math.random() * 2000),
             },
             'userAction': {
                 'isPraise': true,
