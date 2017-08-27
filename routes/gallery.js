@@ -2,20 +2,21 @@ var express = require('express');
 var router = express.Router();
 
 
+var arrSize = [
+    { 'width': 1920, 'height': 1080 },
+    { 'width': 1440, 'height': 990 },
+    { 'width': 1920, 'height': 1080 },
+    { 'width': 533, 'height': 330 },
+    { 'width': 1920, 'height': 1080 },
+    { 'width': 1070, 'height': 751 },
+    { 'width': 720, 'height': 450 },
+    { 'width': 1920, 'height': 1080 },
+    { 'width': 658, 'height': 370 },
+    { 'width': 1920, 'height': 1080 }
+]
+
 router.post('/getItem/overview', function(req, res, next) {
     var data = []
-    var arrSize = [
-        { 'width': 1920, 'height': 1080 },
-        { 'width': 1440, 'height': 990 },
-        { 'width': 1920, 'height': 1080 },
-        { 'width': 533, 'height': 330 },
-        { 'width': 1920, 'height': 1080 },
-        { 'width': 1070, 'height': 751 },
-        { 'width': 720, 'height': 450 },
-        { 'width': 1920, 'height': 1080 },
-        { 'width': 658, 'height': 370 },
-        { 'width': 1920, 'height': 1080 }
-    ]
     for (var i = 0; i < req.body.limit; i++) {
         data.push({
             'id': i,
@@ -59,6 +60,66 @@ router.post('/getItem/prime', function(req, res, next) {
             { id: 5, name: '测试图片005', 'author': { 'name': '作者5', 'id': 5 } },
             { id: 6, name: '测试图片006', 'author': { 'name': '作者6', 'id': 6 } }
         ]
+    });
+});
+
+router.post('/getItem/detail/:id', function(req, res, next) {
+    var id = req.params.id;
+    var imgGrp = [];
+    for (var i = 0; i < 4; i++) {
+        imgGrp.push({
+            'name': parseInt((id + i) % 10 + 1) + '.jpg',
+            'height': arrSize[(id + i) % 10].height,
+            'width': arrSize[(id + i) % 10].width,
+        })
+    }
+    var modelGrp = [];
+    for (var i = 0; i < parseInt(Math.random() * 2) + 1; i++) {
+        modelGrp.push({
+            'name': '模特' + i,
+            'server': '摩杜纳',
+            'desc': '模特' + i + '描述',
+            'race': '猫魅',
+            'consist': {
+                0: { name: '某主武器', color: 'red' },
+                1: { name: '某副武器', color: 'red' },
+                2: { name: '某头盔', color: 'red' },
+                3: { name: '某上装', color: 'red' },
+                4: { name: '某下装', color: 'red' },
+                5: { name: '某腰带', color: 'red' },
+                6: { name: '某手套', color: 'red' },
+                7: { name: '某鞋子', color: 'red' },
+                8: { name: '某项链', color: 'red' },
+                9: { name: '某耳环', color: 'red' },
+                10: { name: '某手镯', color: 'red' },
+                11: { name: '某戒指', color: 'red' },
+            }
+        })
+    }
+    res.send({
+        success: true,
+        data: {
+            'id': id,
+            'img': imgGrp,
+            'name': '测试图片' + id,
+            'author': { 'name': '作者' + i, 'id': parseInt(id) },
+            'time': new Date(),
+            'remark': {
+                'comment': parseInt(Math.random() * 2000),
+                'praise': parseInt(Math.random() * 2000),
+                'collect': parseInt(Math.random() * 2000),
+                'shield': parseInt(Math.random() * 2000),
+                'view': parseInt(Math.random() * 2000),
+                'share': parseInt(Math.random() * 2000),
+            },
+            'model': modelGrp,
+            'userAction': {
+                'isPraise': true,
+                'isCollect': true,
+                'isShield': false
+            },
+            'desc': '关于本作品的描述' + id
+        }
     });
 });
 

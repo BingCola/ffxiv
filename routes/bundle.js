@@ -16,11 +16,20 @@ var bundle = {
 
             '/application/Gallery/constant.js',
             '/application/Gallery/app.js',
-
+        ],
+        "gallery_home": [
+            '/application/Gallery/script/page/home/pageHome.js'
+        ],
+        "gallery_gallery": [
             '/application/Gallery/script/page/gallery/pageGallery.js',
-            '/application/Gallery/script/page/gallery/dataManager.js',
+            '/application/Gallery/script/page/gallery/Controller.js',
+        ],
+        "gallery_works": [
+            '/component/comment.js',
 
-            '/application/Gallery/script/page/homepage/pageHomepage.js'
+            '/application/Gallery/script/page/works/pageWorks.js',
+            '/application/Gallery/script/page/works/controller.js',
+            '/application/Gallery/script/page/works/viewer.js',
         ]
     },
     'style': {

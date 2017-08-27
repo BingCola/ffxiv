@@ -1,11 +1,11 @@
 (function(exports) {
-    function PageHomepage() {
+    function PageHome() {
 
     }
-    PageHomepage.prototype = {
+    PageHome.prototype = {
         show: function() {
             var _this = this;
-            WebAPI.get('/application/Gallery/view/page/homepage/PageHomepage.html').done(function(resultHTML) {
+            WebAPI.get('/application/Gallery/view/page/homepage/PageHome.html').done(function(resultHTML) {
                 MainContainer.innerHTML = resultHTML;
                 _this.init();
             })
@@ -73,5 +73,5 @@
 
         },
     }
-    exports.homepage = PageHomepage
+    exports.home = PageHome
 })(namespace('gallery'))

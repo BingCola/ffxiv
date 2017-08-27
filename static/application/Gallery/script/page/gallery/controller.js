@@ -1,12 +1,12 @@
 (function(exports) {
-    function DataManager(page, option) {
+    function Controller(page, option) {
         this.page = page;
         this.option = option;
         this.query = undefined;
 
         this.total = 0;
     }
-    DataManager.prototype = {
+    Controller.prototype = {
         init: function() {
             this.initQuery();
         },
@@ -44,5 +44,5 @@
 
         },
     }
-    exports.controller = DataManager;
+    exports.controller = Controller;
 })(namespace('gallery.gallery'))

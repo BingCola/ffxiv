@@ -20,7 +20,7 @@
                 page = pageOpt.split('&')[0]
             }
             if (!page) {
-                page = 'homepage'
+                page = 'home'
             }
             var obj = namespace(app + '.' + page)
             if (typeof obj != 'function') return;
