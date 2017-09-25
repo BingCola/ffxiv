@@ -8,8 +8,14 @@
     }
     Controller.prototype = {
         init: function() {},
-        getWorksItem: function() {
-            return WebAPI.get('/gallery/getItem/detail/' + option.id, )
+        getWorksInfo: function(id) {
+            return WebAPI.get('/gallery/getItem/detail/' + id)
+        },
+        getAuthorInfo: function(id) {
+            return WebAPI.get('/user/info/' + id)
+        },
+        getRecommendInfo: function(id) {
+            return WebAPI.get('/gallery/getItem/recommend/' + id)
         }
     }
     exports.controller = Controller;

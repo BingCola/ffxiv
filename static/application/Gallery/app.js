@@ -13,7 +13,11 @@
         initGlobalVariable: function() {
             window.Plugin = {};
             window.AppConfig = {
-                'staticSrc': ''
+                'staticSrc': '',
+                'commonImgSrc': '/image/common/',
+                'equipImgSrc': '/image/equipStore/',
+                'galleryImgSrc': '/image/galleryStore/',
+                'userImgSrc': '/image/userStore/'
             };
             window.MainContainer = document.getElementById('mainContainer');
         },

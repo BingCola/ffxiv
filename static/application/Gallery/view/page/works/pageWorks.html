@@ -1,6 +1,11 @@
 <style>
+    body {
+        overflow: auto;
+    }
+    
     .mainContainer {
         /*top: 0;*/
+        overflow: auto;
     }
     
     .navTop {
@@ -14,13 +19,188 @@
     .navTop .navBg {
         background: rgba(255, 255, 255, .15);
     }
+    
+    #ctnPhotoAlbum {
+        height: calc(100vh - 44px);
+        width: 100vw;
+    }
+    
+    #ctnMainInfo {
+        max-width: 1080px;
+        margin: 0 auto;
+        margin-top: 15px;
+    }
+    
+    #ctnBaseInfo {
+        margin-bottom: 15px;
+    }
+    
+    #ctnRemarkInfo {
+        margin-bottom: 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, .5);
+        padding-bottom: 15px;
+    }
+    
+    #ctnRemarkInfo .divField {
+        cursor: pointer;
+    }
+    
+    #ctnRemarkInfo .icon {
+        font-size: 20px;
+        display: inline-block;
+        margin-right: 5px;
+        float: left;
+    }
+    
+    #ctnRemarkInfo .text {
+        margin-right: 5px;
+        display: inline-block;
+        line-height: 28px;
+    }
+    
+    #ctnRemarkInfo .num {
+        display: inline-block;
+        line-height: 28px;
+    }
+    
+    #ctnTagInfo .wrapTagItem {
+        display: inline-block;
+        margin-right: 15px;
+    }
+    
+    #ctnTagInfo .spContent {
+        cursor: pointer;
+        padding: 2px 5px;
+        display: block;
+        border: 1px solid rgba(255, 255, 255, .5);
+    }
+    
+    #ctnTagInfo .wrapTagHandle {
+        margin-top: 5px;
+    }
+    
+    #ctnTagInfo .c-btn {
+        margin-right: 5px;
+        cursor: pointer;
+    }
+    
+    #ctnTagInfo .divDetail {
+        padding: 5px;
+    }
+    
+    #ctnTagInfo .divDetail>.c-ctn:first-child {
+        margin-bottom: 5px;
+        border-bottom: 1px solid rgba(0, 0, 0, .15);
+    }
+    
+    #ctnTagInfo .divDetail .c-text-4 {
+        color: black;
+    }
+    
+    #ctnTagInfo .divDetail .content {
+        margin-right: 15px;
+    }
+    
+    #ctnTagInfo .divDetail .c-btn[data-action=attention] {
+        float: left;
+    }
+    
+    #ctnTagInfo .divDetail .c-btn[data-action=delete],
+    #ctnTagInfo .divDetail .c-btn[data-action=report] {
+        float: right;
+        color: #969696;
+    }
+    
+    #ctnDescInfo {
+        text-indent: 2rem;
+        padding: 15px 0;
+        margin: 15px 0;
+    }
+    
+    #ctnRecommend {
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid rgba(255, 255, 255, .5);
+    }
+    
+    #ctnRecommend .c-label {
+        font-size: 20px;
+        color: white;
+        margin-bottom: 15px;
+        display: inline-block;
+    }
+    
+    #ctnRecommend .c-slide-title {
+        margin-top: 5px;
+        position: relative;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        float: left;
+        color: white;
+    }
 </style>
 <div id="ctnPhotoAlbum"></div>
-<div id="ctnInfo">
-    <div id="ctnBaseInfo"></div>
-    <div id="ctnAuthorInfo"></div>
-    <div id="ctnModelInfo"></div>
-    <div id="ctnRemarkInfo"></div>
+<div id="ctnMainInfo" class="c-ctn fluid">
+    <div class="c-wrap c-wrap-6">
+        <div id="ctnBaseInfo">
+            <div class="divField c-title-3" data-field="title"></div>
+            <div class="divField c-text-4" data-field="time"></div>
+        </div>
+        <div id="ctnRemarkInfo" class="c-ctn fluid">
+            <div class="divField c-wrap c-wrap-1-5" data-field="view"></div>
+            <div class="divField c-wrap c-wrap-1-5" data-field="praise"></div>
+            <div class="divField c-wrap c-wrap-1-5" data-field="collect"></div>
+            <div class="divField c-wrap c-wrap-1-5" data-field="shield"></div>
+            <div class="divField c-wrap c-wrap-1-5" data-field="share"></div>
+        </div>
+        <div id="ctnTagInfo">
+            <div class="wrapTagList"></div>
+            <div class="wrapTagHandle">
+                <span class="c-btn iconfont icon-add c-text-4" data-action="add"></span>
+                <span class="c-btn c-text-4" data-action="log">修改记录</span>
+                <span class="c-btn c-text-4" data-action="help">使用说明</span>
+            </div>
+        </div>
+        <div id="ctnDescInfo">
+            <div class="c-text-2" data-field="desc"></div>
+        </div>
+        <div id="ctnRecommend">
+            <span class="c-label">您可能还喜欢</span>
+            <div class="recommentList c-slide-wrap" data-slide-orient="horizon" data-in-view=3>
+                <span class="c-slide-btn glyphicon glyphicon-menu-left"></span>
+                <div class="c-slide-list-wrap">
+                    <div class="c-slide-list"></div>
+                </div>
+                <span class="c-slide-btn glyphicon glyphicon-menu-right"></span>
+            </div>
+        </div>
+        <div id="ctnComment"></div>
+    </div>
+    <div class="c-wrap c-wrap-4">
+        <div id="ctnAuthorInfo">
+            <div class="divField" data-field="portrait"><img class="portrait"></div>
+            <div class="c-ctn">
+                <div class="divField" data-field="name"></div>
+                <div class="divField" data-field="server"></div>
+                <div class="divField" data-field="desc"></div>
+                <div class="c-ctn">
+                    <div class="divField">
+                        <span class="label">投稿：</span><span class="content" data-field="works"></span>
+                    </div>
+                    <div class="divField">
+                        <span class="label">粉丝：</span><span class="content" data-field="fans"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="c-ctn">
+                <div class="divBtn" data-function="attention"></div>
+                <div class="divBtn" data-function="message"></div>
+            </div>
+        </div>
+        <div id="ctnModelInfo"></div>
+    </div>
 </div>
-<div id="ctnRecommend"></div>
-<div id="ctnComment"></div>

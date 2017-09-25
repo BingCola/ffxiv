@@ -1,0 +1,237 @@
+/*layout*/
+
+.c-ctn:before {
+    content: '';
+    display: table;
+}
+
+.c-ctn:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.c-wrap {
+    display: inline-block;
+}
+
+.c-ctn.fluid>.c-wrap {
+    float: left;
+}
+
+.c-wrap-1-1 {
+    width: 100%;
+}
+
+.c-wrap-1-2 {
+    width: 50%;
+}
+
+.c-wrap-1-3 {
+    width: 50%;
+}
+
+.c-wrap-1-4 {
+    width: 25%
+}
+
+.c-wrap-1-5 {
+    width: 20%
+}
+
+.c-wrap-1-6 {
+    width: 16.6667%
+}
+
+.c-wrap-1-7 {
+    width: 14.2857%
+}
+
+.c-wrap-1-8 {
+    width: 12.5%
+}
+
+.c-wrap-1-9 {
+    width: 11.1111%
+}
+
+.c-wrap-1-10 {
+    width: 10%
+}
+
+.c-wrap-1 {
+    width: 10%;
+}
+
+.c-wrap-2 {
+    width: 20%;
+}
+
+.c-wrap-3 {
+    width: 30%;
+}
+
+.c-wrap-4 {
+    width: 40%
+}
+
+.c-wrap-5 {
+    width: 50%
+}
+
+.c-wrap-6 {
+    width: 60%
+}
+
+.c-wrap-7 {
+    width: 70%
+}
+
+.c-wrap-8 {
+    width: 80%
+}
+
+.c-wrap-9 {
+    width: 90%
+}
+
+.c-wrap-10 {
+    width: 100%
+}
+
+
+/*layout*/
+
+
+/*font*/
+
+.c-title-1 {
+    font-size: 56px;
+}
+
+.c-title-2 {
+    font-size: 42px;
+}
+
+.c-title-3 {
+    font-size: 32px;
+}
+
+.c-text-1 {
+    font-size: 18px;
+}
+
+.c-text-2 {
+    font-size: 16px;
+}
+
+.c-text-3 {
+    font-size: 14px;
+}
+
+.c-text-4 {
+    font-size: 12px;
+}
+
+
+/*font*/
+
+
+/*btn*/
+
+.c-btn {
+    cursor: pointer;
+}
+
+
+/*btn*/
+
+
+/*popover*/
+
+.c-interact .c-popover {
+    display: none;
+    position: absolute;
+}
+
+.c-interact .c-popover[data-theme="light"] {
+    background: white;
+    color: black;
+}
+
+.c-interact[data-toggle="hover"]:hover .c-popover {
+    display: block;
+}
+
+
+/*popover*/
+
+
+/*slide*/
+
+.c-slide-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.c-slide-wrap .c-slide-btn {
+    top: 0;
+    cursor: pointer;
+}
+
+.c-slide-wrap .c-slide-list-wrap {
+    margin: 0 15px;
+}
+
+.c-slide-wrap .c-slide-list {
+    white-space: nowrap;
+}
+
+.c-slide-wrap .c-slide-list:before {
+    content: '';
+    display: table;
+}
+
+.c-slide-wrap .c-slide-list:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.c-slide-wrap .c-slide {
+    position: relative;
+    display: inline-block;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.c-slide-wrap .c-slide-list-wrap {
+    width: 100%;
+    overflow: hidden;
+}
+
+.c-slide-wrap .c-slide-img {
+    width: 100%;
+}
+
+.c-slide-wrap .c-slide-title {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.c-slide-wrap[data-in-view="3"] .c-slide {
+    width: calc(33.3333% - 10px);
+}
+
+.c-slide-wrap[data-in-view="4"] .c-slide {
+    width: calc(25% - 10px);
+}
+
+
+/*slide*/

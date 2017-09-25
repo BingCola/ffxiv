@@ -24,7 +24,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'static')));
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/user', users);
 app.use('/gallery', mod_gallery);
 
 // catch 404 and forward to error handler

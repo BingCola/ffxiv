@@ -14,4 +14,12 @@ body {
     color: white;
 }
 
-.mainContainer {}
+.mainContainer {
+    position: relative;
+    top: 44px;
+    width: 100%;
+}
+
+.c-text-4 {
+    color: #ccc;
+}

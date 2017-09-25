@@ -4,7 +4,6 @@ var bundle = {
         "base": [
             '/lib/jquery-3.0.0.min.js',
             '/lib/bootstrap/js/bootstrap.min.js',
-
             '/component/common.js'
         ],
         "gallery": [
@@ -35,8 +34,10 @@ var bundle = {
     'style': {
         "base": [
             '/lib/bootstrap/css/bootstrap.min.css',
-            '/icon/iconFont/iconfont.css',
+            // '/icon/iconFont/iconfont.css',
+            '//at.alicdn.com/t/font_180029_qmlkzyjra1ao47vi.css',
 
+            '/style/c-ui.css',
             '/style/common.css',
             '/style/component.css',
         ],
