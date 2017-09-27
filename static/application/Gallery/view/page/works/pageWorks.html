@@ -26,9 +26,18 @@
     }
     
     #ctnMainInfo {
-        max-width: 1080px;
+        max-width: 960px;
         margin: 0 auto;
         margin-top: 15px;
+    }
+    
+    #ctnMainInfo .ctnLeftInfo {
+        width: 65%
+    }
+    
+    #ctnMainInfo .ctnRightInfo {
+        width: 35%;
+        padding-left: 30px;
     }
     
     #ctnBaseInfo {
@@ -142,10 +151,175 @@
         float: left;
         color: white;
     }
+    
+    #ctnAuthorInfo {
+        position: relative;
+    }
+    
+    #ctnAuthorInfo .divField[data-field="portrait"] {
+        display: inline-block;
+        width: 72px;
+        position: absolute;
+    }
+    
+    #ctnAuthorInfo .divField[data-field="name"] {
+        display: block;
+        margin-bottom: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, .5);
+    }
+    
+    #ctnAuthorInfo .divField[data-field="desc"] {
+        display: block;
+        margin-bottom: 3px;
+    }
+    
+    #ctnAuthorInfo .authorInfo {
+        padding-left: 90px;
+    }
+    
+    #ctnAuthorInfo .authorInfo .detail .c-wrap {
+        margin-right: 15px;
+    }
+    
+    #ctnAuthorInfo .authorAction {
+        position: absolute;
+        top: 0;
+        right: 5px;
+    }
+    
+    #ctnAuthorInfo .authorAction .c-btn {
+        margin-left: 5px;
+        font-size: 20px;
+    }
+    
+    #ctnModelInfo {
+        margin-top: 30px;
+        position: relative;
+    }
+    
+    #ctnModelInfo .modelToggleIndex {
+        position: absolute;
+        left: 54px;
+        top: 7px;
+    }
+    
+    #ctnModelInfo .modelToggleIndex .spIndex {
+        display: inline-block;
+        width: 20px;
+        height: 5px;
+        border: 1px solid white;
+        margin-left: 5px;
+        cursor: pointer;
+    }
+    
+    #ctnModelInfo .modelToggleIndex .spIndex.focus {
+        background: white;
+    }
+    
+    #ctnModelInfo .divEqupment>.divField {
+        position: relative;
+        height: 50px;
+        margin-left: 60px;
+        margin-bottom: 10px;
+        padding: 2px 5px;
+        background: rgba(255, 255, 255, .1);
+        border-radius: 3px;
+    }
+    
+    #ctnModelInfo .divModel {
+        display: none;
+    }
+    
+    #ctnModelInfo .divModel.focus {
+        display: block;
+    }
+    
+    #ctnModelInfo .divEqupment>.divField:nth-child(even) {
+        background: rgba(0, 0, 0, .3);
+    }
+    
+    #ctnModelInfo .divEqupment .icon {
+        position: absolute;
+        height: 42px;
+        width: 42px;
+        left: -57px;
+        top: 3px;
+        border-radius: 5px;
+    }
+    
+    #ctnModelInfo .divEqupment .partName {
+        display: block;
+        margin-bottom: 4px;
+        padding-left: 24px;
+    }
+    
+    #ctnModelInfo .divEqupment .color {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        position: absolute;
+        left: 7px;
+        top: 6px;
+        border-radius: 2px;
+        box-shadow: 0 0 1px 1px white;
+    }
+    
+    #ctnModelInfo .divEqupment .btnMore {
+        position: absolute;
+        top: 2px;
+        right: 4px;
+    }
+    
+    #ctnModelInfo>.c-label {
+        font-size: 20px;
+        color: white;
+        margin-bottom: 15px;
+        display: inline-block;
+    }
+    
+    #ctnModelInfo .divCharacter {
+        margin-left: 60px;
+        position: relative;
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, .5);
+    }
+    
+    #ctnModelInfo .divCharacter .divField[data-field="portrait"] {
+        width: 48px;
+        height: 48px;
+        position: absolute;
+        left: -60px;
+        top: 4px;
+    }
+    
+    #ctnModelInfo .divCharacter .charAction {
+        display: inline-block;
+        position: absolute;
+        right: 0;
+    }
+    
+    #ctnModelInfo .divCharacter .divField[data-field="race"] {
+        border: 1px solid rgba(255, 255, 255, .5);
+        border-radius: 3px;
+        padding: 0 3px;
+        color: #ccc;
+        position: relative;
+        top: 2px;
+        margin-right: 5px;
+    }
+    
+    #ctnModelInfo .divCharacter .divField[data-field="name"] {
+        display: inline-block;
+    }
+    
+    #ctnModelInfo .divCharacter .divField[data-field="desc"] {
+        margin-top: 3px;
+    }
 </style>
 <div id="ctnPhotoAlbum"></div>
 <div id="ctnMainInfo" class="c-ctn fluid">
-    <div class="c-wrap c-wrap-6">
+    <div class="c-wrap ctnLeftInfo">
         <div id="ctnBaseInfo">
             <div class="divField c-title-3" data-field="title"></div>
             <div class="divField c-text-4" data-field="time"></div>
@@ -180,27 +354,32 @@
         </div>
         <div id="ctnComment"></div>
     </div>
-    <div class="c-wrap c-wrap-4">
+    <div class="c-wrap ctnRightInfo">
         <div id="ctnAuthorInfo">
-            <div class="divField" data-field="portrait"><img class="portrait"></div>
-            <div class="c-ctn">
-                <div class="divField" data-field="name"></div>
-                <div class="divField" data-field="server"></div>
-                <div class="divField" data-field="desc"></div>
-                <div class="c-ctn">
-                    <div class="divField">
-                        <span class="label">投稿：</span><span class="content" data-field="works"></span>
+            <div class="divField" data-field="portrait"><img class="c-portrait portrait"></div>
+            <div class="c-ctn authorInfo">
+                <div class="divField c-text-1 c-wrap" data-field="name"></div>
+                <div class="divField c-text-3 c-wrap" data-field="desc"></div>
+                <div class="c-ctn fluid detail">
+
+                    <div class="divField c-text-4 c-wrap" data-field="server"></div>
+                    <div class="divField c-text-4 c-wrap">
+                        <span class="c-label">投稿：</span><span class="content" data-field="works"></span>
                     </div>
-                    <div class="divField">
-                        <span class="label">粉丝：</span><span class="content" data-field="fans"></span>
+                    <div class="divField c-text-4 c-wrap">
+                        <span class="c-label">粉丝：</span><span class="content" data-field="fans"></span>
                     </div>
                 </div>
             </div>
-            <div class="c-ctn">
-                <div class="divBtn" data-function="attention"></div>
-                <div class="divBtn" data-function="message"></div>
+            <div class="c-ctn authorAction">
+                <span class="c-btn iconfont icon-attention" data-action="attention"></span>
+                <span class="c-btn iconfont icon-message" data-action="message"></span>
             </div>
         </div>
-        <div id="ctnModelInfo"></div>
+        <div id="ctnModelInfo">
+            <div class="c-label">模特</div>
+            <div class="c-ctn modelToggleIndex"></div>
+            <div class="ctnModelList"></div>
+        </div>
     </div>
 </div>

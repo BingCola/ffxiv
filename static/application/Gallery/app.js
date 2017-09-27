@@ -19,6 +19,7 @@
                 'galleryImgSrc': '/image/galleryStore/',
                 'userImgSrc': '/image/userStore/'
             };
+            window.User = {};
             window.MainContainer = document.getElementById('mainContainer');
         },
         initPlugin: function() {

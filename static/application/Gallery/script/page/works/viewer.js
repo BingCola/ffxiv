@@ -100,58 +100,86 @@
             var fields = ['name', 'server', 'desc', 'works', 'fans'].map(function(item) {
                 return {
                     name: item,
-                    data: data[item]
+                    data: item == 'server' ? CONSTANT.SERVER[data[item]].name : data[item]
                 }
             });
             this.setFieldData(container, fields);
         },
         setModel: function(data) {
-            var container = document.getElementById('ctnModelInfo');
-            data.forEach(function(item) {
-                container.appendChild(this.createModelDom(item))
+            var container = document.getElementById('ctnModelInfo').querySelector('.ctnModelList');
+            var ctnIndex = document.getElementById('ctnModelInfo').querySelector('.modelToggleIndex');
+            ctnIndex.innerHTML = '';
+            if (data.lenth == 0) {
+                ctnIndex.classList.add('hide;')
+            }
+            data.forEach(function(item, index) {
+                var dom = this.createModelDom(item);
+                container.appendChild(dom)
+                if (index == 0) {
+                    dom.classList.add('focus');
+                    ctnIndex.innerHTML += '<span class="spIndex focus" data-index="' + index + '"></span>'
+                } else {
+                    ctnIndex.innerHTML += '<span class="spIndex" data-index="' + index + '"></span>'
+                }
             }.bind(this))
         },
         createModelDom: function(data) {
             var _this = this;
             var template = '\
-                <div class="divCharacter>\
-                    <div class="divField" data-field="portrait"><img class="portrait"></div>\
-                    <div class="c-ctn">\
-                        <div class="divField" data-field="name"></div>\
-                        <div class="divField" data-field="server"></div>\
-                        <div class="divField" data-field="desc"></div>\
-                    </div>\
+                <div class="divCharacter">\
+                    ${char_template}\
                 </div>\
                 <div class="divEqupment">\
                     ${equip_template}\
                 </div>';
 
+            var char_template = '\
+                <div class="divField" data-field="portrait"><img src="${portrait}" onerror="this.style.display=\'none\'" class="c-portrait portrait"></div>\
+                <div class="c-ctn fluid">\
+                    <div class="c-wrap c-ctn charAction">${tool}</div>\
+                    <div class="c-wrap divField c-text-4" data-field="race">${race}</div>\
+                    <div class="c-wrap divField c-text-2" data-field="name">${name}</div>\
+                </div>\
+                <div class="divField c-text-3" data-field="desc">${desc}</div>';
+
+            var chart_tool_template = '\
+                <span class="c-btn iconfont icon-attention" data-action="attention"></span>\
+                <span class="c-btn iconfont icon-message" data-action="message"></span>';
+            var strChar = this.formatEl(char_template, {
+                name: data.name,
+                race: CONSTANT.RACE[data.race].name,
+                desc: data.desc,
+                portrait: data.id ? AppConfig.userImgSrc + data.id + '.png' : AppConfig.commonImgSrc + 'race_icon_' + data.race + '.png',
+                tool: data.id ? chart_tool_template : '<span class="noRegisterTip">未注册</span>'
+            })
+            template = template.replace(/\${char_template}/g, strChar);
+
+
             var equip_template = '\
-                <div class="divField">\
+                <div class="divField pos-${pos}">\
                     <img class="icon" src="${id}.jpg">\
-                    <span class="name">${name}</name>\
-                    <span class="desc">${extend}</span>\
+                    <span class="c-text-3 partName">${partName}</span>\
+                    <span class="c-text-2 name c-text-1">${name}</span>\
+                    <span class="color" style="background-color:${extend}"></span>\
+                    <span class="c-text-3 c-btn btnMore">更多作品</span>\
                 </div>';
             var strEquip = Object.keys(CONSTANT.EQUIP_PART).map(function(item) {
                 var info = data.equip[item];
                 return _this.formatEl(equip_template, {
                     id: AppConfig.commonImgSrc + 'equip_icon_sm_' + item,
                     name: info.name,
-                    extend: CONSTANT.EQUIP_PART[item].name
+                    partName: CONSTANT.EQUIP_PART[item].name,
+                    extend: info.color,
+                    pos: CONSTANT.EQUIP_PART[item].pos
                 });
             }).join('');
-            template = template.replace(/\${equip_template}/g, strEquip)
+            template = template.replace(/\${equip_template}/g, strEquip);
             var dom = document.createElement('div');
             dom.innerHTML = template;
-            var fields = ['name', 'server', 'desc'].map(function(item) {
-                return {
-                    name: item,
-                    data: data[item]
-                }
-            });
-
-            this.setFieldData(dom, fields);
-            dom.className = 'divModel'
+            dom.className = 'divModel';
+            if (data.id == this.page.store.author.id) {
+                dom.classList.add('isSelf')
+            }
             return dom;
         },
         setRecommend: function(data) {
@@ -184,7 +212,7 @@
             var str = arguments[0];
             var content = arguments[1];
             if (!content) return '';
-            if (typeof content != 'string') {
+            if (typeof content != 'string' && typeof content != 'number') {
                 Object.keys(content).forEach(function(key) {
                     var reg = new RegExp('\\${' + key + '}', 'g');
                     str = str.replace(reg, content[key]);

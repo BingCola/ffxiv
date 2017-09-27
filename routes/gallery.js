@@ -74,18 +74,18 @@ router.get('/getItem/detail/:id', function(req, res, next) {
         })
     }
     var modelGrp = [];
-    for (var i = 0; i < parseInt(Math.random() * 2) + 1; i++) {
+    for (var i = 0; i < parseInt(Math.random() * 2) + 2; i++) {
         modelGrp.push({
             'name': '模特' + i,
-            'id': i,
-            'server': '摩杜纳',
+            'id': i % 2 == 0 ? parseInt(i) + 1 : 0,
+            'server': parseInt(Math.random() * 4) + 1,
             'desc': '模特' + i + '描述',
-            'race': '猫魅',
+            'race': parseInt(Math.random() * 4) + 1,
             'equip': {
                 1: { name: '某主武器', color: 'red' },
                 2: { name: '某副武器', color: 'red' },
                 3: { name: '某头盔', color: 'red' },
-                4: { name: '某上装', color: 'red' },
+                4: { name: '某上装', color: 'black' },
                 5: { name: '某下装', color: 'red' },
                 6: { name: '某腰带', color: 'red' },
                 7: { name: '某手套', color: 'red' },
@@ -143,5 +143,18 @@ router.get('/getItem/recommend/:id', function(req, res, next) {
     })
 })
 
+router.get('/getItem/comment/:id', function(req, res, next) {
+    var arrItem = [];
+    for (var i = 0; i < parseInt(Math.random() * 4) + 10; i++) {
+        arrItem.push({
+            title: '相关作品' + i,
+            id: 1
+        })
+    }
+    res.send({
+        success: true,
+        data: arrItem
+    })
+})
 
 module.exports = router;

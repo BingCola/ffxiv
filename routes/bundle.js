@@ -35,7 +35,7 @@ var bundle = {
         "base": [
             '/lib/bootstrap/css/bootstrap.min.css',
             // '/icon/iconFont/iconfont.css',
-            '//at.alicdn.com/t/font_180029_qmlkzyjra1ao47vi.css',
+            '//at.alicdn.com/t/font_180029_7zdej7791r6kcsor.css',
 
             '/style/c-ui.css',
             '/style/common.css',

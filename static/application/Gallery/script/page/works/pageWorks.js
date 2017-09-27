@@ -46,7 +46,7 @@
         },
         setViewer: function() {
             var _this = this;
-            this.controller.getAuthorInfo(this.store.author.id).done(function() { _this.viewer.setAuthor(_this.store.author) });
+            this.controller.getAuthorInfo(this.store.author.id).done(function(result) { _this.viewer.setAuthor(result.data) });
             this.viewer.setRecommend(this.store.recommend)
             this.viewer.setAlbum(this.store.img);
             this.viewer.setBase(this.store);
@@ -62,7 +62,19 @@
             this.comment = new(namespace('component.comment'))(this, option)
         },
         attachEvent: function() {
-
+            this.attachModelEvent();
+        },
+        attachModelEvent: function() {
+            var $ctn = $('#ctnModelInfo');
+            $ctn.off('click').on('click', '.spIndex', function(e) {
+                var $target = $(e.currentTarget)
+                if ($target.hasClass('focus')) return;
+                var index = $target[0].dataset.index;
+                $ctn.find('.spIndex.focus').removeClass('focus')
+                $ctn.find('.divModel.focus').removeClass('focus')
+                $target.addClass('focus');
+                $ctn.find('.divModel').eq(index).addClass('focus')
+            })
         },
         close: function() {
 
