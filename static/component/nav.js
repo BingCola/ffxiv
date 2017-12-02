@@ -1,13 +1,12 @@
 (function(exports) {
-    function CmptNav(page, container, opt) {
-        this.page = page;
+    function Cmpt(container, opt) {
         this.navTop = container.top;
         this.navBottom = container.bottom
         this.opt = opt;
 
         this.user = undefined;
     }
-    CmptNav.prototype = {
+    Cmpt.prototype = {
         init: function() {
             this.initNavTop();
             this.initNavBottom();
@@ -44,5 +43,5 @@
             }
         },
     }
-    exports.nav = CmptNav
-})(namespace('component'))
+    exports.nav = Cmpt
+})(namespace('cmpt'))

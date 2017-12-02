@@ -1,8 +1,8 @@
 (function(exports) {
-    function CmptAccount(page, opt) {
+    function Cmpt(page, opt) {
 
     }
-    CmptAccount.prototype = {
+    Cmpt.prototype = {
         init: function() {
 
         },
@@ -13,5 +13,5 @@
 
         }
     }
-    exports.account = CmptAccount
-}(namespace('component')))
+    exports.account = Cmpt
+}(namespace('cmpt')))

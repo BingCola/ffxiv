@@ -1,6 +1,6 @@
 /*component nav*/
 
-.navTop {
+.cp-nav-top {
     height: 44px;
     width: 100%;
     position: fixed;
@@ -11,7 +11,7 @@
     display: -webkit-flex;
 }
 
-.navTop .navBg {
+.cp-nav-top .cp-nav-bg {
     position: absolute;
     left: 0;
     top: 0;
@@ -19,7 +19,7 @@
     height: 100%;
 }
 
-.navTop .navField {
+.cp-nav-top .cp-nav-body {
     position: relative;
     width: 100%;
     height: 100%;
@@ -27,19 +27,19 @@
     margin: 0 auto;
 }
 
-.navBrand {
+.cp-nav-brand {
     display: inline-block;
     height: 100%;
     padding: 10px;
     float: left;
 }
 
-.navBrand>img {
+.cp-nav-brand>img {
     max-height: 100%;
     max-width: 100%;
 }
 
-.navTop .userProfile {
+.cp-nav-top .cp-user-profile {
     display: inline-flex;
     display: -webkit-inline-flex;
     align-items: center;
@@ -49,15 +49,15 @@
     right: 0;
 }
 
-.navTop .userInfo {
+.cp-nav-top .cp-user-info {
     display: none;
 }
 
-.navTop .main .badge {
+.cp-nav-top .main .badge {
     margin-left: 0;
 }
 
-.navTop .badge {
+.cp-nav-top .badge {
     background-color: transparent;
     border-radius: 0;
     padding: 0;
@@ -66,28 +66,28 @@
     color: coral;
 }
 
-.navTop .userInfo .main {
+.cp-nav-top .cp-user-info .main {
     display: inline-flex;
     height: 100%;
     justify-content: center;
     align-items: center;
 }
 
-.navTop .isLogin .userInfo {
+.cp-nav-top .isLogin .userInfo {
     display: inline-block;
 }
 
-.navTop .portrait {
+.cp-nav-top .cp-user-portrait {
     height: 90%;
 }
 
-.navContent {
+.cp-nav-top .cp-nav-list {
     display: inline-block;
     height: 100%;
     margin-left: 30px;
 }
 
-.wrapNavItem {
+.cp-nav-top .cp-nav-item {
     font-size: 14px;
     padding: 5px 12px;
     height: 100%;
@@ -102,7 +102,7 @@
     float: left;
 }
 
-.wrapNavItem.dropdown>.navSubMenu {
+.cp-nav-top .cp-nav-sub-list {
     display: none;
     position: absolute;
     top: 100%;
@@ -112,15 +112,15 @@
     cursor: default;
 }
 
-.wrapNavItem:hover {
+.cp-nav-top .cp-nav-item:hover {
     background: rgba(255, 255, 255, 0.25);
 }
 
-.wrapNavItem.dropdown:hover>.navSubMenu {
+.cp-nav-top .cp-nav-item.dropdown:hover>.cp-nav-sub-list {
     display: block;
 }
 
-.navItem.sub {
+.cp-nav-top .cp-nav-item.sub {
     font-size: 12px;
     display: block;
     white-space: nowrap;
@@ -130,68 +130,68 @@
     width: 100%;
 }
 
-.navItem.sub:hover {
+.cp-nav-top .cp-nav-item.sub:hover {
     background: rgba(255, 255, 255, .25);
 }
 
-.navTop .userProfile .navItem {
+.cp-nav-top .userProfile .cp-nav-item {
     display: none;
 }
 
-.navTop .userProfile .navItem[data-action="login"] {
+.cp-nav-top .userProfile .navItem[data-action="login"] {
     display: inline-flex;
     display: -webkit-inline-flex;
 }
 
-.navTop .userProfile.isLogin .navItem {
+.cp-nav-top .userProfile.isLogin .navItem {
     display: inline-flex;
     display: -webkit-inline-flex;
 }
 
-.navTop .userProfile.isLogin .navItem[data-action="login"] {
+.cp-nav-top .userProfile.isLogin .navItem[data-action="login"] {
     display: none;
 }
 
-.navTop .userProfile.isLogin.isVisitor .navItem[data-action="login"] {
+.cp-nav-top .userProfile.isLogin.isVisitor .navItem[data-action="login"] {
     display: inline-flex;
     display: -webkit-inline-flex;
 }
 
-.navTop .userProfile .spinner {
+.cp-nav-top .userProfile .spinner {
     padding: 5px 10px;
     background: black;
 }
 
-.navTop .userInfo .sub {
+.cp-nav-top .userInfo .sub {
     width: 200px;
     padding: 15px;
     text-align: center;
 }
 
-.navTop .userInfo .sub .name {
+.cp-nav-top .userInfo .sub .name {
     display: block;
     font-weight: bold;
 }
 
-.navTop .userInfo .sub .role {
+.cp-nav-top .userInfo .sub .role {
     display: block;
     font-size: 12px;
 }
 
-.navTop .userInfo .sub .level {
+.cp-nav-top .userInfo .sub .level {
     position: relative;
     display: block;
     margin-top: 15px;
 }
 
-.navTop .userInfo .sub .level .label {
+.cp-nav-top .userInfo .sub .level .label {
     position: absolute;
     left: 0;
     padding: 0;
     font-weight: normal;
 }
 
-.navTop .userInfo .sub .level .number {
+.cp-nav-top .userInfo .sub .level .number {
     position: absolute;
     border-radius: 50%;
     height: 24px;
@@ -204,7 +204,7 @@
     top: -6px;
 }
 
-.navTop .userInfo .sub .level .levelBar {
+.cp-nav-top .userInfo .sub .level .levelBar {
     margin-left: 60px;
     display: block;
     height: 10px;
@@ -212,7 +212,7 @@
     margin-bottom: 15px;
 }
 
-.navTop .userInfo .sub .level .levelScore {
+.cp-nav-top .userInfo .sub .level .levelScore {
     width: 70%;
     height: 100%;
     display: inline-block;
@@ -220,13 +220,13 @@
     float: left;
 }
 
-.navTop .userInfo .sub .level .tip {
+.cp-nav-top .userInfo .sub .level .tip {
     display: inline-block;
     float: right;
     font-size: 12px;
 }
 
-.navTop .userInfo .sub .level .help {
+.cp-nav-top .userInfo .sub .level .help {
     display: inline-block;
     float: left;
     font-size: 12px;
@@ -234,7 +234,7 @@
     color: cornflowerblue;
 }
 
-.navTop .userInfo .sub .router {
+.cp-nav-top .userInfo .sub .router {
     display: block;
     padding-top: 10px;
     margin-top: 40px;
@@ -242,17 +242,17 @@
     border-top: 1px solid #aaa;
 }
 
-.navTop .userInfo .sub .routerItem {
+.cp-nav-top .userInfo .sub .routerItem {
     display: inline-block;
     cursor: pointer;
     width: 50%;
 }
 
-.navTop .userInfo .sub .routerItem:nth-child(even) {
+.cp-nav-top .userInfo .sub .routerItem:nth-child(even) {
     float: right;
 }
 
-.navTop .userInfo .sub .btnLogout {
+.cp-nav-top .userInfo .sub .btnLogout {
     display: block;
     text-align: right;
     font-size: 14px;
@@ -260,6 +260,45 @@
     padding: 5px;
     background: rgba(255, 255, 255, 0.1);
     cursor: pointer;
+}
+
+.cp-nav-bottom .cp-router-map {
+    margin-bottom: 15px;
+}
+
+.cp-nav-bottom .cp-router-map::before {
+    content: '';
+    display: table;
+}
+
+.cp-nav-bottom .cp-router-map::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.cp-nav-bottom .cp-section-col {
+    float: left;
+}
+
+.cp-nav-bottom .cp-section {
+    margin-bottom: 20px;
+}
+
+.cp-nav-bottom .cp-section>.cp-name {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.cp-nav-bottom .cp-nav-item {
+    display: block;
+    cursor: pointer;
+    margin-bottom: 2px;
+}
+
+.cp-copyright {
+    text-align: center;
+    font-size: 12px;
 }
 
 

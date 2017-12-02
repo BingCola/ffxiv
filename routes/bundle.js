@@ -12,37 +12,40 @@ var bundle = {
             '/component/account.js',
             '/component/nav.js',
             '/component/waterfall.js',
+            '/component/screen.js',
 
-            '/application/Gallery/constant.js',
-            '/application/Gallery/app.js',
+            '/app/Gallery/constant.js',
+            '/app/Gallery/app.js',
         ],
         "gallery_home": [
-            '/application/Gallery/script/page/home/pageHome.js'
+            '/app/Gallery/page/home/page.js',
+            '/app/Gallery/page/home/controller.js',
+            '/app/Gallery/page/home/viewer.js'
         ],
         "gallery_gallery": [
-            '/application/Gallery/script/page/gallery/pageGallery.js',
-            '/application/Gallery/script/page/gallery/Controller.js',
+            '/app/Gallery/page/gallery/page.js',
+            '/app/Gallery/page/gallery/controller.js',
         ],
         "gallery_works": [
             '/component/comment.js',
 
-            '/application/Gallery/script/page/works/pageWorks.js',
-            '/application/Gallery/script/page/works/controller.js',
-            '/application/Gallery/script/page/works/viewer.js',
+            '/app/Gallery/page/works/page.js',
+            '/app/Gallery/page/works/controller.js',
+            '/app/Gallery/page/works/viewer.js',
         ]
     },
     'style': {
         "base": [
             '/lib/bootstrap/css/bootstrap.min.css',
             // '/icon/iconFont/iconfont.css',
-            '//at.alicdn.com/t/font_180029_7zdej7791r6kcsor.css',
+            '//at.alicdn.com/t/font_180029_c2omth8sy8wa5rk9.css',
 
             '/style/c-ui.css',
             '/style/common.css',
             '/style/component.css',
         ],
         "gallery": [
-            '/application/Gallery/style/common.css',
+            '/app/Gallery/style/common.css',
         ]
     }
 }

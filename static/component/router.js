@@ -1,75 +1,129 @@
-/**
- * Created by BingCola on 2017/1/24.
- */
 (function(exports) {
-
-    function Router() {
+    function Cmpt(opt) {
+        this.option = opt || {};
+        this.current = {};
         this.path = [];
-        this.current = undefined;
-        this.attachEvent();
     }
-    Router.prototype = {
-        init: function() {
-            var pageOpt = location.hash.split('#page=')[1];
-            var app = location.pathname.split('/')[1];
-            if (!app) {
-                app = 'gallery'
-            }
-            var page = '';
-            if (pageOpt) {
-                page = pageOpt.split('&')[0]
-            }
-            if (!page) {
-                page = 'home'
-            }
-            var obj = namespace(app + '.' + page)
-            if (typeof obj != 'function') return;
-            this.to(obj)
-        },
-        attachEvent: function() {
-            var _this = this;
-            window.onhashchange = function() {
-                _this.init();
-            }
-        },
+    Cmpt.prototype = {
         to: function() {
-            var _this = this;
-            var page = arguments[0];
-            if (!page) return;
-            var param = [];
-            for (var i = 1; i < arguments.length; i++) {
-                param.push(arguments[i])
-            }
-            this.path.push([].concat(arguments));
-            if (typeof page == 'string') {
-                WebAPI.get(page).done(function(html) {
-                    _this.current = {};
-                    MainContainer.innerHTML = html;
-                })
+            var pageConstructor = namespace(arguments[0])
+            var param = Array.prototype.slice.bind(arguments)(1);
+            var page = new pageConstructor(...param)
+
+            var layout = page.layout;
+            this.path.push({ ins: page, cls: pageConstructor, param: param });
+
+            this.current.close && this.current.close();
+            var layout = (page.setLayout && page.setLayout());
+            if (!page.layout) page.layout = layout;
+            CPlugin.screen.setLayout(layout || page.layout).done(function() {
+                this.current = page;
+                this.option.event && this.option.event.onToggle && this.option.event.onToggle(page, param, pageConstructor)
+                page.init();
+            }.bind(this))
+        },
+        toFirstPage: function() {
+            if (location.hash) {
+                this.to(location.hash)
             } else {
-                var pageObj = Object.create(page.prototype);
-                _this.current && _this.current.close && _this.current.close();
-                _this.current = (page.apply(pageObj, param) || pageObj);
-                _this.current.show();
+                this.to(this.option.root)
             }
-            return this;
         },
-        open: function(url, blank) {
-            window.open(url, blank ? "_blank" : "")
+
+        back: function() {},
+        empty: function() { this.path = []; },
+
+        serializeParams: function(params) {
+            return window.encodeURIComponent(JSON.stringify(params));
         },
-        back: function() {
-            this.path.pop();
-            this.to(this.path[this.path.length - 1])
-            return this;
+
+        unserializeParams: function(params) {
+            try {
+                params = JSON.parse(window.decodeURIComponent(params));
+            } catch (e) {}
+            return params;
         },
-        empty: function() {
+        //获取hash参数
+        getHashParamsMap: function() {
+            var list, map = {};
+            list = location.hash.substr(1).split('&');
+            for (var m = 0; m < list.length; m++) {
+                var item = list[m].split('=');
+                map[item[0]] = unserializeParams(item[1]);
+            }
+            return map;
+        },
+        //生成hash参数
+        generateHashParamsMap: function() {
+            var paramObj = {
+                    page: screenClass.name
+                },
+                paramList = ScreenManager._getFunctionParams(screenClass);
+            for (var m = 0, n = paramList.length; m < n; m++) {
+                if (typeof arguments[m + 1] != typeof undefined) {
+                    paramObj[paramList[m]] = arguments[m + 1];
+                }
+            }
+        },
+        //获取对象参数
+        getFunctionParams: function(func) {
+            var STRIP_COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/mg,
+                ARGUMENT_NAMES = /([^\s,]+)/g,
+                fnStr, result;
+
+            fnStr = func.toString().replace(STRIP_COMMENTS, '');
+            result = fnStr.slice(fnStr.indexOf('(') + 1, fnStr.indexOf(')')).match(ARGUMENT_NAMES);
+            if (result === null) {
+                result = [];
+            }
+            return result;
+        }
+    }
+    exports.router = Cmpt;
+}(namespace('cmpt')))
+
+;
+(function(exports) {
+    class Cmpt extends exports {
+        constructor(opt) {
+            super();
+            this.option = opt || {};
+            this.current = {};
             this.path = [];
-            this.current = undefined;
-            return this;
-        },
-        destory: function() {
+        }
+        to() {
+            var pageConstructor = namespace('page.' + arguments[0])
+            var param = Array.prototype.slice.bind(arguments)(1);
+            var page = new pageConstructor(...param)
+
+            var layout = page.layout;
+
+            this.current.close && this.current.close();
+            var layout = (page.setLayout && page.setLayout());
+            if (!page.layout) page.layout = layout;
+            // if(page.layout.virtual !== true){
+            this.path.push({ ins: page, cls: arguments[0], param: param });
+            // }
+            CPlugin.screen.setLayout(layout || page.layout).done(function() {
+                this.current = page;
+                this.option.event && this.option.event.onToggle && this.option.event.onToggle(page, param, pageConstructor)
+                page.init();
+            }.bind(this))
+        }
+        back() {
+            if (this.path.length > 0) {
+                this.path.pop();
+                var lastPath = this.path[this.path.length - 1]
+                this.path.pop();
+                this.to(...[].concat(lastPath.cls, lastPath.param))
+            } else {
+                this.exit();
+            }
+        }
+        exit() {
 
         }
-    };
-    exports.router = Router
-})(namespace('component'));
+        empty() { this.path = []; }
+    }
+    exports.m = Cmpt;
+})(namespace('cmpt.router'));

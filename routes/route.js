@@ -10,22 +10,8 @@ router.get('/', function(req, res, next) {
         script: [].concat(
             bundle.script.base,
             bundle.script.gallery,
-            bundle.script.gallery_gallery
-        ),
-        style: [].concat(
-            bundle.style.base,
-            bundle.style.gallery
-        )
-    });
-});
-
-router.get('/gallery/works', function(req, res, next) {
-    res.render('indexGallery_works', {
-        path: '',
-        title: '艾欧泽亚幻化回廊',
-        script: [].concat(
-            bundle.script.base,
-            bundle.script.gallery,
+            bundle.script.gallery_home,
+            bundle.script.gallery_gallery,
             bundle.script.gallery_works
         ),
         style: [].concat(
@@ -34,5 +20,6 @@ router.get('/gallery/works', function(req, res, next) {
         )
     });
 });
+
 
 module.exports = router;

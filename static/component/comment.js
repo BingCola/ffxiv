@@ -20,16 +20,24 @@
             container.appendChild(dom);
             if (data.reply) {
                 dom.innerHTML += '<div class="sub"></div>';
-                data.reply.forEach(function(item) {
-                    this.setCommentItem(item, dom.querySelector('.sub'), data)
-                }.bind(this))
-                this.setCommentSubItem();
+                // data.reply.forEach(function(item) {
+                //     this.setCommentItem(item, dom.querySelector('.sub'), data)
+                // }.bind(this))
+                this.setCommentSubItem(data, dom.querySelector('.sub'));
             }
         },
 
-        setCommentSubItem: function() {
-
+        setCommentSubItem: function(data, ctn) {
+            var ctn = parent.querySelector('.sub')
+            data.reply.forEach(function() {
+                var dom = document.createCommentDom();
+                ctn.appendChild(dom)
+            })
+            if (data.reply > 5) {
+                ctn.appendChild()
+            }
         },
+
         createCommentDom: function(data, parent) {
             var dom = document.createElement('div');
             dom.className = 'wrapComment'
@@ -50,6 +58,17 @@
             return dom;
         },
 
+        createPagination: function(len) {
+            var itemPerPage = 5;
+            var maxPageInView = 5;
+            var dom = document.createElement('div')
+            if (len > maxPageInView) {
+                dom.innerHTML = ''
+            }
+            for (var i = 0; i < len; i++) {
+                dom.innerHTML += '<span class="spIndex">' + (i + 1) + '</span>'
+            }
+        },
         setCommentIpt: function() {
 
         },

@@ -1,15 +1,53 @@
-// 生成 object id - 24 位
-var ObjectId = function() {
-    // 前 13 位，unix 时间戳
-    var timestamp = new Date().valueOf();
-    // 中间 3 位，用户id，不足补 0，超过从前面截断
-    var userId = ('000' + ((window.AppConfig && window.AppConfig.userId) || '000')).slice(-3);
-    // 最后 8 位，随机十六进制数
-    var hex8 = ('00000000' + Math.floor(Math.random() * 0xFFFFFFFF).toString(16)).slice(-8);
+//命名空间控件
+(function(exports) {
+    exports.namespace = function(path) {
+        var obj = window;
+        path = path.split('.');
 
-    return timestamp + userId + hex8;
+        path.forEach(function(p, i) {
+            p = p.trim();
+            if (i === 0 && p === 'window') return;
+            obj = obj[p] = obj[p] || {};
+        });
+
+        return obj;
+    };
+}(window));
+
+//时间格式初始化
+function toDate() {
+    // return new (Function.prototype.bind.apply(Date,Array.prototype.concat.apply([null],arguments)))()
+    if (arguments[0]) {
+        if (arguments.length == 1) {
+            return arguments[0].toDate();
+        } else {
+            return new(Function.prototype.bind.apply(Date, Array.prototype.concat.apply([null], arguments)))();
+        }
+    } else {
+        return new Date();
+    }
+};
+String.prototype.toDate = function() {
+    var str = this;
+    return new Date(str);
 };
 
+Number.prototype.toDate = function() {
+    return new Date(this);
+};
+
+Date.prototype.toDate = function() {
+    return new Date(this);
+};
+//对Date的扩展，将 Date 转化为指定格式的String       
+//月(M)、日(d)、12小时(h)、24小时(H)、分(m)、秒(s)、周(E)、季度(q) 可以用 1-2 个占位符       
+//年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字)       
+//eg:       
+//(new Date()).pattern("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423       
+//(new Date()).pattern("yyyy-MM-dd E HH:mm:ss") ==> 2009-03-10 二 20:09:04       
+//(new Date()).pattern("yyyy-MM-dd EE hh:mm:ss") ==> 2009-03-10 周二 08:09:04       
+//(new Date()).pattern("yyyy-MM-dd EEE hh:mm:ss") ==> 2009-03-10 星期二 08:09:04       
+//(new Date()).pattern("yyyy-M-d h:m:s.S") ==> 2006-7-2 8:9:4.18       
 Date.prototype.format = function(fmt) {
     var o = {
         "M+": this.getMonth() + 1, //月份           
@@ -34,16 +72,40 @@ Date.prototype.format = function(fmt) {
         fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
     }
     if (/(E+)/.test(fmt)) {
-        fmt = fmt.replace(RegExp.$1, ((RegExp.$1.length > 1) ? (RegExp.$1.length > 2 ? "/u661f/u671f" : "/u5468") : "") + week[this.getDay() + ""]);
+        fmt = fmt.replace(RegExp.$1, (RegExp.$1.length > 1 ? RegExp.$1.length > 2 ? "/u661f/u671f" : "/u5468" : "") + week[this.getDay() + ""]);
     }
     for (var k in o) {
         if (new RegExp("(" + k + ")").test(fmt)) {
-            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            fmt = fmt.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
         }
     }
     return fmt;
 };
+// 生成 object id - 24 位
+var ObjectId = function() {
+    // 前 13 位，unix 时间戳
+    var timestamp = new Date().valueOf();
+    // 中间 3 位，用户id，不足补 0，超过从前面截断
+    var userId = ('000' + ((window.AppConfig && window.AppConfig.userId) || '000')).slice(-3);
+    // 最后 8 位，随机十六进制数
+    var hex8 = ('00000000' + Math.floor(Math.random() * 0xFFFFFFFF).toString(16)).slice(-8);
 
+    return timestamp + userId + hex8;
+};
+
+
+// 字符串格式化替换
+String.prototype.format = function(store) {
+    var str = this;
+    var pattern = new RegExp('<%(\\w+)%>', 'g');
+    var match = null;
+    while ((match = pattern.exec(str)) !== null) {
+        str = str.replace(new RegExp(match[0], 'g'), store[match[1]] ? store[match[1]] : '')
+    }
+    return str
+}
+
+//时间相关处理
 var DateUtil = (function() {
     var dateLocale = {
         month: {
@@ -158,13 +220,34 @@ var DateUtil = (function() {
         }
     }
 
+    /**
+     * get the relative date info from date2 according to date1
+     * TESTS:
+     * TEST_1
+     * DateUtil.getRelativeDateInfo(new Date('2015-05-08 16:03:25'), new Date('2015-05-04 14:41:57'))
+     * output: "4 days ago"
+     * TEST_2
+     * DateUtil.getRelativeDateInfo(new Date('2015-05-08 16:03:25'), new Date('2015-05-08 15:41:57'))
+     * output: "21 minutes ago"
+     * TEST_3
+     * DateUtil.getRelativeDateInfo(new Date('2015-05-08 16:03:25'), new Date('2015-04-04 14:41:57'))
+     * output: "34 days ago"
+     * TEST_4
+     * DateUtil.getRelativeDateInfo(new Date('2015-05-08 16:03:25'), new Date('2014-05-04 14:41:57'))
+     * output: "1 year ago"
+     */
     function getRelativeDateInfo(date1, date2) {
         var now = new Date();
-        var lang = I18n.type;
+        var lang = 'zh';
         var value1, value2, ts, info;
 
         // deal with all empty
         if (!date1 && !date2) return '';
+
+        date1 = +new Date(date1);
+        if (isNaN(date1)) date1 = ''
+        date2 = +new Date(date2);
+        if (isNaN(date2)) date2 = ''
 
         value1 = (date1 || now).valueOf();
         value2 = (date2 || now).valueOf();
@@ -203,7 +286,7 @@ var DateUtil = (function() {
                 info = ts + (ts === 1 ? ' year' : ' years');
                 break;
         }
-        info += value1 > value2 ? ' ago' : ' later';
+        info += value1 <= value2 ? ' ago' : ' later';
         if (lang === 'zh') {
             info = info.replace(/\s(seconds?|minutes?|hours?|days?|years?)\s(ago|later)$/, function($0, $1, $2) {
                 var rs = '';
@@ -251,252 +334,4 @@ var DateUtil = (function() {
             TIME_ZERO_SEC: 'hh:ii:00'
         }
     }
-})()
-
-var StringUtil = (function() {
-    var HTML_ENTITIES = {
-            '&': '&amp;',
-            '>': '&gt;',
-            '<': '&lt;',
-            '"': '&quot;',
-            "'": '&#39;',
-            '`': '&#x60;'
-        },
-        HTML_ENTITIES_INVERT = invert(HTML_ENTITIES);
-
-    function invert(obj) {
-        var result = {},
-            keys = Object.keys(obj);
-        for (var i = 0, length = keys.length; i < length; i++) {
-            result[obj[keys[i]]] = keys[i];
-        }
-        return result;
-    }
-
-    function padLeft(oldStr, padNum, padStr) {
-        if (!padStr) {
-            return oldStr;
-        }
-        return new Array(padNum - String(oldStr).length + 1).join(padStr) + oldStr;
-    }
-
-    function htmlEscape(text) {
-        if (!text) {
-            return text;
-        }
-        var source = '(?:' + Object.keys(HTML_ENTITIES).join('|') + ')',
-            replaceRegexp = new RegExp(source, 'g');
-        return text.replace(replaceRegexp, function(character) {
-            return HTML_ENTITIES[character];
-        });
-    }
-
-    function htmlUnEscape(text) {
-        if (!text) {
-            return text;
-        }
-        var source = '(?:' + Object.keys(HTML_ENTITIES_INVERT).join('|') + ')',
-            replaceRegexp = new RegExp(source, 'g');
-        return text.replace(replaceRegexp, function(character) {
-            return HTML_ENTITIES_INVERT[character];
-        });
-    }
-
-
-    return {
-        padLeft: padLeft,
-        htmlEscape: htmlEscape,
-        htmlUnEscape: htmlUnEscape,
-    }
 })();
-
-
-/* 检测浏览器及系统信息 start*/
-(function(window) {
-    {
-        var unknown = '-';
-
-        // screen
-        var screenSize = '';
-        if (screen.width) {
-            var width = (screen.width) ? screen.width : '';
-            var height = (screen.height) ? screen.height : '';
-            screenSize += '' + width + " x " + height;
-        }
-
-        //browser
-        var nVer = navigator.appVersion;
-        var nAgt = navigator.userAgent;
-        var browser = navigator.appName;
-        var version = '' + parseFloat(navigator.appVersion);
-        var majorVersion = parseInt(navigator.appVersion, 10);
-        var nameOffset, verOffset, ix;
-
-        // Opera
-        if ((verOffset = nAgt.indexOf('Opera')) != -1) {
-            browser = 'Opera';
-            version = nAgt.substring(verOffset + 6);
-            if ((verOffset = nAgt.indexOf('Version')) != -1) {
-                version = nAgt.substring(verOffset + 8);
-            }
-        }
-        // MSIE
-        else if ((verOffset = nAgt.indexOf('MSIE')) != -1) {
-            browser = 'Microsoft Internet Explorer';
-            version = nAgt.substring(verOffset + 5);
-        }
-        // Chrome
-        else if ((verOffset = nAgt.indexOf('Chrome')) != -1) {
-            browser = 'Chrome';
-            version = nAgt.substring(verOffset + 7);
-        }
-        // Safari
-        else if ((verOffset = nAgt.indexOf('Safari')) != -1) {
-            browser = 'Safari';
-            version = nAgt.substring(verOffset + 7);
-            if ((verOffset = nAgt.indexOf('Version')) != -1) {
-                version = nAgt.substring(verOffset + 8);
-            }
-        }
-        // Firefox
-        else if ((verOffset = nAgt.indexOf('Firefox')) != -1) {
-            browser = 'Firefox';
-            version = nAgt.substring(verOffset + 8);
-        }
-        // MSIE 11+
-        else if (nAgt.indexOf('Trident/') != -1) {
-            browser = 'Microsoft Internet Explorer';
-            version = nAgt.substring(nAgt.indexOf('rv:') + 3);
-        }
-        // Other browsers
-        else if ((nameOffset = nAgt.lastIndexOf(' ') + 1) < (verOffset = nAgt.lastIndexOf('/'))) {
-            browser = nAgt.substring(nameOffset, verOffset);
-            version = nAgt.substring(verOffset + 1);
-            if (browser.toLowerCase() == browser.toUpperCase()) {
-                browser = navigator.appName;
-            }
-        }
-        // trim the version string
-        if ((ix = version.indexOf(';')) != -1) version = version.substring(0, ix);
-        if ((ix = version.indexOf(' ')) != -1) version = version.substring(0, ix);
-        if ((ix = version.indexOf(')')) != -1) version = version.substring(0, ix);
-
-        majorVersion = parseInt('' + version, 10);
-        if (isNaN(majorVersion)) {
-            version = '' + parseFloat(navigator.appVersion);
-            majorVersion = parseInt(navigator.appVersion, 10);
-        }
-
-        // core version
-        var mobile = /Mobile|mini|Fennec|Android|iP(ad|od|hone)/.test(nVer);
-
-        // cookie
-        var cookieEnabled = (navigator.cookieEnabled) ? true : false;
-
-        if (typeof navigator.cookieEnabled == 'undefined' && !cookieEnabled) {
-            document.cookie = 'testcookie';
-            cookieEnabled = (document.cookie.indexOf('testcookie') != -1) ? true : false;
-        }
-
-        // system
-        var os = unknown;
-        var clientStrings = [
-            { s: 'Windows 3.11', r: /Win16/ },
-            { s: 'Windows 95', r: /(Windows 95|Win95|Windows_95)/ },
-            { s: 'Windows ME', r: /(Win 9x 4.90|Windows ME)/ },
-            { s: 'Windows 98', r: /(Windows 98|Win98)/ },
-            { s: 'Windows CE', r: /Windows CE/ },
-            { s: 'Windows 2000', r: /(Windows NT 5.0|Windows 2000)/ },
-            { s: 'Windows XP', r: /(Windows NT 5.1|Windows XP)/ },
-            { s: 'Windows Server 2003', r: /Windows NT 5.2/ },
-            { s: 'Windows Vista', r: /Windows NT 6.0/ },
-            { s: 'Windows 7', r: /(Windows 7|Windows NT 6.1)/ },
-            { s: 'Windows 8.1', r: /(Windows 8.1|Windows NT 6.3)/ },
-            { s: 'Windows 8', r: /(Windows 8|Windows NT 6.2)/ },
-            { s: 'Windows NT 4.0', r: /(Windows NT 4.0|WinNT4.0|WinNT|Windows NT)/ },
-            { s: 'Windows ME', r: /Windows ME/ },
-            { s: 'Android', r: /Android/ },
-            { s: 'Open BSD', r: /OpenBSD/ },
-            { s: 'Sun OS', r: /SunOS/ },
-            { s: 'Linux', r: /(Linux|X11)/ },
-            { s: 'iOS', r: /(iPhone|iPad|iPod)/ },
-            { s: 'Mac OS X', r: /Mac OS X/ },
-            { s: 'Mac OS', r: /(MacPPC|MacIntel|Mac_PowerPC|Macintosh)/ },
-            { s: 'QNX', r: /QNX/ },
-            { s: 'UNIX', r: /UNIX/ },
-            { s: 'BeOS', r: /BeOS/ },
-            { s: 'OS/2', r: /OS\/2/ },
-            { s: 'Search Bot', r: /(nuhk|Googlebot|Yammybot|Openbot|Slurp|MSNBot|Ask Jeeves\/Teoma|ia_archiver)/ }
-        ];
-        for (var id in clientStrings) {
-            var cs = clientStrings[id];
-            if (cs.r.test(nAgt)) {
-                os = cs.s;
-                break;
-            }
-        }
-
-        var osVersion = unknown;
-
-        if (/Windows/.test(os)) {
-            osVersion = /Windows (.*)/.exec(os)[1];
-            os = 'Windows';
-        }
-
-        switch (os) {
-            case 'Mac OS X':
-                osVersion = /Mac OS X (10[\.\_\d]+)/.exec(nAgt)[1];
-                break;
-
-            case 'Android':
-                osVersion = /Android ([\.\_\d]+)/.exec(nAgt)[1];
-                break;
-
-            case 'iOS':
-                osVersion = /OS (\d+)_(\d+)_?(\d+)?/.exec(nVer);
-                osVersion = osVersion[1] + '.' + osVersion[2] + '.' + (osVersion[3] | 0);
-                break;
-        }
-    }
-
-    window.Environment = {
-        screen: screenSize,
-        browser: browser,
-        browserVersion: version,
-        mobile: mobile,
-        os: os,
-        osVersion: osVersion,
-        cookies: cookieEnabled
-    };
-}(this));
-
-/* 获取 URL 参数 */
-var getUrlParams = function() {
-    var search = window.location.search.substring(1);
-    var kvArr = search.split('&');
-    var rs = {};
-
-    kvArr.forEach(function(kv) {
-        var arr = kv.split('=');
-        if (typeof arr[1] !== 'undefined') {
-            rs[arr[0]] = arr[1];
-        }
-    });
-
-    return rs;
-};
-
-(function(exports) {
-    exports.namespace = function(path) {
-        var obj = window;
-        path = path.split('.');
-
-        path.forEach(function(p, i) {
-            p = p.trim();
-            if (i === 0 && p === 'window') return;
-            obj = obj[p] = obj[p] || {};
-        });
-
-        return obj;
-    };
-}(window));

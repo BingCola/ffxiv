@@ -1,5 +1,29 @@
 /*layout*/
 
+.c-screen {}
+
+.c-page {}
+
+.c-page-header {
+    position: fixed;
+    width: 100%;
+}
+
+.c-page-body {
+    position: relative;
+    width: 100%;
+}
+
+.c-page-main {
+    position: relative;
+    width: 100%;
+}
+
+.c-page-footer {
+    position: relative;
+    width: 100%;
+}
+
 .c-ctn:before {
     content: '';
     display: table;

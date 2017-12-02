@@ -1,30 +1,31 @@
 <% include header %>
-    <div id="navTop" class="navTop">
-        <div class="navBg"></div>
-        <div class="navField">
-            <div class="navBrand">
+<div class="c-page">
+    <div id="navTop" class="c-page-header cp-nav-top">
+        <div class="cp-nav-bg"></div>
+        <div class="cp-nav-body">
+            <div class="cp-nav-brand">
                 <img src="<%=path%>/image/common/logo.png">
             </div>
-            <div class="navContent">
-                <div class="wrapNavItem navItem" data-target="#page=home"><div class="nav">首页</div></div>
+            <div class="cp-nav-list">
+                <div class="cp-nav-item" data-target="#page=home"><div class="nav">首页</div></div>
                 <!--<div id="btnFilter" class="navItem"><span class="text">搜索</span></div>-->
-                <div class="wrapNavItem navItem" data-target="#page=gallery"><span class="text">幻化</span></div>
-                <div class="wrapNavItem navItem" data-target="#page=gallery"><span class="text">装修</span></div>
-                <div class="wrapNavItem navItem" data-target="#page=gallery"><span class="text">图片</span></div>
-                <div class="wrapNavItem dropdown">
+                <div class="cp-nav-item" data-target="#page=gallery"><span class="text">幻化</span></div>
+                <div class="cp-nav-item" data-target="#page=gallery"><span class="text">装修</span></div>
+                <div class="cp-nav-item" data-target="#page=gallery"><span class="text">图片</span></div>
+                <div class="cp-nav-item dropdown">
                     <div class="text">图鉴</div>
-                    <div class="navSubMenu">
-                        <div class="navItem sub"><span class="text">散件</span></div>
-                        <div class="navItem sub"><span class="text">套装</span></div>
+                    <div class="cp-nav-sub-list">
+                        <div class="cp-nav-item sub"><span class="text">散件</span></div>
+                        <div class="cp-nav-item sub"><span class="text">套装</span></div>
                     </div>
                 </div>
-                <div class="wrapNavItem dropdown">
+                <div class="cp-nav-item dropdown">
                     <div class="text">帮助</div>
-                    <div class="navSubMenu">
-                        <div class="navItem sub"><span class="text">留言板</span></div>
-                        <div class="navItem sub"><span class="text">投稿指南</span></div>
-                        <div class="navItem sub"><span class="text">联系我们</span></div>
-                        <div class="navItem sub"><span class="text">关于</span></div>
+                    <div class="cp-nav-sub-list">
+                        <div class="cp-nav-item sub"><span class="text">留言板</span></div>
+                        <div class="cp-nav-item sub"><span class="text">投稿指南</span></div>
+                        <div class="cp-nav-item sub"><span class="text">联系我们</span></div>
+                        <div class="cp-nav-item sub"><span class="text">关于</span></div>
                     </div>
                 </div>
                 <!--<div class="navItem search">
@@ -35,9 +36,69 @@
             </div>
         </div>
     </div>
-    <div id="mainContainer" class="mainContainer"></div>
-    <div id="navBottom" class="navBottom">
-        <div class="footer">Copyright (C) 2010 - 2016 SQUARE ENIX CO., LTD. All Rights Reserved. © 2016</div>
-    </div>
+    <div class="c-page-body scrollBar">
+        <div id="mainContainer" class="c-page-main mainContainer">
 
-    <% include footer %>
+        </div>
+        <div class="c-page-footer cp-nav-bottom">
+            <div class="cp-router-map">
+                <div class="cp-section-col">
+                    <div class="cp-section">
+                        <div class="cp-name">传送门</div>
+                        <div class="cp-nav-list">
+                            <span class="cp-nav-item">幻化回廊</span>
+                            <span class="cp-nav-item">幻化图鉴</span>
+                            <span class="cp-nav-item">装潢展示</span>
+                            <span class="cp-nav-item">画册</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="cp-section-col">
+                    <div class="cp-section">
+                        <div class="cp-name">图鉴检索</div>
+                        <div class="cp-nav-list">
+                            <span class="cp-nav-item">4.0新装备</span>
+                            <span class="cp-nav-item">PVP装备</span>
+                            <span class="cp-nav-item">制作装备</span>
+                            <span class="cp-nav-item">蛮神装备</span>
+                            <span class="cp-nav-item">巴哈姆特大迷宫装备</span>
+                            <span class="cp-nav-item">亚历山大机工城装备</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="cp-section-col">
+                    <div class="cp-section">
+                        <div class="cp-name">用户相关</div>
+                        <div class="cp-nav-list">
+                            <span class="cp-nav-item">个人中心</span>
+                            <span class="cp-nav-item">投稿</span>
+                            <span class="cp-nav-item">收藏柜</span>
+                            <span class="cp-nav-item">搜索历史</span>
+                            <span class="cp-nav-item">关注动态</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="cp-section-col">
+                    <div class="cp-section">
+                        <div class="cp-name">友情链接</div>
+                        <div class="cp-nav-list">
+                            <span class="cp-nav-item">FF14官网</span>
+                            <span class="cp-nav-item">FF14中文网</span>
+                            <span class="cp-nav-item">NGA玩家社区</span>
+                        </div>
+                    </div>
+                    <div class="cp-section">
+                        <div class="cp-name">下载支持</div>
+                        <div class="cp-nav-list">
+                            <span class="cp-nav-item">chrome官方正版</span>
+                            <span class="cp-nav-item">网游加速器</span>
+                            <span class="cp-nav-item">FF14玩家助手</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cp-copyright">Copyright (C) 2010 - 2016 SQUARE ENIX CO., LTD. All Rights Reserved. © 2016</div>
+        </div>
+    </div>
+</div>
+<% include footer %>
