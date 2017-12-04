@@ -11,12 +11,15 @@
         this.store = {};
     }
     Page.prototype = {
+        setLayout: function() {
+            return this.layout = {
+                view: '/app/Gallery/page/post/page.html'
+            }
+        },
         show: function() {
             var _this = this;
-            WebAPI.get('/static/views/prime/pageContribute.html').done(function(html) {
-                _this.container.innerHTML = html;
-                _this.init();
-            })
+            _this.container.innerHTML = html;
+            _this.init();
         },
         init: function() {
             this.consistCtn = document.getElementById('ctnConsistInfo');
@@ -96,7 +99,7 @@
                 var target = e.currentTarget;
                 var $infoCtn = $(e.currentTarget).parent().prev();
                 $infoCtn[0].innerHTML = '\
-                <img class="portrait" src="' + AppConfig.cdnSrc + '/images/index/item_' + target.dataset.id + '.png"/>\
+                <img class="portrait" src="' + Setting.path.img + '/user/' + target.dataset.id + '.png"/>\
                 <span class="name">' + target.dataset.name + '</span>';
                 $infoCtn.parent().removeClass('focus');
                 $infoCtn.parent().prev()[0].dataset.init = target.dataset.name
@@ -133,7 +136,7 @@
                     var target = e.currentTarget;
                     var $infoCtn = $(e.currentTarget).parent().prev();
                     $infoCtn[0].innerHTML = '\
-                <!--<img class="portrait" src="' + AppConfig.cdnSrc + '/images/index/item_' + target.dataset.id + '.png"/>\
+                <!--<img class="portrait" src="' + Setting.path.img + '/user/' + target.dataset.id + '.png"/>\
                 <span class="name">头部</span>\
                 <span class="name">' + target.dataset.name + '</span>-->\
                 <span class="job itemInfo">职业：白魔法师</span>\
@@ -143,7 +146,7 @@
                 <span class="color itemInfo">不可染色</span>';
                     $infoCtn.parent().prev()[0].dataset.init = target.dataset.name;
                     //$infoCtn.parent().parent().prev().html(target.dataset.name);
-                    $infoCtn.parent().parent().prev().prev()[0].src = AppConfig.cdnSrc + '/images/index/item_' + target.dataset.id + '.png';
+                    $infoCtn.parent().parent().prev().prev()[0].src = Setting.path.image + '/user/' + target.dataset.id + '.png';
                 })
                 // $wrap.on('mouseover', '.divItem', function(e) {
                 //     $(e.currentTarget).find('.wrapItemSelect').addClass('hover')
@@ -161,7 +164,7 @@
                 item = document.createElement('div');
                 item.className = 'divSelectItem';
                 item.innerHTML = '\
-                    <img class="portrait" src="' + AppConfig.cdnSrc + '/images/index/item_' + (i + 1) + '.png"/>\
+                    <img class="portrait" src="' + Setting.path.image + '/user/' + (i + 1) + '.png"/>\
                     <span class="name">人物' + val + (i + 1) + '</span>\
                     <span class="race">猫魅</span>\
                     <span class="gender">女</span>\
@@ -179,7 +182,7 @@
                 item = document.createElement('div');
                 item.className = 'divSelectItem';
                 item.innerHTML = '\
-                    <img class="portrait" src="' + AppConfig.cdnSrc + '/images/index/item_' + (i + 1) + '.png"/>\
+                    <img class="portrait" src="' + Setting.path.image + '/user/' + (i + 1) + '.png"/>\
                     <span class="name">装备' + val + (i + 1) + '</span>\
                     <span class="job">白魔法师</span>\
                     <span class="iLevel">50/135</span>\
@@ -319,21 +322,21 @@
 
             var dictItem = {
                 left: {
-                    'weapon': { name: '主手', img: AppConfig.cdnSrc + '/images/common/top.jpg' },
-                    'hat': { name: '头部', img: AppConfig.cdnSrc + '/images/common/top.jpg' },
-                    'top': { name: '上装', img: AppConfig.cdnSrc + '/images/common/top.jpg' },
-                    'glove': { name: '手套', img: AppConfig.cdnSrc + '/images/common/top.jpg' },
-                    'belt': { name: '腰带', img: AppConfig.cdnSrc + '/images/common/top.jpg' },
-                    'under': { name: '下装', img: AppConfig.cdnSrc + '/images/common/top.jpg' },
-                    'shoe': { name: '鞋', img: AppConfig.cdnSrc + '/images/common/top.jpg' },
+                    'weapon': { name: '主手', img: Setting.path.image + '/common/equip_icon_sm_1.jpg' },
+                    'hat': { name: '头部', img: Setting.path.image + '/common/equip_icon_sm_2.jpg' },
+                    'top': { name: '上装', img: Setting.path.image + '/common/equip_icon_sm_3.jpg' },
+                    'glove': { name: '手套', img: Setting.path.image + '/common/equip_icon_sm_4.jpg' },
+                    'belt': { name: '腰带', img: Setting.path.image + '/common/equip_icon_sm_5.jpg' },
+                    'under': { name: '下装', img: Setting.path.image + '/common/equip_icon_sm_6.jpg' },
+                    'shoe': { name: '鞋', img: Setting.path.image + '/common/equip_icon_sm_7.jpg' },
                 },
                 right: {
-                    'sWeapon': { name: '副手', img: AppConfig.cdnSrc + '/images/common/top.jpg' },
-                    'necklace': { name: '项链', img: AppConfig.cdnSrc + '/images/common/top.jpg' },
-                    'earring': { name: '耳环', img: AppConfig.cdnSrc + '/images/common/top.jpg' },
-                    'bracelet': { name: '手镯', img: AppConfig.cdnSrc + '/images/common/top.jpg' },
-                    'leftRing': { name: '左戒指', img: AppConfig.cdnSrc + '/images/common/top.jpg' },
-                    'rightRing': { name: '右戒指', img: AppConfig.cdnSrc + '/images/common/top.jpg' },
+                    'sWeapon': { name: '副手', img: Setting.path.image + '/common/equip_icon_sm_8.jpg' },
+                    'necklace': { name: '项链', img: Setting.path.image + '/common/equip_icon_sm_9.jpg' },
+                    'earring': { name: '耳环', img: Setting.path.image + '/common/equip_icon_sm_10.jpg' },
+                    'bracelet': { name: '手镯', img: Setting.path.image + '/common/equip_icon_sm_11.jpg' },
+                    'leftRing': { name: '左戒指', img: Setting.path.image + '/common/equip_icon_sm_12.jpg' },
+                    'rightRing': { name: '右戒指', img: Setting.path.image + '/common/equip_icon_sm_13.jpg' },
                 },
             };
 

@@ -3,8 +3,63 @@
         this.option = opt || {};
         this.current = {};
         this.path = [];
+
+        this.init();
     }
     Cmpt.prototype = {
+        init: function() {
+            this.initOption();
+            this.attachEvent();
+        },
+        initOption: function() {
+            var defaultOption = {
+                root: '',
+                pageFlag: 'page',
+                enableHash: true
+            }
+            this.option = $.extend({}, defaultOption, this.option)
+        },
+        attachEvent: function() {
+            var _this = this;
+            window.onhashchange = function() {
+                _this.toggle();
+            }
+        },
+        show: function() {
+            if (this.option.enableHash) {
+                this.change(...arguments)
+            } else {
+                this.to(...arguments)
+            }
+        },
+        change: function() {
+            var params = this.generateUrlParamsMap(...arguments);
+            var url = '';
+            var arrUrl = [];
+            if (Object.keys(params).length == 0 || !params[this.option.pageFlag]) {
+                return false;
+            }
+            for (var param in params) {
+                if (params.hasOwnProperty(param)) {
+                    arrUrl.push(param + '=' + this.serializeParams(params[param]));
+                }
+            }
+            url = arrUrl.join('&');
+            location.hash = url;
+        },
+        toggle: function() {
+            var params = this.getUrlParamsMap(...arguments);
+            var args = [];
+            if (Object.keys(params).length == 0 || !params[this.option.pageFlag]) {
+                return false;
+            }
+            for (var param in params) {
+                if (params.hasOwnProperty(param)) {
+                    args.push(params[param]);
+                }
+            }
+            this.to(...args)
+        },
         to: function() {
             var pageConstructor = namespace(arguments[0])
             var param = Array.prototype.slice.bind(arguments)(1);
@@ -24,9 +79,9 @@
         },
         toFirstPage: function() {
             if (location.hash) {
-                this.to(location.hash)
+                this.toggle(location.hash)
             } else {
-                this.to(this.option.root)
+                this.show(this.option.root)
             }
         },
 
@@ -34,7 +89,7 @@
         empty: function() { this.path = []; },
 
         serializeParams: function(params) {
-            return window.encodeURIComponent(JSON.stringify(params));
+            return window.encodeURIComponent(typeof params == "string" ? params : JSON.stringify(params));
         },
 
         unserializeParams: function(params) {
@@ -44,40 +99,44 @@
             return params;
         },
         //获取hash参数
-        getHashParamsMap: function() {
+        getUrlParamsMap: function() {
             var list, map = {};
-            list = location.hash.substr(1).split('&');
+            var url = location.hash;
+            if (url[0] == '#') url = url.substr(1)
+            list = url.split('&');
             for (var m = 0; m < list.length; m++) {
                 var item = list[m].split('=');
-                map[item[0]] = unserializeParams(item[1]);
+                map[item[0]] = this.unserializeParams(item[1]);
             }
             return map;
         },
         //生成hash参数
-        generateHashParamsMap: function() {
-            var paramObj = {
-                    page: screenClass.name
-                },
-                paramList = ScreenManager._getFunctionParams(screenClass);
+        generateUrlParamsMap: function() {
+            var pageClass = namespace(arguments[0])
+            var paramObj = {},
+                paramList = this.getFunctionParams(pageClass);
+            paramObj[this.option.pageFlag] = arguments[0];
             for (var m = 0, n = paramList.length; m < n; m++) {
                 if (typeof arguments[m + 1] != typeof undefined) {
                     paramObj[paramList[m]] = arguments[m + 1];
                 }
             }
+            return paramObj;
         },
         //获取对象参数
         getFunctionParams: function(func) {
-            var STRIP_COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/mg,
-                ARGUMENT_NAMES = /([^\s,]+)/g,
-                fnStr, result;
+                var STRIP_COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/mg,
+                    ARGUMENT_NAMES = /([^\s,]+)/g,
+                    fnStr, result;
 
-            fnStr = func.toString().replace(STRIP_COMMENTS, '');
-            result = fnStr.slice(fnStr.indexOf('(') + 1, fnStr.indexOf(')')).match(ARGUMENT_NAMES);
-            if (result === null) {
-                result = [];
+                fnStr = func.toString().replace(STRIP_COMMENTS, '');
+                result = fnStr.slice(fnStr.indexOf('(') + 1, fnStr.indexOf(')')).match(ARGUMENT_NAMES);
+                if (result === null) {
+                    result = [];
+                }
+                return result;
             }
-            return result;
-        }
+            //
     }
     exports.router = Cmpt;
 }(namespace('cmpt')))

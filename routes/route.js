@@ -12,7 +12,9 @@ router.get('/', function(req, res, next) {
             bundle.script.gallery,
             bundle.script.gallery_home,
             bundle.script.gallery_gallery,
-            bundle.script.gallery_works
+            bundle.script.gallery_works,
+            bundle.script.gallery_illustration,
+            bundle.script.gallery_post
         ),
         style: [].concat(
             bundle.style.base,

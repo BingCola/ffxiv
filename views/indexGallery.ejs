@@ -7,20 +7,20 @@
                 <img src="<%=path%>/image/common/logo.png">
             </div>
             <div class="cp-nav-list">
-                <div class="cp-nav-item" data-target="#page=home"><div class="nav">首页</div></div>
+                <div class="cp-nav-item" data-href="/#page=gallery.home"><div class="cp-nav-content"><span class="text">首页</span></div></div>
                 <!--<div id="btnFilter" class="navItem"><span class="text">搜索</span></div>-->
-                <div class="cp-nav-item" data-target="#page=gallery"><span class="text">幻化</span></div>
-                <div class="cp-nav-item" data-target="#page=gallery"><span class="text">装修</span></div>
-                <div class="cp-nav-item" data-target="#page=gallery"><span class="text">图片</span></div>
+                <div class="cp-nav-item" data-href="/#page=gallery.gallery"><div class="cp-nav-content"><span class="text">幻化</span></div></div>
+                <div class="cp-nav-item" data-href="/#page=gallery.gallery"><div class="cp-nav-content"><span class="text">装修</span></div></div>
+                <div class="cp-nav-item" data-href="/#page=gallery.gallery"><div class="cp-nav-content"><span class="text">图片</span></div></div>
                 <div class="cp-nav-item dropdown">
-                    <div class="text">图鉴</div>
+                    <div class="cp-nav-content"><div class="text">图鉴</div></div>
                     <div class="cp-nav-sub-list">
-                        <div class="cp-nav-item sub"><span class="text">散件</span></div>
-                        <div class="cp-nav-item sub"><span class="text">套装</span></div>
+                        <div class="cp-nav-item sub" data-href="/#page=gallery.illustration"><div class="cp-nav-content"><span class="text">散件</span></div></div>
+                        <div class="cp-nav-item sub" data-href="/#page=gallery.illustration"><div class="cp-nav-content"><span class="text">套装</span></div></div>
                     </div>
                 </div>
                 <div class="cp-nav-item dropdown">
-                    <div class="text">帮助</div>
+                    <div class="cp-nav-content"><div class="text">帮助</div></div>
                     <div class="cp-nav-sub-list">
                         <div class="cp-nav-item sub"><span class="text">留言板</span></div>
                         <div class="cp-nav-item sub"><span class="text">投稿指南</span></div>
@@ -28,11 +28,62 @@
                         <div class="cp-nav-item sub"><span class="text">关于</span></div>
                     </div>
                 </div>
+                <div class="cp-nav-item" data-href="/#page=gallery.post"><span class="text">投稿</span></div>
                 <!--<div class="navItem search">
                     <input type="text" class="iptSearch" placeholder="请输入标题/作者/标签" />
                     <span class="glyphicon glyphicon-search"></span>
                 </div>-->
                 <!--<div id="btnLogin" class="navItem" data-event="action" data-action="login">登录</div>-->
+                <div class="cp-user-profile">
+                    <div class="cp-user-info cp-nav-item dropdown forAfterLogin">
+                        <div class="cp-nav-content">
+                            <img class="portrait" data-field="portrait" src="/image/user/1.png" />
+                            <span class="name" data-field="name"></span>
+                        </div>
+                        <div class="cp-nav-sub-list">
+                            <span class="name"></span>
+                            <span class="role"></span>
+                            <span class="level">
+                                <span class="label">等级</span>
+                                <span class="number"></span>
+                                <span class="levelBar"><span class="levelScore"></span></span>
+                                <span class="help">积分有什么用</span>
+                                <span class="tip"></span>
+                            </span>
+                            <span class="entrance">
+                                <span class="item">个人中心</span>
+                                <span class="item">投稿管理</span>
+                                <span class="item">稿件审核</span>
+                                <span class="item">关注管理</span>
+                            </span>
+                            <span class="btnLogout" data-action="logout">注销</span>
+                        </div>
+                    </div>
+                    <div class="cp-nav-item forBeforeLogin" data-action="login"><div class="cp-nav-content"><span class="text">登录/注册</span></div></div>
+                    <div class="cp-nav-item dropdown cp-user-message forAfterLogin">
+                        <div class="cp-nav-content">
+                            <span class="text">消息</span>
+                            <span class="badge"></span>
+                        </div>
+                        <div class="cp-nav-sub-list">
+                            <div class="cp-nav-item sub" data-field="mail">
+                                <span class="text">私信</span><span class="badge"></span>
+                            </div>
+                            <div class="cp-nav-item sub" data-field="reply">
+                                <span class="text">回复我的</span><span class="badge"></span>
+                            </div>
+                            <div class="cp-nav-item sub" data-field="call">
+                                <span class="text">@我的</span><span class="badge"></span>
+                            </div>
+                            <div class="cp-nav-item sub" data-field="praise">
+                                <span class="text">收到的赞</span><span class="badge"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cp-nav-item forAfterLogin"><span class="text">收藏夹</span></div>
+                    <div class="cp-nav-item forAfterLogin"><span class="text">历史</span></div>
+                    <div class="cp-nav-item forAfterLogin" data-href="/#page=gallery.post"><span class="text">投稿</span></div>
+                </div>
             </div>
         </div>
     </div>
@@ -46,10 +97,10 @@
                     <div class="cp-section">
                         <div class="cp-name">传送门</div>
                         <div class="cp-nav-list">
-                            <span class="cp-nav-item">幻化回廊</span>
-                            <span class="cp-nav-item">幻化图鉴</span>
-                            <span class="cp-nav-item">装潢展示</span>
-                            <span class="cp-nav-item">画册</span>
+                            <span class="cp-nav-item" data-href="/page=gallery.gallery">幻化回廊</span>
+                            <span class="cp-nav-item" data-href="/page=gallery.illustration">幻化图鉴</span>
+                            <span class="cp-nav-item" data-href="/page=gallery.gallery">装潢展示</span>
+                            <span class="cp-nav-item" data-href="/page=gallery.gallery">画册</span>
                         </div>
                     </div>
                 </div>

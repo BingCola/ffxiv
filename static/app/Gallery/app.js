@@ -42,7 +42,7 @@
             CPlugin.nav.init();
         },
         initAccountPlugin: function() {
-            CPlugin.account = new(namespace('cmpt.account'))(Router.current);
+            CPlugin.account = new(namespace('cmpt.account'))();
             CPlugin.account.init();
         },
         attachEvent: function() {

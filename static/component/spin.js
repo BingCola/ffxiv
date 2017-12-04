@@ -4,15 +4,39 @@
     }
     Cmpt.prototype = {
         template: {
-            style_1: '<div class="c-spin-wrap"><div class="c-spin"></div><div class="c-spin-background"></div></div>'
+            style_1: '<div class="cp-spin-wrap style-1"><div class="body"></div><div class="background"></div></div>',
+            style_2: `<div class="cp-spin-wrap style-2">               
+                <div class="unit"></div>
+                <div class="unit"></div>
+                <div class="unit"></div>
+                <div class="unit"></div>
+                </div>
+                `,
+            style_3: `<div class="cp-spin-wrap style-3">               
+                <div class="unit"></div>
+                <div class="unit"></div>
+                <div class="unit"></div>
+                <div class="unit"></div>
+                <div class="unit"></div>'
+                </div>
+                `,
+            style_4: `<div class="cp-spin-wrap style-4">               
+                <div class="unit"></div>
+                <div class="unit"></div>
+                <div class="unit"></div>
+                <div class="unit"></div>
+                <div class="unit"></div>'
+                </div>
+                `,
         },
-        spin: function($ctn) {
-            if (!($ctn instanceof jQuery)) $ctn = $($ctn)
-            $ctn.append($(this.template.style_1));
+        spin: function($ctn, template) {
+            if (!($ctn instanceof jQuery)) $ctn = $($ctn);
+            var template = this.template['style_' + (template ? template : 1)];
+            $ctn.append($(template));
         },
         stop: function($ctn) {
             if (!($ctn instanceof jQuery)) $ctn = $($ctn)
-            $ctn.children('.c-spin-wrap').remove();
+            $ctn.children('.cp-spin-wrap').remove();
         },
         destory: function() {}
     }

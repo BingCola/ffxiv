@@ -4,12 +4,14 @@
         this.viewer = undefined;
     }
     Page.prototype = {
+        setLayout: function() {
+            return this.layout = {
+                view: '/app/Gallery/page/gallery/page.html'
+            }
+        },
         show: function() {
             var _this = this;
-            WebAPI.get('/application/Gallery/view/page/gallery/pageGallery.html').done(function(resultHTML) {
-                MainContainer.innerHTML = resultHTML;
-                _this.init();
-            })
+            _this.init();
         },
         init: function() {
             this.initFilter();
@@ -174,7 +176,7 @@
                 dom.classList = 'wrapItem';
                 dom.dataset.id = item.id
                 dom.innerHTML = '\
-                <img class="itemImg" src="' + AppConfig.staticSrc + '/image/galleryStore/' + item.img.name + '">\
+                <img class="itemImg" src="' + Setting.path.image + '/plant/transmog/' + item.img.name + '">\
                 <div class="infoBox">\
                     <span class="name">' + item.name + '</span>\
                     <span class="author" data-id="' + item.author.id + '">' + item.author.name + '</span>\

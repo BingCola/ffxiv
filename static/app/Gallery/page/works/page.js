@@ -9,6 +9,7 @@
     }
     PageWorks.prototype = {
         show: function() {
+
             var _this = this;
             WebAPI.get('/application/Gallery/view/page/works/pageWorks.html').done(function(resultHTML) {
                 MainContainer.innerHTML = resultHTML;

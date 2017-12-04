@@ -32,6 +32,9 @@ var bundle = {
             '/app/Gallery/page/works/page.js',
             '/app/Gallery/page/works/controller.js',
             '/app/Gallery/page/works/viewer.js',
+        ],
+        "gallery_post": [
+            '/app/Gallery/page/post/page.js'
         ]
     },
     'style': {
