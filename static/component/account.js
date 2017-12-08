@@ -9,6 +9,7 @@
             var setting = {};
             try {
                 user = JSON.parse(localStorage.getItem('user_info'));
+                if (!user) user = {};
             } catch (e) {
                 user = {};
             }
@@ -62,36 +63,41 @@
 
 
         panelLoginTpl: '\
-            <div class="cp-panel-cover"></div>\
+            <div class="cp-panel-cover" data-action="clear"></div>\
             <div class="cp-panel-body">\
                 <div class="cp-ttl">幻化回廊</div>\
-                <div class="cp-result-msg"></div>\
-                <div class="c-btn cp-btn-delete iconfont icon-delete-alt" data-action="delete"></div>\
+                <div class="c-btn cp-btn-delete iconfont icon-delete-alt" data-action="clear"></div>\
+                <div class="c-ctn cp-login-header">\
+                    <div class="cp-result-msg"></div>\
+                    <div class="c-btn cp-btn-visitor" data-action="visitor">游客身份登陆</div>\
+                </div>\
                 <div class="cp-login-box">\
-                    <div class="cp-account input-group">\
-                        <span class="input-group-addon iconfont icon-user"></span>\
-                        <input type="text" class="cp-account-ipt" placeholder="账号"">\
+                    <div class="cp-account input-group cp-wrap-ipt">\
+                        <span class="cp-ipt-abbdon iconfont icon-user"></span>\
+                        <input type="text" class="cp-account-ipt cp-ipt" placeholder="账号"">\
                     </div>\
-                    <div class="cp-pwd input-group">\
-                        <span class="input-group-addon iconfont icon-lock"></span>\
-                        <input type="text" id="iptPwd" class="cp-pwd-ipt" placeholder="密码"">\
+                    <div class="cp-pwd input-group cp-wrap-ipt">\
+                        <span class="cp-ipt-abbdon iconfont icon-lock"></span>\
+                        <input type="text" id="iptPwd" class="cp-pwd-ipt cp-ipt" placeholder="密码"">\
                     </div>\
                     <div class="cp-login-status">\
-                        <span class="c-btn cp-login-start glyphicon glyphicon-play" data-action="login"></span>\
+                        <span class="c-btn cp-login-start iconfont icon-start" data-action="login"></span>\
                         <span class="cp-loading-spin"></span>\
                     </div>\
                 </div>\
                 <div class="cp-tool-grp">\
-                    <span class="cp-tool-item" data-action="visitor">游客身份登录</span>\
-                    <span class="cp-tool-item" data-action="foget">忘记密码</span>\
-                    <span class="cp-tool-item" data-action="register">注册</span>\
+                    <!--<span class="cp-tool-item" data-action="visitor">游客身份登录</span>-->\
+                    <span class="cp-tool-item c-btn c-wrap-check square" data-action="remember"><span class="c-check-icon"></span><span class="c-check-text text">记住密码</span></span>\
+                    <span class="cp-tool-item c-btn" data-action="foget"><span class="text">忘记密码</span></span>\
+                    <span class="cp-tool-item c-btn" data-action="register"><span class="text">注册</span></span>\
                 </div>\
             </div>',
         showPanelLogin: function() {
             if (this.panelLogin) return;
             this.panelLogin = document.createElement('div');
-            this.panelLogin.classList.add('.cp-panel-login');
+            this.panelLogin.classList.add('cp-panel-login');
             this.panelLogin.innerHTML = this.panelLoginTpl;
+            document.body.appendChild(this.panelLogin);
             this.bindPanelLoginEvent();
         },
         clearPanelLogin: function() {
@@ -99,17 +105,24 @@
             this.panelLogin = null;
         },
         bindPanelLoginEvent: function() {
-            $(this.panelLogin).oin('[data-action]', function(e) {
+            $(this.panelLogin).on('click', '[data-action]', (e) => {
                 var target = e.currentTarget;
-                switch (target.action) {
-                    case 'delete':
+                switch (target.dataset.action) {
+                    case 'clear':
                         this.clearPanelLogin();
                         break;
                     case 'login':
                         this.startLoginByPanel()
                         break;
+                    case 'remember':
+                        target.classList.toggle('checked')
+                        this.rememberAccount(target.classList.contains('checekd'));
+                        break;
                 }
             })
+        },
+        rememberAccount: function() {
+
         },
         showLoginResult: function() {},
         startLoginByPanel: function() {

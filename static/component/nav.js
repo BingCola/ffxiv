@@ -24,10 +24,16 @@
                 var target = e.currentTarget;
                 if (target.classList.contains('dropdown')) return;
                 if (target.dataset.href) {
-                    if (target.getAttribute("target") = "_blank") {
+                    if (target.getAttribute("target") == "_blank") {
                         location = location.origin + target.dataset.href
                     } else {
                         window.open(location.origin + target.dataset.href)
+                    }
+                } else if (target.dataset.action) {
+                    switch (target.dataset.action) {
+                        case 'login':
+                            CPlugin.account.showPanelLogin()
+                            break;
                     }
                 }
             })
@@ -37,10 +43,10 @@
             this.attachNavBottomEvent();
         },
         attachNavBottomEvent: function() {
-            $(this.navTop).off('click').on('click', '.cp-nav-item', function(e) {
+            $(this.navBottom).off('click').on('click', '.cp-nav-item', function(e) {
                 var target = e.currentTarget;
                 if (target.dataset.href) {
-                    if (target.getAttribute("target") = "_blank") {
+                    if (target.getAttribute("target") == "_blank") {
                         location = location.origin + target.dataset.href
                     } else {
                         window.open(location.origin + target.dataset.href)

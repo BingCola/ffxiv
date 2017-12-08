@@ -36,7 +36,7 @@
         initNavPlugin: function() {
             var dictContainer = {
                 top: CPlugin.screen.headerCtn,
-                bottom: CPlugin.screen.headerCtn
+                bottom: CPlugin.screen.footerCtn
             }
             CPlugin.nav = new(namespace('cmpt.nav'))(dictContainer);
             CPlugin.nav.init();

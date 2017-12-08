@@ -270,3 +270,28 @@
 
 
 /*slide*/
+
+
+/*input*/
+
+.c-wrap-check {}
+
+.c-wrap-check .c-check-icon {
+    font-family: "iconfont" !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    margin-right: 5px;
+}
+
+.c-wrap-check .c-check-icon::before {
+    content: '\e632'
+}
+
+.c-wrap-check.checked .c-check-icon::before {
+    content: '\e622'
+}
+
+.c-wrap-check .c-check-text {}
+
+
+/*input*/
