@@ -4,6 +4,7 @@ var bundle = {
         "base": [
             '/lib/jquery-3.0.0.min.js',
             '/lib/bootstrap/js/bootstrap.min.js',
+            '/lib/moment-with-locales.min.js',
             '/component/common.js'
         ],
         "gallery": [
