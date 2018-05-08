@@ -60,5 +60,5 @@
             });
         }
     }
-    exports.webAPI = Cmpt;
+    exports.http = Cmpt;
 }(namespace('cmpt')))
