@@ -21,7 +21,6 @@
                         try {
                             data = JSON.parse(result);
                         } catch (e) {
-                            // console.log('request error: ' + e + ', the data is :' + data);
                             return data;
                         }
                     }
