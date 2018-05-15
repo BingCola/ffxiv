@@ -21,10 +21,9 @@
             };
             window.Device = {
                 platform: 'PC',
-                isMobile: true
+                isMobile: false
             };
             window.User = {};
-            window.MainContainer = document.getElementById('mainContainer');
         },
         initPlugin: function() {
             CPlugin.router = window.Router = new(namespace('cmpt.router'))({ root: 'gallery.home' })

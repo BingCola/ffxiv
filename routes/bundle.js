@@ -8,12 +8,12 @@ var bundle = {
             '/component/common.js'
         ],
         "gallery": [
-            '/component/webAPI.js',
-            '/component/router.js',
-            '/component/account.js',
-            '/component/nav.js',
-            '/component/waterfall.js',
-            '/component/screen.js',
+            '/component/common/http.js',
+            '/component/common/router.js',
+            '/component/common/account.js',
+            '/component/custom/nav.js',
+            '/component/common/waterfall.js',
+            '/component/common/screen.js',
 
             '/app/Gallery/constant.js',
             '/app/Gallery/app.js',
