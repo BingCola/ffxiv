@@ -37,3 +37,4 @@ String.prototype.format = function(store) {
     }
     return str
 }
+

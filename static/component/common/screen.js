@@ -19,7 +19,7 @@
                 this.mainCtn.innerHTML = setting.view;
                 return $.Deferred().resolve();
             } else {
-                return WebAPI.get(setting.view).done(function(result) {
+                return CPlugin.http.get(setting.view).done(function(result) {
                     this.mainCtn.innerHTML = result;
                 }.bind(this))
             }
@@ -103,7 +103,7 @@
                 pageToggle && this.clearPrevCtn();
                 return $.Deferred().resolve();
             } else {
-                return WebAPI.get(setting.view).done(function(result) {
+                return CPlugin.http.get(setting.view).done(function(result) {
                     this.mainCtn.innerHTML = result;
                     pageToggle && this.clearPrevCtn();
                 }.bind(this))

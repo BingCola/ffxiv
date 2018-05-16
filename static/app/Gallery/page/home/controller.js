@@ -5,14 +5,45 @@
     }
     Controller.prototype = {
         init: function() {},
-        getTopRecommend: function() {
-            return WebAPI.get('/gallery/getTopRecommend/5')
+        getTopItem: function(limit) {
+            let $promise = $.Deferred();
+            CPlugin.api.getTopGalleryItem(limit).done((result) => {
+                if (result && result.success) {
+                    $promise.resolveWith(null, result.data);
+                } else {
+                    $promise.reject();
+                }
+            }).fail(() => {
+                $promise.reject();
+            });
+            return $promise.promise();
         },
-        getModulePrimeItem: function(option) {
-            return WebAPI.post('/gallery/getItem/prime', option)
+        getPrimeItem: function(data) {
+            let $promise = $.Deferred();
+            CPlugin.api.getPrimeGalleryItem(data).done((result) => {
+                if (result && result.success) {
+                    $promise.resolveWith(null, result.data);
+                } else {
+                    $promise.reject();
+                }
+            }).fail(() => {
+                $promise.reject();
+            });
+            return $promise.promise();
+
         },
-        getModuleLatestItem: function(option) {
-            return WebAPI.post('/gallery/getItem/latest', option)
+        getLatestItem: function(data) {
+            let $promise = $.Deferred();
+            CPlugin.api.getLatestGalleryItem(data).done((result) => {
+                if (result && result.success) {
+                    $promise.resolveWith(null, result.data);
+                } else {
+                    $promise.reject();
+                }
+            }).fail(() => {
+                $promise.reject();
+            });
+            return $promise.promise();
         }
     }
     exports.controller = Controller;

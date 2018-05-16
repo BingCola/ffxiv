@@ -3,32 +3,36 @@ var bundle = {
     'script': {
         "base": [
             '/lib/jquery-3.0.0.min.js',
-            '/lib/bootstrap/js/bootstrap.min.js',
             '/lib/moment-with-locales.min.js',
-            '/component/common.js'
+            '/component/common/common.js'
         ],
         "gallery": [
             '/component/common/http.js',
+            '/component/common/api.js',
             '/component/common/router.js',
-            '/component/common/account.js',
-            '/component/custom/nav.js',
-            '/component/common/waterfall.js',
+            '/component/common/masonry.js',
             '/component/common/screen.js',
+
+            '/component/custom/account.js',
+            '/component/custom/nav.js',
 
             '/app/Gallery/constant.js',
             '/app/Gallery/app.js',
+            '/app/Gallery/api.js',
         ],
         "gallery_home": [
             '/app/Gallery/page/home/page.js',
             '/app/Gallery/page/home/controller.js',
-            '/app/Gallery/page/home/viewer.js'
+            '/app/Gallery/page/home/viewer.js',
+
+            '/app/Gallery/init.js',
         ],
         "gallery_gallery": [
             '/app/Gallery/page/gallery/page.js',
             '/app/Gallery/page/gallery/controller.js',
         ],
         "gallery_works": [
-            '/component/comment.js',
+            '/component/common/comment.js',
 
             '/app/Gallery/page/works/page.js',
             '/app/Gallery/page/works/controller.js',

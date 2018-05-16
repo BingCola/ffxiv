@@ -1,16 +1,16 @@
 ;
 (function(exports) {
-    function App() {
-        this.init()
-    }
-    App.prototype = {
-        init: function() {
+    class App{
+        constructor(){
+            this.init()
+        }
+        init() {
             this.setGlobalVariable();
             this.initPlugin();
             this.attachEvent();
             this.toFirstPage();
-        },
-        setGlobalVariable: function() {
+        }
+        setGlobalVariable() {
             window.CPlugin = {};
             window.Setting = {
                 host: '',
@@ -24,42 +24,43 @@
                 isMobile: false
             };
             window.User = {};
-        },
-        initPlugin: function() {
-            CPlugin.router = window.Router = new(namespace('cmpt.router'))({ root: 'gallery.home' })
-            CPlugin.webAPI = window.WebAPI = new(namespace('cmpt.webAPI'))(Setting.host, Device.platform);
+        }
+        initPlugin() {
+            this.initRouterPlugin();
+            this.initApiPlugin();
             CPlugin.screen = new(namespace('cmpt.screen'))()
             this.initNavPlugin();
             this.initAccountPlugin();
-        },
-        initNavPlugin: function() {
+        }
+        initApiPlugin(){
+            CPlugin.http = new(namespace('cmpt.http'))(Setting.host, Device.platform);
+            CPlugin.api = window.API = new(namespace('gallery.api'))(CPlugin.http);
+        }
+        initRouterPlugin(){
+            CPlugin.router = window.Router = new(namespace('cmpt.router'))({ root: 'gallery.home' })
+        }
+        initNavPlugin() {
             var dictContainer = {
                 top: CPlugin.screen.headerCtn,
                 bottom: CPlugin.screen.footerCtn
             }
             CPlugin.nav = new(namespace('cmpt.nav'))(dictContainer);
             CPlugin.nav.init();
-        },
-        initAccountPlugin: function() {
+        }
+        initAccountPlugin() {
             CPlugin.account = new(namespace('cmpt.account'))();
             CPlugin.account.init();
-        },
-        attachEvent: function() {
+        }
+        attachEvent() {
 
-        },
-        toFirstPage: function() {
+        }
+        toFirstPage() {
             Router.toFirstPage();
-        },
-        exit: function() {
+        }
+        exit() {
 
-        },
+        }
     }
 
     exports.gallery = App
 }(window))
-
-AppStart = function() {
-    window.AppDriver = new(window.gallery)();
-}
-
-$(document).ready(AppStart)

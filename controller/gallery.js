@@ -15,7 +15,7 @@ var arrSize = [
     { 'width': 1920, 'height': 1080 }
 ]
 
-router.post('/getItem/overview', function(req, res, next) {
+router.post('/getItem/list', function(req, res, next) {
     var data = []
     for (var i = 0; i < req.body.limit; i++) {
         data.push({
@@ -121,7 +121,7 @@ router.post('/getItem/latest', function(req, res, next) {
 });
 
 
-router.get('/getTopRecommend/:num', function(req, res, next) {
+router.get('/getItem/top/:num', function(req, res, next) {
     res.send({
         success: true,
         data: [{
