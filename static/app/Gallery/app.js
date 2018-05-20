@@ -1,7 +1,7 @@
 ;
 (function(exports) {
-    class App{
-        constructor(){
+    class App {
+        constructor() {
             this.init()
         }
         init() {
@@ -11,6 +11,7 @@
             this.toFirstPage();
         }
         setGlobalVariable() {
+            moment.locale('zh-cn');
             window.CPlugin = {};
             window.Setting = {
                 host: '',
@@ -26,17 +27,17 @@
             window.User = {};
         }
         initPlugin() {
+            CPlugin.screen = new(namespace('cmpt.screen'))();
             this.initRouterPlugin();
             this.initApiPlugin();
-            CPlugin.screen = new(namespace('cmpt.screen'))()
             this.initNavPlugin();
             this.initAccountPlugin();
         }
-        initApiPlugin(){
+        initApiPlugin() {
             CPlugin.http = new(namespace('cmpt.http'))(Setting.host, Device.platform);
             CPlugin.api = window.API = new(namespace('gallery.api'))(CPlugin.http);
         }
-        initRouterPlugin(){
+        initRouterPlugin() {
             CPlugin.router = window.Router = new(namespace('cmpt.router'))({ root: 'gallery.home' })
         }
         initNavPlugin() {

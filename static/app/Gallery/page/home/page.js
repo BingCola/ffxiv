@@ -1,20 +1,21 @@
 (function(exports) {
-    class Page {
+    class Page extends namespace('cmpt.page') {
         constructor() {
             super(...arguments)
             this.controller = undefined;
             this.viewer = undefined;
         }
-        get layout() {
+        get LAYOUT() {
             return {
                 view: '/app/Gallery/page/home/page.html',
                 header: true,
                 footer: true
             }
         }
-        show() {
-            var _this = this;
-            _this.init();
+        get CONFIG() {
+            return {
+                top: 5
+            }
         }
         init() {
             this.initController();
@@ -35,43 +36,35 @@
         }
         initTopRecommend() {
             var container = document.getElementById('panelRecommend');
-            this.controller.getTopRecommend().done(result => {
-                if (result && result.data) {
-                    this.viewer.setTopRecommend(container, result.data);
-                }
+            this.controller.getTopItem(this.CONFIG.top).done(data => {
+                this.viewer.setTopRecommend(container, data);
             })
         }
         initTransmogSection() {
             var container = document.getElementById('panelTransmog')
-            this.controller.getPrimeItem({ limit: 5 }).done((result) => {
-                if (result && result.success) {
-                    this.viewer.setGalleryModulePrime(container.querySelector('.panelModulePrime'), result.data, { imgPath: Setting.path.image + '/plant/transmog/', name: '幻化' })
-                }
+            this.controller.getPrimeItem({ limit: 5 }).done((data) => {
+                this.viewer.setGalleryModulePrime(container.querySelector('.panelModulePrime'), data, { imgPath: Setting.path.image + '/plant/transmog/', name: '幻化' })
             })
-            this.controller.getLatestItem({ limit: 8 }).done((result) => {
-                if (result && result.success) {
-                    this.viewer.setGalleryModuleLatest(container.querySelector('.panelModuleLatest'), result.data, { setBigMode: 3, imgPath: Setting.path.image + '/plant/transmog/' })
-                }
+            this.controller.getLatestItem({ limit: 8 }).done((data) => {
+                this.viewer.setGalleryModuleLatest(container.querySelector('.panelModuleLatest'), data, { setBigMode: 3, imgPath: Setting.path.image + '/plant/transmog/' })
             })
         }
         initDecorateSection() {
             var container = document.getElementById('panelDecoration')
-            this.controller.getPrimeItem({ limit: 5 }).done((result) => {
-                this.viewer.setGalleryModulePrime(container.querySelector('.panelModulePrime'), result.data, { imgPath: Setting.path.image + '/plant/decoration/', name: '装潢' })
+            this.controller.getPrimeItem({ limit: 5 }).done((data) => {
+                this.viewer.setGalleryModulePrime(container.querySelector('.panelModulePrime'), data, { imgPath: Setting.path.image + '/plant/decoration/', name: '装潢' })
             })
-            this.controller.getLatestItem({ limit: 8 }).done((result) => {
-                if (result && result.success) {
-                    this.viewer.setGalleryModuleLatest(container.querySelector('.panelModuleLatest'), result.data, { setBigMode: 3, imgPath: Setting.path.image + '/plant/decoration/' })
-                }
+            this.controller.getLatestItem({ limit: 8 }).done((data) => {
+                this.viewer.setGalleryModuleLatest(container.querySelector('.panelModuleLatest'), data, { setBigMode: 3, imgPath: Setting.path.image + '/plant/decoration/' })
             })
         }
         initPictureSection() {
             var container = document.getElementById('panelPicture')
-            this.controller.getPrimeItem({ limit: 5 }).done((result) => {
-                this.viewer.setGalleryModulePrime(container.querySelector('.panelModulePrime'), result.data, { imgPath: Setting.path.image + '/plant/picture/', name: '画册' })
+            this.controller.getPrimeItem({ limit: 5 }).done((data) => {
+                this.viewer.setGalleryModulePrime(container.querySelector('.panelModulePrime'), data, { imgPath: Setting.path.image + '/plant/picture/', name: '画册' })
             })
-            this.controller.getLatestItem({ limit: 8 }).done((result) => {
-                this.viewer.setGalleryModuleLatest(container.querySelector('.panelModuleLatest'), result.data, { setBigMode: 3, imgPath: Setting.path.image + '/plant/picture/' })
+            this.controller.getLatestItem({ limit: 8 }).done((data) => {
+                this.viewer.setGalleryModuleLatest(container.querySelector('.panelModuleLatest'), data, { setBigMode: 3, imgPath: Setting.path.image + '/plant/picture/' })
             })
         }
         initQuikEntrance() {

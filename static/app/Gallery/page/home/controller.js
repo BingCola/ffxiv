@@ -9,7 +9,7 @@
             let $promise = $.Deferred();
             CPlugin.api.getTopGalleryItem(limit).done((result) => {
                 if (result && result.success) {
-                    $promise.resolveWith(null, result.data);
+                    $promise.resolveWith(null, [result.data]);
                 } else {
                     $promise.reject();
                 }
@@ -22,7 +22,7 @@
             let $promise = $.Deferred();
             CPlugin.api.getPrimeGalleryItem(data).done((result) => {
                 if (result && result.success) {
-                    $promise.resolveWith(null, result.data);
+                    $promise.resolveWith(null, [result.data]);
                 } else {
                     $promise.reject();
                 }
@@ -36,7 +36,7 @@
             let $promise = $.Deferred();
             CPlugin.api.getLatestGalleryItem(data).done((result) => {
                 if (result && result.success) {
-                    $promise.resolveWith(null, result.data);
+                    $promise.resolveWith(null, [result.data]);
                 } else {
                     $promise.reject();
                 }

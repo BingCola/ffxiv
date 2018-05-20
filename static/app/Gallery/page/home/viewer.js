@@ -7,29 +7,29 @@
         template: {
             'latestBody': `
             <div class="header"><span class="text">最近投稿</span><span class="c-btn btnRefresh iconfont icon-refresh"></span></div>
-            <div class="body"><%body%></div>`,
+            <div class="body">{body}</div>`,
             'latestItem': `
-            <div class="item <%bigMode%>" data-id="<%id%>">
-                <img class="img" src="<%img%>">
-                <span class="text"><%text%></span>
-                <span class="author"><%author%></span>
-                <span class="date"><%date%></span>
+            <div class="item {bigMode}" data-id="{id}">
+                <img class="img" src="{img}">
+                <span class="text">{text}</span>
+                <span class="author">{author}</span>
+                <span class="date">{date}</span>
             </div>`,
 
             'primeBody': `
             <div class="header">
-                <span class="c-label"><%moduleName%></span>
-                <div class="wrapItemIndex"><%index%></div>
+                <span class="c-label">{moduleName}</span>
+                <div class="wrapItemIndex">{index}</div>
             </div>
-            <div class="body"><%body%></div>`,
-            'primeItem': '<div class="item" data-id=“<%id%>”><span class="text"><%text%></span><img class="img" src="<%img%>"></div>',
+            <div class="body">{body}</div>`,
+            'primeItem': '<div class="item" data-id=“{id}”><span class="text">{text}</span><img class="img" src="{img}"></div>',
 
-            'topRecommendItem': '<div class="item" data-id="<%id%>"><div class="wrapImg"><%img%></div><div style="<%textStyle%>" class="text"><%text%></div></div>',
+            'topRecommendItem': '<div class="item" data-id="{id}"><div class="wrapImg">{img}</div><div style="{textStyle}" class="text">{text}</div></div>',
 
             'quickEntrance': `    
-            <div data-entrance="<%entrance%>" class="ctnEntrance">
-                <img class="entranceBg" src="<%img%>">
-                <span class="title"><%title%></span>
+            <div data-entrance="{entrance}" class="ctnEntrance">
+                <img class="entranceBg" src="{img}">
+                <span class="title">{title}</span>
             </div>`
         },
         init: function() {},
@@ -87,7 +87,7 @@
             var bodyHTML = '';
             store.forEach((item, index) => {
                 let formatEl = {
-                    date: DateUtil.getRelativeDateInfo(item.time),
+                    date: moment(item.time).fromNow(),
                     img: option.imgPath + item.id + '.jpg',
                     text: item.name,
                     id: item.id,

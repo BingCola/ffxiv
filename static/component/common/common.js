@@ -30,11 +30,10 @@ var ObjectId = function() {
 // 字符串格式化替换
 String.prototype.format = function(store) {
     var str = this;
-    var pattern = new RegExp('<%(\\w+)%>', 'g');
+    var pattern = new RegExp('{(\\w+)}', 'g');
     var match = null;
     while ((match = pattern.exec(str)) !== null) {
         str = str.replace(new RegExp(match[0], 'g'), store[match[1]] ? store[match[1]] : '')
     }
     return str
 }
-

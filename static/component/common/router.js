@@ -26,7 +26,7 @@
             }
         },
         show: function() {
-            if (this.option.enableHash) {
+            if (this.option.enableHash && arguments[0] != this.option.root) {
                 this.change(...arguments)
             } else {
                 this.to(...arguments)
@@ -39,6 +39,7 @@
             if (Object.keys(params).length == 0 || !params[this.option.pageFlag]) {
                 return false;
             }
+            if (params[this.option.pageFlag] == this.option.root) delete params[this.option.pageFlag];
             for (var param in params) {
                 if (params.hasOwnProperty(param)) {
                     arrUrl.push(param + '=' + this.serializeParams(params[param]));
@@ -51,7 +52,7 @@
             var params = this.getUrlParamsMap(...arguments);
             var args = [];
             if (Object.keys(params).length == 0 || !params[this.option.pageFlag]) {
-                return false;
+                params.page = this.option.root;
             }
             for (var param in params) {
                 if (params.hasOwnProperty(param)) {
@@ -65,13 +66,11 @@
             var param = Array.prototype.slice.bind(arguments)(1);
             var page = new pageConstructor(...param)
 
-            var layout = page.layout;
             this.path.push({ ins: page, cls: pageConstructor, param: param });
 
             this.current.close && this.current.close();
-            var layout = (page.setLayout && page.setLayout());
-            if (!page.layout) page.layout = layout;
-            CPlugin.screen.setLayout(layout || page.layout).done(function() {
+            var layout = page.LAYOUT;
+            CPlugin.screen.setLayout(layout).done(function() {
                 this.current = page;
                 this.option.event && this.option.event.onToggle && this.option.event.onToggle(page, param, pageConstructor)
                 page.init();

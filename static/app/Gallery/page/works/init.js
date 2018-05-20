@@ -1,19 +1,16 @@
 ;
 (function(base) {
-    class App extends base{
-        constructor(){
+    class App extends base {
+        constructor() {
             super(...arguments)
         }
-        initRouterPlugin(){
+        initRouterPlugin() {
             CPlugin.router = window.Router = new(namespace('cmpt.router'))({ root: 'gallery.works' })
         }
     }
 
-    exports.gallery = App;
-
-    $(document).ready(function(){
-        window.App = new (App)()
+    $(document).ready(function() {
+        window.App = new(App)()
     })
-    
-}(window.gallery))
 
+}(window.gallery))

@@ -11,6 +11,7 @@ var bundle = {
             '/component/common/api.js',
             '/component/common/router.js',
             '/component/common/masonry.js',
+            '/component/common/page.js',
             '/component/common/screen.js',
 
             '/component/custom/account.js',
@@ -37,6 +38,8 @@ var bundle = {
             '/app/Gallery/page/works/page.js',
             '/app/Gallery/page/works/controller.js',
             '/app/Gallery/page/works/viewer.js',
+
+            '/app/Gallery/page/works/init.js',
         ],
         "gallery_post": [
             '/app/Gallery/page/post/page.js'
@@ -49,7 +52,7 @@ var bundle = {
             '//at.alicdn.com/t/font_180029_6pw1liyzljl9pb9.css',
 
             '/style/c-ui.css',
-            '/style/common.css',
+            '/style/custom.css',
             '/style/component.css',
         ],
         "gallery": [

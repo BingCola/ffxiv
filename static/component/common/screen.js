@@ -7,8 +7,8 @@
         init: function() {
             var ctnOption = this.option.container || {};
             this.screenCtn = ctnOption.screen || document.querySelector('.c-screen');
-            this.mainCtn = ctnOption.main || document.querySelector('.c-page-main');
             this.bodyCtn = ctnOption.body || document.querySelector('.c-page-body');
+            this.pageCtn = ctnOption.page || document.querySelector('.c-page');
             this.headerCtn = ctnOption.header || document.querySelector('.c-page-header');
         },
         setLayout: function(setting) {
@@ -16,11 +16,11 @@
             if (!(setting && setting.view)) {
                 return $.Deferred().resolve();
             } else if (setting.view.indexOf('.html') == -1) {
-                this.mainCtn.innerHTML = setting.view;
+                this.bodyCtn.innerHTML = setting.view;
                 return $.Deferred().resolve();
             } else {
                 return CPlugin.http.get(setting.view).done(function(result) {
-                    this.mainCtn.innerHTML = result;
+                    this.bodyCtn.innerHTML = result;
                 }.bind(this))
             }
         },

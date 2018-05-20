@@ -31,32 +31,17 @@
 
         get: function() {
             var url = arguments[0];
-
-            if (this.platform == 'cordova' && this.host) {
-                if (url.indexOf('.html') == -1) {
-                    url = this.host + url;
-                } else if (url[0] == '/') {
-                    url = url.slice(1)
-                }
-            }
-            return $.ajax({ url: url, type: 'Get', contentType: 'application/json' });
+            return $.ajax({ url: url, type: 'Get', contentType: 'application/json' })
         },
         post: function() {
             var url = arguments[0];
             var data = arguments[1];
-            if (this.platform == 'cordova' && this.host) {
-                if (url.indexOf('.html') == -1) {
-                    url = this.host + url;
-                } else if (url[0] == '/') {
-                    url = url.slice(1)
-                }
-            }
             return $.ajax({
                 url: url,
                 type: 'POST',
                 data: JSON.stringify(data),
                 contentType: 'application/json'
-            });
+            })
         }
     }
     exports.http = Cmpt;
