@@ -7,7 +7,7 @@ body {
     text-align: center;
 }
 
-.cp-nav-bottom {
+.cpc-nav-bottom {
     position: relative;
     width: 100%;
     max-width: 1080px;
@@ -15,10 +15,10 @@ body {
     margin-top: 120px;
 }
 
-.cp-nav-bottom .cp-section-col {
+.cpc-nav-bottom .cpc-section-col {
     width: 25%;
 }
 
-.cp-nav-bottom .cp-section>.cp-name {
+.cpc-nav-bottom .cpc-section>.cpc-name {
     color: #f1a51b;
 }
