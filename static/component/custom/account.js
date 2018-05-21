@@ -5,37 +5,29 @@
     }
     Cmpt.prototype = {
         init: function() {
-            var user = {};
             var setting = {};
             try {
-                user = JSON.parse(localStorage.getItem('user_info'));
-                if (!user) user = {};
-            } catch (e) {
-                user = {};
-            }
-            try {
                 setting = JSON.parse(localStorage.getItem('app_config'));
+                if (!setting) setting = {};
             } catch (e) {
                 setting = {};
             }
 
-            if (user.id && setting.user && setting.user.remember) {
-                this.login(user);
+            if (setting.user && setting.user.account && setting.user.pwd && setting.user.remember) {
+                this.login({ account: setting.user.account, pwd: setting.user.pwd });
             } else {
                 CPlugin.nav.initUserNav();
             }
         },
         login: function(account) {
             var _this = this;
-            var url = '';
             // if (account.role == 4) {
             //     url = '/user/login/visitor'
             // } else {
             //     url = '/user/login'
             // }
-            url = '/user/login';
             var $promise = $.Deferred();
-            WebAPI.post(url, account).done(function(result) {
+            CPlugin.api.login(account).done(function(result) {
                 if (result.success) {
                     window.User = result.data;
                     var user = {
@@ -46,7 +38,7 @@
                         user.account = User.account;
                         user.pwd = User.pwd
                     }
-                    localStorage.setItem('user_info', JSON.stringify(user));
+                    localStorage.setItem('app_config', JSON.stringify(user));
                     $promise.resolve();
                 } else {
                     window.User = window.User || {};
@@ -63,39 +55,39 @@
 
 
         panelLoginTpl: '\
-            <div class="cp-panel-cover" data-action="clear"></div>\
-            <div class="cp-panel-body">\
-                <div class="cp-ttl">幻化回廊</div>\
-                <div class="c-btn cp-btn-delete iconfont icon-delete-alt" data-action="clear"></div>\
-                <div class="c-ctn cp-login-header">\
-                    <div class="cp-result-msg"></div>\
-                    <div class="c-btn cp-btn-visitor" data-action="visitor">游客身份登陆</div>\
+            <div class="cpc-login-cover"></div>\
+            <div class="cpc-login-body">\
+                <div class="cpc-ttl">幻化回廊</div>\
+                <div class="c-btn cpc-btn-delete iconfont icon-delete-alt" data-action="clear"></div>\
+                <div class="c-ctn cpc-login-header">\
+                    <div class="cpc-result-msg"></div>\
+                    <div class="c-btn cpc-btn-visitor" data-action="visitor">游客身份登陆</div>\
                 </div>\
-                <div class="cp-login-box">\
-                    <div class="cp-account input-group cp-wrap-ipt">\
-                        <span class="cp-ipt-abbdon iconfont icon-user"></span>\
-                        <input type="text" class="cp-account-ipt cp-ipt" placeholder="账号"">\
+                <div class="cpc-login-box">\
+                    <div class="cpc-account input-group cpc-wrap-ipt">\
+                        <span class="cpc-ipt-abbdon iconfont icon-user"></span>\
+                        <input type="text" class="cpc-account-ipt cpc-ipt" placeholder="账号"">\
                     </div>\
-                    <div class="cp-pwd input-group cp-wrap-ipt">\
-                        <span class="cp-ipt-abbdon iconfont icon-lock"></span>\
-                        <input type="text" id="iptPwd" class="cp-pwd-ipt cp-ipt" placeholder="密码"">\
+                    <div class="cpc-pwd input-group cpc-wrap-ipt">\
+                        <span class="cpc-ipt-abbdon iconfont icon-lock"></span>\
+                        <input type="text" id="iptPwd" class="cpc-pwd-ipt cpc-ipt" placeholder="密码"">\
                     </div>\
-                    <div class="cp-login-status">\
-                        <span class="c-btn cp-login-start iconfont icon-start" data-action="login"></span>\
-                        <span class="cp-loading-spin"></span>\
+                    <div class="cpc-login-status">\
+                        <span class="c-btn cpc-login-start iconfont icon-start" data-action="login"></span>\
+                        <span class="cpc-loading-spin"></span>\
                     </div>\
                 </div>\
-                <div class="cp-tool-grp">\
-                    <!--<span class="cp-tool-item" data-action="visitor">游客身份登录</span>-->\
-                    <span class="cp-tool-item c-btn c-wrap-check square" data-action="remember"><span class="c-check-icon"></span><span class="c-check-text text">记住密码</span></span>\
-                    <span class="cp-tool-item c-btn" data-action="foget"><span class="text">忘记密码</span></span>\
-                    <span class="cp-tool-item c-btn" data-action="register"><span class="text">注册</span></span>\
+                <div class="cpc-tool-grp c-ctn">\
+                    <!--<span class="cpc-tool-item" data-action="visitor">游客身份登录</span>-->\
+                    <span class="cpc-tool-item c-btn c-wrap-check square" data-action="remember"><span class="c-check-icon"></span><span class="c-check-text text">记住密码</span></span>\
+                    <span class="cpc-tool-item c-btn" data-action="foget"><span class="text">忘记密码</span></span>\
+                    <span class="cpc-tool-item c-btn" data-action="register"><span class="text">注册</span></span>\
                 </div>\
             </div>',
         showPanelLogin: function() {
             if (this.panelLogin) return;
             this.panelLogin = document.createElement('div');
-            this.panelLogin.classList.add('cp-panel-login');
+            this.panelLogin.classList.add('cpc-login-panel');
             this.panelLogin.innerHTML = this.panelLoginTpl;
             document.body.appendChild(this.panelLogin);
             this.bindPanelLoginEvent();
@@ -127,14 +119,14 @@
         showLoginResult: function() {},
         startLoginByPanel: function() {
             var account = {
-                account: this.panel.querySelector('cp-account-ipt').value,
-                pwd: this.panel.querySelector('cp-pwd-ipt').value
+                account: this.panelLogin.querySelector('.cpc-account-ipt').value,
+                pwd: this.panelLogin.querySelector('.cpc-pwd-ipt').value
             }
             var isValid = this.checkLoginInfo(account);
-            if (!isValid) return;
-            Spinner.spin(this.panelLogin.querySelector('.cp-loading-spin'), 2)
-            this.login(account).done(function() {
-                Spinner.stop(this.panelLogin.querySelector('.cp-loading-spin'))
+            // if (!isValid) return;
+            CPlugin.spinner.spin(this.panelLogin.querySelector('.cpc-loading-spin'), 3)
+            this.login(account).done(() => {
+                CPlugin.spinner.stop(this.panelLogin.querySelector('.cpc-loading-spin'))
             });
         },
         checkLoginInfo: function(account) {

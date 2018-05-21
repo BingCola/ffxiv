@@ -4,15 +4,15 @@
     }
     Cmpt.prototype = {
         template: {
-            style_1: '<div class="cp-spin-wrap style-1"><div class="body"></div><div class="background"></div></div>',
-            style_2: `<div class="cp-spin-wrap style-2">               
+            style_1: '<div class="cp-spinner style-1"><div class="body"></div><div class="cp-spinner-overlay"></div></div>',
+            style_2: `<div class="cp-spinner style-2">               
                 <div class="unit"></div>
                 <div class="unit"></div>
                 <div class="unit"></div>
                 <div class="unit"></div>
                 </div>
                 `,
-            style_3: `<div class="cp-spin-wrap style-3">               
+            style_3: `<div class="cp-spinner style-3">               
                 <div class="unit"></div>
                 <div class="unit"></div>
                 <div class="unit"></div>
@@ -20,7 +20,7 @@
                 <div class="unit"></div>'
                 </div>
                 `,
-            style_4: `<div class="cp-spin-wrap style-4">               
+            style_4: `<div class="cp-spinner style-4">               
                 <div class="unit"></div>
                 <div class="unit"></div>
                 <div class="unit"></div>
@@ -36,9 +36,9 @@
         },
         stop: function($ctn) {
             if (!($ctn instanceof jQuery)) $ctn = $($ctn)
-            $ctn.children('.cp-spin-wrap').remove();
+            $ctn.children('.cp-spinner').remove();
         },
         destory: function() {}
     }
-    exports.spin = Cmpt;
+    exports.spinner = Cmpt;
 }(namespace('cmpt')))

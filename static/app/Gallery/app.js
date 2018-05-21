@@ -28,6 +28,7 @@
         }
         initPlugin() {
             CPlugin.screen = new(namespace('cmpt.screen'))();
+            CPlugin.spinner = new(namespace('cmpt.spinner'))();
             this.initRouterPlugin();
             this.initApiPlugin();
             this.initNavPlugin();

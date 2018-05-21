@@ -13,6 +13,7 @@ var bundle = {
             '/component/common/masonry.js',
             '/component/common/page.js',
             '/component/common/screen.js',
+            '/component/common/spinner.js',
 
             '/component/custom/account.js',
             '/component/custom/nav.js',
@@ -54,6 +55,7 @@ var bundle = {
             '/style/c-ui.css',
             '/style/custom.css',
             '/style/component.css',
+            '/style/customComponent.css',
         ],
         "gallery": [
             '/app/Gallery/style/common.css',

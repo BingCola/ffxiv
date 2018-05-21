@@ -1,9 +1,14 @@
 (function(exports) {
-    class Cmpt extends namespace('cmpt.api'){
-        constructor(){
+    class Cmpt extends namespace('cmpt.api') {
+        constructor() {
             super(...arguments)
         }
-        
+
+        login(data) {
+            return this.post('/user/login', data)
+        }
+
+
         getTopGalleryItem(limit) {
             return this.get(`/gallery/getItem/top/${limit}`)
         }

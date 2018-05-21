@@ -1,311 +1,3 @@
-/*component nav*/
-
-.cp-nav-top {
-    height: 44px;
-    width: 100%;
-    position: fixed;
-    background-color: black;
-    box-shadow: 0 0 10px 1px rgba(255, 255, 255, 1);
-    z-index: 1;
-    display: flex;
-    display: -webkit-flex;
-}
-
-.cp-nav-top .cp-nav-bg {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.cp-nav-top .cp-nav-body {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    max-width: 1080px;
-    margin: 0 auto;
-}
-
-.cp-nav-brand {
-    display: inline-block;
-    height: 100%;
-    padding: 10px;
-    float: left;
-}
-
-.cp-nav-brand>img {
-    max-height: 100%;
-    max-width: 100%;
-}
-
-.cp-nav-top .cp-user-profile {
-    display: inline-flex;
-    display: -webkit-inline-flex;
-    align-items: center;
-    -webkit-align-items: center;
-    height: 100%;
-    position: absolute;
-    right: 0;
-}
-
-.cp-nav-top .cp-user-info {
-    display: none;
-}
-
-.cp-nav-top .main .badge {
-    margin-left: 0;
-}
-
-.cp-nav-top .badge {
-    background-color: transparent;
-    border-radius: 0;
-    padding: 0;
-    line-height: 17px;
-    margin-left: 5px;
-    color: coral;
-}
-
-.cp-nav-top .cp-user-info .main {
-    display: inline-flex;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-}
-
-.cp-nav-top .isLogin .userInfo {
-    display: inline-block;
-}
-
-.cp-nav-top .cp-user-portrait {
-    height: 90%;
-}
-
-.cp-nav-top .cp-nav-list {
-    display: inline-block;
-    height: 100%;
-    margin-left: 30px;
-}
-
-.cp-nav-top .cp-nav-item {
-    font-size: 14px;
-    padding: 5px 12px;
-    height: 100%;
-    display: inline-flex;
-    display: -webkit-inline-flex;
-    align-items: center;
-    -webkit-align-items: center;
-    justify-content: center;
-    -webkit-justify-content: center;
-    position: relative;
-    cursor: pointer;
-    float: left;
-}
-
-.cp-nav-top .cp-nav-sub-list {
-    display: none;
-    position: absolute;
-    top: 100%;
-    background-color: rgba(0, 0, 0, 1);
-    box-shadow: 0 0 1px 1px white inset;
-    padding: 1px;
-    cursor: default;
-}
-
-.cp-nav-top .cp-nav-item:hover {
-    background: rgba(255, 255, 255, 0.25);
-}
-
-.cp-nav-top .cp-nav-item.dropdown:hover>.cp-nav-sub-list {
-    display: block;
-}
-
-.cp-nav-top .cp-nav-item.sub {
-    font-size: 12px;
-    display: block;
-    white-space: nowrap;
-    text-align: center;
-    padding: 10px 15px;
-    cursor: pointer;
-    width: 100%;
-}
-
-.cp-nav-top .cp-nav-item.sub:hover {
-    background: rgba(255, 255, 255, .25);
-}
-
-.cp-nav-top .cp-user-profile .forAfterLogin {
-    display: none;
-}
-
-.cp-nav-top .cp-user-profile.isLogin .forBeforeLogin {
-    display: none;
-}
-
-.cp-nav-top .cp-user-profile .cp-nav-item[data-action="login"] {
-    display: inline-flex;
-    display: -webkit-inline-flex;
-}
-
-.cp-nav-top .cp-user-profile.isLogin .cp-nav-item {
-    display: inline-flex;
-    display: -webkit-inline-flex;
-}
-
-.cp-nav-top .cp-user-profile.isLogin .cp-nav-item[data-action="login"] {
-    display: none;
-}
-
-.cp-nav-top .cp-user-profile.isLogin.isVisitor .cp-nav-item[data-action="login"] {
-    display: inline-flex;
-    display: -webkit-inline-flex;
-}
-
-.cp-nav-top .cp-user-profile .spinner {
-    padding: 5px 10px;
-    background: black;
-}
-
-.cp-nav-top .cp-user-info .sub {
-    width: 200px;
-    padding: 15px;
-    text-align: center;
-}
-
-.cp-nav-top .cp-user-info .sub .name {
-    display: block;
-    font-weight: bold;
-}
-
-.cp-nav-top .cp-user-info .sub .role {
-    display: block;
-    font-size: 12px;
-}
-
-.cp-nav-top .cp-user-info .sub .level {
-    position: relative;
-    display: block;
-    margin-top: 15px;
-}
-
-.cp-nav-top .cp-user-info .sub .level .label {
-    position: absolute;
-    left: 0;
-    padding: 0;
-    font-weight: normal;
-}
-
-.cp-nav-top .cp-user-info .sub .level .number {
-    position: absolute;
-    border-radius: 50%;
-    height: 24px;
-    width: 24px;
-    line-height: 24px;
-    box-shadow: 0 0 5px 1px white;
-    display: inline-block;
-    background: #1c1c59;
-    left: 35px;
-    top: -6px;
-}
-
-.cp-nav-top .cp-user-info .sub .level .levelBar {
-    margin-left: 60px;
-    display: block;
-    height: 10px;
-    background: #a7a7ff;
-    margin-bottom: 15px;
-}
-
-.cp-nav-top .cp-user-info .sub .level .levelScore {
-    width: 70%;
-    height: 100%;
-    display: inline-block;
-    background: #1c1c59;
-    float: left;
-}
-
-.cp-nav-top .cp-user-info .sub .level .tip {
-    display: inline-block;
-    float: right;
-    font-size: 12px;
-}
-
-.cp-nav-top .userInfo .sub .level .help {
-    display: inline-block;
-    float: left;
-    font-size: 12px;
-    cursor: pointer;
-    color: cornflowerblue;
-}
-
-.cp-nav-top .userInfo .sub .router {
-    display: block;
-    padding-top: 10px;
-    margin-top: 40px;
-    font-size: 14px;
-    border-top: 1px solid #aaa;
-}
-
-.cp-nav-top .userInfo .sub .routerItem {
-    display: inline-block;
-    cursor: pointer;
-    width: 50%;
-}
-
-.cp-nav-top .userInfo .sub .routerItem:nth-child(even) {
-    float: right;
-}
-
-.cp-nav-top .userInfo .sub .btnLogout {
-    display: block;
-    text-align: right;
-    font-size: 14px;
-    margin: 10px -15px -15px -15px;
-    padding: 5px;
-    background: rgba(255, 255, 255, 0.1);
-    cursor: pointer;
-}
-
-.cp-nav-bottom .cp-router-map {
-    margin-bottom: 15px;
-}
-
-.cp-nav-bottom .cp-router-map::before {
-    content: '';
-    display: table;
-}
-
-.cp-nav-bottom .cp-router-map::after {
-    content: '';
-    display: table;
-    clear: both;
-}
-
-.cp-nav-bottom .cp-section-col {
-    float: left;
-}
-
-.cp-nav-bottom .cp-section {
-    margin-bottom: 20px;
-}
-
-.cp-nav-bottom .cp-section>.cp-name {
-    font-size: 18px;
-    margin-bottom: 8px;
-}
-
-.cp-nav-bottom .cp-nav-item {
-    display: block;
-    cursor: pointer;
-    margin-bottom: 2px;
-}
-
-.cp-copyright {
-    text-align: center;
-    font-size: 12px;
-}
-
-
 /*component waterfall*/
 
 .waterfallGalleryCtn {
@@ -320,7 +12,7 @@
 
 /*spinner widget start*/
 
-.cp-spin-wrap {
+.cp-spinner {
     position: absolute;
     top: 0;
     left: 0;
@@ -334,7 +26,7 @@
     -webkit-justify-content: center;
 }
 
-.cp-spin-wrap.style-1 {
+.cp-spinner.style-1 {
     position: absolute;
     top: 0;
     left: 0;
@@ -346,7 +38,7 @@
     z-index: 1000;
 }
 
-.cp-spin-wrap.style-1 background {
+.cp-spinner.style-1 .cp-spinner-overlay {
     position: absolute;
     left: 0;
     top: 0;
@@ -355,7 +47,7 @@
     background: rgba(0, 0, 0, 0.75);
 }
 
-.cp-spin-wrap.style-1 .body {
+.cp-spinner.style-1 .body {
     position: relative;
     width: 80px;
     height: 80px;
@@ -363,8 +55,8 @@
     z-index: 1;
 }
 
-.cp-spin-wrap.style-1 .body:before,
-.cp-spin-wrap.style-1 .body:after {
+.cp-spinner.style-1 .body:before,
+.cp-spinner.style-1 .body:after {
     content: '';
     position: absolute;
     top: 50%;
@@ -376,11 +68,11 @@
     transform: translate(-50%, -50%);
 }
 
-.cp-spin-wrap.style-1 .body:before {
+.cp-spinner.style-1 .body:before {
     animation: spinner-1-before 2s infinite;
 }
 
-.cp-spin-wrap.style-1 .body:after {
+.cp-spinner.style-1 .body:after {
     animation: spinner-1-after 2s infinite;
 }
 
@@ -420,7 +112,7 @@
     }
 }
 
-.cp-spin-wrap.style-2 {
+.cp-spinner.style-2 {
     position: absolute;
     top: 50%;
     left: 40%;
@@ -428,7 +120,7 @@
     transform: translate3d(-50%, -50%, 0);
 }
 
-.cp-spin-wrap.style-2 .unit {
+.cp-spinner.style-2 .unit {
     width: 24px;
     height: 24px;
     background: #3ac;
@@ -437,27 +129,27 @@
     animation: spinner-2 1s infinite;
 }
 
-.cp-spin-wrap.style-2 .unit:nth-child(1) {
+.cp-spinner.style-2 .unit:nth-child(1) {
     animation-delay: 0.1s;
     background: #32aacc;
 }
 
-.cp-spin-wrap.style-2 .unit:nth-child(2) {
+.cp-spinner.style-2 .unit:nth-child(2) {
     animation-delay: 0.2s;
     background: #64aacc;
 }
 
-.cp-spin-wrap.style-2 .unit:nth-child(3) {
+.cp-spinner.style-2 .unit:nth-child(3) {
     animation-delay: 0.3s;
     background: #96aacc;
 }
 
-.cp-spin-wrap.style-2 .unit:nth-child(4) {
+.cp-spinner.style-2 .unit:nth-child(4) {
     animation-delay: 0.4s;
     background: #c8aacc;
 }
 
-.cp-spin-wrap.style-2 .unit:nth-child(5) {
+.cp-spinner.style-2 .unit:nth-child(5) {
     animation-delay: 0.5s;
     background: #faaacc;
 }
@@ -514,7 +206,7 @@
     }
 }
 
-.cp-spin-wrap.style-3 .unit {
+.cp-spinner.style-3 .unit {
     background-color: #fff;
     width: 10%;
     height: 100%;
@@ -525,27 +217,27 @@
     display: inline-block;
 }
 
-.cp-spin-wrap.style-3 .unit:nth-child(1) {
+.cp-spinner.style-3 .unit:nth-child(1) {
     -webkit-animation: spinner-3 1s 0.1s infinite cubic-bezier(.2, .68, .18, 1.08);
     animation: spinner-3 1s 0.1s infinite cubic-bezier(.2, .68, .18, 1.08);
 }
 
-.cp-spin-wrap.style-3 .unit:nth-child(2) {
+.cp-spinner.style-3 .unit:nth-child(2) {
     -webkit-animation: spinner-3 1s 0.2s infinite cubic-bezier(.2, .68, .18, 1.08);
     animation: spinner-3 1s 0.2s infinite cubic-bezier(.2, .68, .18, 1.08);
 }
 
-.cp-spin-wrap.style-3 .unit:nth-child(3) {
+.cp-spinner.style-3 .unit:nth-child(3) {
     -webkit-animation: spinner-3 1s 0.3s infinite cubic-bezier(.2, .68, .18, 1.08);
     animation: spinner-3 1s 0.3s infinite cubic-bezier(.2, .68, .18, 1.08);
 }
 
-.cp-spin-wrap.style-3 .unit:nth-child(4) {
+.cp-spinner.style-3 .unit:nth-child(4) {
     -webkit-animation: spinner-3 1s 0.4s infinite cubic-bezier(.2, .68, .18, 1.08);
     animation: spinner-3 1s 0.4s infinite cubic-bezier(.2, .68, .18, 1.08);
 }
 
-.cp-spin-wrap.style-3 .unit:nth-child(5) {
+.cp-spinner.style-3 .unit:nth-child(5) {
     -webkit-animation: spinner-3 1s 0.5s infinite cubic-bezier(.2, .68, .18, 1.08);
     animation: spinner-3 1s 0.5s infinite cubic-bezier(.2, .68, .18, 1.08);
 }
@@ -581,7 +273,7 @@
 }
 
 
-/*.cp-spin-wrap.style-4 {
+/*.cp-spinner.style-4 {
     font-size: 20px;
     width: 1em;
     height: 1em;
@@ -590,7 +282,7 @@
     box-shadow: inset 0 0 0 .1em rgba(58, 168, 237, .2);
 }
 
-.cp-spin-wrap.style-4 i {
+.cp-spinner.style-4 i {
     position: absolute;
     clip: rect(0, 1em, 1em, .5em);
     width: 1em;
@@ -607,7 +299,7 @@
     }
 }
 
-.cp-spin-wrap.style-4 i:after {
+.cp-spinner.style-4 i:after {
     position: absolute;
     clip: rect(0, 1em, 1em, .5em);
     width: 1em;
@@ -627,7 +319,7 @@
     }
 }*/
 
-.cp-spin-wrap.style-4 {
+.cp-spinner.style-4 {
     position: absolute;
     top: 0;
     left: 0;
@@ -643,27 +335,27 @@
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-.cp-spin-wrap.style-4>.unit:nth-child(2) {
+.cp-spinner.style-4>.unit:nth-child(2) {
     -webkit-animation: spinner-4-pacman-balls 1s 0s infinite linear;
     animation: spinner-4-pacman-balls 1s 0s infinite linear;
 }
 
-.cp-spin-wrap.style-4>.unit:nth-child(3) {
+.cp-spinner.style-4>.unit:nth-child(3) {
     -webkit-animation: spinner-4-pacman-balls 1s 0.33s infinite linear;
     animation: spinner-4-pacman-balls 1s 0.33s infinite linear;
 }
 
-.cp-spin-wrap.style-4>.unit:nth-child(4) {
+.cp-spinner.style-4>.unit:nth-child(4) {
     -webkit-animation: spinner-4-pacman-balls 1s 0.66s infinite linear;
     animation: spinner-4-pacman-balls 1s 0.66s infinite linear;
 }
 
-.cp-spin-wrap.style-4>.unit:nth-child(5) {
+.cp-spinner.style-4>.unit:nth-child(5) {
     -webkit-animation: spinner-4-pacman-balls 1s 0.99s infinite linear;
     animation: spinner-4-pacman-balls 1s 0.99s infinite linear;
 }
 
-.cp-spin-wrap.style-4>.unit:first-of-type {
+.cp-spinner.style-4>.unit:first-of-type {
     width: 0px;
     height: 0px;
     border-right: 25px solid transparent;
@@ -675,7 +367,7 @@
     animation: spinner-4-pacman-half-up 0.5s 0s infinite;
 }
 
-.cp-spin-wrap.style-4>.unit:nth-child(2) {
+.cp-spinner.style-4>.unit:nth-child(2) {
     width: 0px;
     height: 0px;
     border-right: 25px solid transparent;
@@ -688,10 +380,10 @@
     margin-top: -50px;
 }
 
-.cp-spin-wrap.style-4>.unit:nth-child(3),
-.cp-spin-wrap.style-4>.unit:nth-child(4),
-.cp-spin-wrap.style-4>.unit:nth-child(5),
-.cp-spin-wrap.style-4>.unit:nth-child(6) {
+.cp-spinner.style-4>.unit:nth-child(3),
+.cp-spinner.style-4>.unit:nth-child(4),
+.cp-spinner.style-4>.unit:nth-child(5),
+.cp-spinner.style-4>.unit:nth-child(6) {
     background-color: #fff;
     width: 15px;
     height: 15px;
@@ -789,143 +481,3 @@
 
 
 /*spinner widget end*/
-
-
-/*account component start*/
-
-.cp-panel-login {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-}
-
-.cp-panel-login .cp-panel-cover {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.75);
-}
-
-.cp-panel-login .cp-panel-body {
-    width: 420px;
-    height: 270px;
-    position: absolute;
-    background-color: rgba(49, 54, 57, 0.5);
-    background: rgba(0, 0, 0, 0.75);
-    z-index: 0;
-    top: 30%;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.cp-panel-login .cp-btn-delete {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 10px;
-    font-size: 12px;
-}
-
-.cp-panel-login .cp-ttl {
-    font-size: 36px;
-    text-align: center;
-    color: white;
-    font-weight: bolder;
-    height: 100px;
-    line-height: 100px;
-}
-
-.cp-panel-login .cp-login-box {
-    width: 300px;
-    background-color: #1E2125;
-    /* border-radius: 5px; */
-    margin: 0 auto;
-    position: relative;
-}
-
-.cp-panel-login .cp-wrap-ipt {
-    line-height: 50px;
-    display: block;
-    padding: 0 30px;
-    position: relative;
-}
-
-.cp-panel-login .cp-ipt-abbdon {
-    position: absolute;
-}
-
-.cp-panel-login .cp-wrap-ipt:first-child::after {
-    content: '';
-    position: absolute;
-    height: 1px;
-    margin: 0 auto;
-    width: 270px;
-    /* background: #272F32; */
-    background: rgba(0, 0, 0, 0.75);
-}
-
-.cp-panel-login .cp-ipt {
-    border: 0;
-    outline: 0;
-    background: transparent;
-    width: 100%;
-    display: block;
-    padding-left: 30px;
-}
-
-.cp-panel-login .cp-login-status {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translate(50%, -50%);
-    height: 48px;
-    width: 48px;
-    border-radius: 24px;
-    padding: 4px;
-    overflow: hidden;
-}
-
-.cp-panel-login .cp-login-status::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 48px;
-    width: 24px;
-    padding: 4px;
-    /* background: #272F32; */
-    background: rgba(0, 0, 0, 0.75);
-    z-index: -1;
-}
-
-.cp-panel-login .cp-login-start {
-    display: block;
-    width: 100%;
-    line-height: 40px;
-    text-align: center;
-    border-radius: 20px;
-    background: #1E2125;
-    font-size: 20px;
-}
-
-.cp-panel-login .cp-tool-grp {
-    font-size: 12px;
-    width: 300px;
-    margin: 0 auto;
-    margin-top: 15px;
-}
-
-.cp-panel-login .cp-tool-item {
-    float: right;
-    margin-left: 5px;
-}
-
-.cp-panel-login .cp-tool-item[data-action="remember"] {
-    float: left;
-}
-
-
-/*account component end*/

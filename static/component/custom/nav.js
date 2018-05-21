@@ -13,14 +13,14 @@
             this.initNavBottom();
         },
         initOption: function() {
-            this.navUser = this.navTop.querySelector('.cp-user-profile')
+            this.navUser = this.navTop.querySelector('.cpc-user-profile')
         },
         initNavTop: function() {
             this.initUserNav();
             this.attachNavTopEvent();
         },
         attachNavTopEvent: function() {
-            $(this.navTop).off('click').on('click', '.cp-nav-item', function(e) {
+            $(this.navTop).off('click').on('click', '.cpc-nav-item', function(e) {
                 var target = e.currentTarget;
                 if (target.classList.contains('dropdown')) return;
                 if (target.dataset.href) {
@@ -43,7 +43,7 @@
             this.attachNavBottomEvent();
         },
         attachNavBottomEvent: function() {
-            $(this.navBottom).off('click').on('click', '.cp-nav-item', function(e) {
+            $(this.navBottom).off('click').on('click', '.cpc-nav-item', function(e) {
                 var target = e.currentTarget;
                 if (target.dataset.href) {
                     if (target.getAttribute("target") == "_blank") {
@@ -73,7 +73,7 @@
         },
 
         setUserMessage: function() {
-            var $container = $(this.navUser).find('.cp-user-message');
+            var $container = $(this.navUser).find('.cpc-user-message');
             if ($container.length == 0) return;
             WebAPI.get('/user/getMessageNum/' + UserManager.id).done(function(result) {
                 var total = 0;
@@ -81,7 +81,7 @@
                     total += result[item];
                     result[item] && $container.find('[data-field="' + item + '"] .badge').html(result[item]);
                 })
-                total && $container.find('.cp-nav-content .badge').html(total);
+                total && $container.find('.cpc-nav-content .badge').html(total);
             })
         },
 

@@ -1,0 +1,453 @@
+/*component nav*/
+
+.cpc-nav-top {
+    height: 44px;
+    width: 100%;
+    position: fixed;
+    background-color: black;
+    box-shadow: 0 0 10px 1px rgba(255, 255, 255, 1);
+    z-index: 1;
+    display: flex;
+    display: -webkit-flex;
+}
+
+.cpc-nav-top .cpc-nav-bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.cpc-nav-top .cpc-nav-body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+.cpc-nav-brand {
+    display: inline-block;
+    height: 100%;
+    padding: 10px;
+    float: left;
+}
+
+.cpc-nav-brand>img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.cpc-nav-top .cpc-user-profile {
+    display: inline-flex;
+    display: -webkit-inline-flex;
+    align-items: center;
+    -webkit-align-items: center;
+    height: 100%;
+    position: absolute;
+    right: 0;
+}
+
+.cpc-nav-top .cpc-user-info {
+    display: none;
+}
+
+.cpc-nav-top .main .badge {
+    margin-left: 0;
+}
+
+.cpc-nav-top .badge {
+    background-color: transparent;
+    border-radius: 0;
+    padding: 0;
+    line-height: 17px;
+    margin-left: 5px;
+    color: coral;
+}
+
+.cpc-nav-top .cpc-user-info .main {
+    display: inline-flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.cpc-nav-top .isLogin .userInfo {
+    display: inline-block;
+}
+
+.cpc-nav-top .cpc-user-portrait {
+    height: 90%;
+}
+
+.cpc-nav-top .cpc-nav-list {
+    display: inline-block;
+    height: 100%;
+    margin-left: 30px;
+}
+
+.cpc-nav-top .cpc-nav-item {
+    font-size: 14px;
+    padding: 5px 12px;
+    height: 100%;
+    display: inline-flex;
+    display: -webkit-inline-flex;
+    align-items: center;
+    -webkit-align-items: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+    position: relative;
+    cursor: pointer;
+    float: left;
+}
+
+.cpc-nav-top .cpc-nav-sub-list {
+    display: none;
+    position: absolute;
+    top: 100%;
+    background-color: rgba(0, 0, 0, 1);
+    box-shadow: 0 0 1px 1px white inset;
+    padding: 1px;
+    cursor: default;
+}
+
+.cpc-nav-top .cpc-nav-item:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.cpc-nav-top .cpc-nav-item.dropdown:hover>.cpc-nav-sub-list {
+    display: block;
+}
+
+.cpc-nav-top .cpc-nav-item.sub {
+    font-size: 12px;
+    display: block;
+    white-space: nowrap;
+    text-align: center;
+    padding: 10px 15px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.cpc-nav-top .cpc-nav-item.sub:hover {
+    background: rgba(255, 255, 255, .25);
+}
+
+.cpc-nav-top .cpc-user-profile .forAfterLogin {
+    display: none;
+}
+
+.cpc-nav-top .cpc-user-profile.isLogin .forBeforeLogin {
+    display: none;
+}
+
+.cpc-nav-top .cpc-user-profile .cpc-nav-item[data-action="login"] {
+    display: inline-flex;
+    display: -webkit-inline-flex;
+}
+
+.cpc-nav-top .cpc-user-profile.isLogin .cpc-nav-item {
+    display: inline-flex;
+    display: -webkit-inline-flex;
+}
+
+.cpc-nav-top .cpc-user-profile.isLogin .cpc-nav-item[data-action="login"] {
+    display: none;
+}
+
+.cpc-nav-top .cpc-user-profile.isLogin.isVisitor .cpc-nav-item[data-action="login"] {
+    display: inline-flex;
+    display: -webkit-inline-flex;
+}
+
+.cpc-nav-top .cpc-user-profile .spinner {
+    padding: 5px 10px;
+    background: black;
+}
+
+.cpc-nav-top .cpc-user-info .sub {
+    width: 200px;
+    padding: 15px;
+    text-align: center;
+}
+
+.cpc-nav-top .cpc-user-info .sub .name {
+    display: block;
+    font-weight: bold;
+}
+
+.cpc-nav-top .cpc-user-info .sub .role {
+    display: block;
+    font-size: 12px;
+}
+
+.cpc-nav-top .cpc-user-info .sub .level {
+    position: relative;
+    display: block;
+    margin-top: 15px;
+}
+
+.cpc-nav-top .cpc-user-info .sub .level .label {
+    position: absolute;
+    left: 0;
+    padding: 0;
+    font-weight: normal;
+}
+
+.cpc-nav-top .cpc-user-info .sub .level .number {
+    position: absolute;
+    border-radius: 50%;
+    height: 24px;
+    width: 24px;
+    line-height: 24px;
+    box-shadow: 0 0 5px 1px white;
+    display: inline-block;
+    background: #1c1c59;
+    left: 35px;
+    top: -6px;
+}
+
+.cpc-nav-top .cpc-user-info .sub .level .levelBar {
+    margin-left: 60px;
+    display: block;
+    height: 10px;
+    background: #a7a7ff;
+    margin-bottom: 15px;
+}
+
+.cpc-nav-top .cpc-user-info .sub .level .levelScore {
+    width: 70%;
+    height: 100%;
+    display: inline-block;
+    background: #1c1c59;
+    float: left;
+}
+
+.cpc-nav-top .cpc-user-info .sub .level .tip {
+    display: inline-block;
+    float: right;
+    font-size: 12px;
+}
+
+.cpc-nav-top .userInfo .sub .level .help {
+    display: inline-block;
+    float: left;
+    font-size: 12px;
+    cursor: pointer;
+    color: cornflowerblue;
+}
+
+.cpc-nav-top .userInfo .sub .router {
+    display: block;
+    padding-top: 10px;
+    margin-top: 40px;
+    font-size: 14px;
+    border-top: 1px solid #aaa;
+}
+
+.cpc-nav-top .userInfo .sub .routerItem {
+    display: inline-block;
+    cursor: pointer;
+    width: 50%;
+}
+
+.cpc-nav-top .userInfo .sub .routerItem:nth-child(even) {
+    float: right;
+}
+
+.cpc-nav-top .userInfo .sub .btnLogout {
+    display: block;
+    text-align: right;
+    font-size: 14px;
+    margin: 10px -15px -15px -15px;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+
+.cpc-nav-bottom .cpc-router-map {
+    margin-bottom: 15px;
+}
+
+.cpc-nav-bottom .cpc-router-map::before {
+    content: '';
+    display: table;
+}
+
+.cpc-nav-bottom .cpc-router-map::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.cpc-nav-bottom .cpc-section-col {
+    float: left;
+}
+
+.cpc-nav-bottom .cpc-section {
+    margin-bottom: 20px;
+}
+
+.cpc-nav-bottom .cpc-section>.cpc-name {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.cpc-nav-bottom .cpc-nav-item {
+    display: block;
+    cursor: pointer;
+    margin-bottom: 2px;
+}
+
+.cpc-copyright {
+    text-align: center;
+    font-size: 12px;
+}
+
+
+/*account component start*/
+
+.cpc-login-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.cpc-login-panel .cpc-login-cover {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+}
+
+.cpc-login-panel .cpc-login-body {
+    width: 420px;
+    height: 290px;
+    position: absolute;
+    background-color: rgba(49, 54, 57, 0.5);
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 0;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.cpc-login-panel .cpc-btn-delete {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    font-size: 12px;
+}
+
+.cpc-login-panel .cpc-ttl {
+    font-size: 36px;
+    text-align: center;
+    color: white;
+    font-weight: bolder;
+    height: 100px;
+    line-height: 100px;
+}
+
+.cpc-login-panel .cpc-login-box {
+    width: 300px;
+    background-color: #1E2125;
+    /* border-radius: 5px; */
+    margin: 0 auto;
+    position: relative;
+}
+
+.cpc-login-panel .cpc-wrap-ipt {
+    line-height: 50px;
+    display: block;
+    padding: 0 30px;
+    position: relative;
+}
+
+.cpc-login-panel .cpc-ipt-abbdon {
+    position: absolute;
+}
+
+.cpc-login-panel .cpc-wrap-ipt:first-child::after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    margin: 0 auto;
+    width: 270px;
+    /* background: #272F32; */
+    background: rgba(0, 0, 0, 0.75);
+}
+
+.cpc-login-panel .cpc-ipt {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    width: 100%;
+    display: block;
+    padding-left: 30px;
+}
+
+.cpc-login-panel .cpc-login-status {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(50%, -50%);
+    height: 48px;
+    width: 48px;
+    border-radius: 24px;
+    padding: 4px;
+    overflow: hidden;
+}
+
+.cpc-login-panel .cpc-login-status::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 48px;
+    width: 24px;
+    padding: 4px;
+    /* background: #272F32; */
+    background: rgba(0, 0, 0, 0.75);
+    z-index: -1;
+}
+
+.cpc-login-panel .cpc-login-start {
+    display: block;
+    width: 100%;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 20px;
+    background: #1E2125;
+    font-size: 20px;
+}
+
+.cpc-login-panel .cpc-tool-grp {
+    font-size: 12px;
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.cpc-login-panel .cpc-tool-item {
+    float: right;
+    margin-left: 5px;
+}
+
+.cpc-login-panel .cpc-tool-item[data-action="remember"] {
+    float: left;
+}
+
+.cpc-login-panel .cpc-btn-visitor {
+    width: 300px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    font-size: 12px;
+}
+
+
+/*account component end*/

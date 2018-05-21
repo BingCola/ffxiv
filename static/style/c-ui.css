@@ -187,7 +187,10 @@ body {
 
 /*input*/
 
-.c-wrap-check {}
+.c-wrap-check {
+    -webkit-user-select: none;
+    user-select: none;
+}
 
 .c-wrap-check .c-check-icon {
     font-family: "iconfont" !important;
