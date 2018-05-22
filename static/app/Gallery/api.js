@@ -7,6 +7,12 @@
         login(data) {
             return this.post('/user/login', data)
         }
+        loginInVisitor(data) {
+            return this.post('/user/login/visitor', data)
+        }
+        getUserMessageNumber(id) {
+            return this.get('/user/getMessageNum/' + id)
+        }
 
 
         getTopGalleryItem(limit) {

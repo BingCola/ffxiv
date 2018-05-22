@@ -17,7 +17,7 @@
                 <div class="unit"></div>
                 <div class="unit"></div>
                 <div class="unit"></div>
-                <div class="unit"></div>'
+                <div class="unit"></div>
                 </div>
                 `,
             style_4: `<div class="cp-spinner style-4">               

@@ -27,7 +27,7 @@ router.post('/login', function(req, res, next) {
             'account': 'BingCola1993',
             'pwd': '123456',
             'name': '可乐',
-            'role': 1,
+            'role': 6,
             'mail': '841820707@qq.com',
             'phone': '',
             'communication': {
@@ -40,6 +40,19 @@ router.post('/login', function(req, res, next) {
             'submitTime': '2012-12-12 12:12:12',
             'portrait': '1.png',
             'desc': '这个人很懒，什么都没留下',
+            'leftNumberToday': 3
+        }
+    });
+});
+
+router.post('/login/visitor', function(req, res, next) {
+    var id = req.params.id;
+    res.send({
+        success: true,
+        data: {
+            'id': 84848484,
+            'role': 6,
+            'submitTime': '2012-12-12 12:12:12',
             'leftNumberToday': 3
         }
     });

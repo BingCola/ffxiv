@@ -19,6 +19,38 @@ router.get('/', function(req, res, next) {
     });
 });
 
+router.get('/gallery', function(req, res, next) {
+    res.render('indexGallery', {
+        path: '',
+        title: '艾欧泽亚幻化回廊',
+        script: [].concat(
+            bundle.script.base,
+            bundle.script.gallery,
+            bundle.script.gallery_gallery
+        ),
+        style: [].concat(
+            bundle.style.base,
+            bundle.style.gallery
+        )
+    });
+});
+
+router.get('/illustration', function(req, res, next) {
+    res.render('indexGallery', {
+        path: '',
+        title: '艾欧泽亚幻化回廊',
+        script: [].concat(
+            bundle.script.base,
+            bundle.script.gallery,
+            bundle.script.gallery_illustration
+        ),
+        style: [].concat(
+            bundle.style.base,
+            bundle.style.gallery
+        )
+    });
+});
+
 router.get('/works', function(req, res, next) {
     res.render('indexGallery', {
         path: '',

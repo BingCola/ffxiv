@@ -13,7 +13,7 @@
         setGlobalVariable() {
             moment.locale('zh-cn');
             window.CPlugin = {};
-            window.Setting = {
+            window.AppConfig = {
                 host: '',
                 path: {
                     image: '/image',
@@ -35,7 +35,7 @@
             this.initAccountPlugin();
         }
         initApiPlugin() {
-            CPlugin.http = new(namespace('cmpt.http'))(Setting.host, Device.platform);
+            CPlugin.http = new(namespace('cmpt.http'))(AppConfig.host, Device.platform);
             CPlugin.api = window.API = new(namespace('gallery.api'))(CPlugin.http);
         }
         initRouterPlugin() {
@@ -50,8 +50,8 @@
             CPlugin.nav.init();
         }
         initAccountPlugin() {
-            CPlugin.account = new(namespace('cmpt.account'))();
-            CPlugin.account.init();
+            CPlugin.authorize = new(namespace('cmpt.authorize'))();
+            CPlugin.authorize.init();
         }
         attachEvent() {
 

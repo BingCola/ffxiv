@@ -41,7 +41,7 @@
                     imgHTML = item.custom;
                 } else {
                     item.img.forEach(img => {
-                        imgHTML += `<img style="${img.style?img.style:''}" class="img" src='${Setting.path.image}/gallery/home/topRecommend/${img.src}'>`
+                        imgHTML += `<img style="${img.style?img.style:''}" class="img" src='${AppConfig.path.image}/gallery/home/topRecommend/${img.src}'>`
                     })
                 }
                 let formatEl = {

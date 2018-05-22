@@ -15,7 +15,7 @@ var bundle = {
             '/component/common/screen.js',
             '/component/common/spinner.js',
 
-            '/component/custom/account.js',
+            '/component/custom/authorize.js',
             '/component/custom/nav.js',
 
             '/app/Gallery/constant.js',
@@ -32,6 +32,8 @@ var bundle = {
         "gallery_gallery": [
             '/app/Gallery/page/gallery/page.js',
             '/app/Gallery/page/gallery/controller.js',
+
+            '/app/Gallery/page/gallery/init.js',
         ],
         "gallery_works": [
             '/component/common/comment.js',
@@ -48,7 +50,7 @@ var bundle = {
     },
     'style': {
         "base": [
-            '/lib/bootstrap/css/bootstrap.min.css',
+            // '/lib/bootstrap/css/bootstrap.min.css',
             // '/icon/iconFont/iconfont.css',
             '//at.alicdn.com/t/font_180029_6pw1liyzljl9pb9.css',
 
