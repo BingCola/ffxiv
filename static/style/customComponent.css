@@ -134,6 +134,11 @@
     background: rgba(255, 255, 255, .25);
 }
 
+.cpc-nav-top .cpc-nav-content {
+    display: flex;
+    align-items: center;
+}
+
 .cpc-nav-top .cpc-user-profile .forAfterLogin {
     display: none;
 }

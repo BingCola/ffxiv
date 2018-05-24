@@ -37,3 +37,15 @@ String.prototype.format = function(store) {
     }
     return str
 }
+
+window.NumberUtil = {
+    limitMax: function(number, max) {
+        let num = Number(number)
+        if (isNaN(num)) return '--'
+        if (num <= max) {
+            return num;
+        } else {
+            return max + '+';
+        }
+    }
+}

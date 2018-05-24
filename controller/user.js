@@ -57,4 +57,18 @@ router.post('/login/visitor', function(req, res, next) {
         }
     });
 });
+
+
+router.get('/getMessageNum/:id', function(req, res, next) {
+    var id = req.params.id;
+    res.send({
+        success: true,
+        data: {
+            'mail': 4144,
+            'reply': 6,
+            'call': 123,
+            'praise': 3
+        }
+    });
+});
 module.exports = router;

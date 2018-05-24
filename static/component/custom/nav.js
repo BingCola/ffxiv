@@ -59,9 +59,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="cpc-nav-item"><div class="cpc-nav-content"><span class="text">收藏夹</span></div></div>
-                    <div class="cpc-nav-item"><div class="cpc-nav-content"><span class="text">历史</span></div></div>
-                    <div class="cpc-nav-item" data-href="/post"><div class="cpc-nav-content"><span class="text">投稿</span></div></div>
+                    <div class="cpc-nav-item"><div class="cpc-nav-content">收藏夹</div></div>
+                    <div class="cpc-nav-item"><div class="cpc-nav-content">历史</div></div>
+                    <div class="cpc-nav-item" data-href="/post"><div class="cpc-nav-content">投稿</div></div>
                 </div>`
         },
 
@@ -112,7 +112,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="cpc-nav-item" data-href="/post"><div class="cpc-nav-content"><span class="text">投稿</span></div></div>
+                    <div class="cpc-nav-item" data-href="/post"><div class="cpc-nav-content">投稿</div></div>
                     <div class="cpc-nav-item" data-action="login">
                         <div class="cpc-nav-content"><span class="text">登录 / 注册</span></div>
                     </div>
@@ -206,12 +206,14 @@
             var $container = $(this.navUser).find('.cpc-user-message');
             if ($container.length == 0) return;
             CPlugin.api.getUserMessageNumber(User.id).done(function(result) {
+                if (!(result && result.success)) return;
                 var total = 0;
-                Object.keys(result).forEach(function(item) {
-                    total += result[item];
-                    result[item] && $container.find('[data-field="' + item + '"] .badge').html(result[item]);
+                let data = result.data;
+                Object.keys(data).forEach(function(item) {
+                    total += data[item];
+                    data[item] && $container.find('[data-field="' + item + '"] .badge').html(NumberUtil.limitMax(data[item], 99));
                 })
-                total && $container.find('.cpc-nav-content .badge').html(total);
+                total && $container.find('.cpc-nav-content .badge').html(NumberUtil.limitMax(total, 99));
             })
         },
 
