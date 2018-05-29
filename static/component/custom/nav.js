@@ -25,16 +25,16 @@
                             <span class="role">{role}</span>
                             <span class="level">
                                 <span class="label">等级</span>
-                            <span class="number"></span>
-                            <span class="levelBar"><span class="levelScore"></span></span>
-                            <span class="help">积分有什么用</span>
-                            <span class="tip"></span>
+                                <span class="number"></span>
+                                <span class="levelBar"><span class="levelScore"></span></span>
+                                <span class="help">积分有什么用</span>
+                                <span class="tip"></span>
                             </span>
                             <span class="entrance">
                                 <span class="item">个人中心</span>
-                            <span class="item">投稿管理</span>
-                            <span class="item">稿件审核</span>
-                            <span class="item">关注管理</span>
+                                <span class="item">投稿管理</span>
+                                <span class="item">稿件审核</span>
+                                <span class="item">关注管理</span>
                             </span>
                             <span class="btnLogout" data-action="logout">注销</span>
                         </div>
@@ -46,20 +46,32 @@
                         </div>
                         <div class="cpc-nav-sub-list">
                             <div class="cpc-nav-item sub" data-field="mail">
-                                <span class="text">私信</span><span class="badge"></span>
+                                <div class="cpc-nav-content">
+                                    <span class="text">私信</span>
+                                    <span class="badge"></span>
+                                </div>
                             </div>
                             <div class="cpc-nav-item sub" data-field="reply">
-                                <span class="text">回复我的</span><span class="badge"></span>
+                                <div class="cpc-nav-content">
+                                    <span class="text">回复我的</span>
+                                    <span class="badge"></span>
+                                </div>
                             </div>
                             <div class="cpc-nav-item sub" data-field="call">
-                                <span class="text">@我的</span><span class="badge"></span>
+                                <div class="cpc-nav-content">
+                                    <span class="text">@我的</span>
+                                    <span class="badge"></span>
+                                </div>
                             </div>
                             <div class="cpc-nav-item sub" data-field="praise">
-                                <span class="text">收到的赞</span><span class="badge"></span>
+                                <div class="cpc-nav-content">
+                                    <span class="text">收到的赞</span>
+                                    <span class="badge"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="cpc-nav-item"><div class="cpc-nav-content">收藏夹</div></div>
+                    <div class="cpc-nav-item"><div class="cpc-nav-content"><span class="text">收藏夹</span></div></div>
                     <div class="cpc-nav-item"><div class="cpc-nav-content">历史</div></div>
                     <div class="cpc-nav-item" data-href="/post"><div class="cpc-nav-content">投稿</div></div>
                 </div>`
@@ -78,16 +90,16 @@
                             <span class="role">{role}</span>
                             <span class="level">
                                 <span class="label">等级</span>
-                            <span class="number"></span>
-                            <span class="levelBar"><span class="levelScore"></span></span>
-                            <span class="help">积分有什么用</span>
-                            <span class="tip"></span>
+                                <span class="number"></span>
+                                <span class="levelBar"><span class="levelScore"></span></span>
+                                <span class="help">积分有什么用</span>
+                                <span class="tip"></span>
                             </span>
                             <span class="entrance">
                                 <span class="item">个人中心</span>
-                            <span class="item">投稿管理</span>
-                            <span class="item">稿件审核</span>
-                            <span class="item">关注管理</span>
+                                <span class="item">投稿管理</span>
+                                <span class="item">稿件审核</span>
+                                <span class="item">关注管理</span>
                             </span>
                             <span class="btnLogout" data-action="logout">注销</span>
                         </div>
@@ -99,20 +111,34 @@
                         </div>
                         <div class="cpc-nav-sub-list">
                             <div class="cpc-nav-item sub" data-field="mail">
-                                <span class="text">私信</span><span class="badge"></span>
+                                <div class="cpc-nav-content">
+                                    <span class="text">私信</span>
+                                    <span class="badge"></span>
+                                </div>
                             </div>
                             <div class="cpc-nav-item sub" data-field="reply">
-                                <span class="text">回复我的</span><span class="badge"></span>
+                                <div class="cpc-nav-content">
+                                    <span class="text">回复我的</span>
+                                    <span class="badge"></span>
+                                </div>
                             </div>
                             <div class="cpc-nav-item sub" data-field="call">
-                                <span class="text">@我的</span><span class="badge"></span>
+                                <div class="cpc-nav-content">
+                                    <span class="text">@我的</span>
+                                    <span class="badge"></span>
+                                </div>
                             </div>
                             <div class="cpc-nav-item sub" data-field="praise">
-                                <span class="text">收到的赞</span><span class="badge"></span>
+                                <div class="cpc-nav-content">
+                                    <span class="text">收到的赞</span>
+                                    <span class="badge"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="cpc-nav-item" data-href="/post"><div class="cpc-nav-content">投稿</div></div>
+                    <div class="cpc-nav-item" data-href="/post">
+                        <div class="cpc-nav-content"><span class="text">投稿</span></div>
+                    </div>
                     <div class="cpc-nav-item" data-action="login">
                         <div class="cpc-nav-content"><span class="text">登录 / 注册</span></div>
                     </div>

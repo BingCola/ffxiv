@@ -73,6 +73,26 @@ body {
     float: left;
 }
 
+.c-flex {
+    display: flex;
+    display: -webkit-flex;
+}
+
+.c-flex.inline {
+    display: inline-flex;
+    display: -webkit-inline-flex;
+}
+
+.c-flex.horizontal.center {
+    justify-content: cetner;
+    -webkit-justify-content: cetner;
+}
+
+.c-flex.vertical.center {
+    align-items: cetner;
+    -webkit-align-items: cetner;
+}
+
 
 /*img*/
 

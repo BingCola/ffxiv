@@ -49,24 +49,18 @@
     right: 0;
 }
 
-.cpc-nav-top .cpc-user-info {
-    display: none;
-}
 
-.cpc-nav-top .main .badge {
+/* .cpc-nav-top .main .badge {
     margin-left: 0;
-}
+} */
 
 .cpc-nav-top .badge {
-    background-color: transparent;
-    border-radius: 0;
-    padding: 0;
-    line-height: 17px;
     margin-left: 5px;
     color: coral;
 }
 
-.cpc-nav-top .cpc-user-info .main {
+
+/* .cpc-nav-top .cpc-user-profile .main {
     display: inline-flex;
     height: 100%;
     justify-content: center;
@@ -75,9 +69,9 @@
 
 .cpc-nav-top .isLogin .userInfo {
     display: inline-block;
-}
+} */
 
-.cpc-nav-top .cpc-user-portrait {
+.cpc-nav-top .cpc-user-info .portrait {
     height: 90%;
 }
 
@@ -136,10 +130,13 @@
 
 .cpc-nav-top .cpc-nav-content {
     display: flex;
+    justify-content: center;
     align-items: center;
+    line-height: 1.414;
 }
 
-.cpc-nav-top .cpc-user-profile .forAfterLogin {
+
+/* .cpc-nav-top .cpc-user-profile .forAfterLogin {
     display: none;
 }
 
@@ -169,38 +166,38 @@
 .cpc-nav-top .cpc-user-profile .spinner {
     padding: 5px 10px;
     background: black;
-}
+} */
 
-.cpc-nav-top .cpc-user-info .sub {
+.cpc-nav-top .cpc-user-profile .cpc-user-info {
     width: 200px;
     padding: 15px;
     text-align: center;
 }
 
-.cpc-nav-top .cpc-user-info .sub .name {
+.cpc-nav-top .cpc-user-profile .cpc-user-info .name {
     display: block;
     font-weight: bold;
 }
 
-.cpc-nav-top .cpc-user-info .sub .role {
+.cpc-nav-top .cpc-user-profile .cpc-user-info .role {
     display: block;
     font-size: 12px;
 }
 
-.cpc-nav-top .cpc-user-info .sub .level {
+.cpc-nav-top .cpc-user-profile .cpc-user-info .level {
     position: relative;
     display: block;
     margin-top: 15px;
 }
 
-.cpc-nav-top .cpc-user-info .sub .level .label {
+.cpc-nav-top .cpc-user-profile .cpc-user-info .level .label {
     position: absolute;
     left: 0;
     padding: 0;
     font-weight: normal;
 }
 
-.cpc-nav-top .cpc-user-info .sub .level .number {
+.cpc-nav-top .cpc-user-profile .cpc-user-info .level .number {
     position: absolute;
     border-radius: 50%;
     height: 24px;
@@ -213,7 +210,7 @@
     top: -6px;
 }
 
-.cpc-nav-top .cpc-user-info .sub .level .levelBar {
+.cpc-nav-top .cpc-user-profile .cpc-user-info .level .levelBar {
     margin-left: 60px;
     display: block;
     height: 10px;
@@ -221,7 +218,7 @@
     margin-bottom: 15px;
 }
 
-.cpc-nav-top .cpc-user-info .sub .level .levelScore {
+.cpc-nav-top .cpc-user-profile .cpc-user-info .level .levelScore {
     width: 70%;
     height: 100%;
     display: inline-block;
@@ -229,13 +226,13 @@
     float: left;
 }
 
-.cpc-nav-top .cpc-user-info .sub .level .tip {
+.cpc-nav-top .cpc-user-profile .cpc-user-info .level .tip {
     display: inline-block;
     float: right;
     font-size: 12px;
 }
 
-.cpc-nav-top .userInfo .sub .level .help {
+.cpc-nav-top .cpc-user-info .level .help {
     display: inline-block;
     float: left;
     font-size: 12px;
@@ -243,7 +240,7 @@
     color: cornflowerblue;
 }
 
-.cpc-nav-top .userInfo .sub .router {
+.cpc-nav-top .cpc-user-info .entrance {
     display: block;
     padding-top: 10px;
     margin-top: 40px;
@@ -251,17 +248,17 @@
     border-top: 1px solid #aaa;
 }
 
-.cpc-nav-top .userInfo .sub .routerItem {
+.cpc-nav-top .cpc-user-info .entrance .item {
     display: inline-block;
     cursor: pointer;
     width: 50%;
 }
 
-.cpc-nav-top .userInfo .sub .routerItem:nth-child(even) {
+.cpc-nav-top .cpc-user-info .entrance .item:nth-child(even) {
     float: right;
 }
 
-.cpc-nav-top .userInfo .sub .btnLogout {
+.cpc-nav-top .cpc-user-info .btnLogout {
     display: block;
     text-align: right;
     font-size: 14px;
