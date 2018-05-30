@@ -73,6 +73,7 @@
 
 .cpc-nav-top .cpc-user-info .portrait {
     height: 90%;
+    margin-right: 5px;
 }
 
 .cpc-nav-top .cpc-nav-list {
@@ -133,6 +134,7 @@
     justify-content: center;
     align-items: center;
     line-height: 1.414;
+    height: 100%;
 }
 
 
@@ -168,7 +170,7 @@
     background: black;
 } */
 
-.cpc-nav-top .cpc-user-profile .cpc-user-info {
+.cpc-nav-top .cpc-user-profile .cpc-user-info .cpc-nav-sub-list {
     width: 200px;
     padding: 15px;
     text-align: center;
@@ -195,6 +197,8 @@
     left: 0;
     padding: 0;
     font-weight: normal;
+    font-size: 12px;
+    line-height: 10px;
 }
 
 .cpc-nav-top .cpc-user-profile .cpc-user-info .level .number {
@@ -238,34 +242,46 @@
     font-size: 12px;
     cursor: pointer;
     color: cornflowerblue;
+    display: none;
 }
 
 .cpc-nav-top .cpc-user-info .entrance {
     display: block;
     padding-top: 10px;
     margin-top: 40px;
-    font-size: 14px;
+    margin-bottom: 10px;
+    font-size: 12px;
     border-top: 1px solid #aaa;
+}
+
+.cpc-nav-top .cpc-user-info .entrance::before {
+    content: '';
+    display: table;
+}
+
+.cpc-nav-top .cpc-user-info .entrance:after {
+    content: '';
+    display: table;
+    clear: both;
 }
 
 .cpc-nav-top .cpc-user-info .entrance .item {
     display: inline-block;
     cursor: pointer;
     width: 50%;
-}
-
-.cpc-nav-top .cpc-user-info .entrance .item:nth-child(even) {
-    float: right;
+    line-height: 20px;
+    float: left;
 }
 
 .cpc-nav-top .cpc-user-info .btnLogout {
     display: block;
     text-align: right;
-    font-size: 14px;
-    margin: 10px -15px -15px -15px;
+    font-size: 12px;
+    margin: 0 -15px -15px -15px;
     padding: 5px;
     background: rgba(255, 255, 255, 0.1);
     cursor: pointer;
+    line-height: 1.428;
 }
 
 .cpc-nav-bottom .cpc-router-map {
