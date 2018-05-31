@@ -18,11 +18,15 @@
                     <div class="cpc-user-info cpc-nav-item dropdown">
                         <div class="cpc-nav-content">
                             <img class="portrait" data-field="portrait" src="{portrait}" />
-                            <span class="name" data-field="name">{name}</span>
                         </div>
                         <div class="cpc-nav-sub-list">
-                            <span class="name"></span>
+                            <span class="name">{name}</span>
                             <span class="role">{role}</span>
+                            <span class="detail">
+                                <span class="fans">粉丝：<span data-field="fan">--</span></span>
+                                <span class="works">作品：<span data-field="works">--</span></span>
+                                <span class="allowWorks">可投稿数量：<span data-field="allowWorks">--</span></span>
+                            </span>
                             <span class="level">
                                 <span class="label">等级</span>
                                 <span class="number"></span>
@@ -83,11 +87,15 @@
                     <div class="cpc-user-info cpc-nav-item dropdown">
                         <div class="cpc-nav-content">
                             <img class="portrait" data-field="portrait" src="{portrait}" />
-                            <span class="name" data-field="name">{name}</span>
                         </div>
                         <div class="cpc-nav-sub-list">
-                            <span class="name"></span>
+                            <span class="name">{name}</span>
                             <span class="role">{role}</span>
+                            <span class="detail">
+                                <span class="fans">粉丝：<span data-field="fan">--</span></span>
+                                <span class="works">作品：<span data-field="works">--</span></span>
+                                <span class="allowWorks">可投稿数量：<span data-field="allowWorks">--</span></span>
+                            </span>
                             <span class="level">
                                 <span class="label">等级</span>
                                 <span class="number"></span>
@@ -223,6 +231,17 @@
             this.navTopList.appendChild(this.navUser)
             this.setUserMessage();
             this.setUserLevel();
+            this.setUserDetail();
+        },
+        setUserDetail() {
+            CPlugin.api.getUserDetail(User.id).done(result => {
+                if (!result.success) return;
+                $(this.navUser).find('[data-field]').each((item, dom) => {
+                    if (typeof result.data[dom.dataset.field] != typeof void 0) {
+                        dom.innerHTML = result.data[dom.dataset.field]
+                    }
+                })
+            })
         },
         clearUserProfile() {
             this.navUser && $(this.navUser).remove();

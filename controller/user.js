@@ -13,7 +13,8 @@ router.get('/info/:id', function(req, res, next) {
             'desc': '这是个人简介' + id,
             'attention': parseInt(Math.random() * 2000),
             'works': parseInt(Math.random() * 100),
-            'fans': parseInt(Math.random() * 100)
+            'fans': parseInt(Math.random() * 100),
+            'allowWorks': 5,
         }
     });
 });

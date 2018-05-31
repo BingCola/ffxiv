@@ -13,6 +13,9 @@
         getUserMessageNumber(id) {
             return this.get('/user/getMessageNum/' + id)
         }
+        getUserDetail(id) {
+            return this.get('/user/info/' + id)
+        }
 
 
         getTopGalleryItem(limit) {
