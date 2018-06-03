@@ -7,6 +7,11 @@ body {
     text-align: center;
 }
 
+.cpc-nav-top .cpc-nav-content>.text {
+    color: rgba(120, 238, 222, 1);
+    text-shadow: 0 0 1px rgba(120, 238, 222, 1);
+}
+
 .cpc-nav-bottom {
     position: relative;
     width: 100%;

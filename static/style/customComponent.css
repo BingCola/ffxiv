@@ -101,8 +101,7 @@
     display: none;
     position: absolute;
     top: 100%;
-    background-color: rgba(0, 0, 0, 1);
-    box-shadow: 0 0 1px 1px white inset;
+    background-color: rgba(0, 0, 0, .6);
     padding: 1px;
     cursor: default;
 }
@@ -273,16 +272,7 @@
     float: left;
 }
 
-.cpc-nav-top .cpc-user-info .btnLogout {
-    display: block;
-    text-align: right;
-    font-size: 12px;
-    margin: 0 -15px -15px -15px;
-    padding: 5px;
-    background: rgba(255, 255, 255, 0.1);
-    cursor: pointer;
-    line-height: 1.428;
-}
+.cpc-nav-top .cpc-user-info .btnLogout {}
 
 .cpc-nav-bottom .cpc-router-map {
     margin-bottom: 15px;

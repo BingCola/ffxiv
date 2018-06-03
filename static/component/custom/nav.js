@@ -39,8 +39,8 @@
                                 <span class="item">投稿管理</span>
                                 <span class="item">稿件审核</span>
                                 <span class="item">关注管理</span>
+                                <span class="item btnLogout">注销</span>
                             </span>
-                            <span class="btnLogout" data-action="logout">注销</span>
                         </div>
                     </div>
                     <div class="cpc-nav-item dropdown cpc-user-message">
@@ -108,8 +108,8 @@
                                 <span class="item">投稿管理</span>
                                 <span class="item">稿件审核</span>
                                 <span class="item">关注管理</span>
+                                <span class="item btnLogout">注销</span>
                             </span>
-                            <span class="btnLogout" data-action="logout">注销</span>
                         </div>
                     </div>
                     <div class="cpc-nav-item dropdown cpc-user-message">
@@ -187,6 +187,9 @@
                             break;
                     }
                 }
+            })
+            $(this.container).on('mouseover', '.cpc-nav-item', function() {
+
             })
         },
         initNavBottom: function() {
