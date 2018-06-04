@@ -21,25 +21,25 @@
                         </div>
                         <div class="cpc-nav-sub-list">
                             <span class="name">{name}</span>
-                            <span class="role">{role}</span>
-                            <span class="detail">
-                                <span class="fans">粉丝：<span data-field="fan">--</span></span>
-                                <span class="works">作品：<span data-field="works">--</span></span>
-                                <span class="allowWorks">可投稿数量：<span data-field="allowWorks">--</span></span>
-                            </span>
-                            <span class="level">
-                                <span class="label">等级</span>
+                            <div class="level">
                                 <span class="number"></span>
-                                <span class="levelBar"><span class="levelScore"></span></span>
-                                <span class="help">积分有什么用</span>
-                                <span class="tip"></span>
-                            </span>
+                                <span class="track"></span>
+                            </div>
+                            <div class="c-ctn">
+                                <span class="role item">{role}</span>
+                                <span class="score item"></span>
+                            </div>
+                            <div class="c-ctn">
+                                <span class="fans item"><span class="label">粉丝：</span><span data-field="fans">--</span></span>
+                                <span class="works item"><span class="label">作品：</span><span data-field="works">--</span></span>
+                                <!--<span class="allowWorks item"><span class="label">可投稿数量：</span><span data-field="allowWorks">--</span></span>-->
+                            </div>
                             <span class="entrance">
                                 <span class="item">个人中心</span>
                                 <span class="item">投稿管理</span>
                                 <span class="item">稿件审核</span>
                                 <span class="item">关注管理</span>
-                                <span class="item btnLogout">注销</span>
+                                <span class="item btnLogout"><span class="icon iconfont icon-logout"></span><span class="text">>注销</span></span>
                             </span>
                         </div>
                     </div>
@@ -90,25 +90,25 @@
                         </div>
                         <div class="cpc-nav-sub-list">
                             <span class="name">{name}</span>
-                            <span class="role">{role}</span>
-                            <span class="detail">
-                                <span class="fans">粉丝：<span data-field="fan">--</span></span>
-                                <span class="works">作品：<span data-field="works">--</span></span>
-                                <span class="allowWorks">可投稿数量：<span data-field="allowWorks">--</span></span>
-                            </span>
-                            <span class="level">
-                                <span class="label">等级</span>
+                            <div class="level">
                                 <span class="number"></span>
-                                <span class="levelBar"><span class="levelScore"></span></span>
-                                <span class="help">积分有什么用</span>
-                                <span class="tip"></span>
-                            </span>
+                                <span class="track"></span>
+                            </div>
+                            <div class="c-ctn">
+                                <span class="role item">{role}</span>
+                                <span class="score item"></span>
+                            </div>
+                            <div class="c-ctn">
+                                <span class="fans item"><span class="label">粉丝：</span><span data-field="fans">--</span></span>
+                                <span class="works item"><span class="label">作品：</span><span data-field="works">--</span></span>
+                                <!--<span class="allowWorks item"><span class="label">可投稿数量：</span><span data-field="allowWorks">--</span></span>-->
+                            </div>
                             <span class="entrance">
                                 <span class="item">个人中心</span>
                                 <span class="item">投稿管理</span>
                                 <span class="item">稿件审核</span>
                                 <span class="item">关注管理</span>
-                                <span class="item btnLogout">注销</span>
+                                <span class="item btnLogout"><span class="icon iconfont icon-logout"></span><span class="text">注销</span></span>
                             </span>
                         </div>
                     </div>
@@ -268,11 +268,11 @@
         setUserLevel: function() {
             var scorePerLevel = 1000;
             var score = User.score;
-            var $container = $(this.navUser).find('.level');
+            var $container = $(this.navUser);
             var level = parseInt(score / scorePerLevel) + 1
             $container.find('.number').html(level);
-            $container.find('.tip').html(score + '/' + level * scorePerLevel);
-            $container.find('.levelScore').css('width', (score % 1000) / 10 + '%');
+            $container.find('.score').html(score + '/' + level * scorePerLevel);
+            $container.find('.track').css('width', (score % 1000) / 10 + '%');
         },
     }
     exports.nav = Cmpt

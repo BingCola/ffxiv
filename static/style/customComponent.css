@@ -102,13 +102,13 @@
     position: absolute;
     top: 100%;
     background-color: rgba(0, 0, 0, .6);
-    padding: 1px;
     cursor: default;
 }
 
-.cpc-nav-top .cpc-nav-item:hover {
+
+/* .cpc-nav-top .cpc-nav-item:hover {
     background: rgba(255, 255, 255, 0.25);
-}
+} */
 
 .cpc-nav-top .cpc-nav-item.dropdown:hover>.cpc-nav-sub-list {
     display: block;
@@ -119,9 +119,19 @@
     display: block;
     white-space: nowrap;
     text-align: center;
-    padding: 10px 15px;
+    padding: 5px 15px;
     cursor: pointer;
     width: 100%;
+}
+
+.cpc-nav-top .cpc-nav-item.sub+.cpc-nav-item.sub:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0, rgba(120, 238, 222, .3) 50%, rgba(255, 255, 255, 0) 100%);
+    left: 0;
 }
 
 .cpc-nav-top .cpc-nav-item.sub:hover {
@@ -171,7 +181,7 @@
 
 .cpc-nav-top .cpc-user-profile .cpc-user-info .cpc-nav-sub-list {
     width: 200px;
-    padding: 15px;
+    padding: 5px 15px;
     text-align: center;
 }
 
@@ -180,77 +190,39 @@
     font-weight: bold;
 }
 
-.cpc-nav-top .cpc-user-profile .cpc-user-info .role {
-    display: block;
-    font-size: 12px;
-}
-
 .cpc-nav-top .cpc-user-profile .cpc-user-info .level {
+    height: 10px;
+    margin-left: 20px;
+    background: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
     position: relative;
-    display: block;
-    margin-top: 15px;
 }
 
-.cpc-nav-top .cpc-user-profile .cpc-user-info .level .label {
+.cpc-nav-top .cpc-user-profile .cpc-user-info .number {
     position: absolute;
     left: 0;
-    padding: 0;
-    font-weight: normal;
-    font-size: 12px;
     line-height: 10px;
 }
 
-.cpc-nav-top .cpc-user-profile .cpc-user-info .level .number {
-    position: absolute;
-    border-radius: 50%;
-    height: 24px;
-    width: 24px;
-    line-height: 24px;
-    box-shadow: 0 0 5px 1px white;
-    display: inline-block;
-    background: #1c1c59;
-    left: 35px;
-    top: -6px;
-}
-
-.cpc-nav-top .cpc-user-profile .cpc-user-info .level .levelBar {
-    margin-left: 60px;
+.cpc-nav-top .cpc-user-profile .cpc-user-info .track {
     display: block;
-    height: 10px;
-    background: #a7a7ff;
-    margin-bottom: 15px;
-}
-
-.cpc-nav-top .cpc-user-profile .cpc-user-info .level .levelScore {
-    width: 70%;
     height: 100%;
-    display: inline-block;
-    background: #1c1c59;
-    float: left;
+    background: black;
 }
 
-.cpc-nav-top .cpc-user-profile .cpc-user-info .level .tip {
-    display: inline-block;
-    float: right;
-    font-size: 12px;
-}
-
-.cpc-nav-top .cpc-user-info .level .help {
-    display: inline-block;
+.cpc-nav-top .cpc-user-profile .cpc-user-info .item {
+    width: 50%;
     float: left;
     font-size: 12px;
-    cursor: pointer;
-    color: cornflowerblue;
-    display: none;
 }
 
 .cpc-nav-top .cpc-user-info .entrance {
     display: block;
-    padding-top: 10px;
-    margin-top: 40px;
-    margin-bottom: 10px;
-    font-size: 12px;
-    border-top: 1px solid #aaa;
+    padding-top: 5px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    border-top: 1px solid #969696;
 }
 
 .cpc-nav-top .cpc-user-info .entrance::before {
@@ -265,14 +237,14 @@
 }
 
 .cpc-nav-top .cpc-user-info .entrance .item {
-    display: inline-block;
     cursor: pointer;
-    width: 50%;
     line-height: 20px;
-    float: left;
 }
 
-.cpc-nav-top .cpc-user-info .btnLogout {}
+.cpc-nav-top .cpc-user-info .btnLogout .icon {
+    margin-right: 12px;
+    display: inline-block;
+}
 
 .cpc-nav-bottom .cpc-router-map {
     margin-bottom: 15px;
