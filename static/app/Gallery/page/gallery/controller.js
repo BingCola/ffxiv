@@ -30,7 +30,7 @@
             } else {
                 _this.query.page = page;
             }
-            WebAPI.post('/gallery/getItem/overview', this.query).done(function(result) {
+            CPlugin.api.getGalleryItemList(this.query).done(function(result) {
                 if (result.data && result.data.list) {
                     _this.total = result.data.total;
                     deferred.resolveWith(_this.screen, [result.data.list])

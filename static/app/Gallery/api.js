@@ -27,6 +27,9 @@
         getLatestGalleryItem(data) {
             return this.post('/gallery/getItem/latest', data)
         }
+        getGalleryItemList(data) {
+            return this.post('/gallery/getItem/list', data)
+        }
     }
     exports.api = Cmpt;
 }(namespace('gallery')))

@@ -1,5 +1,5 @@
 (function(exports) {
-    function Waterfall(container, option) {
+    function Cmpt(container, option) {
         this.container = container;
         this.option = option || {};
         this.view = {};
@@ -11,34 +11,19 @@
             col: 0
         }
         this.colCursor = []
-        this.aynscAble = true;
+        this.aysncAble = true;
     }
-    Waterfall.prototype = {
+    Cmpt.prototype = {
         init: function() {
             this.initOption();
             this.attachEvent();
         },
         attachEvent: function() {
             var _this = this;
-            this.container.onscroll = function() {
-                if (_this.option.aynsc && _this.option.aynsc.getData) {
-                    if (_this.aynscAble && _this.container.scrollTop + _this.container.offsetHeight >= _this.container.scrollHeight - 10) {
-                        _this.aynscAble = false;
-                        _this.option.aynsc.getData().done(function(items) {
-                            if (_this.option.event.beforeAynsc) {
-                                _this.setItemView(_this.option.event.beforeAynsc(items))
-                            } else {
-                                _this.setItemView(items)
-                            }
-                        }).always(function() {
-                            if (_this.option.aynsc.able()) _this.aynscAble = true;
-                        })
-                    }
-                }
-            }
+            this.container.onscroll = this.aysnc
         },
-        disableAynsc: function() {
-            _this.aynscAble = false;
+        disableaysnc: function() {
+            _this.aysncAble = false;
         },
         initOption: function() {
             if (!this.option.view.margin) {
@@ -56,7 +41,7 @@
             this.view.uw = this.container.offsetWidth / this.view.col
             this.initCursor();
 
-            this.container.classList.add('waterfallGalleryCtn')
+            this.container.classList.add('cp-masonry-ctn')
         },
         initCursor: function() {
             this.cursor = {
@@ -67,6 +52,23 @@
             this.colCursor = [];
             for (var i = 0; i < this.view.col; i++) {
                 this.colCursor.push(0)
+            }
+        },
+        aysnc() {
+            if (_this.option.aysnc && _this.option.aysnc.getData) {
+                if (_this.aysncAble && _this.container.scrollTop + _this.container.offsetHeight >= _this.container.scrollHeight - 10) {
+                    _this.aysncAble = false;
+                    _this.option.aysnc.getData().done(function(items) {
+                        if (_this.option.event.beforeaysnc) {
+                            _this.setItemView(_this.option.event.beforeaysnc(items))
+                        } else {
+                            _this.setItemView(items)
+                        }
+
+                    }).always(function() {
+                        if (_this.option.aysnc.able()) _this.aysncAble = true;
+                    })
+                }
             }
         },
         setItemView: function(items) {
@@ -86,7 +88,7 @@
             dom.style.height = pos.h + 'px';
             dom.style.left = pos.x + 'px'
             dom.style.top = pos.y + 'px'
-            dom.classList.add('itemBox');
+            dom.classList.add('cp-masonry-item');
             this.container.appendChild(dom)
         },
         getMostBottomPos: function() {
@@ -124,5 +126,5 @@
 
         },
     }
-    exports.waterfall = Waterfall;
+    exports.masonry = Cmpt;
 })(namespace('component'))

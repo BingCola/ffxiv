@@ -4,14 +4,12 @@
         this.viewer = undefined;
     }
     Page.prototype = {
-        setLayout: function() {
-            return this.layout = {
-                view: '/app/Gallery/page/gallery/page.html'
+        get LAYOUT() {
+            return {
+                view: '/app/Gallery/page/gallery/page.html',
+                header: true,
+                footer: true
             }
-        },
-        show: function() {
-            var _this = this;
-            _this.init();
         },
         init: function() {
             this.initFilter();
@@ -28,56 +26,42 @@
             var fields = [{
                     field: 'job',
                     title: '职业',
-                    list: [
-                        { content: '不限', val: 0 },
-                        { content: '骑士', val: 1 },
-                        { content: '黑骑士', val: 2 },
-                        { content: '战士', val: 3 },
-                        { content: '学者', val: 4 },
-                        { content: '白魔法师', val: 5 },
-                        { content: '占星术士', val: 6 },
-                        { content: '黑魔法师', val: 7 },
-                        { content: '召唤师', val: 8 },
-                        { content: '龙骑士', val: 9 },
-                        { content: '武僧', val: 10 },
-                        { content: '忍者', val: 11 },
-                        { content: '吟游诗人', val: 12 },
-                        { content: '机工士', val: 13 },
-                        { content: '大地使者', val: 14 },
-                        { content: '能工巧匠', val: 15 },
-                    ]
+                    list: Object.keys(CONSTANT.CHAPTER.JOB).map(key => {
+                        return {
+                            val: key,
+                            text: CONSTANT.CHAPTER.JOB[key].text
+                        }
+                    })
                 },
                 {
                     field: 'gender',
                     title: '性别',
-                    list: [
-                        { content: '不限', val: 0 },
-                        { content: '男性', val: 1 },
-                        { content: '女性', val: 2 },
-                    ]
+                    list: Object.keys(CONSTANT.CHAPTER.GENDER).map(key => {
+                        return {
+                            val: key,
+                            text: CONSTANT.CHAPTER.GENDER[key].text
+                        }
+                    })
                 },
                 {
                     field: 'race',
                     title: '种族',
-                    list: [
-                        { content: '不限', val: 0 },
-                        { content: '人类', val: 1 },
-                        { content: '猫魅', val: 2 },
-                        { content: '精灵', val: 3 },
-                        { content: '鲁加', val: 4 },
-                        { content: '拉拉菲尔', val: 5 },
-                        { content: '奥拉', val: 6 },
-                    ]
+                    list: Object.keys(CONSTANT.CHAPTER.RACE).map(key => {
+                        return {
+                            val: key,
+                            text: CONSTANT.CHAPTER.RACE[key].text
+                        }
+                    })
                 },
                 {
                     field: 'tag',
                     title: '标签',
                     list: [
-                        { content: '清新', val: 1 },
-                        { content: '多人', val: 2 },
-                        { content: '搞笑', val: 3 },
-                        { content: '稀有', val: 4 },
-                        { content: '非洲人', val: 5 },
+                        { text: '清新', val: 1 },
+                        { text: '多人', val: 2 },
+                        { text: '搞笑', val: 3 },
+                        { text: '稀有', val: 4 },
+                        { text: '非洲人', val: 5 },
                     ]
                 }
             ]
@@ -104,7 +88,7 @@
                 dom = document.createElement('span');
                 dom.classList = "item"
                 dom.dataset.val = data[i].val;
-                dom.innerHTML = data[i].content;
+                dom.innerHTML = data[i].text;
                 dom.style.color = data[i].color;
                 container.appendChild(dom)
             }
@@ -135,12 +119,15 @@
             var container = document.getElementById('ctnItemList');
             var option = {
                 event: {
-                    beforeAynsc: beforeAynsc
+                    beforeAysnc: beforeAysnc,
+                    onAysnc: null,
+                    afterAysnc: null,
+                    onItemDomCreate: null
                 },
                 view: {
                     margin: 10
                 },
-                aysncTip: {
+                aynscTip: {
                     container: document.getElementById('ctnAysncTip'),
                     loading: '<span class="spinner flyme"><i></i></span>',
                     end: '<span class="text">已到底部</span>',
@@ -161,7 +148,7 @@
                 return _this.controller.search();
             }
 
-            function beforeAynsc(items) {
+            function beforeAysnc(items) {
                 return items.map(function(item) {
                     return {
                         'height': item.img.height,
@@ -176,25 +163,25 @@
                 dom.classList = 'wrapItem';
                 dom.dataset.id = item.id
                 dom.innerHTML = '\
-                <img class="itemImg" src="' + Setting.path.image + '/plant/transmog/' + item.img.name + '">\
+                <img class="itemImg" src="' + AppConfig.path.image + '/plant/transmog/' + item.img.name + '">\
                 <div class="infoBox">\
                     <span class="name">' + item.name + '</span>\
                     <span class="author" data-id="' + item.author.id + '">' + item.author.name + '</span>\
                     <div class="wrapAction">\
                         <span class="actionItem" data-action="praise">\
                             <span class="icon iconfont icon-praise"></span>\
-                            <span class="num">' + (item.remark.praise > 999 ? '999+' : item.remark.praise) + '</span>\
+                            <span class="num">' + NumberUtil.limitMax(item.remark.praise, 999) + '</span>\
                         </span>\
                         <span class="actionItem" data-action="comment">\
                             <span class="icon iconfont icon-comment"></span>\
-                            <span class="num">' + (item.remark.comment > 999 ? '999+' : item.remark.comment) + '</span>\
+                            <span class="num">' + NumberUtil.limitMax(item.remark.comment, 999) + '</span>\
                         </span>\
                     </div>\
                 </div>'
 
                 return dom;
             }
-            this.viewer = new(namespace('component.waterfall'))(container, option);
+            this.viewer = new(namespace('component.masonry'))(container, option);
             this.viewer.init();
         },
         initDataManager: function() {

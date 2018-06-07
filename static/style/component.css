@@ -1,15 +1,3 @@
-/*component waterfall*/
-
-.waterfallGalleryCtn {
-    position: relative;
-    overflow: auto;
-}
-
-.waterfallGalleryCtn .itemBox {
-    position: absolute;
-}
-
-
 /*spinner widget start*/
 
 .cp-spinner {
@@ -481,3 +469,15 @@
 
 
 /*spinner widget end*/
+
+
+/*component masonry*/
+
+.cp-masonry-ctn {
+    position: relative;
+    overflow: auto;
+}
+
+.cp-masonry-ctn .cp-masonry-item {
+    position: absolute;
+}

@@ -3,6 +3,10 @@ body {
     color: white;
 }
 
+.c-page {
+    padding-top: 5px;
+}
+
 .c-page-footer {
     text-align: center;
 }
