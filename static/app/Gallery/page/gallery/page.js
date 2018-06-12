@@ -15,7 +15,7 @@
             this.initFilter();
             this.initDataManager();
             this.initViewer();
-            this.initSearch();
+            // this.initSearch();
             this.attachEvent();
         },
         initTopDisplayboard: function() {
@@ -103,84 +103,122 @@
                 container.appendChild(dom)
             }
         },
-        initSearch: function() {
-            this.controller.search().done(function(result) {
-                this.viewer.setItemView(result.map(function(item) {
-                    return {
-                        'height': item.img.height,
-                        'width': item.img.width,
-                        'data': item
-                    }
-                }))
-            }.bind(this))
-        },
+        // initSearch: function() {
+        //     this.controller.search().done(function(result) {
+        //         this.viewer.setItemView(result.map(function(item) {
+        //             return {
+        //                 'height': item.img.height,
+        //                 'width': item.img.width,
+        //                 'data': item
+        //             }
+        //         }))
+        //     }.bind(this))
+        // },
         initViewer: function() {
             var _this = this;
             var container = document.getElementById('ctnItemList');
             var option = {
+                item: {
+                    margin: 20
+                },
                 event: {
-                    beforeAysnc: beforeAysnc,
-                    onAysnc: null,
-                    afterAysnc: null,
-                    onItemDomCreate: null
-                },
-                view: {
-                    margin: 10
-                },
-                aynscTip: {
-                    container: document.getElementById('ctnAysncTip'),
-                    loading: '<span class="spinner flyme"><i></i></span>',
-                    end: '<span class="text">已到底部</span>',
-                },
-                pagination: {
-                    container: document.getElementById('ctnPagination')
-                },
-                createItemDom: createItemDom,
-                aynsc: {
-                    able: function() {
-                        return _this.controller.total > _this.controller.query.page * _this.controller.query.limit
+                    onScroll: null,
+                    onClick: null,
+                    onItemCreate: function(dom, item) {
+                        dom.innerHTML = `
+                        <img class="itemImg" src="${AppConfig.path.image}/plant/transmog/${item.img.name}">
+                        <div class="infoBox">
+                            <span class="name">${item.name}</span>
+                            <span class="author" data-id="${item.author.id}">${item.author.name}</span>
+                            <div class="wrapAction">
+                                <span class="actionItem" data-action="praise">
+                                    <span class="icon iconfont icon-praise"></span>
+                                    <span class="num">${NumberUtil.limitMax(item.remark.praise, 999)}</span>
+                                </span>
+                                <span class="actionItem" data-action="comment">
+                                    <span class="icon iconfont icon-comment"></span>
+                                    <span class="num">${NumberUtil.limitMax(item.remark.comment, 999)}</span>
+                                </span>
+                            </div>
+                        </div>`
                     },
-                    getData: aynsc
+
+                    beforeAysnc: null,
+                    afterAysnc: null,
+
+                    bindCustomEvent: null
+                },
+                aysnc: {
+                    enable: function() {},
+                    getData: _this.controller.search.bind(this.controller),
+                    handleData: null
                 }
             }
 
-            function aynsc() {
-                return _this.controller.search();
-            }
+            // var option = {
+            //     event: {
+            //         beforeAysnc: beforeAysnc,
+            //         onAysnc: null,
+            //         afterAysnc: null,
+            //         onItemDomCreate: null
+            //     },
+            //     view: {
+            //         margin: 10
+            //     },
+            //     aynscTip: {
+            //         container: document.getElementById('ctnAysncTip'),
+            //         loading: '<span class="spinner flyme"><i></i></span>',
+            //         end: '<span class="text">已到底部</span>',
+            //     },
+            //     pagination: {
+            //         container: document.getElementById('ctnPagination')
+            //     },
+            //     createItemDom: createItemDom,
+            //     aynsc: {
+            //         able: function() {
+            //             return _this.controller.total > _this.controller.query.page * _this.controller.query.limit
+            //         },
+            //         getData: aynsc
+            //     }
+            // }
 
-            function beforeAysnc(items) {
-                return items.map(function(item) {
-                    return {
-                        'height': item.img.height,
-                        'width': item.img.width,
-                        'data': item
-                    }
-                })
-            }
+            // function aynsc() {
+            //     return _this.controller.search();
+            // }
 
-            function createItemDom(item) {
-                var dom = document.createElement('div');
-                dom.classList = 'wrapItem';
-                dom.dataset.id = item.id
-                dom.innerHTML = '\
-                <img class="itemImg" src="' + AppConfig.path.image + '/plant/transmog/' + item.img.name + '">\
-                <div class="infoBox">\
-                    <span class="name">' + item.name + '</span>\
-                    <span class="author" data-id="' + item.author.id + '">' + item.author.name + '</span>\
-                    <div class="wrapAction">\
-                        <span class="actionItem" data-action="praise">\
-                            <span class="icon iconfont icon-praise"></span>\
-                            <span class="num">' + NumberUtil.limitMax(item.remark.praise, 999) + '</span>\
-                        </span>\
-                        <span class="actionItem" data-action="comment">\
-                            <span class="icon iconfont icon-comment"></span>\
-                            <span class="num">' + NumberUtil.limitMax(item.remark.comment, 999) + '</span>\
-                        </span>\
-                    </div>\
-                </div>'
+            // function beforeAysnc(items) {
+            //     return items.map(function(item) {
+            //         return {
+            //             'height': item.img.height,
+            //             'width': item.img.width,
+            //             'data': item
+            //         }
+            //     })
+            // }
 
-                return dom;
-            }
+            // function createItemDom(item) {
+            //     var dom = document.createElement('div');
+            //     dom.classList = 'wrapItem';
+            //     dom.dataset.id = item.id
+            //     dom.innerHTML = '\
+            //     <img class="itemImg" src="' + AppConfig.path.image + '/plant/transmog/' + item.img.name + '">\
+            //     <div class="infoBox">\
+            //         <span class="name">' + item.name + '</span>\
+            //         <span class="author" data-id="' + item.author.id + '">' + item.author.name + '</span>\
+            //         <div class="wrapAction">\
+            //             <span class="actionItem" data-action="praise">\
+            //                 <span class="icon iconfont icon-praise"></span>\
+            //                 <span class="num">' + NumberUtil.limitMax(item.remark.praise, 999) + '</span>\
+            //             </span>\
+            //             <span class="actionItem" data-action="comment">\
+            //                 <span class="icon iconfont icon-comment"></span>\
+            //                 <span class="num">' + NumberUtil.limitMax(item.remark.comment, 999) + '</span>\
+            //             </span>\
+            //         </div>\
+            //     </div>'
+
+            //     return dom;
+            // }
             this.viewer = new(namespace('component.masonry'))(container, option);
             this.viewer.init();
         },
