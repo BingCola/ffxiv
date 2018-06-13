@@ -48,9 +48,12 @@
         }
         attachEvent() {
             var _this = this;
-            this.container.onscroll = this.scroll.bind(this)
+            this.container.onscroll = this.scroll.bind(this);
+            this.container.off('click').on('click', 'cp-masonry-item', () => {
+                this.onClick && this.onClick(e.currentTarget);
+            })
 
-            this.bindCustomEvent && this.bindCustomEvent(this.container)
+            this.bindCustomEvent && this.bindCustomEvent(this.container);
         }
         initOption() {
             this.option = $.extend(true, {}, this.DEFAULT_OPTION, this.option);
