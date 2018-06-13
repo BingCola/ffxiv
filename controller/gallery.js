@@ -4,9 +4,9 @@ var router = express.Router();
 
 var arrSize = [
     { 'width': 1920, 'height': 1080 },
-    { 'width': 1440, 'height': 990 },
+    { 'width': 1440, 'height': 900 },
     { 'width': 1920, 'height': 1080 },
-    { 'width': 533, 'height': 330 },
+    { 'width': 533, 'height': 300 },
     { 'width': 1920, 'height': 1080 },
     { 'width': 1070, 'height': 751 },
     { 'width': 720, 'height': 450 },

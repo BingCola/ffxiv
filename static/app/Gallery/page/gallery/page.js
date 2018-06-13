@@ -119,26 +119,30 @@
             var container = document.getElementById('ctnItemList');
             var option = {
                 item: {
+                    imageKey: 'img',
                     margin: 20
                 },
                 event: {
                     onScroll: null,
                     onClick: null,
                     onItemCreate: function(dom, item) {
+                        dom.dataset.id = item.id;
                         dom.innerHTML = `
-                        <img class="itemImg" src="${AppConfig.path.image}/plant/transmog/${item.img.name}">
-                        <div class="infoBox">
-                            <span class="name">${item.name}</span>
-                            <span class="author" data-id="${item.author.id}">${item.author.name}</span>
-                            <div class="wrapAction">
-                                <span class="actionItem" data-action="praise">
-                                    <span class="icon iconfont icon-praise"></span>
-                                    <span class="num">${NumberUtil.limitMax(item.remark.praise, 999)}</span>
-                                </span>
-                                <span class="actionItem" data-action="comment">
-                                    <span class="icon iconfont icon-comment"></span>
-                                    <span class="num">${NumberUtil.limitMax(item.remark.comment, 999)}</span>
-                                </span>
+                        <div class="cp-masonry-item-body">
+                            <img class="itemImg cp-masonry-img" src="${AppConfig.path.image}/plant/transmog/${item.img.name}">
+                            <div class="infoBox">
+                                <span class="name">${item.name}</span>
+                                <span class="author" data-id="${item.author.id}">${item.author.name}</span>
+                                <div class="wrapAction">
+                                    <span class="actionItem" data-action="praise">
+                                        <span class="icon iconfont icon-praise"></span>
+                                        <span class="num">${NumberUtil.limitMax(item.remark.praise, 999)}</span>
+                                    </span>
+                                    <span class="actionItem" data-action="comment">
+                                        <span class="icon iconfont icon-comment"></span>
+                                        <span class="num">${NumberUtil.limitMax(item.remark.comment, 999)}</span>
+                                    </span>
+                                </div>
                             </div>
                         </div>`
                     },
@@ -149,7 +153,6 @@
                     bindCustomEvent: null
                 },
                 aysnc: {
-                    enable: function() {},
                     getData: _this.controller.search.bind(this.controller),
                     handleData: null
                 }

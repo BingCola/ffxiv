@@ -12,10 +12,13 @@
                 layout: {
                     col: Math.floor(this.container.offsetWidth / 300),
                     paddingTop: 15,
-                    paddingBotttom: 10
+                    paddingBottom: 10,
+                    aysncSection: 20
                 },
                 item: {
-                    margin: 20
+                    margin: 20,
+                    padding: 10,
+                    getSize: null
                 },
                 event: {
                     onScroll: null,
@@ -41,23 +44,13 @@
         init() {
             this.initOption();
             this.attachEvent();
-            this.setFirstPage();
+            this.aysnc();
         }
         attachEvent() {
             var _this = this;
-            this.container.onscroll = this.aysnc.bind(this)
+            this.container.onscroll = this.scroll.bind(this)
 
             this.bindCustomEvent && this.bindCustomEvent(this.container)
-        }
-        setFirstPage() {
-            this.enable = false;
-            this.afterAysnc && this.afterAysnc();
-            this.option.aysnc.getData().done((items) => {
-                this.handleData(items);
-                this.insert();
-            }).always(() => {
-                this.afterAysnc && this.afterAysnc();
-            })
         }
         initOption() {
             this.option = $.extend(true, {}, this.DEFAULT_OPTION, this.option);
@@ -87,23 +80,32 @@
                 this.bottoms.push(0)
             }
         }
-        aysnc() {
+        scroll() {
             this.onScroll && this.onScroll();
             if (this.option.aysnc && this.option.aysnc.getData) {
                 if (typeof this.option.aysnc.enable == 'function') this.enable = this.option.aysnc.enable(this.container);
-                if (this.enable && this.container.scrollTop + this.container.offsetHeight >= this.container.scrollHeight - (this.option.layout.paddingTop + this.option.layout.paddingBottom)) {
-                    this.enable = false;
-                    this.afterAysnc && this.afterAysnc();
-                    this.option.aysnc.getData().done((items) => {
-                        this.handleData(items);
-                        this.insert();
-                    }).always(() => {
-                        this.afterAysnc && this.afterAysnc();
-                    })
+                if (this.enable && this.container.scrollTop + this.container.offsetHeight >= this.container.scrollHeight - this.option.layout.aysncSection) {
+                    this.aysnc();
                 }
             }
         }
 
+        aysnc() {
+            this.enable = false;
+            this.beforeAysnc && this.beforeAysnc();
+            this.option.aysnc.getData().done((items) => {
+                this.handleData(items);
+                this.insert();
+                if (this.container.scrollHeight - Math.max.apply(null, this.bottoms) > 0) {
+                    window.setTimeout(() => {
+                        this.aysnc();
+                    }, 0)
+                }
+            }).always(() => {
+                this.afterAysnc && this.afterAysnc();
+                this.enable = true;
+            })
+        }
         handleData(data) {
             let store = data;
             if (this.option.aysnc.handleData) {
@@ -120,28 +122,31 @@
 
         insertItem(item) {
             let dom = document.createElement('div');
-            dom.className = 'cp-masonary-item';
+            dom.className = 'cp-masonry-item';
 
-            let size = this.getItemSize({
-                h: item.height,
-                w: item.width
-            });
-            dom.style.width = (100 / this.option.layout.col) + '%'
-            dom.style.height = size.h + 'px';
+            let size = this.getItemSize(item);
+            dom.dataset.height = size.h;
+            dom.style.width = (100 / this.option.layout.col) + '%';
+
+            // dom.style.height = size.h + 'px';
+
             dom.style.left = this.cursor.col * (100 / this.option.layout.col) + '%'
             dom.style.top = this.cursor.y + 'px'
 
             this.onItemCreate && this.onItemCreate(dom, item)
             this.container.appendChild(dom);
 
-            this.setCursor(size);
+            this.setCursor(item);
         }
 
-        setCursor(usize) {
-            this.bottoms[this.cursor.col] += usize.h;
+        setCursor(item) {
+            let size = this.getItemSize(item);
+            this.bottoms[this.cursor.col] += size.h;
             let bottomCol = 0;
+            let bottom = this.bottoms[0];
             for (let i = 1; i < this.option.layout.col; i++) {
-                if (this.bottoms[i] < this.bottoms[i - 1]) {
+                if (this.bottoms[i] < bottom) {
+                    bottom = this.bottoms[i];
                     bottomCol = i;
                 }
             }
@@ -150,10 +155,15 @@
             // this.cursor.x = this.cursor.col * this.option.layout.uw
         }
 
-        getItemSize(size) {
+        getItemSize(item) {
+            let img = this.option.item.imageKey ? item[this.option.item.imageKey] : item;
+            let size = this.option.item.getSize ? this.option.item.getSize(item) : {
+                h: img.height,
+                w: img.width
+            }
             return {
                 w: this.option.layout.uw,
-                h: size.h * this.option.layout.uw / size.w
+                h: size.h * (this.option.layout.uw - this.option.item.padding * 2) / size.w + this.option.item.padding * 2
             }
         }
 

@@ -480,4 +480,14 @@
 
 .cp-masonry-ctn .cp-masonry-item {
     position: absolute;
+    padding: 10px;
+}
+
+.cp-masonry-ctn .cp-masonry-img {
+    width: 100%;
+    display: block;
+}
+
+.cp-masonry-ctn .cp-masonry-item-body {
+    position: relative;
 }
