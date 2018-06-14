@@ -26,30 +26,30 @@
             var fields = [{
                     field: 'job',
                     title: '职业',
-                    list: Object.keys(CONSTANT.CHAPTER.JOB).map(key => {
+                    list: Object.keys(CONSTANT.CHARACTER.JOB).map(key => {
                         return {
                             val: key,
-                            text: CONSTANT.CHAPTER.JOB[key].text
+                            text: CONSTANT.CHARACTER.JOB[key].text
                         }
                     })
                 },
                 {
                     field: 'gender',
                     title: '性别',
-                    list: Object.keys(CONSTANT.CHAPTER.GENDER).map(key => {
+                    list: Object.keys(CONSTANT.CHARACTER.GENDER).map(key => {
                         return {
                             val: key,
-                            text: CONSTANT.CHAPTER.GENDER[key].text
+                            text: CONSTANT.CHARACTER.GENDER[key].text
                         }
                     })
                 },
                 {
                     field: 'race',
                     title: '种族',
-                    list: Object.keys(CONSTANT.CHAPTER.RACE).map(key => {
+                    list: Object.keys(CONSTANT.CHARACTER.RACE).map(key => {
                         return {
                             val: key,
-                            text: CONSTANT.CHAPTER.RACE[key].text
+                            text: CONSTANT.CHARACTER.RACE[key].text
                         }
                     })
                 },
@@ -124,7 +124,10 @@
                 },
                 event: {
                     onScroll: null,
-                    onClick: null,
+                    onClick: function(target) {
+                        let id = target.dataset.id;
+                        window.open('/works#id=1')
+                    },
                     onItemCreate: function(dom, item) {
                         dom.dataset.id = item.id;
                         dom.innerHTML = `

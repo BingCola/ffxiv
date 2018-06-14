@@ -2,6 +2,7 @@
     class Cmpt {
         constructor(container, option) {
             this.container = container;
+            this.$container = $(this.container);
             this.option = option || {};
 
             this.store = [];
@@ -49,7 +50,7 @@
         attachEvent() {
             var _this = this;
             this.container.onscroll = this.scroll.bind(this);
-            this.container.off('click').on('click', 'cp-masonry-item', () => {
+            this.$container.off('click').on('click', '.cp-masonry-item', (e) => {
                 this.onClick && this.onClick(e.currentTarget);
             })
 
@@ -61,7 +62,7 @@
             this.option.layout.uw = this.container.offsetWidth / this.option.layout.col
             this.initCursor();
             this.initEvent();
-            this.container.classList.add('cp-masonry-ctn')
+            this.container.classList.add('cp-masonry-ctn');
         }
         initEvent() {
             if (this.option.event) {

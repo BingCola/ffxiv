@@ -51,13 +51,13 @@
         toggle: function() {
             var params = this.getUrlParamsMap(...arguments);
             var args = [];
-            if (Object.keys(params).length == 0 || !params[this.option.pageFlag]) {
-                params.page = this.option.root;
-            }
             for (var param in params) {
                 if (params.hasOwnProperty(param)) {
                     args.push(params[param]);
                 }
+            }
+            if (Object.keys(params).length == 0 || !params[this.option.pageFlag]) {
+                args.unshift(this.option.root);
             }
             this.to(...args)
         },

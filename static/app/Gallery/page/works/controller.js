@@ -9,13 +9,13 @@
     Controller.prototype = {
         init: function() {},
         getWorksInfo: function(id) {
-            return WebAPI.get('/gallery/getItem/detail/' + id)
+            return CPlugin.api.getGalleryItemDetail(id)
         },
         getAuthorInfo: function(id) {
-            return WebAPI.get('/user/info/' + id)
+            return CPlugin.api.getUserDetail(id)
         },
         getRecommendInfo: function(id) {
-            return WebAPI.get('/gallery/getItem/recommend/' + id)
+            return CPlugin.api.getRelateGalleryItem(id)
         }
     }
     exports.controller = Controller;

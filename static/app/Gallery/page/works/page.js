@@ -1,36 +1,37 @@
 (function(exports) {
-    function PageWorks() {
-        this.controller = undefined;
-        this.viewer = undefined;
-        this.store = {};
-        this.id = 1;
+    class Page extends namespace('cmpt.page') {
+        constructor(id) {
+            super(...arguments)
+            this.controller = undefined;
+            this.viewer = undefined;
+            this.store = {};
+            this.id = id;
 
-        this.comment = undefined;
-    }
-    PageWorks.prototype = {
-        show: function() {
+            this.comment = undefined;
+        }
+        get LAYOUT() {
+            return {
+                view: '/app/Gallery/page/works/page.html',
+                header: true,
+                footer: true
+            }
+        }
 
-            var _this = this;
-            WebAPI.get('/application/Gallery/view/page/works/pageWorks.html').done(function(resultHTML) {
-                MainContainer.innerHTML = resultHTML;
-                _this.init();
-            })
-        },
-        init: function() {
+        init() {
             var _this = this;
             this.initController();
             this.initViewer();
             this.initComment();
             this.attachEvent();
             this.getData();
-        },
-        initController: function() {
+        }
+        initController() {
             var option = {
-                id: 1
+                id: this.id
             }
             this.controller = new(namespace('gallery.works.controller'))(this, option)
-        },
-        getData: function() {
+        }
+        getData() {
             var _this = this;
             $.when(this.controller.getWorksInfo(this.id).done(function(result) {
                     if (result.success) {
@@ -44,8 +45,8 @@
                 })).always(function() {
                 _this.setViewer();
             })
-        },
-        setViewer: function() {
+        }
+        setViewer() {
             var _this = this;
             this.controller.getAuthorInfo(this.store.author.id).done(function(result) { _this.viewer.setAuthor(result.data) });
             this.viewer.setRecommend(this.store.recommend)
@@ -54,18 +55,18 @@
             this.viewer.setModel(this.store.model);
             this.viewer.setRemark(this.store.remark)
             this.viewer.setTag(this.store.tag)
-        },
-        initViewer: function() {
+        }
+        initViewer() {
             this.viewer = new(namespace('gallery.works.viewer'))(this, {})
-        },
-        initComment: function() {
+        }
+        initComment() {
             var option = {};
             this.comment = new(namespace('component.comment'))(this, option)
-        },
-        attachEvent: function() {
+        }
+        attachEvent() {
             this.attachModelEvent();
-        },
-        attachModelEvent: function() {
+        }
+        attachModelEvent() {
             var $ctn = $('#ctnModelInfo');
             $ctn.off('click').on('click', '.spIndex', function(e) {
                 var $target = $(e.currentTarget)
@@ -76,10 +77,10 @@
                 $target.addClass('focus');
                 $ctn.find('.divModel').eq(index).addClass('focus')
             })
-        },
-        close: function() {
+        }
+        close() {
 
-        },
+        }
     }
-    exports.works = PageWorks
+    exports.works = Page
 })(namespace('gallery'))

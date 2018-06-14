@@ -23,7 +23,7 @@ var CONSTANT = {
         4: { text: '拉诺西亚' },
         5: { text: '网通区' }
     },
-    CHAPTER: {
+    CHARACTER: {
         RACE: {
             1: { text: '人类' },
             2: { text: '猫魅' },

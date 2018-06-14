@@ -30,6 +30,12 @@
         getGalleryItemList(data) {
             return this.post('/gallery/getItem/list', data)
         }
+        getGalleryItemDetail(id) {
+            return this.get(`/gallery/getItem/detail/${id}`)
+        }
+        getRelateGalleryItem(id) {
+            return this.get(`/gallery/getItem/relate/${id}`)
+        }
     }
     exports.api = Cmpt;
 }(namespace('gallery')))

@@ -219,7 +219,7 @@ router.get('/getItem/detail/:id', function(req, res, next) {
         }
     });
 });
-router.get('/getItem/recommend/:id', function(req, res, next) {
+router.get('/getItem/relate/:id', function(req, res, next) {
     var arrItem = [];
     for (var i = 0; i < parseInt(Math.random() * 4) + 10; i++) {
         arrItem.push({
