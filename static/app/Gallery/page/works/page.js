@@ -38,9 +38,9 @@
                         _this.store = $.extend({}, _this.store, result.data);
                     }
                 }),
-                this.controller.getRecommendInfo(this.id).done(function(result) {
+                this.controller.getRelateInfo(this.id).done(function(result) {
                     if (result.success) {
-                        _this.store = $.extend({}, _this.store, { recommend: result.data });
+                        _this.store = $.extend({}, _this.store, { relate: result.data });
                     }
                 })).always(function() {
                 _this.setViewer();
@@ -49,7 +49,7 @@
         setViewer() {
             var _this = this;
             this.controller.getAuthorInfo(this.store.author.id).done(function(result) { _this.viewer.setAuthor(result.data) });
-            this.viewer.setRecommend(this.store.recommend)
+            this.viewer.setRelate(this.store.relate)
             this.viewer.setAlbum(this.store.img);
             this.viewer.setBase(this.store);
             this.viewer.setModel(this.store.model);

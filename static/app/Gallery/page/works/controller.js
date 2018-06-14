@@ -14,7 +14,7 @@
         getAuthorInfo: function(id) {
             return CPlugin.api.getUserDetail(id)
         },
-        getRecommendInfo: function(id) {
+        getRelateInfo: function(id) {
             return CPlugin.api.getRelateGalleryItem(id)
         }
     }

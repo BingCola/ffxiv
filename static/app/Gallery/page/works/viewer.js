@@ -100,7 +100,7 @@
             var fields = ['name', 'server', 'desc', 'works', 'fans'].map(function(item) {
                 return {
                     name: item,
-                    data: item == 'server' ? CONSTANT.SERVER[data[item]].name : data[item]
+                    data: item == 'server' ? CONSTANT.SERVER[data[item]].text : data[item]
                 }
             });
             this.setFieldData(container, fields);
@@ -147,13 +147,9 @@
                 <span class="c-btn iconfont icon-message" data-action="message"></span>';
             var strChar = this.formatEl(char_template, {
                 name: data.name,
-                race: CONSTANT.CHARACTER.RACE[data.race].name,
+                race: CONSTANT.CHARACTER.RACE[data.race].text,
                 desc: data.desc,
-                portrait: data.id ? `
-                        $ { AppConfig.path.image }
-                        /user/$ { data.id }.png ` : `
-                        $ { AppConfig.path.image }
-                        /common/character / race_icon_$ { data.race }.png `,
+                portrait: data.id ? `${AppConfig.path.image}/user/${ data.id }.png ` : `${ AppConfig.path.image }/common/character/race_icon_${ data.race }.png `,
                 tool: data.id ? chart_tool_template : '<span class="noRegisterTip">未注册</span>'
             })
             template = template.replace(/\${char_template}/g, strChar);
@@ -161,7 +157,7 @@
 
             var equip_template = '\
                 <div class="divField pos-${pos}">\
-                    <img class="icon" src="${id}" onerror="this.src != \'${partDefaultImg}\' && (this.src=\'${partDefaultImg}\')">\
+                    <img class="icon" src="${pic}" onerror="this.src != \'${partDefaultImg}\' && (this.src=\'${partDefaultImg}\')">\
                     <span class="partName">${partName}</span>\
                     <span class="name">${name}</span>\
                     <span class="color" style="background-color:${extend}"></span>\
@@ -170,14 +166,10 @@
             var strEquip = Object.keys(CONSTANT.EQUIP_ITEM.PART).map(function(item) {
                 var info = data.equip[item];
                 return _this.formatEl(equip_template, {
-                    id: `
-                        $ { AppConfig.path.image }
-                        /plant/single / $ { info.id }.jpg `,
-                    partDefaultImg: `
-                        $ { AppConfig.path.image }
-                        /common/equip / equip_icon_sm_$ { item }.jpg `,
+                    pic: ` ${ AppConfig.path.image }/plant/single/${ info.id }.jpg `,
+                    partDefaultImg: `${ AppConfig.path.image }/common/equip/equip_icon_sm_${ item }.jpg `,
                     name: info.name,
-                    partName: CONSTANT.EQUIP_ITEM.PART[item].name,
+                    partName: CONSTANT.EQUIP_ITEM.PART[item].text,
                     extend: info.color,
                     pos: CONSTANT.EQUIP_ITEM.PART[item].pos
                 });
@@ -191,7 +183,7 @@
             }
             return dom;
         },
-        setRecommend: function(data) {
+        setRelate: function(data) {
             var container = document.getElementById('ctnRecommend').querySelector('.c-slide-list');
             container.innerHTML = '';
             data.forEach(function(item) {
@@ -204,9 +196,7 @@
             dom.dataset.id = data.id
             var template = '<img class="c-slide-img" src="${img}"><span class="c-slide-title">${title}</span>'
             dom.innerHTML = this.formatEl(template, {
-                img: `
-                        $ { AppConfig.path.image }
-                        /plant/transmog / $ { data.id }.jpg `,
+                img: `${ AppConfig.path.image }/plant/transmog/${data.id }.jpg `,
                 title: data.title
             })
             return dom;
