@@ -188,8 +188,21 @@
                     }
                 }
             })
-            $(this.container).on('mouseover', '.cpc-nav-item', function() {
-
+            $(this.navTop).on('mouseover', '.cpc-nav-list>.cpc-nav-item', (e) => {
+                let $target = $(e.currentTarget);
+                $target.addClass('focus')
+            })
+            $(this.navTop).on('mouseleave', '.cpc-nav-list>.cpc-nav-item', (e) => {
+                let $target = $(e.currentTarget);
+                $target.removeClass('focus')
+            })
+            $(this.navTop).on('mouseover', '.cpc-nav-list', (e) => {
+                let $target = $(e.currentTarget);
+                $target.addClass('focus')
+            })
+            $(this.navTop).on('mouseleave', '.cpc-nav-list', (e) => {
+                let $target = $(e.currentTarget);
+                $target.removeClass('focus')
             })
         },
         initNavBottom: function() {

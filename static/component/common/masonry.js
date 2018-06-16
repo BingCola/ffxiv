@@ -11,7 +11,7 @@
         get DEFAULT_OPTION() {
             return {
                 layout: {
-                    col: Math.floor(this.container.offsetWidth / 300),
+                    col: Math.floor(this.container.offsetWidth / 400),
                     paddingTop: 15,
                     paddingBottom: 10,
                     aysncSection: 20
