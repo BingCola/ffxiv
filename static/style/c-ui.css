@@ -93,6 +93,10 @@ body {
     -webkit-align-items: cetner;
 }
 
+.c-hide {
+    display: none;
+}
+
 
 /*img*/
 

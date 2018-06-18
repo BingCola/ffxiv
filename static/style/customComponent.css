@@ -50,6 +50,26 @@
 .cpc-nav-top .badge {
     margin-left: 5px;
     color: #f45b69;
+    font-weight: bold;
+    position: relative;
+}
+
+.cpc-nav-top .cpc-nav-item.sub .badge {
+    padding-left: 5px;
+    color: inherit;
+}
+
+.cpc-nav-top .cpc-nav-item.sub .badge:before {
+    content: '';
+    display: inline-block;
+    height: 4px;
+    width: 4px;
+    border-radius: 50%;
+    background: #f45b69;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .cpc-nav-top .cpc-user-info .portrait {
@@ -89,12 +109,55 @@
     transition: 0s;
 }
 
-.cpc-nav-item.dropdown:hover>.cpc-nav-content::before {
-    content: '123';
+.cpc-nav-item.dropdown.textSplit:before {
+    content: '';
+    height: 0;
+    width: 2px;
+    left: 50%;
+    position: absolute;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, rgba(120, 238, 222, 1) 50%, rgba(255, 255, 255, 0) 100%);
+    transform: translateX(-50%) rotate(30deg);
 }
 
-.cpc-nav-item.dropdown:hover>.cpc-nav-content::after {
-    content: '123';
+.cpc-nav-item.dropdown.textSplit:hover::before {
+    height: 40px;
+    transition: height 0.3s;
+}
+
+.cpc-nav-item.dropdown.textSplit:hover>.cpc-nav-content>.text {
+    opacity: 0;
+}
+
+.cpc-nav-item.dropdown.textSplit>.cpc-nav-content::before,
+.cpc-nav-item.dropdown.textSplit>.cpc-nav-content::after {
+    opacity: 0;
+    color: rgba(120, 238, 222, 1);
+    text-shadow: 0 0 1px rgba(120, 238, 222, 1);
+    content: attr(data-title);
+    position: absolute;
+    transform: translate(0, 0);
+    transition: transform 0.3s;
+}
+
+.cpc-nav-item.dropdown.textSplit>.cpc-nav-content::before {
+    clip-path: polygon( 0 0, 70% 0, 30% 100%, 0 100%);
+}
+
+.cpc-nav-item.dropdown.textSplit>.cpc-nav-content::after {
+    clip-path: polygon( 70% 0, 100% 0, 100% 100%, 30% 100%);
+}
+
+.cpc-nav-item.dropdown.textSplit:hover>.cpc-nav-content::before,
+.cpc-nav-item.dropdown.textSplit:hover>.cpc-nav-content::after {
+    opacity: 1;
+}
+
+.cpc-nav-item.dropdown.textSplit:hover>.cpc-nav-content::before {
+    transform: translate(0, -1px);
+}
+
+.cpc-nav-item.dropdown.textSplit:hover>.cpc-nav-content::after {
+    transform: translate(0, 1px);
 }
 
 .cpc-nav-item.dropdown:hover .cpc-nav-sub-list:before {
@@ -131,15 +194,21 @@
 .cpc-nav-top .cpc-nav-item.sub+.cpc-nav-item.sub:before {
     content: '';
     position: absolute;
-    top: 0;
+    top: -1px;
     width: 100%;
-    height: 1px;
+    height: 2px;
     background: linear-gradient(to right, rgba(255, 255, 255, 0) 0, rgba(120, 238, 222, .3) 50%, rgba(255, 255, 255, 0) 100%);
     left: 0;
 }
 
-.cpc-nav-top .cpc-nav-item.sub:hover {
-    background: rgba(255, 255, 255, .25);
+.cpc-nav-top .cpc-nav-item.sub .cpc-nav-content {
+    color: #e4fde1;
+    text-shadow: 0 0 1px #e4fde1;
+}
+
+.cpc-nav-top .cpc-nav-item.sub:hover .cpc-nav-content {
+    color: rgba(120, 238, 222, 1);
+    text-shadow: 0 0 1px rgba(120, 238, 222, 1);
 }
 
 .cpc-nav-top .cpc-nav-content {
@@ -250,6 +319,21 @@
     display: inline-block;
 }
 
+
+/*.cpc-nav-top .cpc-user-info::before,
+.cpc-nav-top .cpc-user-info::after,
+.cpc-nav-top .cpc-user-message::before,
+.cpc-nav-top .cpc-user-message::after {
+    display: none;
+}
+
+.cpc-nav-top .cpc-user-info>.cpc-nav-content::before,
+.cpc-nav-top .cpc-user-info>.cpc-nav-content::after,
+.cpc-nav-top .cpc-user-message>.cpc-nav-content::before,
+.cpc-nav-top .cpc-user-message>.cpc-nav-content::after {
+    display: none;
+}*/
+
 .cpc-nav-bottom .cpc-router-map {
     margin-bottom: 15px;
 }
@@ -307,6 +391,7 @@
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.75);
+    animation: fadeIn-opacity 0.3s;
 }
 
 .cpc-login-panel .cpc-login-body {
@@ -319,6 +404,27 @@
     top: 30%;
     left: 50%;
     transform: translateX(-50%);
+    animation: fadeIn-larger 0.3s;
+}
+
+@keyframes fadeIn-larger {
+    from {
+        transform: translateX(-50%) scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn-opacity {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .cpc-login-panel .cpc-btn-delete {

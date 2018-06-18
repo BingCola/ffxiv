@@ -16,13 +16,17 @@ body {
     box-shadow: 0 0 5px 1px #89f2ff;
 }
 
-.cpc-nav-top .cpc-nav-content>.text {
+.cpc-nav-top .cpc-nav-content {
     color: rgba(120, 238, 222, 1);
     text-shadow: 0 0 1px rgba(120, 238, 222, 1);
 }
 
 .cpc-nav-item.dropdown:hover .cpc-nav-sub-list:before {
     background: #89f2ff;
+}
+
+.cpc-nav-top .cpc-user-info {
+    color: #e4fde1
 }
 
 .cpc-nav-bottom {

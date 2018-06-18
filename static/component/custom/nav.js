@@ -164,10 +164,10 @@
         },
         initOption: function() {
             // this.navUser = this.navTop.querySelector('.cpc-user-profile');
-            this.navTopList = this.navTop.querySelector('.cpc-nav-list')
+            this.navTopBody = this.navTop.querySelector('.cpc-nav-body')
         },
         initNavTop: function() {
-            this.initUserNav();
+            // this.initUserNav();
             this.attachNavTopEvent();
         },
         attachNavTopEvent: function() {
@@ -244,7 +244,7 @@
                 portrait: AppConfig.path.image + '/user/' + User.id + '.png',
                 role: CONSTANT.USER.ROLE[User.role].text
             }))[0]
-            this.navTopList.appendChild(this.navUser)
+            this.navTopBody.appendChild(this.navUser)
             this.setUserMessage();
             this.setUserLevel();
             this.setUserDetail();
@@ -261,7 +261,7 @@
         },
         clearUserProfile() {
             this.navUser && $(this.navUser).remove();
-            this.navTopList.appendChild($(this.userLoginTpl)[0])
+            this.navTopBody.appendChild($(this.userLoginTpl)[0])
         },
         setUserMessage: function() {
             var $container = $(this.navUser).find('.cpc-user-message');
@@ -272,9 +272,19 @@
                 let data = result.data;
                 Object.keys(data).forEach(function(item) {
                     total += data[item];
-                    data[item] && $container.find('[data-field="' + item + '"] .badge').html(NumberUtil.limitMax(data[item], 99));
+                    let num = NumberUtil.limitMax(data[item], 99);
+                    if (num) {
+                        data[item] && $container.find('[data-field="' + item + '"] .badge').removeClass('c-hide').html(num);
+                    } else {
+                        data[item] && $container.find('[data-field="' + item + '"] .badge').addClass('c-hide');
+                    }
                 })
-                total && $container.find('.cpc-nav-content .badge').html(NumberUtil.limitMax(total, 99));
+                total = NumberUtil.limitMax(total, 99);
+                if (total) {
+                    $container.find('.cpc-nav-content .badge').removeClass('c-hide').html(total);
+                } else {
+                    $container.find('.cpc-nav-content .badge').addClass('c-hide');
+                }
             })
         },
 
