@@ -50,26 +50,31 @@
 .cpc-nav-top .badge {
     margin-left: 5px;
     color: #f45b69;
-    font-weight: bold;
     position: relative;
+    text-shadow: 0 1px #f45b69;
 }
 
 .cpc-nav-top .cpc-nav-item.sub .badge {
     padding-left: 5px;
     color: inherit;
+    text-shadow: 0 0 1px #e4fde1;
+}
+
+.cpc-nav-top .cpc-nav-item.sub:hover .badge:before {
+    background: rgba(120, 238, 222, 1);
 }
 
 .cpc-nav-top .cpc-nav-item.sub .badge:before {
     content: '';
     display: inline-block;
-    height: 4px;
-    width: 4px;
+    height: 1px;
+    width: 15px;
+    background: rgba(120, 238, 222, .5);
     border-radius: 50%;
-    background: #f45b69;
     position: absolute;
     left: 0;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) rotate(110deg);
 }
 
 .cpc-nav-top .cpc-user-info .portrait {
@@ -182,7 +187,7 @@
 }
 
 .cpc-nav-top .cpc-nav-item.sub {
-    font-size: 12px;
+    font-size: 14px;
     display: block;
     white-space: nowrap;
     text-align: center;
@@ -264,24 +269,35 @@
 }
 
 .cpc-nav-top .cpc-user-profile .cpc-user-info .level {
-    height: 10px;
+    height: 4px;
     margin-left: 20px;
-    background: white;
+    background: #0c1623;
     margin-top: 10px;
     margin-bottom: 10px;
     position: relative;
 }
 
-.cpc-nav-top .cpc-user-profile .cpc-user-info .number {
+.cpc-nav-top .cpc-user-profile .cpc-user-info .level .shining {
+    position: absolute;
+    top: 0;
+    height: 25px;
+    width: 25px;
+    background: radial-gradient(50% 50%, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.9) 10%, rgba(255, 255, 255, 0) 50%);
+    z-index: 40;
+    background-repeat: no-repeat;
+    transform: translate(-50%, calc(-50% + 2px));
+}
+
+.cpc-nav-top .cpc-user-profile .cpc-user-info .level .number {
     position: absolute;
     left: 0;
     line-height: 10px;
 }
 
-.cpc-nav-top .cpc-user-profile .cpc-user-info .track {
+.cpc-nav-top .cpc-user-profile .cpc-user-info .level .track {
     display: block;
     height: 100%;
-    background: black;
+    background: linear-gradient(to right, #39a3c7, rgba(120, 238, 222, 1));
 }
 
 .cpc-nav-top .cpc-user-profile .cpc-user-info .item {
@@ -290,23 +306,10 @@
     font-size: 12px;
 }
 
-.cpc-nav-top .cpc-user-info .entrance {
-    display: block;
-    padding-top: 5px;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    border-top: 1px solid #969696;
-}
-
-.cpc-nav-top .cpc-user-info .entrance::before {
-    content: '';
-    display: table;
-}
-
-.cpc-nav-top .cpc-user-info .entrance:after {
-    content: '';
-    display: table;
-    clear: both;
+.cpc-nav-top .cpc-user-info .block {
+    padding: 5px;
+    margin: 10px 0;
+    background: rgba(120, 238, 222, .15);
 }
 
 .cpc-nav-top .cpc-user-info .entrance .item {

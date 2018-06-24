@@ -20,27 +20,30 @@
                             <img class="portrait" data-field="portrait" src="{portrait}" />
                         </div>
                         <div class="cpc-nav-sub-list">
-                            <span class="name">{name}</span>
-                            <div class="level">
-                                <span class="number"></span>
-                                <span class="track"></span>
+                            <div class="name">{name}</div>
+                            <div class="block c-ctn">
+                                <div class="level">
+                                    <span class="number"></span>
+                                    <span class="shining"></span>
+                                    <span class="track"></span>
+                                </div>
+                                <div class="c-ctn">
+                                    <span class="role item">{role}</span>
+                                    <span class="score item"></span>
+                                </div>
+                                <div class="c-ctn">
+                                    <span class="fans item"><span class="label">粉丝：</span><span data-field="fans">--</span></span>
+                                    <span class="works item"><span class="label">作品：</span><span data-field="works">--</span></span>
+                                    <!--<span class="allowWorks item"><span class="label">可投稿数量：</span><span data-field="allowWorks">--</span></span>-->
+                                </div>
                             </div>
-                            <div class="c-ctn">
-                                <span class="role item">{role}</span>
-                                <span class="score item"></span>
-                            </div>
-                            <div class="c-ctn">
-                                <span class="fans item"><span class="label">粉丝：</span><span data-field="fans">--</span></span>
-                                <span class="works item"><span class="label">作品：</span><span data-field="works">--</span></span>
-                                <!--<span class="allowWorks item"><span class="label">可投稿数量：</span><span data-field="allowWorks">--</span></span>-->
-                            </div>
-                            <span class="entrance">
+                            <div class="block entrance c-ctn">
                                 <span class="item">个人中心</span>
                                 <span class="item">投稿管理</span>
                                 <span class="item">稿件审核</span>
                                 <span class="item">关注管理</span>
-                                <span class="item btnLogout"><span class="icon iconfont icon-logout"></span><span class="text">>注销</span></span>
-                            </span>
+                                <span class="item btnLogout"><span class="icon iconfont icon-logout"></span><span class="text">注销</span></span>
+                            </div>
                         </div>
                     </div>
                     <div class="cpc-nav-item dropdown cpc-user-message">
@@ -89,27 +92,30 @@
                             <img class="portrait" data-field="portrait" src="{portrait}" />
                         </div>
                         <div class="cpc-nav-sub-list">
-                            <span class="name">{name}</span>
-                            <div class="level">
-                                <span class="number"></span>
-                                <span class="track"></span>
+                            <div class="name">{name}</div>
+                            <div class="block c-ctn">
+                                <div class="level">
+                                    <span class="number"></span>
+                                    <span class="shining"></span>
+                                    <span class="track"></span>
+                                </div>
+                                <div class="c-ctn">
+                                    <span class="role item">{role}</span>
+                                    <span class="score item"></span>
+                                </div>
+                                <div class="c-ctn">
+                                    <span class="fans item"><span class="label">粉丝：</span><span data-field="fans">--</span></span>
+                                    <span class="works item"><span class="label">作品：</span><span data-field="works">--</span></span>
+                                    <!--<span class="allowWorks item"><span class="label">可投稿数量：</span><span data-field="allowWorks">--</span></span>-->
+                                </div>
                             </div>
-                            <div class="c-ctn">
-                                <span class="role item">{role}</span>
-                                <span class="score item"></span>
-                            </div>
-                            <div class="c-ctn">
-                                <span class="fans item"><span class="label">粉丝：</span><span data-field="fans">--</span></span>
-                                <span class="works item"><span class="label">作品：</span><span data-field="works">--</span></span>
-                                <!--<span class="allowWorks item"><span class="label">可投稿数量：</span><span data-field="allowWorks">--</span></span>-->
-                            </div>
-                            <span class="entrance">
+                            <div class="block entrance c-ctn">
                                 <span class="item">个人中心</span>
                                 <span class="item">投稿管理</span>
                                 <span class="item">稿件审核</span>
                                 <span class="item">关注管理</span>
                                 <span class="item btnLogout"><span class="icon iconfont icon-logout"></span><span class="text">注销</span></span>
-                            </span>
+                            </div>
                         </div>
                     </div>
                     <div class="cpc-nav-item dropdown cpc-user-message">
@@ -293,9 +299,10 @@
             var score = User.score;
             var $container = $(this.navUser);
             var level = parseInt(score / scorePerLevel) + 1
-            $container.find('.number').html(level);
+            $container.find('.level .number').html(level);
             $container.find('.score').html(score + '/' + level * scorePerLevel);
-            $container.find('.track').css('width', (score % 1000) / 10 + '%');
+            $container.find('.level .track').css('width', (score % 1000) / 10 + '%');
+            $container.find('.level .shining').css('left', (score % 1000) / 10 + '%');
         },
     }
     exports.nav = Cmpt
