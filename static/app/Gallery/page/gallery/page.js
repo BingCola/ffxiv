@@ -14,7 +14,7 @@
             };
         },
         init: function() {
-            this.initFilter();
+            this.initSideToolbar();
             this.initController();
             this.initViewer();
             // this.initSearch();
@@ -38,6 +38,9 @@
             var _this = this;
             var container = document.getElementById("ctnItemList");
             var option = {
+                layout: {
+                    paddingTop: 37
+                },
                 item: {
                     imageKey: "img",
                     margin: 20

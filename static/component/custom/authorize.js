@@ -68,7 +68,7 @@
             <div class="cpc-login-body">\
                 <div class="cpc-ttl">幻化回廊</div>\
                 <div class="c-btn cpc-btn-delete iconfont icon-delete-alt" data-action="clear"></div>\
-                <div class="c-ctn cpc-login-header">\
+                <div class="c-clear-float cpc-login-header">\
                     <div class="c-btn cpc-btn-visitor" data-action="visitor">游客身份登陆</div>\
                     <div class="cpc-result-msg"></div>\
                 </div>\
@@ -86,7 +86,7 @@
                         <span class="cpc-loading-spinner"></span>\
                     </div>\
                 </div>\
-                <div class="cpc-tool-grp c-ctn">\
+                <div class="cpc-tool-grp c-clear-float">\
                     <!--<span class="cpc-tool-item" data-action="visitor">游客身份登录</span>-->\
                     <span class="cpc-tool-item c-btn c-wrap-check square {remember}" data-action="remember"><span class="c-check-icon"></span><span class="c-check-text text">记住密码</span></span>\
                     <span class="cpc-tool-item c-btn" data-action="foget"><span class="text">忘记密码</span></span>\

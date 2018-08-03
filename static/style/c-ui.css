@@ -19,7 +19,6 @@ body {
     margin: 0;
 }
 
-
 /*layout*/
 
 .c-screen {
@@ -33,7 +32,7 @@ body {
     position: relative;
 }
 
-.c-page-header+.c-page {
+.c-page-header + .c-page {
     height: calc(100% - 44px);
     top: 44px;
 }
@@ -54,13 +53,13 @@ body {
     width: 100%;
 }
 
-.c-ctn:before {
-    content: '';
+.c-clear-float:before {
+    content: "";
     display: table;
 }
 
-.c-ctn:after {
-    content: '';
+.c-clear-float:after {
+    content: "";
     display: table;
     clear: both;
 }
@@ -69,7 +68,7 @@ body {
     display: inline-block;
 }
 
-.c-ctn.fluid>.c-wrap {
+.c-clear-float.fluid > .c-wrap {
     float: left;
 }
 
@@ -97,7 +96,6 @@ body {
     display: none;
 }
 
-
 /*img*/
 
 .c-portrait {
@@ -105,9 +103,7 @@ body {
     height: 100%;
 }
 
-
 /*img*/
-
 
 /*btn*/
 
@@ -115,9 +111,7 @@ body {
     cursor: pointer;
 }
 
-
 /*btn*/
-
 
 /*popover*/
 
@@ -135,9 +129,7 @@ body {
     display: block;
 }
 
-
 /*popover*/
-
 
 /*slide*/
 
@@ -161,12 +153,12 @@ body {
 }
 
 .c-slide-wrap .c-slide-list:before {
-    content: '';
+    content: "";
     display: table;
 }
 
 .c-slide-wrap .c-slide-list:after {
-    content: '';
+    content: "";
     display: table;
     clear: both;
 }
@@ -205,9 +197,7 @@ body {
     width: calc(25% - 10px);
 }
 
-
 /*slide*/
-
 
 /*input*/
 
@@ -222,9 +212,7 @@ body {
     color: inherit;
 }
 
-
 /*input*/
-
 
 /*input-check*/
 
@@ -241,14 +229,14 @@ body {
 }
 
 .c-wrap-check .c-check-icon::before {
-    content: '\e632'
+    content: "\e632";
 }
 
 .c-wrap-check.checked .c-check-icon::before {
-    content: '\e622'
+    content: "\e622";
 }
 
-.c-wrap-check .c-check-text {}
-
+.c-wrap-check .c-check-text {
+}
 
 /*input-check*/

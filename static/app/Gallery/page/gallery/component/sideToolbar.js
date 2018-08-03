@@ -16,6 +16,7 @@
                 {
                     field: "job",
                     title: "职业",
+                    mode: "single",
                     list: Object.keys(CONSTANT.CHARACTER.JOB).map(key => {
                         return {
                             val: key,
@@ -26,6 +27,7 @@
                 {
                     field: "gender",
                     title: "性别",
+                    mode: "single",
                     list: Object.keys(CONSTANT.CHARACTER.GENDER).map(key => {
                         return {
                             val: key,
@@ -36,6 +38,7 @@
                 {
                     field: "race",
                     title: "种族",
+                    mode: "single",
                     list: Object.keys(CONSTANT.CHARACTER.RACE).map(key => {
                         return {
                             val: key,
@@ -46,11 +49,14 @@
                 {
                     field: "tag",
                     title: "标签",
+                    mode: "multi",
                     list: [{ text: "清新", val: 1 }, { text: "多人", val: 2 }, { text: "搞笑", val: 3 }, { text: "稀有", val: 4 }, { text: "非洲人", val: 5 }]
                 },
                 {
                     field: "color",
                     title: "色系",
+                    mode: "multi",
+                    hover: false,
                     list: [
                         { content: "不限", color: "transparent", val: 0 },
                         { content: "红", color: "red", val: 1 },
@@ -64,7 +70,8 @@
                         { content: "黑", color: "black", val: 9 }
                     ],
                     onItemDomCreate(dom, item) {
-                        dom.style.color = item.color;
+                        dom.style.background = item.color;
+                        dom.setAttribute("title", item.content);
                     }
                 }
             ];
@@ -73,9 +80,9 @@
         }
         fillContent() {
             let container = this.container.querySelector(".workspace");
-            for (var i = 0; i < fields.length; i++) {
-                if (fields[i].custom) continue;
-                container.appendChild(this.createFieldCtn(fields));
+            for (var i = 0; i < this.option.length; i++) {
+                if (this.option[i].custom) continue;
+                container.appendChild(this.createFieldCtn(this.option[i]));
             }
         }
         createFieldCtn(field) {
@@ -85,16 +92,17 @@
             container.dataset.mode = field.mode;
             container.innerHTML = `
             <span class="title">${field.title}</span>
-            <div class="divQueryItemList"></div>
+            <div class="divQueryItemList c-clear-float"></div>
             `;
             let listCtn = container.querySelector(".divQueryItemList");
+            if (field.hover !== false) listCtn.classList.add("hover");
             field.list.forEach(item => {
-                dom = document.createElement("span");
-                dom.classList = "item";
+                let dom = document.createElement("span");
+                dom.className = "item";
                 dom.dataset.field = field.field;
                 dom.dataset.mode = field.mode;
-                item.text && (dom.innerHTML = data[i].text);
-                field.onItemDomCreate && field.onItemDomCreate(dom);
+                item.text && (dom.innerHTML = item.text);
+                field.onItemDomCreate && field.onItemDomCreate(dom, item);
                 listCtn.appendChild(dom);
             });
             return container;
@@ -112,7 +120,7 @@
         setQuery($dom) {
             let field = $dom.data().field;
             this.query[field] = [];
-            $dom.find(".item.selected").each(index, dom => {
+            $dom.find(".item.selected").each((index, dom) => {
                 this.query[field].push(parseInt(dom.dataset.value));
             });
         }
@@ -121,4 +129,4 @@
         }
     }
     exports.sideToolbar = Cmpt;
-})(namespace(""));
+})(namespace("gallery.gallery"));
