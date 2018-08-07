@@ -187,11 +187,11 @@
 }
 
 .cpc-nav-top .cpc-nav-item.sub {
-    font-size: 14px;
+    font-size: 12px;
     display: block;
     white-space: nowrap;
     text-align: center;
-    padding: 5px 15px;
+    padding: 10px 15px;
     cursor: pointer;
     width: 100%;
 }

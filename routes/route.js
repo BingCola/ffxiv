@@ -67,4 +67,20 @@ router.get('/works', function(req, res, next) {
     });
 });
 
+router.get('/post', function(req, res, next) {
+    res.render('indexGallery', {
+        path: '',
+        title: '艾欧泽亚幻化回廊',
+        script: [].concat(
+            bundle.script.base,
+            bundle.script.gallery,
+            bundle.script.gallery_post
+        ),
+        style: [].concat(
+            bundle.style.base,
+            bundle.style.gallery
+        )
+    });
+});
+
 module.exports = router;

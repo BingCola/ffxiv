@@ -79,7 +79,7 @@
                     </div>\
                     <div class="cpc-pwd c-wrap-input cpc-wrap-ipt">\
                         <span class="cpc-ipt-abbdon iconfont icon-lock"></span>\
-                        <input value="{pwd}" type="text" class="cpc-pwd-ipt cpc-ipt c-input" placeholder="密码"">\
+                        <input value="{pwd}" type="password" class="cpc-pwd-ipt cpc-ipt c-input" placeholder="密码"">\
                     </div>\
                     <div class="cpc-login-status">\
                         <span class="c-btn cpc-login-start iconfont icon-start" data-action="login"></span>\

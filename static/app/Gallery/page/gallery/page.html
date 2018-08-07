@@ -2,29 +2,28 @@
     .c-page-body {
         height: 100%;
     }
-
+    
     .cpc-nav-top .cpc-nav-body {
         max-width: initial;
     }
-
+    
     .cpc-nav-bottom {
         display: none;
     }
-
+    
     .pageBg {
         position: absolute;
         width: 100%;
         height: 100%;
     }
-
+    
     #ctnItemList {
         width: calc(100% - 240px);
         height: 100%;
         left: 240px;
         position: relative;
     }
-
-
+    
     #ctnFilter {
         width: 240px;
         position: absolute;
@@ -32,17 +31,17 @@
         z-index: 5;
         background-color: rgba(0, 0, 0, 0.9)
     }
-
+    
     #ctnFilter .workspace {
         height: 100%;
         width: 100%;
     }
-
+    
     #ctnFilter .wrapQueryField {
         margin-bottom: 10px;
         padding: 10px;
     }
-
+    
     #ctnFilter .wrapQueryField .title {
         position: relative;
         padding-left: 15px;
@@ -50,7 +49,7 @@
         color: rgba(120, 238, 222, 1);
         text-shadow: 0 0 1px rgba(120, 238, 222, 1);
     }
-
+    
     #ctnFilter .wrapQueryField .title::before {
         content: '';
         display: inline-block;
@@ -62,12 +61,12 @@
         background: rgba(120, 238, 222, 1);
         transform: translateY(-50%);
     }
-
+    
     #ctnFilter .divQueryItemList {
         padding-left: 15px;
         margin-top: 10px;
     }
-
+    
     #ctnFilter .divQueryItemList .item {
         margin-right: 10px;
         display: inline-block;
@@ -78,51 +77,53 @@
         cursor: pointer;
         position: relative;
         overflow: hidden;
+        padding: 3px;
     }
-
+    
     #ctnFilter .divQueryItemList.hover .item::before {
         content: '';
         width: 100%;
-        height: 1px;
-        display: inline-block;
-        position: absolute;
-        background: white;
+        height: 2px;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0) 0, rgba(120, 238, 222, .3) 10%, rgba(120, 238, 222, 1) 50%, rgba(120, 238, 222, .3) 90%, rgba(255, 255, 255, 0) 100%);
         right: 100%;
         top: 0;
         transition: 0.2s;
+        position: absolute;
+        transform: scaleY(.5);
     }
-
+    
     #ctnFilter .divQueryItemList.hover .item::after {
         content: '';
         width: 100%;
         display: inline-block;
-        height: 1px;
+        height: 2px;
         position: absolute;
-        background: white;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0) 0, rgba(120, 238, 222, .3) 10%, rgba(120, 238, 222, 1) 50%, rgba(120, 238, 222, .3) 90%, rgba(255, 255, 255, 0) 100%);
         left: 100%;
         bottom: 0;
-        transition: 0.2s
+        transition: 0.2s;
+        transform: scaleY(.5);
     }
-
+    
     #ctnFilter .divQueryItemList.hover .item:hover:before {
         right: 0;
     }
-
+    
     #ctnFilter .divQueryItemList.hover .item:hover:after {
         left: 0;
     }
-
+    
     #ctnFilter .divQueryItemList .item[data-field="color"] {
         width: 20px;
         height: 20px;
         box-shadow: 0 0 1px 1px #e4fde1;
         margin-bottom: 10px;
     }
-
+    
     .navBottom {
         display: none;
     }
-
+    
     #ctnItemList .infoBox {
         position: absolute;
         bottom: 0;
@@ -130,38 +131,42 @@
         padding: 5px 10px;
         background: rgba(0, 0, 0, 0.5);
     }
-
+    
     #ctnItemList .infoBox .name {
         display: block;
         height: 0;
         opacity: 0;
         transition: 0.3s;
     }
-
+    
+    #ctnItemList .cp-masonry-item {
+        cursor: pointer;
+    }
+    
     #ctnItemList .cp-masonry-item:hover .infoBox .name {
         height: 22px;
         opacity: 1;
     }
-
+    
     #ctnItemList .infoBox .author {
         font-size: 12px;
     }
-
+    
     #ctnItemList .infoBox .wrapAction {
         display: inline-block;
         font-size: 12px;
         float: right;
     }
-
+    
     #ctnItemList .infoBox .actionItem {
         margin-left: 5px;
         cursor: pointer;
     }
-
+    
     #ctnItemList .infoBox .icon {
         font-size: 12px;
     }
-
+    
     #ctnQuery {
         position: absolute;
         z-index: 1;
@@ -171,20 +176,20 @@
         background: rgba(0, 0, 0, 0.75);
         padding: 5px 20px;
     }
-
+    
     #ctnQuery .divQueryItem {
         display: inline-block;
     }
-
+    
     #ctnQuery .divQueryItem[data-field="keyword"] {
         width: calc(100% - 150px);
         position: relative;
     }
-
+    
     #ctnQuery .divQueryItem .list {
         display: none;
     }
-
+    
     #ctnQuery .iptQuery {
         background: transparent;
         border: none;
@@ -192,7 +197,7 @@
         font-size: 16px;
         width: 100%;
     }
-
+    
     #ctnQuery .btnSearch {
         position: absolute;
         color: #ccc;

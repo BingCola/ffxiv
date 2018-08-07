@@ -35,7 +35,7 @@ var bundle = {
 
             "/app/Gallery/page/works/init.js"
         ],
-        gallery_post: ["/app/Gallery/page/post/page.js"]
+        gallery_post: ["/app/Gallery/page/post/page.js", "/app/Gallery/page/post/init.js"]
     },
     style: {
         base: [
