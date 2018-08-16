@@ -80,7 +80,21 @@
         padding: 3px;
     }
     
-    #ctnFilter .divQueryItemList.hover .item::before {
+    #ctnFilter .divQueryItemList .item.selected {
+        text-shadow: 0 0 5px #f45b69;
+        color: #f45b69;
+    }
+    
+    #ctnFilter .divQueryItemList .item .text::before {
+        content: attr(text);
+        color: #f45b69;
+    }
+    
+    #ctnFilter .divQueryItemList.hover .item.selected::before,
+    #ctnFilter .divQueryItemList.hover .item.selected::after {
+        background: #f45b69;
+    }
+    /* #ctnFilter .divQueryItemList.hover .item::before {
         content: '';
         width: 100%;
         height: 2px;
@@ -103,6 +117,31 @@
         bottom: 0;
         transition: 0.2s;
         transform: scaleY(.5);
+    } */
+    
+    #ctnFilter .divQueryItemList.hover .item::before {
+        content: '';
+        width: 100%;
+        height: 2px;
+        background: #78eede;
+        right: calc(100% + 3px);
+        top: 0;
+        transition: 0.2s;
+        position: absolute;
+        transform: scaleY(.5);
+    }
+    
+    #ctnFilter .divQueryItemList.hover .item::after {
+        content: '';
+        width: 100%;
+        display: inline-block;
+        height: 2px;
+        position: absolute;
+        background: #78eede;
+        left: 100%;
+        bottom: 0;
+        transition: 0.2s;
+        transform: scaleY(.5);
     }
     
     #ctnFilter .divQueryItemList.hover .item:hover:before {
@@ -118,6 +157,21 @@
         height: 20px;
         box-shadow: 0 0 1px 1px #e4fde1;
         margin-bottom: 10px;
+    }
+    
+    #ctnFilter .btnToolGrp {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+    
+    #ctnFilter .btnTool {
+        cursor: pointer;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        line-height: 1;
     }
     
     .navBottom {
@@ -240,7 +294,12 @@
     </div>
 </div>
 <div id="ctnFilter">
-    <div class="workspace">
+    <div class="workspace"></div>
+    <div class="btnToolGrp c-clear-float">
+        <div class="btnTool" data-actio="revert">
+            <span class="icon iconfont icon-revert"></span>
+            <span class="text">重置</span>
+        </div>
     </div>
 </div>
 <div id="ctnItemList" class="scrollBar">

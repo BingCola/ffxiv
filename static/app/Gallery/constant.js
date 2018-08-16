@@ -33,7 +33,6 @@ var CONSTANT = {
             6: { text: '奥拉' }
         },
         JOB: {
-            0: { text: '不限', val: 0 },
             1: { text: '骑士', val: 1 },
             2: { text: '黑骑士', val: 2 },
             3: { text: '战士', val: 3 },
@@ -51,7 +50,6 @@ var CONSTANT = {
             15: { text: '能工巧匠', val: 15 },
         },
         GENDER: {
-            0: { text: '不限', val: 0 },
             1: { text: '男性', val: 1 },
             2: { text: '女性', val: 2 },
         }

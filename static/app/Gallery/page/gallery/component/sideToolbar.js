@@ -12,8 +12,7 @@
             this.attachEvent();
         }
         initOption() {
-            this.option = [
-                {
+            this.option = [{
                     field: "job",
                     title: "职业",
                     mode: "single",
@@ -58,12 +57,11 @@
                     mode: "multi",
                     hover: false,
                     list: [
-                        { content: "不限", color: "transparent", val: 0 },
                         { content: "红", color: "red", val: 1 },
                         { content: "蓝", color: "blue", val: 2 },
                         { content: "黄", color: "yellow", val: 3 },
                         { content: "绿", color: "green", val: 4 },
-                        { content: "紫", color: "pueple", val: 5 },
+                        { content: "紫", color: "purple", val: 5 },
                         { content: "粉", color: "pink", val: 6 },
                         { content: "灰", color: "grey", val: 7 },
                         { content: "白", color: "white", val: 8 },
@@ -101,7 +99,8 @@
                 dom.className = "item";
                 dom.dataset.field = field.field;
                 dom.dataset.mode = field.mode;
-                item.text && (dom.innerHTML = item.text);
+                // item.text && (dom.innerHTML = `<span class="text" data-text="${item.text}">${item.text}</span>`);
+                item.text && (dom.innerHTML = `${item.text}`);
                 field.onItemDomCreate && field.onItemDomCreate(dom, item);
                 listCtn.appendChild(dom);
             });
