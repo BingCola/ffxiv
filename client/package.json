@@ -5,15 +5,21 @@
   "main": "index.js",
   "author": "john",
   "license": "MIT",
-  "scripts":{
-    "hot-server": "cross-env NODE_ENV=development node --trace-warnings ./node_modules/webpack-dev-server/bin/webpack-dev-server --config ./webpack.config.dev.js",
-    "build": "cross-env NODE_ENV=production node --trace-warnings ./node_modules/webpack/bin/webpack --config webpack.config.prod.js --progress --profile --colors",
+  "scripts": {
+    "hot-server": "cross-env NODE_ENV=development node --trace-warnings -r babel-register ./node_modules/webpack-dev-server/bin/webpack-dev-server --config webpack.config.dev.js",
+    "build": "cross-env NODE_ENV=production node --trace-warnings -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.prod.js --progress --profile --colors",
     "dev": "cross-env START_HOT=1 npm run hot-server",
     "cleanup": ""
   },
   "dependencies": {
     "babel": "^6.23.0",
+    "babel-register": "^6.26.0",
+    "cross-env": "^5.2.0",
     "jquery": "^3.3.1",
-    "webpack": "^4.17.1"
+    "webpack": "^4.17.1",
+    "webpack-cli": "^3.1.0"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.1.7"
   }
 }

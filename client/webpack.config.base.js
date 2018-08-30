@@ -4,7 +4,7 @@
 
 import path from 'path';
 export const chunks = {
-    app: [path.join(__dirname, './index.js')]
+    app: [path.join(__dirname, './src/index.js')]
 };
 
 export default {
