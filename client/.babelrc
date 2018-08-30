@@ -1,0 +1,11 @@
+{
+    "presets": [
+        [
+            "env",
+            {
+                "targets": { "android": 4, "ios": 8, "chrome": 55 }
+            }
+        ],
+        "stage-0"
+    ]
+}

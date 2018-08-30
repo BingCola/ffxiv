@@ -3,6 +3,7 @@
  */
 
 import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 export const chunks = {
     app: [path.join(__dirname, './src/index.js')]
 };
@@ -121,7 +122,7 @@ export default {
             hash: true,
             title: 'FFXIV幻化回廊',
             filename: 'app-dev.html',
-            template: 'index.ejs',
+            template: './src/index.ejs',
             alwaysWriteToDisk: true,
             chunks: ['app'],
             chunksSortMode: 'manual',
