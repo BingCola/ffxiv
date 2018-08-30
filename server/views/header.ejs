@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title><%=title%></title>
+    <link href="<%=path%>/image/common/favicon.ico" rel="shortcut icon" />
+    <% if (typeof style != 'undefined'){%>
+        <%style.forEach(function(link){%>
+            <link rel="stylesheet" type="text/css" href="<%=path%><%=link%>">
+        <%})%>
+    <%}%>
+</head>
+
+<body>

@@ -1,0 +1,522 @@
+<style>
+    body {
+        background: linear-gradient(rgb(3, 11, 40), black);
+        background: -webkit-linear-gradient(rgb(3, 11, 40), black);
+        color: white;
+    }
+    /*#panelFilter {*/
+    /*padding: 5px 10px;*/
+    /*width: calc(100% - 80px);*/
+    /*position: relative;*/
+    /*background: rgba(255,255,255,0.1);*/
+    /*margin: 20px 40px;*/
+    /*box-shadow: 0 0 20px 1px rgba(230, 219, 219, 0.5);*/
+    /*}*/
+    /*#panelFilter .divPanelToolBlur{*/
+    /*top: auto;*/
+    /*bottom:10px;*/
+    /*}*/
+    
+    #containerMain {
+        margin: 0;
+        width: 100%;
+        left: 0;
+        overflow-y: hidden;
+    }
+    
+    #panelContentWrap {
+        overflow: auto;
+        height: 100%;
+        width: calc(100% - 100px);
+        position: relative;
+        left: 100px;
+        padding: 0 2.5%;
+    }
+    
+    #panelMultiIndex {
+        display: inline-block;
+        position: relative;
+        float: left;
+        width: calc(97% - 360px);
+        padding-bottom: 42px;
+        margin-right: 3%;
+    }
+    
+    #panelDetail {
+        display: inline-block;
+        position: relative;
+        float: right;
+        width: 360px;
+        margin: 15px 0;
+        padding: 1% 1.5%;
+        max-height: calc(100% - 30px);
+        background-color: rgba(255, 255, 255, 0.1);
+        overflow: auto;
+    }
+    
+    .divIndexTtl {
+        height: 52px;
+        display: none;
+    }
+    
+    .indexTtlItem {
+        display: inline-block;
+        float: left;
+        width: 25%;
+        text-align: center;
+        font-size: 20px;
+        padding: 10px;
+        border: 2px solid white;
+    }
+    
+    .divMultiIndex {
+        position: relative;
+        padding: 30px;
+        opacity: 0.25;
+        -webkit-transition: opacity 0.3s;
+        transition: opacity 0.3s;
+    }
+    
+    .divMultiIndex.focus {
+        opacity: 1;
+    }
+    /*.divMultiIndex:hover .divInfoBg{*/
+    /*opacity: 1;*/
+    /*}*/
+    
+    .divMultiIndex:after,
+    .divMultiIndex:before {
+        content: '';
+        opacity: 0;
+        position: absolute;
+        display: inline-block;
+        -webkit-transition: opacity 0.3s, right 0.3s;
+        transition: opacity 0.3s, right 0.3s;
+        width: 25%;
+        height: 0;
+        right: 50%;
+        box-shadow: 0 0 1px 1px white;
+        transform: translate(-15px, -15px);
+    }
+    
+    .divMultiIndex:after {
+        bottom: 0;
+    }
+    
+    .divMultiIndex:before {}
+    
+    .divMultiIndex.focus:before,
+    .divMultiIndex.focus:after {
+        opacity: 1;
+        right: 0;
+    }
+    
+    .divOverview {
+        position: absolute;
+        z-index: 3;
+        left: 30px;
+        top: 30px;
+        width: calc(75% - 60px);
+        overflow: hidden;
+        display: inline-block;
+        height: calc(100% - 60px);
+    }
+    
+    .divInfoBg {
+        transition: opacity 0.3s;
+        -webkit-transition: opacity 0.3s;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        opacity: 0;
+        background: linear-gradient(left, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+        background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+    }
+    
+    .imgOverview {
+        width: calc(100% - 60px);
+        height: calc(100% - 60px);
+        display: inline-block;
+        background-size: 100%;
+        position: absolute;
+        -webkit-transition: opacity 0.3s;
+        transition: opacity 0.3s;
+    }
+    
+    .imgOverview:before,
+    .imgOverview:after {
+        content: '';
+        opacity: 0;
+        position: absolute;
+        width: 0;
+        height: 25%;
+        right: -30px;
+        box-shadow: 0 0 1px 1px white;
+        transform: translate(-15px, -15px);
+    }
+    
+    .imgOverview.imgAlt:before,
+    .imgOverview.imgAlt:after {
+        content: inherit;
+    }
+    
+    .imgOverview:before {
+        top: -50%;
+        -webkit-transition: opacity 0.3s, top 0.3s;
+        transition: opacity 0.3s, top 0.3s;
+    }
+    
+    .imgOverview:after {
+        bottom: -50%;
+        -webkit-transition: opacity 0.3s, bottom 0.3s;
+        transition: opacity 0.3s, bottom 0.3s;
+    }
+    
+    .divMultiIndex.focus .imgOverview:before,
+    .divMultiIndex.focus .imgOverview:after {
+        opacity: 1;
+    }
+    
+    .divMultiIndex.focus .imgOverview:before {
+        top: 0;
+    }
+    
+    .divMultiIndex.focus .imgOverview:after {
+        bottom: -30px;
+    }
+    
+    .divMultiIndex .spName {
+        display: inline-block;
+        position: relative;
+        font-size: 28px;
+        padding: 2.5% 0 10px 4%;
+        text-shadow: 0 0 25px #000, 0 0 35px red;
+    }
+    
+    .divMultiIndex.imgAlt .imgOverview.imgAlt {
+        opacity: 1;
+        z-index: 1;
+    }
+    
+    .divMultiIndex.imgAlt .imgOverview {
+        opacity: 0;
+        z-index: 0;
+    }
+    
+    .imgOverview.imgAlt {
+        z-index: 0;
+        opacity: 0;
+    }
+    /*.divMultiIndex .btnDoCollect{
+    opacity: 0;
+}
+.divOverview:hover .btnDoCollect {
+    opacity: 1;
+}
+.divPartImgShow:hover .btnDoCollect{
+    opacity: 1;
+}*/
+    
+    .divMultiIndex .divTtl {
+        position: relative;
+    }
+    
+    .divMultiIndex .divIndexBtnGrp {
+        display: inline-block;
+        color: white;
+        font-size: 20px;
+        margin-left: 20px;
+        text-shadow: 0 0 25px #000, 0 0 35px red;
+    }
+    
+    .divIndexBtnGrp>span {
+        margin: 0 10px;
+        cursor: pointer;
+        opacity: 0.1;
+        -webkit-transform: scale(0);
+        -moz-transform: scale(0);
+        -ms-transform: scale(0);
+        -o-transform: scale(0);
+        transform: scale(0);
+    }
+    
+    .divMultiIndex.focus .divIndexBtnGrp>span {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        transform: scale(1);
+        transition: 0.2s;
+    }
+    
+    .divMultiIndex.focus .divIndexBtnGrp>span:nth-child(1) {
+        transition-delay: 0.25s;
+    }
+    
+    .divMultiIndex.focus .divIndexBtnGrp>span:nth-child(2) {
+        transition-delay: 0.35s;
+    }
+    
+    .spPartContent {
+        display: inline-block;
+    }
+    
+    .divInfo {
+        display: inline-block;
+        position: relative;
+        left: 0;
+        top: 20px;
+        padding-left: 4%;
+    }
+    
+    .divInfo .spInfo {
+        padding: 5px;
+        font-size: 16px;
+        display: block;
+    }
+    
+    .divMultiIndex>.divPartIndex {
+        position: absolute;
+        bottom: 0;
+        width: 50%;
+        height: initial;
+        left: 25%;
+    }
+    
+    .divPartIndexTtl {
+        border: 1px solid white;
+        text-align: center;
+        font-size: 20px;
+        padding: 5px;
+    }
+    
+    .spPartIndex {
+        width: 10%;
+        display: inline-block;
+        cursor: pointer;
+        opacity: 0.5;
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        transform: scale(1);
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        -ms-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        transition: all 0.3s;
+    }
+    
+    .spPartIndex.selected {
+        opacity: 1;
+        -webkit-transform: scale(1.2);
+        -moz-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        -o-transform: scale(1.2);
+        transform: scale(1.2);
+        :
+    }
+    
+    .imgPartIndex {
+        height: 100%;
+        width: 100%;
+    }
+    
+    .divPartImg {
+        width: 25%;
+    }
+    
+    .divPartImg .imgPart {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    
+    .divPartImg .divPartImgShow {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        backface-visibility: hidden;
+        -webkit-transition: -webkit-transform 0.3s;
+        -moz-transition: -moz-transform 0.3s;
+        -ms-transition: -ms-transform 0.3s;
+        -o-transition: -o-transform 0.3s;
+        transition: transform 0.3s;
+    }
+    
+    .divPartImg .divPartImgShow.focus {
+        -webkit-transform: rotateY(0deg);
+        -moz-transform: rotateY(0deg);
+        -ms-transform: rotateY(0deg);
+        -o-transform: rotateY(0deg);
+        transform: rotateY(0deg);
+    }
+    
+    .divPartImg .divPartImgShow {
+        -webkit-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+        -ms-transform: rotateY(180deg);
+        -o-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+    }
+    
+    #panelDetail {
+        transition: transform 0.3s;
+        -webkit-transition: -webkit-transform 0.3s;
+        transition-timing-function: ease-out;
+        -moz-transition-timing-function: ease-out;
+        /* Firefox 4 */
+        -webkit-transition-timing-function: ease-out;
+    }
+    
+    #panelDetail .divDetail {
+        position: relative;
+        opacity: 0;
+        transform: translateY(100%);
+        display: none;
+    }
+    
+    #panelDetail .divDetail.focus {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+        /*animation: detailToggleIn 0.3s;*/
+    }
+    
+    #panelDetail .divDetail .spInfo {
+        display: block;
+    }
+    
+    #panelDetail .divDetail .spName {
+        font-size: 22px;
+        display: block;
+        padding-bottom: 3px;
+        border-bottom: 2px solid;
+        margin-bottom: 5px;
+    }
+    
+    #panelDetail .divConsist {
+        position: relative;
+        margin-top: 8px;
+        padding-top: 10px;
+        border-top: 2px solid;
+    }
+    
+    #panelDetail .divConsist:before {}
+    
+    #panelDetail .divPartLeft {
+        width: 35px;
+        display: inline-block;
+        position: relative;
+        vertical-align: top;
+    }
+    
+    #panelDetail .divPartOverview {
+        display: inline-block;
+        width: calc(100% - 70px);
+        height: 245px;
+        position: relative;
+        vertical-align: top;
+        text-align: center;
+    }
+    
+    #panelDetail .divPartRight {
+        width: 35px;
+        display: inline-block;
+        position: relative;
+        vertical-align: top;
+    }
+    
+    #panelDetail .divPartRight .spPart {
+        margin-bottom: 7px;
+    }
+    
+    #panelDetail .divPartRight .spPart:last-of-type {
+        margin-bottom: 0;
+    }
+    
+    #panelDetail .spPart {
+        width: 100%;
+        display: inline-block;
+    }
+    
+    #panelDetail .spPart>img {
+        width: 100%;
+        -webkit-filter: grayscale(100%);
+        filter: grayscale(100%);
+        cursor: not-allowed;
+    }
+    
+    #panelDetail .spPart.active>img {
+        cursor: default;
+        -webkit-filter: grayscale(0);
+        filter: grayscale(0);
+    }
+    
+    #panelDetail .imgPartOverview {
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        left: 0;
+        position: absolute;
+        cursor: pointer;
+        background-size: contain;
+        background-position: 50%;
+        background-repeat: no-repeat;
+        -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+        transition: transform 0.3s, opacity 0.3s;
+        -webkit-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+        backface-visibility: hidden;
+    }
+    
+    #panelDetail .imgPartOverview.focus {
+        display: inline-block;
+        opacity: 1;
+        -webkit-transform: rotateY(0deg);
+        transform: rotateY(0deg);
+    }
+    
+    #panelDetail .divPartDetailCtn {}
+    
+    #panelDetail .divPartDetail {
+        margin-top: 5px;
+        display: none;
+    }
+    
+    #panelDetail .divPartDetail.focus {
+        display: block;
+    }
+    
+    #panelDetail .spPartName {
+        font-weight: bold;
+        margin-right: 10px;
+    }
+    /*#panelDetail .spPartSrc {*/
+    /*margin-top: 5px;*/
+    /*display: inline-block;*/
+    /*}*/
+    
+    #panelSideToolBar .btnHistory {
+        margin-bottom: 70px;
+    }
+    
+    #panelSideToolBar .btnPagination {
+        position: absolute;
+        bottom: 54px;
+        left: 0;
+        width: 100%;
+    }
+    
+    #panelSideToolBar .btnTop {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        left: 0;
+    }
+</style>

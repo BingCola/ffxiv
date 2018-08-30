@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <% for(var i=0, len=htmlWebpackPlugin.files.css.length; i<len; i++) {%>
+        <link href="<%= htmlWebpackPlugin.files.css[i] %>" rel="stylesheet">
+    <% } %>
+
+</head>
+
+<body>
+    
+    <% for(var i=0, len=htmlWebpackPlugin.files.js.length; i<len; i++) {%>
+        <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[i] %>"></script>
+    <% } %>
+</body>
+
+</html>
