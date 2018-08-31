@@ -3,13 +3,19 @@
  */
 
 import path from 'path';
+import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 export const chunks = {
     app: [path.join(__dirname, './src/index.js')]
 };
 
 export default {
-    entry: [...chunks],
+    entry: chunks,
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: '[name].[chunkhash].js',
+        publicPath: './dist'
+    },
     module: {
         rules: [
             {
@@ -105,28 +111,36 @@ export default {
             }
         ]
     },
-    output: {
-        path: path.resolve(__dirname, 'public'),
-        filename: '[name].[chunkhash].js',
-        publicPath: './public'
-    },
     resolve: {
         extensions: ['.js', '.jsx', '.json', '.css'],
         modules: [__dirname, 'node_modules'],
-        alias: {
-            common: path.resolve(__dirname, './app/common')
-        }
+        alias: {}
     },
     plugins: [
         new HtmlWebpackPlugin({
             hash: true,
             title: 'FFXIV幻化回廊',
-            filename: 'app-dev.html',
+            filename: './index.dev/index.html',
             template: './src/index.ejs',
             alwaysWriteToDisk: true,
             chunks: ['app'],
             chunksSortMode: 'manual',
             inject: false
+        }),
+        new HtmlWebpackPlugin({
+            hash: true,
+            title: '多页面测试',
+            filename: './index.dev/indexTest.html',
+            template: './src/index.ejs',
+            alwaysWriteToDisk: true,
+            chunks: ['app'],
+            chunksSortMode: 'manual',
+            inject: false
+        }),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            moment: 'moment'
         })
     ]
 };

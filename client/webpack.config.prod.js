@@ -4,4 +4,6 @@ import merge from 'webpack-merge';
 
 import base from './webpack.config.base';
 
-export default merge(base, {});
+export default merge(base, {
+    mode: 'production'
+});

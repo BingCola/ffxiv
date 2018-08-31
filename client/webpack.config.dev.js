@@ -8,11 +8,16 @@ import HtmlWebpackHarddiskPlugin from 'html-webpack-harddisk-plugin';
 const port = '7777';
 
 export default merge(base, {
+    mode: 'development',
+    output: {
+        filename: '[name].js'
+    },
     plugins: [
         new webpack.NamedModulesPlugin(),
         new HtmlWebpackHarddiskPlugin({
             outputPath: __dirname
-        })
+        }),
+        new webpack.HotModuleReplacementPlugin()
     ],
     devServer: {
         hot: true,
@@ -23,7 +28,9 @@ export default merge(base, {
         disableHostCheck: true,
         historyApiFallback: {
             verbose: true,
-            index: '/app-dev.html'
-        }
+            index: '/index.dev/index.html',
+            rewrites: [{ from: /^\/test$/, to: '/index.dev/indexTest.html' }]
+        },
+        publicPath: '/dist'
     }
 });

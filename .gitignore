@@ -2,3 +2,4 @@
 material
 node_modules
 *.log
+index.dev
