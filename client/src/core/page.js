@@ -4,7 +4,8 @@ export default class Page {
         this.init();
     }
     init() {
-        this.initVariable();
+        this.initCommonVariable();
+        this.initCustomVariable();
         this.initOption();
         this.registerComponents();
         this.setLayout();
@@ -19,9 +20,14 @@ export default class Page {
     get aysnc() {
         return [];
     }
-    initVariable() {}
+    initCommonVariable() {
+        this._aysnc = [];
+    }
+    initCustomVariable() {}
     initOption() {}
     registerComponents() {}
     setLayout() {}
+    open() {}
     destroy() {}
+    close() {}
 }
