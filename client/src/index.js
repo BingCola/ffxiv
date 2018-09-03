@@ -1,4 +1,4 @@
-$(document).ready(() => {
-    console.log('document ready');
-    console.log(moment().format('YYYY-MM-DD'));
-});
+import config from './config';
+import router from './common/router';
+
+const AppConfig = config;
