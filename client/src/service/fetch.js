@@ -1,19 +1,19 @@
-import { API_HOST } from './config';
+import { HOST } from '../config';
 
 export default class Fetch {
     constructor(opt) {
         this.option = opt;
     }
 
-    get DEFAULT_OPTION() {
+    get CONFIG() {
         return {
-            host: API_HOST
+            HOST: HOST
         };
     }
 
     get DEFAULT_REQUEST_OPTION() {
         return {
-            method: 'post',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -29,7 +29,6 @@ export default class Fetch {
                     return data;
                 } else if (typeof data === 'string') {
                     if (/^\s*</.test(data)) {
-                        //请求为HTML，直接返回
                         return data;
                     }
                     try {
@@ -44,8 +43,10 @@ export default class Fetch {
     }
 
     get(url, data, option = {}) {
-        var url = arguments[0];
-        return $.ajax({ url: url, type: 'Get', contentType: 'application/json' });
+        url += this.CONFIG.HOST;
+        option = Object.assign({}, this.DEFAULT_REQUEST_OPTION, option);
+        option.type = 'GET';
+        return $.ajax({ url: url, type: 'GET', contentType: 'application/json' });
     }
     post(url, data, option = {}) {
         var url = arguments[0];
@@ -57,4 +58,5 @@ export default class Fetch {
             contentType: 'application/json'
         });
     }
+    abort() {}
 }

@@ -6,7 +6,7 @@ import path from 'path';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 export const chunks = {
-    app: [path.join(__dirname, './src/index.js')]
+    home: [path.join(__dirname, './src/pages/Home/index.js')]
 };
 
 export default {
@@ -24,12 +24,12 @@ export default {
                 exclude: [/node_modules/]
             },
             {
-                test: /.sass$/,
-                exclude: [path.resolve(__dirname, 'node_modules')],
+                test: /.scss$/,
+                include: [path.resolve(__dirname, 'node_modules'), path.resolve(__dirname, 'theme')],
                 use: ['style-loader', 'css-loader', 'sass-loader']
             },
             {
-                test: /.sass$/,
+                test: /.scss$/,
                 exclude: [path.resolve(__dirname, 'node_modules'), path.resolve(__dirname, 'theme')],
                 use: [
                     {
@@ -120,20 +120,10 @@ export default {
         new HtmlWebpackPlugin({
             hash: true,
             title: 'FFXIV幻化回廊',
-            filename: './index.dev/index.html',
+            filename: './index.dev/home.html',
             template: './src/index.ejs',
             alwaysWriteToDisk: true,
-            chunks: ['app'],
-            chunksSortMode: 'manual',
-            inject: false
-        }),
-        new HtmlWebpackPlugin({
-            hash: true,
-            title: '多页面测试',
-            filename: './index.dev/indexTest.html',
-            template: './src/index.ejs',
-            alwaysWriteToDisk: true,
-            chunks: ['app'],
+            chunks: ['home'],
             chunksSortMode: 'manual',
             inject: false
         }),

@@ -1,13 +1,35 @@
+import Router from '../../core/router';
+import Api from '../../service/api';
+
 import Base from '../../core/page';
 import Html from './index.html';
-import Style from './index.sass';
+import Style from './index.scss';
 
 export default class Page extends Base {
     constructor() {
         super(...arguments);
     }
+    get router() {
+        return router;
+    }
+    get api() {
+        return api;
+    }
     open() {}
-    setLayout() {}
+    setLayout() {
+        container.innerHTML = Html;
+    }
 }
 
-new Page();
+const container = document.getElementById('root');
+const api = new Api();
+
+const router = new Router({
+    root: 'Home',
+    path: [
+        {
+            name: 'Home',
+            constructor: Page
+        }
+    ]
+});

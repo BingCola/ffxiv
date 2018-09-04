@@ -1,3 +1,5 @@
-export const API_HOST = `/`;
+export const HOST = `/`;
 
-export const oss = '';
+export const PATH = {
+    IMAGE: '/images'
+};

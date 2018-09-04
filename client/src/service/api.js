@@ -1,6 +1,6 @@
 import Fetch from './fetch';
 
-export default class Api {
+export default class Api extends Fetch {
     login(data) {
         return this.post('/user/login', data);
     }

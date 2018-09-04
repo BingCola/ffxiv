@@ -9,6 +9,7 @@ const port = '7777';
 
 export default merge(base, {
     mode: 'development',
+    devtool: 'eval-source-map',
     output: {
         filename: '[name].js'
     },
@@ -28,7 +29,7 @@ export default merge(base, {
         disableHostCheck: true,
         historyApiFallback: {
             verbose: true,
-            index: '/index.dev/index.html',
+            index: '/index.dev/home.html',
             rewrites: [{ from: /^\/test$/, to: '/index.dev/indexTest.html' }]
         },
         publicPath: '/dist'

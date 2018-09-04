@@ -18,6 +18,9 @@ export default class Router {
     get path() {
         return this.option.path || [];
     }
+    set current(page) {
+        this._current = page;
+    }
     get current() {
         return this._current;
     }
@@ -28,6 +31,8 @@ export default class Router {
         this.initVariable();
         this.initOption();
         this.attachEvent();
+
+        this.toFirstPage();
     }
     initVariable() {
         this._current = {};
@@ -81,18 +86,19 @@ export default class Router {
     to() {
         var constructor = this.getConstructorByName(arguments[0]);
         var param = Array.prototype.slice.bind(arguments)(1);
+        if (!constructor) return;
         this.current.close && this.current.close();
 
         this.option.event.onToggle && this.option.event.onToggle();
         this.current = new constructor(...param);
 
-        this.path.push({ ins: page, cls: page, param: param });
+        this.path.push({ ins: this.current, cls: constructor, param: param });
     }
     toFirstPage() {
         if (location.hash) {
             this.toggle(location.hash);
         } else {
-            this.show(this.option.root);
+            this.open(this.option.root);
         }
     }
 
@@ -156,7 +162,7 @@ export default class Router {
     }
 
     getConstructorByName(name) {
-        for (i = 0; i < this.path.length; i++) {
+        for (let i = 0; i < this.path.length; i++) {
             if (this.path[i].name == name) {
                 return this.path[i].constructor;
             }
