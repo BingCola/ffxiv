@@ -15,9 +15,15 @@ export default class Page extends Base {
     get api() {
         return api;
     }
+    get container() {
+        return container;
+    }
+    registerComponents() {
+        this.cmpt = {};
+    }
     open() {}
     setLayout() {
-        container.innerHTML = Html;
+        this.container.innerHTML = Html;
     }
 }
 

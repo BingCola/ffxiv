@@ -1,0 +1,238 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+    font-family: Helvetica, 'Microsoft Yahei';
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    font-family: Helvetica, 'Microsoft Yahei';
+    margin: 0;
+}
+
+/*layout*/
+
+$c: c;
+.c-page {
+    height: 100%;
+    overflow: auto;
+    position: relative;
+}
+
+.c-page-header + .c-page {
+    height: calc(100% - 44px);
+    top: 44px;
+}
+
+.c-page-body {
+    position: relative;
+    width: 100%;
+}
+
+.c-page-header {
+    position: fixed;
+    width: 100%;
+    height: 44px;
+}
+
+.c-page-footer {
+    position: relative;
+    width: 100%;
+}
+
+.c-clear-float:before {
+    content: '';
+    display: table;
+}
+
+.c-clear-float:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.c-wrap {
+    display: inline-block;
+}
+
+.c-clear-float.fluid > .c-wrap {
+    float: left;
+}
+
+.c-flex {
+    display: flex;
+    display: -webkit-flex;
+}
+
+.c-flex.inline {
+    display: inline-flex;
+    display: -webkit-inline-flex;
+}
+
+.c-flex.horizontal.center {
+    justify-content: cetner;
+    -webkit-justify-content: cetner;
+}
+
+.c-flex.vertical.center {
+    align-items: cetner;
+    -webkit-align-items: cetner;
+}
+
+.c-hide {
+    display: none;
+}
+
+/*img*/
+
+.c-portrait {
+    width: 100%;
+    height: 100%;
+}
+
+/*img*/
+
+/*btn*/
+
+.c-btn {
+    cursor: pointer;
+}
+
+/*btn*/
+
+/*popover*/
+
+.c-interact .c-popover {
+    display: none;
+    position: absolute;
+}
+
+.c-interact .c-popover[data-theme='light'] {
+    background: white;
+    color: black;
+}
+
+.c-interact[data-toggle='hover']:hover .c-popover {
+    display: block;
+}
+
+/*popover*/
+
+/*slide*/
+
+.c-slide-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.c-slide-wrap .c-slide-btn {
+    top: 0;
+    cursor: pointer;
+}
+
+.c-slide-wrap .c-slide-list-wrap {
+    margin: 0 15px;
+}
+
+.c-slide-wrap .c-slide-list {
+    white-space: nowrap;
+}
+
+.c-slide-wrap .c-slide-list:before {
+    content: '';
+    display: table;
+}
+
+.c-slide-wrap .c-slide-list:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.c-slide-wrap .c-slide {
+    position: relative;
+    display: inline-block;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.c-slide-wrap .c-slide-list-wrap {
+    width: 100%;
+    overflow: hidden;
+}
+
+.c-slide-wrap .c-slide-img {
+    width: 100%;
+}
+
+.c-slide-wrap .c-slide-title {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.c-slide-wrap[data-in-view='3'] .c-slide {
+    width: calc(33.3333% - 10px);
+}
+
+.c-slide-wrap[data-in-view='4'] .c-slide {
+    width: calc(25% - 10px);
+}
+
+/*slide*/
+
+/*input*/
+
+.c-wrap-input {
+    border-collapse: separate;
+}
+
+.c-wrap-input .c-input {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+}
+
+/*input*/
+
+/*input-check*/
+
+.c-wrap-check {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.c-wrap-check .c-check-icon {
+    font-family: 'iconfont' !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    margin-right: 5px;
+}
+
+.c-wrap-check .c-check-icon::before {
+    content: '\e632';
+}
+
+.c-wrap-check.checked .c-check-icon::before {
+    content: '\e622';
+}
+
+.c-wrap-check .c-check-text {
+}
+
+/*input-check*/
