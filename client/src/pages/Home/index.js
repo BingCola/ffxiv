@@ -1,7 +1,7 @@
 import Router from '../../core/router';
 import Api from '../../service/api';
 
-import Base from '../../core/page';
+import Base from 'page';
 import Html from './index.html';
 import Style from './index.scss';
 

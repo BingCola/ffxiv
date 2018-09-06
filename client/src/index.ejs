@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <link href="<%= htmlWebpackPlugin.options.favicon %>" rel="shortcut icon" />
     <title><%= htmlWebpackPlugin.options.title %></title>
     <% for(var i=0, len=htmlWebpackPlugin.files.css.length; i<len; i++) {%>
         <link href="<%= htmlWebpackPlugin.files.css[i] %>" rel="stylesheet">

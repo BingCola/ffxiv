@@ -113,12 +113,19 @@ export default {
     },
     resolve: {
         extensions: ['.js', '.jsx', '.json', '.css'],
-        modules: [__dirname, path.resolve(__dirname, './core'), path.resolve(__dirname, 'components'), path.resolve(__dirname, 'theme'), 'node_modules'],
+        modules: [
+            __dirname,
+            path.resolve(__dirname, 'src/service'),
+            path.resolve(__dirname, 'src/core'),
+            path.resolve(__dirname, 'src/components'),
+            path.resolve(__dirname, 'src/theme'),
+            'node_modules'
+        ],
         alias: {}
     },
     plugins: [
         new HtmlWebpackPlugin({
-            favicon: './favicon.ico',
+            favicon: './src/images/common/favicon.ico',
             hash: true,
             title: 'FFXIV幻化回廊',
             filename: './index.dev/home.html',
