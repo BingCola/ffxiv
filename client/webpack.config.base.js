@@ -25,23 +25,23 @@ export default {
             },
             {
                 test: /.scss$/,
-                include: [path.resolve(__dirname, 'node_modules'), path.resolve(__dirname, 'theme')],
+                include: [path.resolve(__dirname, 'node_modules'), path.resolve(__dirname, 'src/theme')],
                 use: ['style-loader', 'css-loader', 'sass-loader']
             },
             {
                 test: /.scss$/,
-                exclude: [path.resolve(__dirname, 'node_modules'), path.resolve(__dirname, 'theme')],
+                exclude: [path.resolve(__dirname, 'node_modules'), path.resolve(__dirname, 'src/theme')],
                 use: [
                     {
                         loader: 'style-loader' // creates style nodes from JS strings
                     },
                     {
-                        loader: 'css-loader', // translates CSS into CommonJS
-                        options: {
-                            modules: true,
-                            importLoaders: 1,
-                            localIdentName: '[name]__[local]__[hash:base64:5]'
-                        }
+                        loader: 'css-loader' // translates CSS into CommonJS
+                        // options: {
+                        //     modules: true,
+                        //     importLoaders: 1,
+                        //     localIdentName: '[name]__[local]__[hash:base64:5]'
+                        // }
                     },
                     {
                         loader: 'sass-loader' // compiles Less to CSS

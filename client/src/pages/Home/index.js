@@ -1,3 +1,5 @@
+import 'c.ui.scss';
+
 import Router from '../../core/router';
 import Api from '../../service/api';
 
@@ -23,7 +25,7 @@ export default class Page extends Base {
     }
     open() {}
     setLayout() {
-        this.container.innerHTML = Html;
+        this.container.innerHTML = Html.format();
     }
 }
 

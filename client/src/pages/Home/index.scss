@@ -1,0 +1,219 @@
+.panelRecommend {
+    position: relative;
+    height: calc(100vh - 44px);
+    width: 100%;
+}
+
+.panelRecommend .ctnItemPic {
+    height: 100%;
+    width: 100%;
+}
+
+.panelRecommend .ctnItemPic > .item.focus {
+    display: block;
+}
+
+.panelRecommend .ctnItemPic > .item {
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+
+.panelRecommend .ctnItemPic .wrapImg {
+    width: 100%;
+    height: 100%;
+}
+
+.panelRecommend .ctnItemPic .img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: contain;
+}
+
+.panelRecommend .ctnItemPic .img:first-child {
+    object-fit: cover;
+}
+
+.panelRecommend .ctnItemPic .text {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    font-size: 24px;
+    color: #ccc;
+    text-shadow: 0 0 1px black, 0 0 3px blue;
+}
+
+.panelWorksSection {
+    margin: 60px auto;
+    width: 100%;
+    max-width: 1080px;
+    height: 490px;
+}
+
+.panelWorksSection .ctnLatest {
+    width: 75%;
+    float: left;
+    height: 100%;
+    position: relative;
+}
+
+.panelWorksSection .ctnRecommend .body {
+    padding: 5px 0;
+}
+
+.panelWorksSection .ctnRecommend .c-label {
+    line-height: 50px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.panelWorksSection .panelWorksSectionPrime .c-label::before {
+    content: '';
+}
+
+.panelWorksSection.leftLatest .panelWorksSectionPrime .c-label {
+    float: right;
+}
+
+.panelWorksSection .header {
+    height: 50px;
+    position: relative;
+}
+
+.panelWorksSection .body {
+    width: 100%;
+    height: calc(100% - 50px);
+}
+
+.panelWorksSectionPrime .body .item {
+    height: 100%;
+    width: 100%;
+    display: none;
+}
+
+.panelWorksSectionPrime .body .item.focus {
+    display: block;
+}
+
+.panelWorksSectionPrime .body .item .text {
+    position: absolute;
+}
+
+.panelWorksSectionPrime .body .item .img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.panelWorksSection .panelWorksSectionLatest {
+    width: 25%;
+    float: left;
+    height: 100%;
+    padding-left: 15px;
+}
+
+.panelWorksSection.leftLatest .panelWorksSectionLatest {
+    padding-right: 15px;
+}
+
+.panelWorksSection .panelWorksSectionLatest .header {
+    line-height: 50px;
+    top: 10px;
+}
+
+.panelWorksSection .panelWorksSectionLatest .header .c-btn {
+    font-size: 12px;
+}
+
+.panelWorksSection .panelWorksSectionLatest .header .btnRefresh {
+    position: absolute;
+    right: 5px;
+}
+
+.panelWorksSection .panelWorksSectionLatest .item {
+    width: 100%;
+    height: 40px;
+    position: relative;
+    cursor: pointer;
+    padding-bottom: 5px;
+}
+
+.panelWorksSection .panelWorksSectionLatest .item .img {
+    height: calc(100% - 10px);
+    width: 120px;
+    display: none;
+    position: absolute;
+    object-fit: cover;
+    left: 0;
+}
+
+.panelWorksSection .panelWorksSectionLatest .item.bigMode {
+    height: 80px;
+    padding: 5px 5px 5px 125px;
+}
+
+.panelWorksSection .panelWorksSectionLatest .item.bigMode img {
+    display: inline-block;
+}
+
+.panelWorksSection .panelWorksSectionLatest .item.bigMode .text {
+    font-size: 16px;
+    display: block;
+}
+
+.panelWorksSection .panelWorksSectionLatest .item .text {
+    display: block;
+}
+
+.panelWorksSection .panelWorksSectionLatest .item .author {
+    color: #ccc;
+    font-size: 12px;
+    position: absolute;
+    bottom: 5px;
+}
+
+.panelWorksSection .panelWorksSectionLatest .item .date {
+    font-size: 12px;
+    color: #ccc;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+#panelRoutes {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1080px;
+    height: 360px;
+    margin-top: 120px;
+}
+
+.ctnEntrance {
+    width: 23%;
+    float: left;
+    height: 100%;
+    margin: 0 1%;
+    position: relative;
+    cursor: pointer;
+}
+
+.ctnEntrance .entranceBg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ctnEntrance .title {
+    position: absolute;
+    display: block;
+    text-align: center;
+    width: 100%;
+    bottom: 0;
+    height: 50%;
+    font-size: 24px;
+    line-height: 240px;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
+}
