@@ -1,35 +1,35 @@
 import Fetch from './fetch';
 
-export default class Api extends Fetch {
+export default {
     login(data) {
-        return this.post('/user/login', data);
-    }
+        return Fetch.post('/user/login', data);
+    },
     loginInVisitor(data) {
-        return this.post('/user/login/visitor', data);
-    }
+        return Fetch.post('/user/login/visitor', data);
+    },
     getUserMessageNumber(id) {
-        return this.get('/user/getMessageNum/' + id);
-    }
+        return Fetch.get('/user/getMessageNum/' + id);
+    },
     getUserDetail(id) {
-        return this.get('/user/info/' + id);
-    }
+        return Fetch.get('/user/info/' + id);
+    },
 
     getTopGalleryItem(limit) {
-        return this.get(`/gallery/getItem/top/${limit}`);
-    }
+        return Fetch.get(`/gallery/getItem/top/${limit}`);
+    },
     getPrimeGalleryItem(data) {
-        return this.post('/gallery/getItem/prime', data);
-    }
+        return Fetch.post('/gallery/getItem/prime', data);
+    },
     getLatestGalleryItem(data) {
-        return this.post('/gallery/getItem/latest', data);
-    }
+        return Fetch.post('/gallery/getItem/latest', data);
+    },
     getGalleryItemList(data) {
-        return this.post('/gallery/getItem/list', data);
-    }
+        return Fetch.post('/gallery/getItem/list', data);
+    },
     getGalleryItemDetail(id) {
-        return this.get(`/gallery/getItem/detail/${id}`);
-    }
+        return Fetch.get(`/gallery/getItem/detail/${id}`);
+    },
     getRelateGalleryItem(id) {
-        return this.get(`/gallery/getItem/relate/${id}`);
+        return Fetch.get(`/gallery/getItem/relate/${id}`);
     }
-}
+};

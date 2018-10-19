@@ -36,12 +36,12 @@ export default {
                         loader: 'style-loader' // creates style nodes from JS strings
                     },
                     {
-                        loader: 'css-loader' // translates CSS into CommonJS
-                        // options: {
-                        //     modules: true,
-                        //     importLoaders: 1,
-                        //     localIdentName: '[name]__[local]__[hash:base64:5]'
-                        // }
+                        loader: 'css-loader', // translates CSS into CommonJS
+                        options: {
+                            modules: true,
+                            importLoaders: 1,
+                            localIdentName: '[name]__[local]__[hash:base64:5]'
+                        }
                     },
                     {
                         loader: 'sass-loader' // compiles Less to CSS
@@ -115,6 +115,7 @@ export default {
         extensions: ['.js', '.jsx', '.json', '.css'],
         modules: [
             __dirname,
+            path.resolve(__dirname, 'src/common'),
             path.resolve(__dirname, 'src/service'),
             path.resolve(__dirname, 'src/core'),
             path.resolve(__dirname, 'src/components'),

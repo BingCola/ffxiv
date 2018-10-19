@@ -1,8 +1,6 @@
 import Router from './router';
 export default class Page {
-    constructor() {
-        this.init();
-    }
+    constructor() {}
     init() {
         this.initCommonVariable();
         this.initCustomVariable();
@@ -18,10 +16,20 @@ export default class Page {
         return '';
     }
     get aysnc() {
-        return [];
+        return this._aysnc || [];
     }
     initCommonVariable() {
         this._aysnc = [];
+
+        let apiStack = {};
+        Object.keys(this.api).forEach(api => {
+            apiStack[api] = () => {
+                let request = this.api[api]();
+                this._aysnc.push(request);
+                return request;
+            };
+        });
+        this.api = apiStack;
     }
     initCustomVariable() {}
     initOption() {}

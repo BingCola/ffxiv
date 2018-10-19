@@ -1,6 +1,7 @@
 export default class Router {
     constructor(opt) {
         this.option = opt || {};
+        this.container = this.option.container;
         this.init();
     }
     get DEFAULT_OPTION() {
@@ -91,6 +92,11 @@ export default class Router {
 
         this.option.event.onToggle && this.option.event.onToggle();
         this.current = new constructor(...param);
+        Object.keys(this.option.plugin).forEach(plugin => {
+            this.current[plugin] = this.option.plugin[plugin];
+        });
+        this.current.router = this;
+        this.current.init();
 
         this.path.push({ ins: this.current, cls: constructor, param: param });
     }
