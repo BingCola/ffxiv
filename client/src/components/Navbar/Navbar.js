@@ -1,18 +1,22 @@
-export default class Navbar {
-    constructor(opt, require) {
-        this.opt = opt;
-        this.require = require;
+import Base from '../component';
+import NavTop from './NavTop/NavTop.js';
+import NavBottom from './NavBottom/NavBottom.js';
+
+export default class Navbar extends Base {
+    constructor(option, require) {
+        super(null, option, require);
     }
 
-    get DEFAULT_OPTION() {
-        return {
-            template: `
-            `,
-            brand: ``
-        };
-    }
     init() {
-        this.initRequire();
-        this.initOption();
+        this.initNavTop();
+        this.initNavBottom();
+    }
+
+    initNavTop() {
+        if (this.option.navTop) this.navTop = new NavTop(this, this.option.navTop);
+    }
+
+    initNavBottom() {
+        if (this.option.navBottom) this.navbottom = new NavBottom(this, this.option.navBottom);
     }
 }

@@ -2,48 +2,44 @@
     position: relative;
     height: calc(100vh - 44px);
     width: 100%;
-}
 
-.panelRecommend .ctnItemPic {
-    height: 100%;
-    width: 100%;
-}
+    .ctnItemPic {
+        height: 100%;
+        width: 100%;
 
-.panelRecommend .ctnItemPic > .item.focus {
-    display: block;
-}
+        > .item {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
 
-.panelRecommend .ctnItemPic > .item {
-    display: none;
-    width: 100%;
-    height: 100%;
-}
-
-.panelRecommend .ctnItemPic .wrapImg {
-    width: 100%;
-    height: 100%;
-}
-
-.panelRecommend .ctnItemPic .img {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    object-fit: contain;
-}
-
-.panelRecommend .ctnItemPic .img:first-child {
-    object-fit: cover;
-}
-
-.panelRecommend .ctnItemPic .text {
-    position: absolute;
-    bottom: 15px;
-    left: 15px;
-    font-size: 24px;
-    color: #ccc;
-    text-shadow: 0 0 1px black, 0 0 3px blue;
+        > .item.focus {
+            display: block;
+        }
+        .wrapImg {
+            width: 100%;
+            height: 100%;
+        }
+        .img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            object-fit: contain;
+        }
+        .img:first-child {
+            object-fit: cover;
+        }
+        .text {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            font-size: 24px;
+            color: #ccc;
+            text-shadow: 0 0 1px black, 0 0 3px blue;
+        }
+    }
 }
 
 .panelWorksSection {
@@ -51,139 +47,141 @@
     width: 100%;
     max-width: 1080px;
     height: 490px;
+
+    .header {
+        height: 50px;
+        position: relative;
+    }
+
+    .body {
+        width: 100%;
+        height: calc(100% - 50px);
+    }
+
+    .ctnLatest {
+        width: 75%;
+        float: left;
+        height: 100%;
+        position: relative;
+    }
+    .ctnRecommend {
+        .body {
+            padding: 5px 0;
+        }
+
+        .c-label {
+            line-height: 50px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    }
+
+    .c-label::before {
+        content: '';
+    }
+
+    .panelWorksSectionLatest {
+        width: 25%;
+        float: left;
+        height: 100%;
+        padding-left: 15px;
+
+        .header {
+            line-height: 50px;
+            top: 10px;
+
+            .c-btn {
+                font-size: 12px;
+            }
+
+            .btnRefresh {
+                position: absolute;
+                right: 5px;
+            }
+        }
+        .item {
+            width: 100%;
+            height: 40px;
+            position: relative;
+            cursor: pointer;
+            padding-bottom: 5px;
+
+            .img {
+                height: calc(100% - 10px);
+                width: 120px;
+                display: none;
+                position: absolute;
+                object-fit: cover;
+                left: 0;
+            }
+            .text {
+                display: block;
+            }
+
+            .author {
+                color: #ccc;
+                font-size: 12px;
+                position: absolute;
+                bottom: 5px;
+            }
+
+            .date {
+                font-size: 12px;
+                color: #ccc;
+                position: absolute;
+                bottom: 5px;
+                right: 5px;
+            }
+        }
+        .item.bigMode {
+            height: 80px;
+            padding: 5px 5px 5px 125px;
+
+            .img {
+                display: inline-block;
+            }
+            .text {
+                font-size: 16px;
+                display: block;
+            }
+        }
+    }
+
+    .panelWorksSectionPrime {
+        .body {
+            .item {
+                height: 100%;
+                width: 100%;
+                display: none;
+
+                .text {
+                    position: absolute;
+                }
+
+                .img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+            .item.focus {
+                display: block;
+            }
+        }
+    }
+}
+.panelWorksSection.leftLatest {
+    .panelWorksSectionPrime {
+        .c-label {
+            float: right;
+        }
+    }
+    .panelWorksSectionLatest {
+        padding-right: 15px;
+    }
 }
 
-.panelWorksSection .ctnLatest {
-    width: 75%;
-    float: left;
-    height: 100%;
-    position: relative;
-}
-
-.panelWorksSection .ctnRecommend .body {
-    padding: 5px 0;
-}
-
-.panelWorksSection .ctnRecommend .c-label {
-    line-height: 50px;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.panelWorksSection .panelWorksSectionPrime .c-label::before {
-    content: '';
-}
-
-.panelWorksSection.leftLatest .panelWorksSectionPrime .c-label {
-    float: right;
-}
-
-.panelWorksSection .header {
-    height: 50px;
-    position: relative;
-}
-
-.panelWorksSection .body {
-    width: 100%;
-    height: calc(100% - 50px);
-}
-
-.panelWorksSectionPrime .body .item {
-    height: 100%;
-    width: 100%;
-    display: none;
-}
-
-.panelWorksSectionPrime .body .item.focus {
-    display: block;
-}
-
-.panelWorksSectionPrime .body .item .text {
-    position: absolute;
-}
-
-.panelWorksSectionPrime .body .item .img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.panelWorksSection .panelWorksSectionLatest {
-    width: 25%;
-    float: left;
-    height: 100%;
-    padding-left: 15px;
-}
-
-.panelWorksSection.leftLatest .panelWorksSectionLatest {
-    padding-right: 15px;
-}
-
-.panelWorksSection .panelWorksSectionLatest .header {
-    line-height: 50px;
-    top: 10px;
-}
-
-.panelWorksSection .panelWorksSectionLatest .header .c-btn {
-    font-size: 12px;
-}
-
-.panelWorksSection .panelWorksSectionLatest .header .btnRefresh {
-    position: absolute;
-    right: 5px;
-}
-
-.panelWorksSection .panelWorksSectionLatest .item {
-    width: 100%;
-    height: 40px;
-    position: relative;
-    cursor: pointer;
-    padding-bottom: 5px;
-}
-
-.panelWorksSection .panelWorksSectionLatest .item .img {
-    height: calc(100% - 10px);
-    width: 120px;
-    display: none;
-    position: absolute;
-    object-fit: cover;
-    left: 0;
-}
-
-.panelWorksSection .panelWorksSectionLatest .item.bigMode {
-    height: 80px;
-    padding: 5px 5px 5px 125px;
-}
-
-.panelWorksSection .panelWorksSectionLatest .item.bigMode img {
-    display: inline-block;
-}
-
-.panelWorksSection .panelWorksSectionLatest .item.bigMode .text {
-    font-size: 16px;
-    display: block;
-}
-
-.panelWorksSection .panelWorksSectionLatest .item .text {
-    display: block;
-}
-
-.panelWorksSection .panelWorksSectionLatest .item .author {
-    color: #ccc;
-    font-size: 12px;
-    position: absolute;
-    bottom: 5px;
-}
-
-.panelWorksSection .panelWorksSectionLatest .item .date {
-    font-size: 12px;
-    color: #ccc;
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
-}
-
-#panelRoutes {
+.panelRoutes {
     margin: 0 auto;
     width: 100%;
     max-width: 1080px;

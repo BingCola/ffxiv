@@ -1,41 +1,60 @@
-import Router from './router';
+import api from 'api';
 export default class Page {
     constructor() {}
     init() {
+        this.initApi();
         this.initCommonVariable();
         this.initCustomVariable();
         this.initOption();
         this.registerComponents();
         this.setLayout();
-        this.open();
+        this.show();
     }
-    get name() {
+    get NAME() {
         return '';
     }
-    get path() {
+    get PATH() {
         return '';
+    }
+    get HTML() {
+        return '';
+    }
+    get CLASSNAMES() {
+        return {};
+    }
+    get CLN() {
+        return this.CLASSNAMES;
     }
     get aysnc() {
         return this._aysnc || [];
     }
-    initCommonVariable() {
+    get api() {
+        return this._api || {};
+    }
+    initApi() {
         this._aysnc = [];
+        this._api = [];
 
         let apiStack = {};
-        Object.keys(this.api).forEach(api => {
-            apiStack[api] = () => {
-                let request = this.api[api]();
+        Object.keys(api).forEach(name => {
+            apiStack[name] = () => {
+                let request = api[name]();
                 this._aysnc.push(request);
                 return request;
             };
         });
-        this.api = apiStack;
+        this._api = apiStack;
+    }
+    initCommonVariable() {
+        this.cmpt = {};
     }
     initCustomVariable() {}
     initOption() {}
     registerComponents() {}
-    setLayout() {}
-    open() {}
+    setLayout() {
+        this.container.innerHTML = this.HTML.fill(this.CLASSNAMES);
+    }
+    show() {}
     destroy() {}
     close() {}
 }

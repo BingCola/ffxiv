@@ -1,22 +1,32 @@
 import Base from 'page';
-import Html from './Home.html';
-import Style from './Home.scss';
+import html from './Home.html';
+import style from './Home.scss';
 
 export default class Page extends Base {
     constructor() {
         super(...arguments);
     }
-    get CLASS() {
-        return Style;
+    get CLASSNAMES() {
+        return style;
+    }
+    get HTML() {
+        return html;
     }
     get container() {
         return this.router.container;
     }
-    registerComponents() {
-        this.cmpt = {};
+    registerComponents() {}
+    show() {
+        this.initPanelGuide();
+        this.initPanelRecommend();
+        this.initPanelWorksPartition();
+        this.initPanelRouter();
+
+        this.attachEvent();
     }
-    open() {}
-    setLayout() {
-        this.container.innerHTML = Html.fill(Style);
-    }
+    initPanelGuide() {}
+    initPanelRecommend() {}
+    initPanelWorksPartition() {}
+    initPanelRouter() {}
+    attachEvent() {}
 }
