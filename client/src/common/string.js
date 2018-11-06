@@ -1,5 +1,6 @@
 String.prototype.fill = function(o, defaultVal, label) {
     var str = this.toString();
+    if (!str) return '';
     var arrLabel = [];
     if (typeof label == 'string') {
         arrLabel = [label, label];
@@ -8,7 +9,7 @@ String.prototype.fill = function(o, defaultVal, label) {
     } else {
         arrLabel = ['{', '}'];
     }
-    if (!str || !o) return '';
+    if (!o) return str;
 
     for (var p in o) {
         if (o.hasOwnProperty(p)) {

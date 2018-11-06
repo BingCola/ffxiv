@@ -13,10 +13,10 @@ export default class Navbar extends Base {
     }
 
     initNavTop() {
-        if (this.option.navTop) this.navTop = new NavTop(this, this.option.navTop);
+        if (this.option.navTop) this.navTop = new NavTop(this, this.option.navTop.container, this.option.navTop);
     }
 
     initNavBottom() {
-        if (this.option.navBottom) this.navbottom = new NavBottom(this, this.option.navBottom);
+        if (this.option.navBottom) this.navBottom = new NavBottom(this, this.option.navBottom.container, this.option.navBottom);
     }
 }

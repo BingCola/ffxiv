@@ -29,10 +29,18 @@ export default class Components {
         this.promise = $.Deferred();
     }
 
+    setOption(option, noMerge) {
+        if (noMerge) {
+            this.option = option;
+        } else {
+            this.option = $.extend(true, {}, this.option, option);
+        }
+    }
     init() {}
 
     ready() {
         this.promise.resolve();
     }
+    unuse() {}
     destroy() {}
 }

@@ -8,7 +8,6 @@ export default class Page {
         this.initOption();
         this.registerComponents();
         this.setLayout();
-        this.show();
     }
     get NAME() {
         return '';
@@ -47,6 +46,7 @@ export default class Page {
     }
     initCommonVariable() {
         this.cmpt = {};
+        this.util = {};
     }
     initCustomVariable() {}
     initOption() {}

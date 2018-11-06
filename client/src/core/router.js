@@ -92,13 +92,19 @@ export default class Router {
 
         this.option.event.onToggle && this.option.event.onToggle();
         this.current = new constructor(...param);
-        Object.keys(this.option.plugin).forEach(plugin => {
-            this.current[plugin] = this.option.plugin[plugin];
-        });
         this.current.router = this;
         this.current.init();
-
+        Object.keys(this.option.component).forEach(cmpt => {
+            this.current.cmpt[cmpt] = this.option.component[cmpt];
+        });
+        Object.keys(this.option.util).forEach(util => {
+            this.current.util[util] = this.option.util[util];
+        });
+        Object.keys(this.option.global).forEach(global => {
+            this.current[global] = this.option.global[global];
+        });
         this.path.push({ ins: this.current, cls: constructor, param: param });
+        this.current.show();
     }
     toFirstPage() {
         if (location.hash) {

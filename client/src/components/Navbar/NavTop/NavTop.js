@@ -27,7 +27,162 @@ export default class NavTop extends Base {
                 routes: []
             },
             userProfile: {
-                tpl: ``
+                controller: {
+                    login: {
+                        tpl: `                
+                        <div class="cpc-user-info cpc-nav-item dropdown">
+                            <div class="cpc-nav-content">
+                                <img class="portrait" data-field="portrait" src="{portrait}" />
+                            </div>
+                            <div class="cpc-nav-sub-list">
+                                <div class="name">{name}</div>
+                                <div class="block c-clear-float">
+                                    <div class="level">
+                                        <span class="number"></span>
+                                        <span class="shining"></span>
+                                        <span class="track"></span>
+                                    </div>
+                                    <div class="c-clear-float">
+                                        <span class="role item">{role}</span>
+                                        <span class="score item"></span>
+                                    </div>
+                                    <div class="c-clear-float">
+                                        <span class="fans item"><span class="label">粉丝：</span><span data-field="fans">--</span></span>
+                                        <span class="works item"><span class="label">作品：</span><span data-field="works">--</span></span>
+                                        <!--<span class="allowWorks item"><span class="label">可投稿数量：</span><span data-field="allowWorks">--</span></span>-->
+                                    </div>
+                                </div>
+                                <div class="block entrance c-clear-float">
+                                    <span class="item">个人中心</span>
+                                    <span class="item">投稿管理</span>
+                                    <span class="item">稿件审核</span>
+                                    <span class="item">关注管理</span>
+                                    <span class="item btnLogout"><span class="icon iconfont icon-logout"></span><span class="text">注销</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cpc-nav-item dropdown cpc-user-message">
+                            <div class="cpc-nav-content">
+                                <span class="text">消息</span>
+                                <span class="badge"></span>
+                            </div>
+                            <div class="cpc-nav-sub-list">
+                                <div class="cpc-nav-item sub" data-field="mail">
+                                    <div class="cpc-nav-content">
+                                        <span class="text">私信</span>
+                                        <span class="badge"></span>
+                                    </div>
+                                </div>
+                                <div class="cpc-nav-item sub" data-field="reply">
+                                    <div class="cpc-nav-content">
+                                        <span class="text">回复我的</span>
+                                        <span class="badge"></span>
+                                    </div>
+                                </div>
+                                <div class="cpc-nav-item sub" data-field="call">
+                                    <div class="cpc-nav-content">
+                                        <span class="text">@我的</span>
+                                        <span class="badge"></span>
+                                    </div>
+                                </div>
+                                <div class="cpc-nav-item sub" data-field="praise">
+                                    <div class="cpc-nav-content">
+                                        <span class="text">收到的赞</span>
+                                        <span class="badge"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cpc-nav-item" data-href="/post">
+                            <div class="cpc-nav-content"><span class="text">投稿</span></div>
+                        </div>
+                        <div class="cpc-nav-item" data-action="login">
+                            <div class="cpc-nav-content"><span class="text">登录 / 注册</span></div>
+                        </div>`,
+                        param: {}
+                    },
+                    visitor: {
+                        tpl: `
+                            <div class="cpc-user-info cpc-nav-item dropdown">
+                                <div class="cpc-nav-content">
+                                    <img class="portrait" data-field="portrait" src="{portrait}" />
+                                </div>
+                                <div class="cpc-nav-sub-list">
+                                    <div class="name">{name}</div>
+                                    <div class="block c-clear-float">
+                                        <div class="level">
+                                            <span class="number"></span>
+                                            <span class="shining"></span>
+                                            <span class="track"></span>
+                                        </div>
+                                        <div class="c-clear-float">
+                                            <span class="role item">{role}</span>
+                                            <span class="score item"></span>
+                                        </div>
+                                        <div class="c-clear-float">
+                                            <span class="fans item"><span class="label">粉丝：</span><span data-field="fans">--</span></span>
+                                            <span class="works item"><span class="label">作品：</span><span data-field="works">--</span></span>
+                                            <!--<span class="allowWorks item"><span class="label">可投稿数量：</span><span data-field="allowWorks">--</span></span>-->
+                                        </div>
+                                    </div>
+                                    <div class="block entrance c-clear-float">
+                                        <span class="item">个人中心</span>
+                                        <span class="item">投稿管理</span>
+                                        <span class="item">稿件审核</span>
+                                        <span class="item">关注管理</span>
+                                        <span class="item btnLogout"><span class="icon iconfont icon-logout"></span><span class="text">注销</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cpc-nav-item dropdown cpc-user-message">
+                                <div class="cpc-nav-content">
+                                    <span class="text">消息</span>
+                                    <span class="badge"></span>
+                                </div>
+                                <div class="cpc-nav-sub-list">
+                                    <div class="cpc-nav-item sub" data-field="mail">
+                                        <div class="cpc-nav-content">
+                                            <span class="text">私信</span>
+                                            <span class="badge"></span>
+                                        </div>
+                                    </div>
+                                    <div class="cpc-nav-item sub" data-field="reply">
+                                        <div class="cpc-nav-content">
+                                            <span class="text">回复我的</span>
+                                            <span class="badge"></span>
+                                        </div>
+                                    </div>
+                                    <div class="cpc-nav-item sub" data-field="call">
+                                        <div class="cpc-nav-content">
+                                            <span class="text">@我的</span>
+                                            <span class="badge"></span>
+                                        </div>
+                                    </div>
+                                    <div class="cpc-nav-item sub" data-field="praise">
+                                        <div class="cpc-nav-content">
+                                            <span class="text">收到的赞</span>
+                                            <span class="badge"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cpc-nav-item" data-href="/post">
+                                <div class="cpc-nav-content"><span class="text">投稿</span></div>
+                            </div>
+                            <div class="cpc-nav-item" data-action="login">
+                                <div class="cpc-nav-content"><span class="text">登录 / 注册</span></div>
+                            </div>
+                        `
+                    },
+                    unlogin: {
+                        tpl: `            
+                            <div class="cpc-nav-item" data-action="login">
+                                <div class="cpc-nav-content"><span class="text">登录 / 注册</span></div>
+                            </div>`,
+                        param: {}
+                    }
+                },
+                state: 'unlogin'
             },
 
             event: {
@@ -43,7 +198,7 @@ export default class NavTop extends Base {
     }
     initNavContent() {
         this.initBrand();
-        this.initRoutes();
+        this.initRouter();
         this.initUserProfile();
     }
     initBrand() {
@@ -54,7 +209,7 @@ export default class NavTop extends Base {
             container.classList.add('c-hide');
         }
     }
-    initRoutes() {
+    initRouter() {
         let container = this.container.querySelector(`.${this.CLN['nav-router']}`);
         this.option.router.routes.forEach(route => {
             let tpl = route.tpl || this.option.router.tpl;
@@ -62,11 +217,11 @@ export default class NavTop extends Base {
             dom.className = 'nav-item';
             dom.innerHTML = tpl.fill(route);
             if (route.action) {
-                dom.dataset[action.type] = route.action.content;
+                dom.dataset[route.action.type] = route.action.content;
             }
 
             if (route.children instanceof Array && route.children.length > 0) {
-                this.setSubRoutes(route.children);
+                this.setSubRoutes(dom, route.children);
             }
             container.appendChild(dom);
         });
@@ -78,13 +233,31 @@ export default class NavTop extends Base {
             dom.className = 'nav-item sub';
             dom.innerHTML = tpl.fill(route);
             if (route.action) {
-                dom.dataset[action.type] = route.action.content;
+                dom.dataset[route.action.type] = route.action.content;
             }
             container.appendChild(dom);
         });
     }
     initUserProfile() {
+        this.setUserProfileByState(this.option.userProfile.state);
+    }
+    setUserProfileByState(state) {
+        if (!this.option.userProfile.controller[state]) {
+            console.error('顶部导航条用户菜单模块加载失败：未找到与' + state + '相对应状态配置。');
+            return;
+        }
         let container = this.container.querySelector(`.${this.CLN['nav-user-profile']}`);
+        container.dataset.state = state;
+        let option = this.option.userProfile.controller[state];
+        container.innerHTML = option.tpl.fill(option.param);
+    }
+    setUserProfile(option, state) {
+        if (!this.option.userProfile.controller[state]) {
+            console.error('顶部导航条用户菜单设置用户信息失败：未找到与' + state + '相对应状态配置。');
+            return;
+        }
+        this.option.userProfile.controller[state] = Object.assign(this.option.userProfile.state[state], option);
+        this.setUserProfileByState(state);
     }
     attachEvent() {}
 }
