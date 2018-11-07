@@ -1,15 +1,116 @@
+.nav-ctn {
+    z-index: 5;
+    display: flex;
+    display: -webkit-flex;
+}
 .nav-bg {
-    color: red;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
 }
 .nav-body {
-    color: red;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
 }
 .nav-brand {
-    color: red;
+    display: inline-block;
+    height: 100%;
+    padding: 10px;
+    float: left;
+
+    .img {
+        max-height: 100%;
+        max-width: 100%;
+    }
 }
+
 .nav-router {
-    color: red;
+    display: inline-block;
+    height: 100%;
+    margin-left: 30px;
+
+    :hover {
+        .route {
+            :hover {
+                .content {
+                    opacity: 1;
+                    transition: 0s;
+                }
+            }
+            .content {
+                opacity: 0.5;
+                text-shadow: none;
+                transition: 0.3s;
+            }
+        }
+    }
 }
+
 .nav-user-profile {
-    color: red;
+    display: inline-flex;
+    display: -webkit-inline-flex;
+    align-items: center;
+    -webkit-align-items: center;
+    height: 100%;
+    position: absolute;
+    right: 0;
+
+    .portrait {
+        height: 90%;
+    }
+
+    .badge {
+        margin-left: 5px;
+        color: #f45b69;
+        position: relative;
+        text-shadow: 0 1px #f45b69;
+    }
+
+    .route.sub {
+        .badge {
+            padding-left: 5px;
+            color: inherit;
+            text-shadow: 0 0 1px #e4fde1;
+            ::before {
+                content: '';
+                display: inline-block;
+                height: 1px;
+                width: 15px;
+                background: rgba(120, 238, 222, 0.5);
+                border-radius: 50%;
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translate(-50%, -50%) rotate(110deg);
+            }
+        }
+
+        :hover {
+            .badge {
+                ::before {
+                    background: rgba(120, 238, 222, 1);
+                }
+            }
+        }
+    }
+}
+
+.route {
+    font-size: 14px;
+    padding: 5px 12px;
+    height: 100%;
+    display: inline-flex;
+    display: -webkit-inline-flex;
+    align-items: center;
+    -webkit-align-items: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+    position: relative;
+    cursor: pointer;
+    float: left;
 }

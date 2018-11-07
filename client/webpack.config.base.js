@@ -30,7 +30,52 @@ export default {
             },
             {
                 test: /.scss$/,
-                exclude: [path.resolve(__dirname, 'node_modules'), path.resolve(__dirname, 'src/theme')],
+                include: [path.resolve(__dirname, 'src/components')],
+                use: [
+                    {
+                        loader: 'style-loader' // creates style nodes from JS strings
+                    },
+                    {
+                        loader: 'css-loader', // translates CSS into CommonJS
+                        options: {
+                            modules: true,
+                            importLoaders: 1,
+                            localIdentName: 'cc-[local]'
+                        }
+                    },
+                    {
+                        loader: 'sass-loader' // compiles Less to CSS
+                    }
+                ]
+            },
+            {
+                test: /.scss$/,
+                include: [path.resolve(__dirname, 'src/plugins')],
+                use: [
+                    {
+                        loader: 'style-loader' // creates style nodes from JS strings
+                    },
+                    {
+                        loader: 'css-loader', // translates CSS into CommonJS
+                        options: {
+                            modules: true,
+                            importLoaders: 1,
+                            localIdentName: 'cp-[local]'
+                        }
+                    },
+                    {
+                        loader: 'sass-loader' // compiles Less to CSS
+                    }
+                ]
+            },
+            {
+                test: /.scss$/,
+                exclude: [
+                    path.resolve(__dirname, 'node_modules'),
+                    path.resolve(__dirname, 'src/theme'),
+                    path.resolve(__dirname, 'src/components'),
+                    path.resolve(__dirname, 'src/plugins')
+                ],
                 use: [
                     {
                         loader: 'style-loader' // creates style nodes from JS strings
@@ -119,6 +164,7 @@ export default {
             path.resolve(__dirname, 'src/service'),
             path.resolve(__dirname, 'src/core'),
             path.resolve(__dirname, 'src/components'),
+            path.resolve(__dirname, 'src/plugins'),
             path.resolve(__dirname, 'src/theme'),
             'node_modules'
         ],

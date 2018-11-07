@@ -1,5 +1,5 @@
 import auth from 'auth';
-import spinner from 'spinner';
+import spinner from 'Spinner/Spinner';
 
 import Base from '../component';
 import html from './Login.html';

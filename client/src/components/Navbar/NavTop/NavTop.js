@@ -16,13 +16,13 @@ export default class NavTop extends Base {
             brand: '',
             router: {
                 tpl: `        
-                    <div class="nav-content">
-                        <span class="text">{text}</span>
+                    <div class="${this.CLN.content}">
+                        <span class="${this.CLN.text}">{text}</span>
                     </div>
-                    <div class="nav-sub-list"></div>`,
+                    <div class="${this.CLN['dropdown-list']}"></div>`,
                 tplSub: `
-                <div class="nav-content">
-                    <span class="text">{text}</span>
+                <div class="${this.CLN.content}">
+                    <span class="${this.CLN.text}">{text}</span>
                 </div>`,
                 routes: []
             },
@@ -197,6 +197,7 @@ export default class NavTop extends Base {
         return html;
     }
     initNavContent() {
+        this.container.classList.add(this.CLN['nav-ctn']);
         this.initBrand();
         this.initRouter();
         this.initUserProfile();
@@ -214,14 +215,18 @@ export default class NavTop extends Base {
         this.option.router.routes.forEach(route => {
             let tpl = route.tpl || this.option.router.tpl;
             let dom = document.createElement('div');
-            dom.className = 'nav-item';
+            dom.className = this.CLN.route;
             dom.innerHTML = tpl.fill(route);
-            if (route.action) {
+            if (route.action && route.action.type) {
                 dom.dataset[route.action.type] = route.action.content;
             }
 
             if (route.children instanceof Array && route.children.length > 0) {
-                this.setSubRoutes(dom, route.children);
+                dom.classList.add(this.CLN['dropdown']);
+                dom.querySelector(this.CLN['content']).classList.add('split');
+                this.setSubRoutes(dom.querySelector(`.${this.CLN['dropdown-list']}`), route.children);
+            } else {
+                dom.querySelector(`.${this.CLN['dropdown-list']}`).classList.add('c-hide');
             }
             container.appendChild(dom);
         });
@@ -230,9 +235,9 @@ export default class NavTop extends Base {
         routes.forEach(route => {
             let tpl = route.tpl || this.option.router.tplSub;
             let dom = document.createElement('div');
-            dom.className = 'nav-item sub';
+            dom.className = `${this.CLN.sub} ${this.CLN.route}`;
             dom.innerHTML = tpl.fill(route);
-            if (route.action) {
+            if (route.action && route.action.type) {
                 dom.dataset[route.action.type] = route.action.content;
             }
             container.appendChild(dom);
@@ -250,6 +255,7 @@ export default class NavTop extends Base {
         container.dataset.state = state;
         let option = this.option.userProfile.controller[state];
         container.innerHTML = option.tpl.fill(option.param);
+        option.onInit && option.onInit(container, option);
     }
     setUserProfile(option, state) {
         if (!this.option.userProfile.controller[state]) {

@@ -1,3 +1,8 @@
 {
-    "/dev/**": "localhost:7000"
+    "/api": {
+        "target": "http://localhost:7000/",
+        "pathRewrite": {
+            "^/api": ""
+        }
+    }
 }

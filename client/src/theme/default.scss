@@ -1,0 +1,50 @@
+body {
+    background: linear-gradient(black, #161823);
+    color: white;
+}
+
+.c-page {
+    padding-top: 5px;
+}
+
+.c-page-footer {
+    text-align: center;
+}
+
+.c-page-header {
+    background-color: black;
+    box-shadow: 0 0 5px 1px #89f2ff;
+}
+
+.cpc-nav-top .cpc-nav-content {
+    color: rgba(120, 238, 222, 1);
+    text-shadow: 0 0 1px rgba(120, 238, 222, 1);
+}
+
+.cpc-nav-item.dropdown:hover .cpc-nav-sub-list:before {
+    background: #89f2ff;
+}
+
+.cpc-nav-top .cpc-user-info {
+    color: #e4fde1;
+}
+
+.cpc-nav-bottom {
+    position: relative;
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    margin-top: 120px;
+}
+
+.cpc-nav-bottom .cpc-section-col {
+    width: 25%;
+}
+
+.cpc-nav-bottom .cpc-section > .cpc-name {
+    color: rgba(120, 238, 222, 1);
+}
+
+.cpc-nav-bottom .cpc-nav-item {
+    color: #e4fde1;
+}

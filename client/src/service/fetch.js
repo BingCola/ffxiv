@@ -38,10 +38,8 @@ const get = (url, data, option = {}) => {
     return $.ajax({ url: url, type: 'GET', contentType: 'application/json' });
 };
 const post = (url, data, option = {}) => {
-    var url = arguments[0];
-    var data = arguments[1];
     return $.ajax({
-        url: url,
+        url: HOST + url,
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json'
