@@ -1,48 +1,50 @@
-.nav-ctn {
+$c: nav;
+
+.#{$c}-ctn {
     z-index: 5;
     display: flex;
     display: -webkit-flex;
 }
-.nav-bg {
+.#{$c}-bg {
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
 }
-.nav-body {
+.#{$c}-body {
     position: relative;
     width: 100%;
     height: 100%;
     max-width: 1080px;
     margin: 0 auto;
 }
-.nav-brand {
+.#{$c}-brand {
     display: inline-block;
     height: 100%;
     padding: 10px;
     float: left;
 
-    .img {
+    &-img {
         max-height: 100%;
         max-width: 100%;
     }
 }
 
-.nav-router {
+.#{$c}-router {
     display: inline-block;
     height: 100%;
     margin-left: 30px;
 
     :hover {
-        .route {
+        .#{$c}-route {
             :hover {
-                .content {
+                :global(.content) {
                     opacity: 1;
                     transition: 0s;
                 }
             }
-            .content {
+            :global(.content) {
                 opacity: 0.5;
                 text-shadow: none;
                 transition: 0.3s;
@@ -51,7 +53,7 @@
     }
 }
 
-.nav-user-profile {
+.#{$c}-user-profile {
     display: inline-flex;
     display: -webkit-inline-flex;
     align-items: center;
@@ -60,19 +62,19 @@
     position: absolute;
     right: 0;
 
-    .portrait {
+    :global(.portrait) {
         height: 90%;
     }
 
-    .badge {
+    :global(.badge) {
         margin-left: 5px;
         color: #f45b69;
         position: relative;
         text-shadow: 0 1px #f45b69;
     }
 
-    .route.sub {
-        .badge {
+    .#{$c}-route:global(.sub) {
+        :global(.badge) {
             padding-left: 5px;
             color: inherit;
             text-shadow: 0 0 1px #e4fde1;
@@ -91,7 +93,7 @@
         }
 
         :hover {
-            .badge {
+            :global(.badge) {
                 ::before {
                     background: rgba(120, 238, 222, 1);
                 }
@@ -100,7 +102,7 @@
     }
 }
 
-.route {
+.#{$c}-route {
     font-size: 14px;
     padding: 5px 12px;
     height: 100%;

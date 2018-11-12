@@ -30,7 +30,7 @@ export default {
             },
             {
                 test: /.scss$/,
-                include: [path.resolve(__dirname, 'src/components')],
+                include: [path.resolve(__dirname, 'src/plugins')],
                 use: [
                     {
                         loader: 'style-loader' // creates style nodes from JS strings
@@ -38,9 +38,10 @@ export default {
                     {
                         loader: 'css-loader', // translates CSS into CommonJS
                         options: {
+                            camelCase: true,
                             modules: true,
                             importLoaders: 1,
-                            localIdentName: 'cc-[local]'
+                            localIdentName: 'cp-[local]'
                         }
                     },
                     {
@@ -50,7 +51,7 @@ export default {
             },
             {
                 test: /.scss$/,
-                include: [path.resolve(__dirname, 'src/plugins')],
+                include: [path.resolve(__dirname, 'src/components')],
                 use: [
                     {
                         loader: 'style-loader' // creates style nodes from JS strings
@@ -58,9 +59,10 @@ export default {
                     {
                         loader: 'css-loader', // translates CSS into CommonJS
                         options: {
+                            camelCase: true,
                             modules: true,
                             importLoaders: 1,
-                            localIdentName: 'cp-[local]'
+                            localIdentName: 'cc-[local]'
                         }
                     },
                     {
@@ -83,9 +85,10 @@ export default {
                     {
                         loader: 'css-loader', // translates CSS into CommonJS
                         options: {
+                            camelCase: true,
                             modules: true,
                             importLoaders: 1,
-                            localIdentName: '[name]__[local]__[hash:base64:5]'
+                            localIdentName: '[folder]__[name]__[local]__[hash:base64:5]'
                         }
                     },
                     {
