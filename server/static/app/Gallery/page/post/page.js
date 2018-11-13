@@ -237,10 +237,10 @@
             }
             createConsistDom() {
                     var dom = document.createElement('div');
-                    dom.className = 'divConsist c-clear-float';
+                    dom.className = 'divConsist c-clear-fix';
                     dom.innerHTML = `
             <span class="btnConsistDel iconfont icon-delete-alt"></span>
-            <div class="divModelInfo c-clear-float">
+            <div class="divModelInfo c-clear-fix">
                 <div class="toolGrp">
                     <span class="toolItem btnIsAuthor selected" data-user="author">
                         模特为上传者

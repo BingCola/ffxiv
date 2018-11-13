@@ -6,6 +6,6 @@ if (process.env.NODE_ENV == 'development') {
 }
 
 const PATH = {
-    IMAGE: '/images'
+    IMAGE: '/src/images'
 };
 export { HOST, PATH };

@@ -90,7 +90,7 @@
             container.dataset.mode = field.mode;
             container.innerHTML = `
             <span class="title">${field.title}</span>
-            <div class="divQueryItemList c-clear-float"></div>
+            <div class="divQueryItemList c-clear-fix"></div>
             `;
             let listCtn = container.querySelector(".divQueryItemList");
             if (field.hover !== false) listCtn.classList.add("hover");

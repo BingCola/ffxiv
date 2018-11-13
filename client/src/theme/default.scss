@@ -11,24 +11,6 @@ body {
     text-align: center;
 }
 
-.c-page-header {
-    background-color: black;
-    box-shadow: 0 0 5px 1px #89f2ff;
-}
-
-.cc-nav-top .cc-nav-content {
-    color: rgba(120, 238, 222, 1);
-    text-shadow: 0 0 1px rgba(120, 238, 222, 1);
-}
-
-.cc-nav-item.dropdown:hover .cc-nav-sub-list:before {
-    background: #89f2ff;
-}
-
-.cc-nav-top .cc-user-info {
-    color: #e4fde1;
-}
-
 .cc-nav-bottom {
     position: relative;
     width: 100%;

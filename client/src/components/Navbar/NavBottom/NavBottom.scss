@@ -1,6 +1,39 @@
-.nav-router {
-    color: red;
-}
-.nav-copyright {
-    color: red;
+$c: nav;
+.#{$c}-bottom {
+    position: relative;
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    margin-top: 120px;
+    .#{$c}-router {
+        margin-bottom: 15px;
+
+        &-col {
+            float: left;
+            width: 25%;
+        }
+        &-section {
+            margin-bottom: 20px;
+            .#{$c}-section-content {
+                color: rgba(120, 238, 222, 1);
+                :global(text) {
+                    font-size: 18px;
+                    margin-bottom: 8px;
+                }
+            }
+            .#{$c}-route-list {
+                .#{$c}-route {
+                    color: #e4fde1;
+                    display: block;
+                    cursor: pointer;
+                    margin-bottom: 2px;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+    .#{$c}-copyright {
+        text-align: center;
+        font-size: 12px;
+    }
 }

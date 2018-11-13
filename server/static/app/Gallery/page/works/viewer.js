@@ -56,12 +56,12 @@
                 '\
             <span class="spContent">${content}</span>\
             <div class="divDetail c-popover" data-theme="light">\
-                <div class="c-clear-float">\
+                <div class="c-clear-fix">\
                     <span class="content">${content}</span>\
                     <span class="c-btn iconfont icon-thumb-up" data-action="for"></span>\
                     <span class="c-btn iconfont icon-thumb-down" data-action="for"></span>\
                 </div>\
-                <div class="c-clear-float">\
+                <div class="c-clear-fix">\
                     <span class="c-btn" data-action="attention">关注</span>\
                     <span class="c-btn" data-action="delete">删除</span>\
                     <span class="c-btn" data-action="report">举报</span>\
@@ -142,8 +142,8 @@
             var char_template =
                 '\
                 <div class="divField" data-field="portrait"><img src="${portrait}" onerror="this.style.display=\'none\'" class="c-portrait portrait"></div>\
-                <div class="c-clear-float fluid">\
-                    <div class="c-wrap c-clear-float charAction">${tool}</div>\
+                <div class="c-clear-fix fluid">\
+                    <div class="c-wrap c-clear-fix charAction">${tool}</div>\
                     <div class="c-wrap divField" data-field="race">${race}</div>\
                     <div class="c-wrap divField" data-field="name">${name}</div>\
                 </div>\

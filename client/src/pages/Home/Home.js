@@ -1,4 +1,5 @@
 import CONSTANT from 'constant';
+import { PATH } from 'config';
 
 import Base from 'page';
 import html from './Home.html';
@@ -62,6 +63,7 @@ export default class Page extends Base {
         this.cmpt.navbar.setOption({
             navTop: {
                 container: document.querySelector('.c-page-header'),
+                brand: `<img class="cc-nav-brand-img" src="${PATH.IMAGE}/common/logo.png">`,
                 userProfile
             },
             navBottom: {

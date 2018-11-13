@@ -21,23 +21,23 @@
                         </div>
                         <div class="cpc-nav-sub-list">
                             <div class="name">{name}</div>
-                            <div class="block c-clear-float">
+                            <div class="block c-clear-fix">
                                 <div class="level">
                                     <span class="number"></span>
                                     <span class="shining"></span>
                                     <span class="track"></span>
                                 </div>
-                                <div class="c-clear-float">
+                                <div class="c-clear-fix">
                                     <span class="role item">{role}</span>
                                     <span class="score item"></span>
                                 </div>
-                                <div class="c-clear-float">
+                                <div class="c-clear-fix">
                                     <span class="fans item"><span class="label">粉丝：</span><span data-field="fans">--</span></span>
                                     <span class="works item"><span class="label">作品：</span><span data-field="works">--</span></span>
                                     <!--<span class="allowWorks item"><span class="label">可投稿数量：</span><span data-field="allowWorks">--</span></span>-->
                                 </div>
                             </div>
-                            <div class="block entrance c-clear-float">
+                            <div class="block entrance c-clear-fix">
                                 <span class="item">个人中心</span>
                                 <span class="item">投稿管理</span>
                                 <span class="item">稿件审核</span>
@@ -93,23 +93,23 @@
                         </div>
                         <div class="cpc-nav-sub-list">
                             <div class="name">{name}</div>
-                            <div class="block c-clear-float">
+                            <div class="block c-clear-fix">
                                 <div class="level">
                                     <span class="number"></span>
                                     <span class="shining"></span>
                                     <span class="track"></span>
                                 </div>
-                                <div class="c-clear-float">
+                                <div class="c-clear-fix">
                                     <span class="role item">{role}</span>
                                     <span class="score item"></span>
                                 </div>
-                                <div class="c-clear-float">
+                                <div class="c-clear-fix">
                                     <span class="fans item"><span class="label">粉丝：</span><span data-field="fans">--</span></span>
                                     <span class="works item"><span class="label">作品：</span><span data-field="works">--</span></span>
                                     <!--<span class="allowWorks item"><span class="label">可投稿数量：</span><span data-field="allowWorks">--</span></span>-->
                                 </div>
                             </div>
-                            <div class="block entrance c-clear-float">
+                            <div class="block entrance c-clear-fix">
                                 <span class="item">个人中心</span>
                                 <span class="item">投稿管理</span>
                                 <span class="item">稿件审核</span>

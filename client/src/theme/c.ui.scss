@@ -126,12 +126,12 @@ input[type='range']::-webkit-slider-thumb {
     width: 100%;
 }
 
-.c-clear-float:before {
+.c-clear-fix:before {
     content: '';
     display: table;
 }
 
-.c-clear-float:after {
+.c-clear-fix:after {
     content: '';
     display: table;
     clear: both;
@@ -141,7 +141,7 @@ input[type='range']::-webkit-slider-thumb {
     display: inline-block;
 }
 
-.c-clear-float.fluid > .c-wrap {
+.c-clear-fix.fluid > .c-wrap {
     float: left;
 }
 

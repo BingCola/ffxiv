@@ -31,7 +31,14 @@ let navbar = new Navbar({
                 },
                 {
                     text: '图鉴',
-                    children: []
+                    children: [
+                        {
+                            text: '套装'
+                        },
+                        {
+                            text: '散件'
+                        }
+                    ]
                 },
                 {
                     text: '帮助',

@@ -26,7 +26,7 @@ body {
 }
 
 .cpc-nav-top .cpc-user-info {
-    color: #e4fde1
+    color: #e4fde1;
 }
 
 .cpc-nav-bottom {
@@ -41,7 +41,7 @@ body {
     width: 25%;
 }
 
-.cpc-nav-bottom .cpc-section>.cpc-name {
+.cpc-nav-bottom .cpc-section > .cpc-name {
     color: rgba(120, 238, 222, 1);
 }
 

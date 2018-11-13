@@ -16,12 +16,12 @@ export default class NavBottom extends Base {
             copyright: ``,
             router: {
                 tplSection: `        
-                    <div class="nav-section">
+                    <div class="${this.CLN.navSectionContent}">
                         <span class="text">{text}</span>
                     </div>
-                    <div class="nav-list"></div>`,
+                    <div class="${this.CLN.navRouteList}"></div>`,
                 tpl: `
-                <div class="nav-content">
+                <div class="${this.CLN.navRoute}">
                     <span class="text">{text}</span>
                 </div>`,
                 col: []
@@ -38,7 +38,11 @@ export default class NavBottom extends Base {
     get HTML() {
         return html;
     }
+    get action() {
+        return {};
+    }
     initNavContent() {
+        this.container.classList.add(this.CLN['nav-bottom']);
         this.initCopyright();
         this.initRouter();
     }
@@ -54,7 +58,7 @@ export default class NavBottom extends Base {
         let container = this.container.querySelector(`.${this.CLN['nav-router']}`);
         this.option.router.cols.forEach(col => {
             let dom = document.createElement('div');
-            dom.className = 'nav-section-col';
+            dom.className = this.CLN['nav-router-col'];
             if (col.sections instanceof Array && col.sections.length > 0) {
                 this.setRouteSection(dom, col.sections);
             }
@@ -65,10 +69,10 @@ export default class NavBottom extends Base {
         sections.forEach(section => {
             let tpl = section.tpl || this.option.router.tplSection;
             let dom = document.createElement('div');
-            dom.className = 'nav-section';
+            dom.className = this.CLN['nav-router-section'];
             dom.innerHTML = tpl.fill(section);
             if (section.routes instanceof Array && section.routes.length > 0) {
-                this.setRoutes(dom, section.routes);
+                this.setRoutes(dom.querySelector(`.${this.CLN['nav-route-list']}`), section.routes);
             }
             container.appendChild(dom);
         });
@@ -77,7 +81,7 @@ export default class NavBottom extends Base {
         routes.forEach(route => {
             let tpl = route.tpl || this.option.router.tpl;
             let dom = document.createElement('div');
-            dom.className = 'nav-item';
+            dom.className = this.CLN['nav-route'];
             dom.innerHTML = tpl.fill(route);
             if (route.action) {
                 dom.dataset[action.type] = route.action.content;
@@ -85,5 +89,13 @@ export default class NavBottom extends Base {
             container.appendChild(dom);
         });
     }
-    attachEvent() {}
+    attachEvent() {
+        $(this.container).on('click.route.href', '[data-href]', e => {
+            location.href = e.currentTarget.dataset.href;
+        });
+
+        $(this.container).on('click.route.action', '[data-action]', e => {
+            this.action[e.currentTarget.dataset.href] && this.action[e.currentTarget.dataset.href](e.currentTarget);
+        });
+    }
 }

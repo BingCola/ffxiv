@@ -1,4 +1,4 @@
-import { HOST } from '../config';
+import { HOST } from 'config';
 
 const CONFIG = {
     HOST: HOST

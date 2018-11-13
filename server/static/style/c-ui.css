@@ -7,7 +7,7 @@
 html {
     height: 100%;
     width: 100%;
-    font-family: Helvetica, "Microsoft Yahei";
+    font-family: Helvetica, 'Microsoft Yahei';
 }
 
 body {
@@ -15,7 +15,7 @@ body {
     width: 100%;
     position: relative;
     overflow: hidden;
-    font-family: Helvetica, "Microsoft Yahei";
+    font-family: Helvetica, 'Microsoft Yahei';
     margin: 0;
 }
 
@@ -53,13 +53,13 @@ body {
     width: 100%;
 }
 
-.c-clear-float:before {
-    content: "";
+.c-clear-fix:before {
+    content: '';
     display: table;
 }
 
-.c-clear-float:after {
-    content: "";
+.c-clear-fix:after {
+    content: '';
     display: table;
     clear: both;
 }
@@ -68,7 +68,7 @@ body {
     display: inline-block;
 }
 
-.c-clear-float.fluid > .c-wrap {
+.c-clear-fix.fluid > .c-wrap {
     float: left;
 }
 
@@ -120,12 +120,12 @@ body {
     position: absolute;
 }
 
-.c-interact .c-popover[data-theme="light"] {
+.c-interact .c-popover[data-theme='light'] {
     background: white;
     color: black;
 }
 
-.c-interact[data-toggle="hover"]:hover .c-popover {
+.c-interact[data-toggle='hover']:hover .c-popover {
     display: block;
 }
 
@@ -153,12 +153,12 @@ body {
 }
 
 .c-slide-wrap .c-slide-list:before {
-    content: "";
+    content: '';
     display: table;
 }
 
 .c-slide-wrap .c-slide-list:after {
-    content: "";
+    content: '';
     display: table;
     clear: both;
 }
@@ -189,11 +189,11 @@ body {
     white-space: nowrap;
 }
 
-.c-slide-wrap[data-in-view="3"] .c-slide {
+.c-slide-wrap[data-in-view='3'] .c-slide {
     width: calc(33.3333% - 10px);
 }
 
-.c-slide-wrap[data-in-view="4"] .c-slide {
+.c-slide-wrap[data-in-view='4'] .c-slide {
     width: calc(25% - 10px);
 }
 
@@ -222,18 +222,18 @@ body {
 }
 
 .c-wrap-check .c-check-icon {
-    font-family: "iconfont" !important;
+    font-family: 'iconfont' !important;
     font-style: normal;
     -webkit-font-smoothing: antialiased;
     margin-right: 5px;
 }
 
 .c-wrap-check .c-check-icon::before {
-    content: "\e632";
+    content: '\e632';
 }
 
 .c-wrap-check.checked .c-check-icon::before {
-    content: "\e622";
+    content: '\e622';
 }
 
 .c-wrap-check .c-check-text {

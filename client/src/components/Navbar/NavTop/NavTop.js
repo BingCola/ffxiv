@@ -16,12 +16,12 @@ export default class NavTop extends Base {
             brand: '',
             router: {
                 tpl: `        
-                    <div class="content">
+                    <div class="${this.CLN.navRouteContent}">
                         <span class="text">{text}</span>
                     </div>
-                    <div class="dropdown-list"></div>`,
+                    <div class="${this.CLN.navSubRouteList}"></div>`,
                 tplSub: `
-                <div class="content">
+                <div class="${this.CLN.navRouteContent}">
                     <span class="text">{text}</span>
                 </div>`,
                 routes: []
@@ -30,154 +30,154 @@ export default class NavTop extends Base {
                 controller: {
                     login: {
                         tpl: `                
-                        <div class="cpc-user-info cpc-nav-item dropdown">
-                            <div class="cpc-nav-content">
+                        <div class="${this.CLN.navRoute} multi ${this.CLN.navUserBoard}">
+                            <div class="${this.CLN.navRouteContent}">
                                 <img class="portrait" data-field="portrait" src="{portrait}" />
                             </div>
-                            <div class="cpc-nav-sub-list">
-                                <div class="name">{name}</div>
-                                <div class="block c-clear-float">
-                                    <div class="level">
+                            <div class="${this.CLN.navSubRouteList}">
+                                <div data-field="name">{name}</div>
+                                <div class="block c-clear-fix">
+                                    <div data-field="level">
                                         <span class="number"></span>
                                         <span class="shining"></span>
                                         <span class="track"></span>
                                     </div>
-                                    <div class="c-clear-float">
+                                    <div class="c-clear-fix">
                                         <span class="role item">{role}</span>
                                         <span class="score item"></span>
                                     </div>
-                                    <div class="c-clear-float">
+                                    <div class="c-clear-fix">
                                         <span class="fans item"><span class="label">粉丝：</span><span data-field="fans">--</span></span>
                                         <span class="works item"><span class="label">作品：</span><span data-field="works">--</span></span>
                                         <!--<span class="allowWorks item"><span class="label">可投稿数量：</span><span data-field="allowWorks">--</span></span>-->
                                     </div>
                                 </div>
-                                <div class="block entrance c-clear-float">
-                                    <span class="item">个人中心</span>
-                                    <span class="item">投稿管理</span>
-                                    <span class="item">稿件审核</span>
-                                    <span class="item">关注管理</span>
-                                    <span class="item btnLogout"><span class="icon iconfont icon-logout"></span><span class="text">注销</span></span>
+                                <div class="block router c-clear-fix">
+                                    <span class="route">个人中心</span>
+                                    <span class="route">投稿管理</span>
+                                    <span class="route">稿件审核</span>
+                                    <span class="route">关注管理</span>
+                                    <span class="route btnLogout"><span class="icon iconfont icon-logout"></span><span class="text">注销</span></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="cpc-nav-item dropdown cpc-user-message">
-                            <div class="cpc-nav-content">
+                        <div class="${this.CLN.navRoute} multi">
+                            <div class="${this.CLN.navRouteContent}">
                                 <span class="text">消息</span>
                                 <span class="badge"></span>
                             </div>
-                            <div class="cpc-nav-sub-list">
-                                <div class="cpc-nav-item sub" data-field="mail">
-                                    <div class="cpc-nav-content">
+                            <div class="${this.CLN.navSubRouteList}">
+                                <div class="${this.CLN.navRoute} sub" data-field="mail">
+                                    <div class="${this.CLN.navRouteContent}">
                                         <span class="text">私信</span>
                                         <span class="badge"></span>
                                     </div>
                                 </div>
-                                <div class="cpc-nav-item sub" data-field="reply">
-                                    <div class="cpc-nav-content">
+                                <div class="${this.CLN.navRoute} sub" data-field="reply">
+                                    <div class="${this.CLN.navRouteContent}">
                                         <span class="text">回复我的</span>
                                         <span class="badge"></span>
                                     </div>
                                 </div>
-                                <div class="cpc-nav-item sub" data-field="call">
-                                    <div class="cpc-nav-content">
+                                <div class="${this.CLN.navRoute} sub" data-field="call">
+                                    <div class="${this.CLN.navRouteContent}">
                                         <span class="text">@我的</span>
                                         <span class="badge"></span>
                                     </div>
                                 </div>
-                                <div class="cpc-nav-item sub" data-field="praise">
-                                    <div class="cpc-nav-content">
+                                <div class="${this.CLN.navRoute} sub" data-field="praise">
+                                    <div class="${this.CLN.navRouteContent}">
                                         <span class="text">收到的赞</span>
                                         <span class="badge"></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="cpc-nav-item" data-href="/post">
-                            <div class="cpc-nav-content"><span class="text">投稿</span></div>
+                        <div class="${this.CLN.navRoute}" data-href="/post">
+                            <div class="${this.CLN.navRouteContent}"><span class="text">投稿</span></div>
                         </div>
-                        <div class="cpc-nav-item" data-action="login">
-                            <div class="cpc-nav-content"><span class="text">登录 / 注册</span></div>
+                        <div class="${this.CLN.navRoute}" data-action="login">
+                            <div class="${this.CLN.navRouteContent}"><span class="text">登录 / 注册</span></div>
                         </div>`,
                         param: {}
                     },
                     visitor: {
                         tpl: `
-                            <div class="cpc-user-info cpc-nav-item dropdown">
-                                <div class="cpc-nav-content">
-                                    <img class="portrait" data-field="portrait" src="{portrait}" />
+                            <div class="${this.CLN.navRoute} multi">
+                                <div class="${this.CLN.navRouteContent}">
+                                    <img data-field="portrait" src="{portrait}" />
                                 </div>
-                                <div class="cpc-nav-sub-list">
-                                    <div class="name">{name}</div>
-                                    <div class="block c-clear-float">
-                                        <div class="level">
+                                <div class="${this.CLN.navSubRouteList}">
+                                    <div data-field="name">{name}</div>
+                                    <div class="block c-clear-fix">
+                                        <div data-field="level">
                                             <span class="number"></span>
                                             <span class="shining"></span>
                                             <span class="track"></span>
                                         </div>
-                                        <div class="c-clear-float">
+                                        <div class="c-clear-fix">
                                             <span class="role item">{role}</span>
                                             <span class="score item"></span>
                                         </div>
-                                        <div class="c-clear-float">
+                                        <div class="c-clear-fix">
                                             <span class="fans item"><span class="label">粉丝：</span><span data-field="fans">--</span></span>
                                             <span class="works item"><span class="label">作品：</span><span data-field="works">--</span></span>
                                             <!--<span class="allowWorks item"><span class="label">可投稿数量：</span><span data-field="allowWorks">--</span></span>-->
                                         </div>
                                     </div>
-                                    <div class="block entrance c-clear-float">
-                                        <span class="item">个人中心</span>
-                                        <span class="item">投稿管理</span>
-                                        <span class="item">稿件审核</span>
-                                        <span class="item">关注管理</span>
-                                        <span class="item btnLogout"><span class="icon iconfont icon-logout"></span><span class="text">注销</span></span>
+                                    <div class="block router c-clear-fix">
+                                        <span class="route">个人中心</span>
+                                        <span class="route">投稿管理</span>
+                                        <span class="route">稿件审核</span>
+                                        <span class="route">关注管理</span>
+                                        <span class="route btnLogout"><span class="icon iconfont icon-logout"></span><span class="text">注销</span></span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="cpc-nav-item dropdown cpc-user-message">
-                                <div class="cpc-nav-content">
+                            <div class="${this.CLN.navRoute} multi">
+                                <div class="${this.CLN.navRouteContent}">
                                     <span class="text">消息</span>
                                     <span class="badge"></span>
                                 </div>
-                                <div class="cpc-nav-sub-list">
-                                    <div class="cpc-nav-item sub" data-field="mail">
-                                        <div class="cpc-nav-content">
+                                <div class="${this.CLN.navSubRouteList}">
+                                    <div class="${this.CLN.navRoute} sub" data-field="mail">
+                                        <div class="${this.CLN.navRouteContent}">
                                             <span class="text">私信</span>
                                             <span class="badge"></span>
                                         </div>
                                     </div>
-                                    <div class="cpc-nav-item sub" data-field="reply">
-                                        <div class="cpc-nav-content">
+                                    <div class="${this.CLN.navRoute} sub" data-field="reply">
+                                        <div class="${this.CLN.navRouteContent}">
                                             <span class="text">回复我的</span>
                                             <span class="badge"></span>
                                         </div>
                                     </div>
-                                    <div class="cpc-nav-item sub" data-field="call">
-                                        <div class="cpc-nav-content">
+                                    <div class="${this.CLN.navRoute} sub" data-field="call">
+                                        <div class="${this.CLN.navRouteContent}">
                                             <span class="text">@我的</span>
                                             <span class="badge"></span>
                                         </div>
                                     </div>
-                                    <div class="cpc-nav-item sub" data-field="praise">
-                                        <div class="cpc-nav-content">
+                                    <div class="${this.CLN.navRoute} sub" data-field="praise">
+                                        <div class="${this.CLN.navRouteContent}">
                                             <span class="text">收到的赞</span>
                                             <span class="badge"></span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="cpc-nav-item" data-href="/post">
-                                <div class="cpc-nav-content"><span class="text">投稿</span></div>
+                            <div class="${this.CLN.navRoute}" data-href="/post">
+                                <div class="${this.CLN.navRouteContent}"><span class="text">投稿</span></div>
                             </div>
-                            <div class="cpc-nav-item" data-action="login">
-                                <div class="cpc-nav-content"><span class="text">登录 / 注册</span></div>
+                            <div class="${this.CLN.navRoute}" data-action="login">
+                                <div class="${this.CLN.navRouteContent}"><span class="text">登录 / 注册</span></div>
                             </div>
                         `
                     },
                     unlogin: {
                         tpl: `            
-                            <div class="cpc-nav-item" data-action="login">
-                                <div class="cpc-nav-content"><span class="text">登录 / 注册</span></div>
+                            <div class="${this.CLN.navRoute}" data-action="login">
+                                <div class="${this.CLN.navRouteContent}"><span class="text">登录 / 注册</span></div>
                             </div>`,
                         param: {}
                     }
@@ -196,8 +196,13 @@ export default class NavTop extends Base {
     get HTML() {
         return html;
     }
+    get action() {
+        return {
+            login: null
+        };
+    }
     initNavContent() {
-        this.container.classList.add(this.CLN['nav-ctn']);
+        this.container.classList.add(this.CLN['nav-top']);
         this.initBrand();
         this.initRouter();
         this.initUserProfile();
@@ -222,11 +227,11 @@ export default class NavTop extends Base {
             }
 
             if (route.children instanceof Array && route.children.length > 0) {
-                dom.classList.add('dropdown-list');
-                dom.querySelector(`.content`).classList.add('split');
-                this.setSubRoutes(dom.querySelector(`.dropdown-list`), route.children);
+                dom.classList.add('multi');
+                dom.querySelector(`.${this.CLN.navRouteContent}`).classList.add('split');
+                this.setSubRoutes(dom.querySelector(`.${this.CLN.navSubRouteList}`), route.children);
             } else {
-                dom.querySelector(`.dropdown-list`).classList.add('c-hide');
+                dom.querySelector(`.${this.CLN.navSubRouteList}`).classList.add('c-hide');
             }
             container.appendChild(dom);
         });
@@ -235,7 +240,7 @@ export default class NavTop extends Base {
         routes.forEach(route => {
             let tpl = route.tpl || this.option.router.tplSub;
             let dom = document.createElement('div');
-            dom.className = `sub ${this.CLN.route}`;
+            dom.className = `sub ${this.CLN.navRoute}`;
             dom.innerHTML = tpl.fill(route);
             if (route.action && route.action.type) {
                 dom.dataset[route.action.type] = route.action.content;
@@ -265,5 +270,13 @@ export default class NavTop extends Base {
         this.option.userProfile.controller[state] = Object.assign(this.option.userProfile.state[state], option);
         this.setUserProfileByState(state);
     }
-    attachEvent() {}
+    attachEvent() {
+        $(this.container).on('click.route.href', '[data-href]', e => {
+            location.href = e.currentTarget.dataset.href;
+        });
+
+        $(this.container).on('click.route.action', '[data-action]', e => {
+            this.action[e.currentTarget.dataset.href] && this.action[e.currentTarget.dataset.href](e.currentTarget);
+        });
+    }
 }

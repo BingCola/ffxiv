@@ -1,84 +1,248 @@
 $c: nav;
-
-.#{$c}-ctn {
+.#{$c}-top {
     z-index: 5;
     display: flex;
     display: -webkit-flex;
-}
-.#{$c}-bg {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-}
-.#{$c}-body {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    max-width: 1080px;
-    margin: 0 auto;
-}
-.#{$c}-brand {
-    display: inline-block;
-    height: 100%;
-    padding: 10px;
-    float: left;
+    background-color: black;
+    box-shadow: 0 0 5px 1px #89f2ff;
 
-    &-img {
-        max-height: 100%;
-        max-width: 100%;
+    .#{$c}-bg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
     }
-}
+    .#{$c}-body {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        max-width: 1080px;
+        margin: 0 auto;
+    }
+    .#{$c}-brand {
+        display: inline-block;
+        height: 100%;
+        padding: 10px;
+        float: left;
 
-.#{$c}-router {
-    display: inline-block;
-    height: 100%;
-    margin-left: 30px;
+        &-img {
+            max-height: 100%;
+            max-width: 100%;
+        }
+    }
 
-    :hover {
-        .#{$c}-route {
-            :hover {
-                :global(.content) {
-                    opacity: 1;
-                    transition: 0s;
+    .#{$c}-router {
+        display: inline-block;
+        height: 100%;
+        margin-left: 30px;
+
+        &:hover {
+            .#{$c}-route {
+                &:hover {
+                    .#{$c}-route-content {
+                        opacity: 1;
+                        transition: 0s;
+                    }
                 }
-            }
-            :global(.content) {
-                opacity: 0.5;
-                text-shadow: none;
-                transition: 0.3s;
+                .#{$c}-route-content {
+                    opacity: 0.5;
+                    text-shadow: none;
+                    transition: 0.3s;
+                }
             }
         }
     }
-}
 
-.#{$c}-user-profile {
-    display: inline-flex;
-    display: -webkit-inline-flex;
-    align-items: center;
-    -webkit-align-items: center;
-    height: 100%;
-    position: absolute;
-    right: 0;
+    .#{$c}-user-profile {
+        display: inline-flex;
+        display: -webkit-inline-flex;
+        align-items: center;
+        -webkit-align-items: center;
+        height: 100%;
+        position: absolute;
+        right: 0;
+        color: #e4fde1;
 
-    :global(.portrait) {
-        height: 90%;
+        [data-field='portrait'] {
+            height: 90%;
+        }
+
+        .#{$c}-user-board {
+            .#{$c}-sub-route-list {
+                width: 200px;
+                padding: 5px 15px;
+                text-align: center;
+
+                [data-field='name'] {
+                    display: block;
+                    font-weight: bold;
+                }
+                [data-field='level'] {
+                    height: 4px;
+                    margin-left: 20px;
+                    background: #0c1623;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    position: relative;
+
+                    :global(.shining) {
+                        position: absolute;
+                        top: 0;
+                        height: 25px;
+                        width: 25px;
+                        background: radial-gradient(50% 50%, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.9) 10%, rgba(255, 255, 255, 0) 50%);
+                        z-index: 40;
+                        background-repeat: no-repeat;
+                        transform: translate(-50%, calc(-50% + 2px));
+                    }
+                    :global(.number) {
+                        position: absolute;
+                        left: 0;
+                        line-height: 10px;
+                    }
+                    :global(.track) {
+                        display: block;
+                        height: 100%;
+                        background: linear-gradient(to right, #39a3c7, rgba(120, 238, 222, 1));
+                    }
+                }
+
+                :global(.block) {
+                    padding: 5px;
+                    margin: 10px 0;
+                    background: rgba(120, 238, 222, 0.15);
+                }
+                :global(.router) {
+                    cursor: pointer;
+                    line-height: 20px;
+
+                    :global(.icon) {
+                        margin-right: 12px;
+                        display: inline-block;
+                    }
+                }
+            }
+        }
     }
 
-    :global(.badge) {
-        margin-left: 5px;
-        color: #f45b69;
+    .#{$c}-route {
+        font-size: 14px;
+        padding: 5px 12px;
+        height: 100%;
+        display: inline-flex;
+        display: -webkit-inline-flex;
+        align-items: center;
+        -webkit-align-items: center;
+        justify-content: center;
+        -webkit-justify-content: center;
         position: relative;
-        text-shadow: 0 1px #f45b69;
+        cursor: pointer;
+        float: left;
+
+        &-content {
+            color: rgba(120, 238, 222, 1);
+            text-shadow: 0 0 1px rgba(120, 238, 222, 1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            line-height: 1.414;
+            height: 100%;
+        }
+
+        :global(.badge) {
+            margin-left: 5px;
+            color: #f45b69;
+            position: relative;
+            text-shadow: 0 1px #f45b69;
+        }
+
+        .#{$c}-sub-route-list {
+            display: none;
+            position: absolute;
+            top: calc(100% + 2px);
+            background-color: rgba(0, 0, 0, 0.75);
+            cursor: default;
+        }
+    }
+
+    .#{$c}-route:global(.multi) {
+        &::before {
+            content: '';
+            height: 0;
+            width: 2px;
+            left: 50%;
+            position: absolute;
+            background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, rgba(120, 238, 222, 1) 50%, rgba(255, 255, 255, 0) 100%);
+            transform: translateX(-50%) rotate(30deg);
+        }
+        .#{$c}-route-content {
+            &::before,
+            ::after {
+                opacity: 0;
+                color: rgba(120, 238, 222, 1);
+                text-shadow: 0 0 1px rgba(120, 238, 222, 1);
+                content: attr(data-title);
+                position: absolute;
+                transform: translate(0, 0);
+                transition: transform 0.3s;
+            }
+            &::before {
+                clip-path: polygon(0 0, 70% 0, 30% 100%, 0 100%);
+            }
+            ::after {
+                clip-path: polygon(70% 0, 100% 0, 100% 100%, 30% 100%);
+            }
+        }
+        &:hover {
+            &::before {
+                height: 40px;
+                transition: height 0.3s;
+            }
+            .#{$c}-route-content {
+                &::before,
+                ::after {
+                    opacity: 1;
+                }
+                &::before {
+                    transform: translate(0, -1px);
+                }
+                ::after {
+                    transform: translate(0, 1px);
+                }
+                :global(.text) {
+                    opacity: 0;
+                }
+            }
+            .#{$c}-sub-route-list {
+                &::before {
+                    content: '';
+                    height: 2px;
+                    width: 100%;
+                    position: absolute;
+                    top: -2px;
+                    left: 0;
+                    background: #89f2ff;
+                }
+                display: block;
+            }
+        }
     }
 
     .#{$c}-route:global(.sub) {
+        font-size: 12px;
+        display: block;
+        white-space: nowrap;
+        text-align: center;
+        padding: 10px 15px;
+        cursor: pointer;
+        width: 100%;
+
         :global(.badge) {
             padding-left: 5px;
             color: inherit;
             text-shadow: 0 0 1px #e4fde1;
-            ::before {
+            &::before {
                 content: '';
                 display: inline-block;
                 height: 1px;
@@ -92,27 +256,32 @@ $c: nav;
             }
         }
 
-        :hover {
+        .#{$c}-route-content {
+            color: #e4fde1;
+            text-shadow: 0 0 1px #e4fde1;
+        }
+
+        &:hover {
             :global(.badge) {
-                ::before {
+                &::before {
                     background: rgba(120, 238, 222, 1);
                 }
             }
+            .#{$c}-route-content {
+                color: rgba(120, 238, 222, 1);
+                text-shadow: 0 0 1px rgba(120, 238, 222, 1);
+            }
         }
     }
-}
-
-.#{$c}-route {
-    font-size: 14px;
-    padding: 5px 12px;
-    height: 100%;
-    display: inline-flex;
-    display: -webkit-inline-flex;
-    align-items: center;
-    -webkit-align-items: center;
-    justify-content: center;
-    -webkit-justify-content: center;
-    position: relative;
-    cursor: pointer;
-    float: left;
+    .#{$c}-route:global(.sub) + .#{$c}-route:global(.sub) {
+        &::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0) 0, rgba(120, 238, 222, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
+            left: 0;
+        }
+    }
 }
