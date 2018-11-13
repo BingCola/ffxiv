@@ -20,7 +20,9 @@ export default class Page extends Base {
     }
     registerComponents() {}
     show() {
-        this.initNav();
+        Promise.all([this.api.getUserMessageNumber(this.User.id), this.api.getUserDetail(this.User.id)]).then(() => {
+            this.initNav();
+        });
 
         this.initPanelGuide();
         this.initPanelRecommend();
@@ -38,7 +40,8 @@ export default class Page extends Base {
                     visitor: {
                         param: {
                             name: '游客' + this.User.id,
-                            role: CONSTANT.USER.ROLE[this.User.role].text
+                            role: CONSTANT.USER.ROLE[this.User.role].text,
+                            portrait: `${PATH.IMAGE}/user/portrait/${this.User.id}.png`
                         }
                     }
                 }
@@ -50,7 +53,8 @@ export default class Page extends Base {
                     login: {
                         param: {
                             name: this.User.name,
-                            role: CONSTANT.USER.ROLE[this.User.role].text
+                            role: CONSTANT.USER.ROLE[this.User.role].text,
+                            portrait: `${PATH.IMAGE}/user/portrait/${this.User.id}.png`
                         }
                     }
                 }

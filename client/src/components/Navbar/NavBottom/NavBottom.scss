@@ -16,10 +16,8 @@ $c: nav;
             margin-bottom: 20px;
             .#{$c}-section-content {
                 color: rgba(120, 238, 222, 1);
-                :global(text) {
-                    font-size: 18px;
-                    margin-bottom: 8px;
-                }
+                font-size: 18px;
+                margin-bottom: 8px;
             }
             .#{$c}-route-list {
                 .#{$c}-route {

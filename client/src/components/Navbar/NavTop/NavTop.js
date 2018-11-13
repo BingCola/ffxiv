@@ -43,13 +43,13 @@ export default class NavTop extends Base {
                                         <span class="track"></span>
                                     </div>
                                     <div class="c-clear-fix">
-                                        <span class="role item">{role}</span>
-                                        <span class="score item"></span>
+                                        <span class="role field">{role}</span>
+                                        <span class="score field"></span>
                                     </div>
                                     <div class="c-clear-fix">
-                                        <span class="fans item"><span class="label">粉丝：</span><span data-field="fans">--</span></span>
-                                        <span class="works item"><span class="label">作品：</span><span data-field="works">--</span></span>
-                                        <!--<span class="allowWorks item"><span class="label">可投稿数量：</span><span data-field="allowWorks">--</span></span>-->
+                                        <span class="fans field"><span class="label">粉丝：</span><span data-field="fans">{fans}</span></span>
+                                        <span class="works field"><span class="label">作品：</span><span data-field="works">{works}</span></span>
+                                        <!--<span class="allowWorks field"><span class="label">可投稿数量：</span><span data-field="allowWorks">--</span></span>-->
                                     </div>
                                 </div>
                                 <div class="block router c-clear-fix">
@@ -64,31 +64,31 @@ export default class NavTop extends Base {
                         <div class="${this.CLN.navRoute} multi">
                             <div class="${this.CLN.navRouteContent}">
                                 <span class="text">消息</span>
-                                <span class="badge"></span>
+                                <span class="badge">{msg}</span>
                             </div>
                             <div class="${this.CLN.navSubRouteList}">
                                 <div class="${this.CLN.navRoute} sub" data-field="mail">
                                     <div class="${this.CLN.navRouteContent}">
                                         <span class="text">私信</span>
-                                        <span class="badge"></span>
+                                        <span class="badge">{mail}</span>
                                     </div>
                                 </div>
                                 <div class="${this.CLN.navRoute} sub" data-field="reply">
                                     <div class="${this.CLN.navRouteContent}">
                                         <span class="text">回复我的</span>
-                                        <span class="badge"></span>
+                                        <span class="badge">{reply}</span>
                                     </div>
                                 </div>
                                 <div class="${this.CLN.navRoute} sub" data-field="call">
                                     <div class="${this.CLN.navRouteContent}">
                                         <span class="text">@我的</span>
-                                        <span class="badge"></span>
+                                        <span class="badge">{call}</span>
                                     </div>
                                 </div>
                                 <div class="${this.CLN.navRoute} sub" data-field="praise">
                                     <div class="${this.CLN.navRouteContent}">
                                         <span class="text">收到的赞</span>
-                                        <span class="badge"></span>
+                                        <span class="badge">{praise}</span>
                                     </div>
                                 </div>
                             </div>
@@ -103,7 +103,7 @@ export default class NavTop extends Base {
                     },
                     visitor: {
                         tpl: `
-                            <div class="${this.CLN.navRoute} multi">
+                            <div class="${this.CLN.navRoute} multi  ${this.CLN.navUserBoard}">
                                 <div class="${this.CLN.navRouteContent}">
                                     <img data-field="portrait" src="{portrait}" />
                                 </div>
@@ -116,13 +116,13 @@ export default class NavTop extends Base {
                                             <span class="track"></span>
                                         </div>
                                         <div class="c-clear-fix">
-                                            <span class="role item">{role}</span>
-                                            <span class="score item"></span>
+                                            <span class="role field">{role}</span>
+                                            <span class="score field"></span>
                                         </div>
                                         <div class="c-clear-fix">
-                                            <span class="fans item"><span class="label">粉丝：</span><span data-field="fans">--</span></span>
-                                            <span class="works item"><span class="label">作品：</span><span data-field="works">--</span></span>
-                                            <!--<span class="allowWorks item"><span class="label">可投稿数量：</span><span data-field="allowWorks">--</span></span>-->
+                                            <span class="fans field"><span class="label">粉丝：</span><span data-field="fans">{fans}</span></span>
+                                            <span class="works field"><span class="label">作品：</span><span data-field="works">{works}</span></span>
+                                            <!--<span class="allowWorks field"><span class="label">可投稿数量：</span><span data-field="allowWorks">--</span></span>-->
                                         </div>
                                     </div>
                                     <div class="block router c-clear-fix">
@@ -143,25 +143,25 @@ export default class NavTop extends Base {
                                     <div class="${this.CLN.navRoute} sub" data-field="mail">
                                         <div class="${this.CLN.navRouteContent}">
                                             <span class="text">私信</span>
-                                            <span class="badge"></span>
+                                            <span class="badge">{mail}</span>
                                         </div>
                                     </div>
                                     <div class="${this.CLN.navRoute} sub" data-field="reply">
                                         <div class="${this.CLN.navRouteContent}">
                                             <span class="text">回复我的</span>
-                                            <span class="badge"></span>
+                                            <span class="badge">{reply}</span>
                                         </div>
                                     </div>
                                     <div class="${this.CLN.navRoute} sub" data-field="call">
                                         <div class="${this.CLN.navRouteContent}">
                                             <span class="text">@我的</span>
-                                            <span class="badge"></span>
+                                            <span class="badge">{call}</span>
                                         </div>
                                     </div>
                                     <div class="${this.CLN.navRoute} sub" data-field="praise">
                                         <div class="${this.CLN.navRouteContent}">
                                             <span class="text">收到的赞</span>
-                                            <span class="badge"></span>
+                                            <span class="badge">{praise}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -228,7 +228,7 @@ export default class NavTop extends Base {
 
             if (route.children instanceof Array && route.children.length > 0) {
                 dom.classList.add('multi');
-                dom.querySelector(`.${this.CLN.navRouteContent}`).classList.add('split');
+                dom.querySelector(`.${this.CLN.navRouteContent}`).dataset.text = route.text;
                 this.setSubRoutes(dom.querySelector(`.${this.CLN.navSubRouteList}`), route.children);
             } else {
                 dom.querySelector(`.${this.CLN.navSubRouteList}`).classList.add('c-hide');

@@ -113,13 +113,42 @@ $c: nav;
                     margin: 10px 0;
                     background: rgba(120, 238, 222, 0.15);
                 }
-                :global(.router) {
+
+                :global(.field) {
+                    width: 50%;
+                    float: left;
+                    font-size: 12px;
+                }
+
+                :global(.route) {
                     cursor: pointer;
                     line-height: 20px;
+                    width: 50%;
+                    float: left;
+                    font-size: 12px;
 
                     :global(.icon) {
                         margin-right: 12px;
                         display: inline-block;
+                    }
+                }
+            }
+        }
+
+        .#{$c}-route:global(.multi) {
+            &::before {
+                display: none;
+            }
+            .#{$c}-route-content {
+                &::before,
+                &::after {
+                    display: none;
+                }
+            }
+            &:hover {
+                > .#{$c}-route-content {
+                    :global(.text) {
+                        opacity: 1;
                     }
                 }
             }
@@ -178,11 +207,11 @@ $c: nav;
         }
         .#{$c}-route-content {
             &::before,
-            ::after {
+            &::after {
                 opacity: 0;
                 color: rgba(120, 238, 222, 1);
                 text-shadow: 0 0 1px rgba(120, 238, 222, 1);
-                content: attr(data-title);
+                content: attr(data-text);
                 position: absolute;
                 transform: translate(0, 0);
                 transition: transform 0.3s;
@@ -190,7 +219,7 @@ $c: nav;
             &::before {
                 clip-path: polygon(0 0, 70% 0, 30% 100%, 0 100%);
             }
-            ::after {
+            &::after {
                 clip-path: polygon(70% 0, 100% 0, 100% 100%, 30% 100%);
             }
         }
@@ -199,15 +228,15 @@ $c: nav;
                 height: 40px;
                 transition: height 0.3s;
             }
-            .#{$c}-route-content {
+            > .#{$c}-route-content {
                 &::before,
-                ::after {
+                &::after {
                     opacity: 1;
                 }
                 &::before {
                     transform: translate(0, -1px);
                 }
-                ::after {
+                &::after {
                     transform: translate(0, 1px);
                 }
                 :global(.text) {

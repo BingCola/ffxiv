@@ -21,12 +21,12 @@ export default class Auth {
     login(account) {
         let $promise = $.Deferred();
         if (!account) account = this.getUserLoginProfile();
-        if (!account) $promise.reject();
+        if (!account || !account.remember) $promise.reject();
         let req;
-        if (account.role == 6) {
-            req = this.api.loginInVisitor(account);
-        } else {
+        if (account.account && (account.pwd || account.role == 6)) {
             req = this.api.login(account);
+        } else {
+            req = this.api.loginInVisitor(account);
         }
         req.done(result => {
             if (result.success) {
