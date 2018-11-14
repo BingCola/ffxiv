@@ -108,6 +108,7 @@ input[type='range']::-webkit-slider-thumb {
 .c-page-header + .c-page {
     height: calc(100% - 44px);
     top: 44px;
+    padding-top: 5px;
 }
 
 .c-page-body {

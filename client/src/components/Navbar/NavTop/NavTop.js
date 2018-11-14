@@ -380,7 +380,7 @@ export default class NavTop extends Base {
         });
 
         $(this.container).on('click.route.action', '[data-action]', e => {
-            this.action[e.currentTarget.dataset.href] && this.action[e.currentTarget.dataset.href](e.currentTarget);
+            this.action[e.currentTarget.dataset.action] && this.action[e.currentTarget.dataset.action](e.currentTarget);
         });
     }
 }
