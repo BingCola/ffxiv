@@ -1,11 +1,11 @@
 import auth from 'auth';
-import spinner from 'Spinner/Spinner';
+import Spinner from 'Spinner/Spinner';
 
 import Base from '../component';
 import html from './Login.html';
 import style from './Login.scss';
 
-export default class Navbar extends Base {
+export default class Login extends Base {
     constructor(option, require) {
         super(null, option, require);
     }
@@ -21,7 +21,7 @@ export default class Navbar extends Base {
 
     show() {
         if (!this.container) {
-            this.createPanelLogin();
+            this.createPanelDom();
             this.attachEvent();
         } else {
             this.container.classlist.remove('c-hide');
@@ -30,11 +30,11 @@ export default class Navbar extends Base {
     hide() {
         if (this.container) this.container.classlist.add('c-hide');
     }
-    createPanelLogin() {
-        let user = this.option.profile;
+    createPanelDom() {
+        let user = this.require.auth.getUserLoginProfile();
         this.container = document.createElement('div');
-        this.container.classList.add('panel');
-        this.container.innerHTML = this.HTML.format({
+        this.container.classList.add(this.CLN['login']);
+        this.container.innerHTML = this.HTML.fill(this.CLN).fill({
             remember: user.remember ? 'checked' : '',
             account: user.remember && user.account ? user.account : '',
             pwd: user.remember && user.pwd ? user.pwd : ''
@@ -43,7 +43,7 @@ export default class Navbar extends Base {
         document.body.appendChild(this.container);
     }
     attachEvent() {
-        $(this.panelLogin).on('click', '[data-action]', e => {
+        $(this.container).on('click', '[data-action]', e => {
             var target = e.currentTarget;
             switch (target.dataset.action) {
                 case 'hide':
@@ -54,36 +54,13 @@ export default class Navbar extends Base {
                     break;
                 case 'remember':
                     target.classList.toggle('checked');
-                    this.rememberAccount(target.classList.contains('checked'));
+                    this.require.auth.rememberAccount(target.classList.contains('checked'));
                     break;
                 case 'visitor':
                     this.loginInVisitor();
                     break;
             }
         });
-    }
-    login() {
-        var container = this.container.querySelector('.loginStatus');
-        Spinner.spin(container, { type: 'bar' });
-
-        var tipDom = this.container.querySelector('.resultTip');
-        this.login(postData)
-            .done(() => {
-                _this.event.afterLogin && _this.event.afterLogin();
-                _this.clearEvent();
-                _this.hide();
-            })
-            .fail(function() {
-                tipDom.innerHTML = '登录失败，密码错误';
-            })
-            .always(function() {
-                Spinner.stop(container);
-            });
-    }
-    rememberAccount(check) {
-        let user = this.getUserLoginProfile();
-        user.remember = check ? true : false;
-        localStorage.setItem('user_login_profile', JSON.stringify(user));
     }
     checkLoginInfo(account) {
         if (!account.account) {
@@ -105,34 +82,35 @@ export default class Navbar extends Base {
             visitor = {};
         }
         if (!visitor.id) {
-            this.startLoginByPanel({ role: 6 });
+            this.login({ role: 6 });
         } else {
-            this.startLoginByPanel(visitor);
+            this.login(visitor);
         }
     }
     showLoginResult(msg) {
-        let container = this.panelLogin.querySelector('.cpc-result-msg');
+        let container = this.container.querySelector('.cpc-result-msg');
         container.innerHTML = msg;
     }
-    startLoginByPanel(account) {
-        account = account || {
-            account: this.panelLogin.querySelector('.cpc-account-ipt').value,
-            pwd: this.panelLogin.querySelector('.cpc-pwd-ipt').value
+    login() {
+        let account = {
+            account: this.container.querySelector(`.${this.loginIpt}[data-field="account"]`).value,
+            pwd: this.container.querySelector(`.${this.loginIpt}[data-field="password"]`).value
         };
-        if (account.role != 6) {
-            var isValid = this.checkLoginInfo(account);
-            // if (!isValid) return;
+        if (account.role != 6 && !this.checkLoginInfo(account)) {
+            return;
         }
-        let wrapLoginStatus = this.panelLogin.querySelector('.cpc-login-status');
-        let wrapLoginStatusSpinner = this.panelLogin.querySelector('.cpc-loading-spinner');
+        let wrapLoginStatus = this.container.querySelector(`.${this.CLN.loginStatus}`);
+        let wrapLoginStatusSpinner = this.container.querySelector(`.${this.CLN.loginSpinner}`);
         wrapLoginStatus.classList.add('loading');
-        CPlugin.spinner.spin(this.panelLogin.querySelector('.cpc-loading-spinner'), 3);
-        this.login(account)
-            .done(() => {
-                this.clearPanelLogin();
+        Spinner.spin(wrapLoginStatusSpinner, 3);
+        this.require.auth
+            .login(account)
+            .done(result => {
+                this.option.event.afterLogin && this.option.event.afterLogin(result);
+                this.hide();
             })
             .fail(msg => {
-                CPlugin.spinner.stop(this.panelLogin.querySelector('.cpc-loading-spinner'));
+                Spinner.stop(wrapLoginStatusSpinner);
                 wrapLoginStatus.classList.remove('loading');
                 if (!msg) {
                     this.showLoginResult('服务器暂不可用');

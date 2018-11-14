@@ -36,8 +36,8 @@ export default class Page {
 
         let apiStack = {};
         Object.keys(api).forEach(name => {
-            apiStack[name] = () => {
-                let request = api[name](...arguments);
+            apiStack[name] = (...args) => {
+                let request = api[name].apply(null, args);
                 this._aysnc.push(request);
                 return request;
             };

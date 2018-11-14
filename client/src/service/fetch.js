@@ -32,7 +32,7 @@ $.ajaxSetup({
 });
 
 const get = (url, data, option = {}) => {
-    url += CONFIG.HOST;
+    url = CONFIG.HOST + url;
     option = Object.assign({}, DEFAULT_REQUEST_OPTION, option);
     option.type = 'GET';
     return $.ajax({ url: url, type: 'GET', contentType: 'application/json' });

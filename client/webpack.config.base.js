@@ -24,12 +24,24 @@ export default {
                 exclude: [/node_modules/]
             },
             {
-                test: /.scss$/,
-                include: [path.resolve(__dirname, 'node_modules'), path.resolve(__dirname, 'src/theme')],
+                test: /\.css$/,
+                use: [
+                    { loader: 'style-loader' },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.scss$/,
+                include: [path.resolve(__dirname, 'node_modules'), path.resolve(__dirname, 'src/theme'), path.resolve(__dirname, 'src/fonts')],
                 use: ['style-loader', 'css-loader', 'sass-loader']
             },
             {
-                test: /.scss$/,
+                test: /\.scss$/,
                 include: [path.resolve(__dirname, 'src/plugins')],
                 use: [
                     {
@@ -50,7 +62,7 @@ export default {
                 ]
             },
             {
-                test: /.scss$/,
+                test: /\.scss$/,
                 include: [path.resolve(__dirname, 'src/components')],
                 use: [
                     {
@@ -71,9 +83,10 @@ export default {
                 ]
             },
             {
-                test: /.scss$/,
+                test: /\.scss$/,
                 exclude: [
                     path.resolve(__dirname, 'node_modules'),
+                    path.resolve(__dirname, 'src/fonts'),
                     path.resolve(__dirname, 'src/theme'),
                     path.resolve(__dirname, 'src/components'),
                     path.resolve(__dirname, 'src/plugins')
@@ -169,6 +182,7 @@ export default {
             path.resolve(__dirname, 'src/components'),
             path.resolve(__dirname, 'src/plugins'),
             path.resolve(__dirname, 'src/theme'),
+            path.resolve(__dirname, 'src/fonts'),
             'node_modules'
         ],
         alias: {}

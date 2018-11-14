@@ -21,11 +21,9 @@ export default class Page extends Base {
     registerComponents() {}
     show() {
         this.initNav();
-
-        this.initPanelGuide();
-        this.initPanelRecommend();
-        this.initPanelWorksPartition();
-        this.initPanelRouter();
+        this.initSideTool();
+        this.initViewer();
+        this.initSearch();
 
         this.attachEvent();
     }
@@ -41,9 +39,8 @@ export default class Page extends Base {
         });
         this.cmpt.navbar.use();
     }
-    initPanelGuide() {}
-    initPanelRecommend() {}
-    initPanelWorksPartition() {}
-    initPanelRouter() {}
+    initSideTool() {}
+    initViewer() {}
+    initSearch() {}
     attachEvent() {}
 }

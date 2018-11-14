@@ -186,6 +186,16 @@ input[type='range']::-webkit-slider-thumb {
 
 /*btn*/
 
+/*overlay*/
+.c-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.75);
+}
+/*overlay*/
 /*popover*/
 
 .c-interact .c-popover {
@@ -313,15 +323,3 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 /*input-check*/
-
-/*text*/
-
-.c-text.split {
-    ::before {
-        clip-path: polygon(0 0, 70% 0, 30% 100%, 0 100%);
-    }
-    ::after {
-        clip-path: polygon(70% 0, 100% 0, 100% 100%, 30% 100%);
-    }
-}
-/*text*/

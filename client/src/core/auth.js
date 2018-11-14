@@ -1,5 +1,4 @@
 import api from 'api.js';
-import spinner from 'Spinner/Spinner.js';
 
 export default class Auth {
     constructor(option = {}, require = {}) {
@@ -30,7 +29,7 @@ export default class Auth {
         }
         req.done(result => {
             if (result.success) {
-                this.store = result.data;
+                Object.assign(this.store, result.data);
                 let user = {
                     id: this.store.id,
                     role: this.store.role
@@ -54,7 +53,7 @@ export default class Auth {
                     }
                 }
                 if (loginProfile.remember) localStorage.setItem('user_login_profile', JSON.stringify(loginProfile));
-                $promise.resolve();
+                $promise.resolveWith(null, [this.store]);
             } else {
                 this.store = {};
                 $promise.rejectWith(null, [result.msg]);
@@ -67,7 +66,7 @@ export default class Auth {
     }
 
     rememberAccount(check) {
-        let user = getUserLoginProfile();
+        let user = this.getUserLoginProfile();
         user.remember = check ? true : false;
         localStorage.setItem('user_login_profile', JSON.stringify(user));
     }
