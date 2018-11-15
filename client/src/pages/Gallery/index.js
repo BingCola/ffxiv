@@ -5,10 +5,10 @@ import 'iconfont/iconfont.css';
 import CONSTANT from 'constant';
 import Router from 'router';
 import Auth from 'auth.js';
-import Navbar from 'Navbar/Navbar.js';
-import Login from 'Login/Login.js';
+import Navbar from 'Navbar/navbar.js';
+import Login from 'Login/login.js';
 
-import Home from './Home';
+import Gallery from './Gallery';
 
 let auth = new Auth();
 let login = new Login({}, { auth });
@@ -18,11 +18,11 @@ let ready = Promise.all([auth.login()]);
 ready.then(() => {
     User = auth.store;
     let router = new Router({
-        root: 'Home',
+        root: 'Gallery',
         path: [
             {
-                name: 'Home',
-                constructor: Home
+                name: 'Gallery',
+                constructor: Gallery
             }
         ],
         component: {

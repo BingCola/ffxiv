@@ -6,7 +6,8 @@ import path from 'path';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 export const chunks = {
-    home: [path.join(__dirname, './src/pages/Home/index.js')]
+    home: [path.join(__dirname, './src/pages/Home/index.js')],
+    gallery: [path.join(__dirname, './src/pages/Gallery/index.js')]
 };
 
 export default {
@@ -53,7 +54,7 @@ export default {
                             camelCase: true,
                             modules: true,
                             importLoaders: 1,
-                            localIdentName: 'cp-[local]'
+                            localIdentName: 'cp-[name]-[local]'
                         }
                     },
                     {
@@ -74,7 +75,7 @@ export default {
                             camelCase: true,
                             modules: true,
                             importLoaders: 1,
-                            localIdentName: 'cc-[local]'
+                            localIdentName: 'cc-[name]-[local]'
                         }
                     },
                     {
@@ -112,6 +113,15 @@ export default {
             {
                 test: /\.json$/,
                 loader: 'json-loader'
+            },
+            {
+                test: /\.html$/,
+                use: {
+                    loader: 'html-loader',
+                    options: {
+                        minimize: true
+                    }
+                }
             },
             {
                 test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
@@ -159,14 +169,11 @@ export default {
             },
             {
                 test: /\.(?:ico|gif|png|jpg|jpeg|webp)$/,
-                use: 'url-loader'
-            },
-            {
-                test: /\.html$/,
                 use: {
-                    loader: 'html-loader',
+                    loader: 'url-loader',
                     options: {
-                        minimize: true
+                        publicPath: 'https://www.abc.cn/img/',
+                        name: 'assets/img/[name].[hash:7].[ext]'
                     }
                 }
             }
@@ -196,6 +203,17 @@ export default {
             template: './src/index.ejs',
             alwaysWriteToDisk: true,
             chunks: ['home'],
+            chunksSortMode: 'manual',
+            inject: false
+        }),
+        new HtmlWebpackPlugin({
+            favicon: './src/images/common/favicon.ico',
+            hash: true,
+            title: 'FFXIV幻化回廊',
+            filename: './index.dev/gallery.html',
+            template: './src/index.ejs',
+            alwaysWriteToDisk: true,
+            chunks: ['gallery'],
             chunksSortMode: 'manual',
             inject: false
         }),

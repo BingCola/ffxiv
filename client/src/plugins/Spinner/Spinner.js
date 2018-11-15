@@ -1,4 +1,4 @@
-import style from './Spinner.scss';
+import style from './spinner.scss';
 
 const template = {
     style_1: '<div class="cp-spinner style-1"><div class="body"></div><div class="cp-spinner-overlay"></div></div>',
@@ -7,7 +7,7 @@ const template = {
                 <div class="unit"></div>
                 <div class="unit"></div>
                 <div class="unit"></div>
-                </div>
+                </div> 
                 `,
     style_3: `<div class="cp-spinner style-3">               
                 <div class="unit"></div>

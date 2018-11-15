@@ -2,9 +2,10 @@ import CONSTANT from 'constant';
 import { PATH } from 'config';
 
 import Base from 'page';
-import html from './Home.html';
-import style from './Home.scss';
+import html from './Gallery.html';
+import style from './Gallery.scss';
 
+import SideTool from './components/SideTool';
 export default class Page extends Base {
     constructor() {
         super(...arguments);
@@ -39,7 +40,10 @@ export default class Page extends Base {
         });
         this.cmpt.navbar.use();
     }
-    initSideTool() {}
+    initSideTool() {
+        let contianer = document.getElementById('ctnFilter');
+        this.cmpt.sideTool = new SideTool(this, contianer);
+    }
     initViewer() {}
     initSearch() {}
     attachEvent() {}

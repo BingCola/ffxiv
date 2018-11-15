@@ -1,0 +1,156 @@
+.sideTool {
+    width: 240px;
+    position: absolute;
+    height: 100%;
+    z-index: 5;
+    background-color: rgba(0, 0, 0, 0.9);
+
+    .workspace {
+        height: 100%;
+        width: 100%;
+    }
+
+    .wrapQueryField {
+        margin-bottom: 10px;
+        padding: 10px;
+
+        .title {
+            position: relative;
+            padding-left: 15px;
+            font-size: 16px;
+            color: rgba(120, 238, 222, 1);
+            text-shadow: 0 0 1px rgba(120, 238, 222, 1);
+
+            &::before {
+                content: '';
+                display: inline-block;
+                position: absolute;
+                height: 14px;
+                top: 50%;
+                left: 0;
+                width: 3px;
+                background: rgba(120, 238, 222, 1);
+                transform: translateY(-50%);
+            }
+        }
+
+        .divQueryItemList {
+            padding-left: 15px;
+            margin-top: 10px;
+
+            .item {
+                margin-right: 10px;
+                display: inline-block;
+                color: #e4fde1;
+                font-size: 14px;
+                margin-bottom: 5px;
+                float: left;
+                cursor: pointer;
+                position: relative;
+                overflow: hidden;
+                padding: 3px;
+
+                &:global(.selected) {
+                    text-shadow: 0 0 5px #f45b69;
+                    color: #f45b69;
+
+                    .text {
+                        &::before {
+                            content: attr(text);
+                            color: #f45b69;
+                        }
+                    }
+                }
+            }
+            &:global(.hover) {
+                .item {
+                    &::before {
+                        content: '';
+                        width: 100%;
+                        height: 2px;
+                        background: #78eede;
+                        right: calc(100% + 3px);
+                        top: 0;
+                        transition: 0.2s;
+                        position: absolute;
+                        transform: scaleY(0.5);
+                    }
+                    &::after {
+                        content: '';
+                        width: 100%;
+                        display: inline-block;
+                        height: 2px;
+                        position: absolute;
+                        background: #78eede;
+                        left: 100%;
+                        bottom: 0;
+                        transition: 0.2s;
+                        transform: scaleY(0.5);
+                    }
+                    &:hover {
+                        &::before {
+                            right: 0;
+                        }
+                        &::after {
+                            left: 0;
+                        }
+                    }
+                    &:global(.selected) {
+                        ::before,
+                        ::after {
+                            background: #f45b69;
+                        }
+                    }
+                }
+            }
+        }
+        &[data-field='color'] {
+            .item {
+                width: 20px;
+                height: 20px;
+                box-shadow: 0 0 1px 1px #e4fde1;
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    .btnToolGrp {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+
+        .btnTool {
+            cursor: pointer;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            line-height: 1;
+        }
+    }
+}
+
+/* #ctnFilter .divQueryItemList.hover .item::before {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0, rgba(120, 238, 222, .3) 10%, rgba(120, 238, 222, 1) 50%, rgba(120, 238, 222, .3) 90%, rgba(255, 255, 255, 0) 100%);
+    right: 100%;
+    top: 0;
+    transition: 0.2s;
+    position: absolute;
+    transform: scaleY(.5);
+}
+
+#ctnFilter .divQueryItemList.hover .item::after {
+    content: '';
+    width: 100%;
+    display: inline-block;
+    height: 2px;
+    position: absolute;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0, rgba(120, 238, 222, .3) 10%, rgba(120, 238, 222, 1) 50%, rgba(120, 238, 222, .3) 90%, rgba(255, 255, 255, 0) 100%);
+    left: 100%;
+    bottom: 0;
+    transition: 0.2s;
+    transform: scaleY(.5);
+} */

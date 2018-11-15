@@ -30,7 +30,7 @@ export default merge(base, {
         historyApiFallback: {
             verbose: true,
             index: '/index.dev/home.html',
-            rewrites: [{ from: /^\/test$/, to: '/index.dev/indexTest.html' }]
+            rewrites: [{ from: /^\/gallery$/, to: '/index.dev/gallery.html' }]
         },
         publicPath: '/dist'
     }

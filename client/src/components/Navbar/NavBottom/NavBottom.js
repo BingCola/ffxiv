@@ -1,6 +1,6 @@
-import Base from '../Nav';
-import style from './NavBottom.scss';
-import html from './NavBottom.html';
+import Base from '../nav';
+import style from './navBottom.scss';
+import html from './navBottom.html';
 
 export default class NavBottom extends Base {
     constructor() {

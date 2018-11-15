@@ -1,6 +1,6 @@
-import Base from '../Nav';
-import style from './NavTop.scss';
-import html from './NavTop.html';
+import Base from '../nav';
+import style from './navTop.scss';
+import html from './navTop.html';
 
 import api from 'api';
 import CONSTANT from 'constant';

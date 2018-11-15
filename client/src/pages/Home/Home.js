@@ -2,8 +2,8 @@ import CONSTANT from 'constant';
 import { PATH } from 'config';
 
 import Base from 'page';
-import html from './Home.html';
-import style from './Home.scss';
+import html from './home.html';
+import style from './home.scss';
 
 export default class Page extends Base {
     constructor() {

@@ -1,9 +1,9 @@
 import auth from 'auth';
-import Spinner from 'Spinner/Spinner';
+import Spinner from 'Spinner/spinner';
 
 import Base from '../component';
-import html from './Login.html';
-import style from './Login.scss';
+import html from './login.html';
+import style from './login.scss';
 
 export default class Login extends Base {
     constructor(option, require) {

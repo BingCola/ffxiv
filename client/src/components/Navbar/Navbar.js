@@ -1,6 +1,6 @@
 import Base from '../component';
-import NavTop from './NavTop/NavTop.js';
-import NavBottom from './NavBottom/NavBottom.js';
+import NavTop from './NavTop/navTop.js';
+import NavBottom from './NavBottom/navBottom.js';
 
 export default class Navbar extends Base {
     constructor(option, require) {

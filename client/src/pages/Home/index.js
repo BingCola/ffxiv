@@ -6,10 +6,10 @@ import 'common';
 import CONSTANT from 'constant';
 import Router from 'router';
 import Auth from 'auth.js';
-import Navbar from 'Navbar/Navbar.js';
-import Login from 'Login/Login.js';
+import Navbar from 'Navbar/navbar.js';
+import Login from 'Login/login.js';
 
-import Home from './Home';
+import Home from './home';
 
 let auth = new Auth();
 let login = new Login({}, { auth });
