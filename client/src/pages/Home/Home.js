@@ -33,7 +33,7 @@ export default class Page extends Base {
         this.cmpt.navbar.setOption({
             navTop: {
                 container: document.querySelector('.c-page-header'),
-                brand: `<img class="cc-nav-brand-img" src="${PATH.IMAGE}/common/logo.png">`
+                brand: `<img class="cc-navTop-brand-img" src="${PATH.IMAGE}/common/logo.png">`
             },
             navBottom: {
                 container: document.querySelector('.c-page-footer')

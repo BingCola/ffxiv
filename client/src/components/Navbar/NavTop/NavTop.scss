@@ -1,26 +1,25 @@
-$c: nav;
-.#{$c}-top {
+.ctn {
     z-index: 5;
     display: flex;
     display: -webkit-flex;
     background-color: black;
     box-shadow: 0 0 5px 1px #89f2ff;
 
-    .#{$c}-bg {
+    .bg {
         position: absolute;
         left: 0;
         top: 0;
         width: 100%;
         height: 100%;
     }
-    .#{$c}-body {
+    .body {
         position: relative;
         width: 100%;
         height: 100%;
         max-width: 1080px;
         margin: 0 auto;
     }
-    .#{$c}-brand {
+    .brand {
         display: inline-block;
         height: 100%;
         padding: 10px;
@@ -32,20 +31,20 @@ $c: nav;
         }
     }
 
-    .#{$c}-router {
+    .router {
         display: inline-block;
         height: 100%;
         margin-left: 30px;
 
         &:hover {
-            .#{$c}-route {
+            .route {
                 &:hover {
-                    .#{$c}-route-content {
+                    .route-content {
                         opacity: 1;
                         transition: 0s;
                     }
                 }
-                .#{$c}-route-content {
+                .route-content {
                     opacity: 0.5;
                     text-shadow: none;
                     transition: 0.3s;
@@ -54,7 +53,7 @@ $c: nav;
         }
     }
 
-    .#{$c}-user-profile {
+    .user-profile {
         display: inline-flex;
         display: -webkit-inline-flex;
         align-items: center;
@@ -68,8 +67,8 @@ $c: nav;
             height: 90%;
         }
 
-        .#{$c}-user-board {
-            .#{$c}-sub-route-list {
+        .user-board {
+            .sub-route-list {
                 width: 200px;
                 padding: 5px 15px;
                 text-align: center;
@@ -135,18 +134,18 @@ $c: nav;
             }
         }
 
-        .#{$c}-route:global(.multi) {
+        .route:global(.multi) {
             &::before {
                 display: none;
             }
-            .#{$c}-route-content {
+            .route-content {
                 &::before,
                 &::after {
                     display: none;
                 }
             }
             &:hover {
-                > .#{$c}-route-content {
+                > .route-content {
                     :global(.text) {
                         opacity: 1;
                     }
@@ -155,7 +154,7 @@ $c: nav;
         }
     }
 
-    .#{$c}-route {
+    .route {
         font-size: 14px;
         padding: 5px 12px;
         height: 100%;
@@ -186,7 +185,7 @@ $c: nav;
             text-shadow: 0 1px #f45b69;
         }
 
-        .#{$c}-sub-route-list {
+        .sub-route-list {
             display: none;
             position: absolute;
             top: calc(100% + 2px);
@@ -195,7 +194,7 @@ $c: nav;
         }
     }
 
-    .#{$c}-route:global(.multi) {
+    .route:global(.multi) {
         &::before {
             content: '';
             height: 0;
@@ -205,7 +204,7 @@ $c: nav;
             background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, rgba(120, 238, 222, 1) 50%, rgba(255, 255, 255, 0) 100%);
             transform: translateX(-50%) rotate(30deg);
         }
-        .#{$c}-route-content {
+        .route-content {
             &::before,
             &::after {
                 opacity: 0;
@@ -228,7 +227,7 @@ $c: nav;
                 height: 40px;
                 transition: height 0.3s;
             }
-            > .#{$c}-route-content {
+            > .route-content {
                 &::before,
                 &::after {
                     opacity: 1;
@@ -243,7 +242,7 @@ $c: nav;
                     opacity: 0;
                 }
             }
-            .#{$c}-sub-route-list {
+            .sub-route-list {
                 &::before {
                     content: '';
                     height: 2px;
@@ -258,7 +257,7 @@ $c: nav;
         }
     }
 
-    .#{$c}-route:global(.sub) {
+    .route:global(.sub) {
         font-size: 12px;
         display: block;
         white-space: nowrap;
@@ -285,7 +284,7 @@ $c: nav;
             }
         }
 
-        .#{$c}-route-content {
+        .route-content {
             color: #e4fde1;
             text-shadow: 0 0 1px #e4fde1;
         }
@@ -296,13 +295,13 @@ $c: nav;
                     background: rgba(120, 238, 222, 1);
                 }
             }
-            .#{$c}-route-content {
+            .route-content {
                 color: rgba(120, 238, 222, 1);
                 text-shadow: 0 0 1px rgba(120, 238, 222, 1);
             }
         }
     }
-    .#{$c}-route:global(.sub) + .#{$c}-route:global(.sub) {
+    .route:global(.sub) + .route:global(.sub) {
         &::before {
             content: '';
             position: absolute;

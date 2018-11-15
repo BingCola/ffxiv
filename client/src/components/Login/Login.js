@@ -1,5 +1,5 @@
 import auth from 'auth';
-import Spinner from 'Spinner/spinner';
+import Spinner from 'spinner/spinner';
 
 import Base from '../component';
 import html from './login.html';
@@ -24,16 +24,16 @@ export default class Login extends Base {
             this.createPanelDom();
             this.attachEvent();
         } else {
-            this.container.classlist.remove('c-hide');
+            this.container.classList.remove('c-hide');
         }
     }
     hide() {
-        if (this.container) this.container.classlist.add('c-hide');
+        if (this.container) this.container.classList.add('c-hide');
     }
     createPanelDom() {
         let user = this.require.auth.getUserLoginProfile();
         this.container = document.createElement('div');
-        this.container.classList.add(this.CLN['login']);
+        this.container.classList.add(this.CLN['ctn']);
         this.container.innerHTML = this.HTML.fill(this.CLN).fill({
             remember: user.remember ? 'checked' : '',
             account: user.remember && user.account ? user.account : '',
@@ -88,19 +88,19 @@ export default class Login extends Base {
         }
     }
     showLoginResult(msg) {
-        let container = this.container.querySelector('.cpc-result-msg');
+        let container = this.container.querySelector(`.${this.CLN.result}`);
         container.innerHTML = msg;
     }
     login() {
         let account = {
-            account: this.container.querySelector(`.${this.loginIpt}[data-field="account"]`).value,
-            pwd: this.container.querySelector(`.${this.loginIpt}[data-field="password"]`).value
+            account: this.container.querySelector(`.${this.CLN.ipt}[data-field="account"]`).value,
+            pwd: this.container.querySelector(`.${this.CLN.ipt}[data-field="password"]`).value
         };
         if (account.role != 6 && !this.checkLoginInfo(account)) {
             return;
         }
-        let wrapLoginStatus = this.container.querySelector(`.${this.CLN.loginStatus}`);
-        let wrapLoginStatusSpinner = this.container.querySelector(`.${this.CLN.loginSpinner}`);
+        let wrapLoginStatus = this.container.querySelector(`.${this.CLN.status}`);
+        let wrapLoginStatusSpinner = this.container.querySelector(`.${this.CLN.spinner}`);
         wrapLoginStatus.classList.add('loading');
         Spinner.spin(wrapLoginStatusSpinner, 3);
         this.require.auth

@@ -5,10 +5,10 @@ import 'iconfont/iconfont.css';
 import CONSTANT from 'constant';
 import Router from 'router';
 import Auth from 'auth.js';
-import Navbar from 'Navbar/navbar.js';
-import Login from 'Login/login.js';
+import Navbar from 'navbar/navbar.js';
+import Login from 'login/login.js';
 
-import Gallery from './Gallery';
+import Gallery from './gallery';
 
 let auth = new Auth();
 let login = new Login({}, { auth });

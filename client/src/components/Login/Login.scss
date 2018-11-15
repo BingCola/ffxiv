@@ -1,15 +1,14 @@
-$c: login;
-.#{$c} {
+.ctn {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     z-index: 1;
-    &-overlay {
+    .overlay {
         animation: fadeIn-opacity 0.3s;
     }
-    &-ttl {
+    .ttl {
         font-size: 36px;
         text-align: center;
         color: white;
@@ -17,7 +16,7 @@ $c: login;
         height: 100px;
         line-height: 100px;
     }
-    &-btn-delete {
+    .btn-delete {
         position: absolute;
         top: 0;
         right: 0;
@@ -30,7 +29,7 @@ $c: login;
         display: inline-block;
         margin-left: 60px;
     }
-    &-panel {
+    .panel {
         width: 420px;
         height: 290px;
         position: absolute;
@@ -42,8 +41,8 @@ $c: login;
         transform: translateX(-50%);
         animation: fadeIn-larger 0.3s;
     }
-    &-header {
-        .#{$c}-result {
+    .header {
+        .result {
             margin-bottom: 10px;
             font-size: 12px;
             color: orange;
@@ -51,14 +50,14 @@ $c: login;
             margin-right: 60px;
         }
     }
-    &-form {
+    .form {
         width: 300px;
         background-color: #1e2125;
         /* border-radius: 5px; */
         margin: 0 auto;
         position: relative;
     }
-    &-ipt-wrap {
+    .ipt-wrap {
         line-height: 50px;
         display: block;
         padding: 0 30px;
@@ -75,13 +74,10 @@ $c: login;
             }
         }
     }
-    &-ipt-addones {
-        line-height: 50px;
-        display: block;
-        padding: 0 30px;
-        position: relative;
+    .ipt-addones {
+        position: absolute;
     }
-    &-ipt {
+    .ipt {
         border: 0;
         outline: 0;
         background: transparent;
@@ -90,7 +86,7 @@ $c: login;
         padding-left: 30px;
     }
 
-    &-status {
+    .status {
         position: absolute;
         right: 0;
         top: 50%;
@@ -112,7 +108,7 @@ $c: login;
             background: rgba(0, 0, 0, 0.75);
             z-index: -1;
         }
-        .#{$c}-btn-start {
+        .btn-start {
             display: block;
             width: 100%;
             line-height: 40px;
@@ -123,7 +119,7 @@ $c: login;
             position: relative;
             z-index: 1;
         }
-        .#{$c}-spinner {
+        .spinner {
             position: absolute;
             top: 10px;
             left: 5px;
@@ -131,23 +127,23 @@ $c: login;
             height: calc(100% - 20px);
         }
         &:global(.loading) {
-            .#{$c}-btn-start {
+            .btn-start {
                 display: none;
             }
         }
     }
 
-    &-tool-grp {
+    .tool-grp {
         font-size: 12px;
         width: 300px;
         margin: 0 auto;
         margin-top: 10px;
     }
-    &-tool-item {
+    .tool-item {
         float: right;
         margin-left: 5px;
     }
-    &-tool-item[data-action='remember'] {
+    .tool-item[data-action='remember'] {
         float: left;
     }
 }

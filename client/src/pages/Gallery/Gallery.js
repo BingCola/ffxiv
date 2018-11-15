@@ -2,10 +2,10 @@ import CONSTANT from 'constant';
 import { PATH } from 'config';
 
 import Base from 'page';
-import html from './Gallery.html';
-import style from './Gallery.scss';
+import html from './gallery.html';
+import style from './gallery.scss';
 
-import SideTool from './components/SideTool';
+import SideTool from './components/sideTool';
 export default class Page extends Base {
     constructor() {
         super(...arguments);
@@ -32,7 +32,7 @@ export default class Page extends Base {
         this.cmpt.navbar.setOption({
             navTop: {
                 container: document.querySelector('.c-page-header'),
-                brand: `<img class="cc-nav-brand-img" src="${PATH.IMAGE}/common/logo.png">`
+                brand: `<img class="cc-navTop-brand-img" src="${PATH.IMAGE}/common/logo.png">`
             },
             navBottom: {
                 container: document.querySelector('.c-page-footer')

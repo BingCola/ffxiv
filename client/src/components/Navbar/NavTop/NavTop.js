@@ -20,12 +20,12 @@ export default class NavTop extends Base {
             brand: '',
             router: {
                 tpl: `        
-                    <div class="${this.CLN.navRouteContent}">
+                    <div class="${this.CLN.routeContent}">
                         <span class="text">{text}</span>
                     </div>
-                    <div class="${this.CLN.navSubRouteList}"></div>`,
+                    <div class="${this.CLN.subRouteList}"></div>`,
                 tplSub: `
-                <div class="${this.CLN.navRouteContent}">
+                <div class="${this.CLN.routeContent}">
                     <span class="text">{text}</span>
                 </div>`,
                 routes: []
@@ -34,11 +34,11 @@ export default class NavTop extends Base {
                 controller: {
                     login: {
                         tpl: `                
-                        <div class="${this.CLN.navRoute} multi ${this.CLN.navUserBoard}" data-field="detail">
-                            <div class="${this.CLN.navRouteContent}">
+                        <div class="${this.CLN.route} multi ${this.CLN.userBoard}" data-field="detail">
+                            <div class="${this.CLN.routeContent}">
                                 <img class="portrait" data-field="portrait" src="{portrait}" />
                             </div>
-                            <div class="${this.CLN.navSubRouteList}">
+                            <div class="${this.CLN.subRouteList}">
                                 <div data-field="name">{name}</div>
                                 <div class="block c-clear-fix">
                                     <div data-field="level">
@@ -65,53 +65,53 @@ export default class NavTop extends Base {
                                 </div>
                             </div>
                         </div>
-                        <div class="${this.CLN.navRoute} multi">
-                            <div class="${this.CLN.navRouteContent}">
+                        <div class="${this.CLN.route} multi">
+                            <div class="${this.CLN.routeContent}">
                                 <span class="text">消息</span>
                                 <span class="badge">--</span>
                             </div>
-                            <div class="${this.CLN.navSubRouteList}">
-                                <div class="${this.CLN.navRoute} sub" data-field="mail">
-                                    <div class="${this.CLN.navRouteContent}">
+                            <div class="${this.CLN.subRouteList}">
+                                <div class="${this.CLN.route} sub" data-field="mail">
+                                    <div class="${this.CLN.routeContent}">
                                         <span class="text">私信</span>
                                         <span class="badge" data-fill="mail">--</span>
                                     </div>
                                 </div>
-                                <div class="${this.CLN.navRoute} sub" data-field="reply">
-                                    <div class="${this.CLN.navRouteContent}">
+                                <div class="${this.CLN.route} sub" data-field="reply">
+                                    <div class="${this.CLN.routeContent}">
                                         <span class="text">回复我的</span>
                                         <span class="badge" data-fill="mail">--</span>
                                     </div>
                                 </div>
-                                <div class="${this.CLN.navRoute} sub" data-field="call">
-                                    <div class="${this.CLN.navRouteContent}">
+                                <div class="${this.CLN.route} sub" data-field="call">
+                                    <div class="${this.CLN.routeContent}">
                                         <span class="text">@我的</span>
                                         <span class="badge" data-fill="call">--</span>
                                     </div>
                                 </div>
-                                <div class="${this.CLN.navRoute} sub" data-field="praise">
-                                    <div class="${this.CLN.navRouteContent}">
+                                <div class="${this.CLN.route} sub" data-field="praise">
+                                    <div class="${this.CLN.routeContent}">
                                         <span class="text">收到的赞</span>
                                         <span class="badge" data-fill="praise">--</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="${this.CLN.navRoute}" data-href="/post">
-                            <div class="${this.CLN.navRouteContent}"><span class="text">投稿</span></div>
+                        <div class="${this.CLN.route}" data-href="/post">
+                            <div class="${this.CLN.routeContent}"><span class="text">投稿</span></div>
                         </div>
-                        <div class="${this.CLN.navRoute}" data-action="login">
-                            <div class="${this.CLN.navRouteContent}"><span class="text">登录 / 注册</span></div>
+                        <div class="${this.CLN.route}" data-action="login">
+                            <div class="${this.CLN.routeContent}"><span class="text">登录 / 注册</span></div>
                         </div>`,
                         param: {}
                     },
                     visitor: {
                         tpl: `
-                            <div class="${this.CLN.navRoute} multi  ${this.CLN.navUserBoard}" data-field="detail">
-                                <div class="${this.CLN.navRouteContent}">
+                            <div class="${this.CLN.route} multi  ${this.CLN.userBoard}" data-field="detail">
+                                <div class="${this.CLN.routeContent}">
                                     <img data-field="portrait" src="{portrait}" />
                                 </div>
-                                <div class="${this.CLN.navSubRouteList}">
+                                <div class="${this.CLN.subRouteList}">
                                     <div data-field="name">{name}</div>
                                     <div class="block c-clear-fix">
                                         <div data-field="level">
@@ -138,50 +138,50 @@ export default class NavTop extends Base {
                                     </div>
                                 </div>
                             </div>
-                        <div class="${this.CLN.navRoute} multi" data-field="message">
-                            <div class="${this.CLN.navRouteContent}">
+                        <div class="${this.CLN.route} multi" data-field="message">
+                            <div class="${this.CLN.routeContent}">
                                 <span class="text">消息</span>
                                 <span class="badge">--</span>
                             </div>
-                            <div class="${this.CLN.navSubRouteList}">
-                                <div class="${this.CLN.navRoute} sub" data-field="mail">
-                                    <div class="${this.CLN.navRouteContent}">
+                            <div class="${this.CLN.subRouteList}">
+                                <div class="${this.CLN.route} sub" data-field="mail">
+                                    <div class="${this.CLN.routeContent}">
                                         <span class="text">私信</span>
                                         <span class="badge" data-fill="mail">--</span>
                                     </div>
                                 </div>
-                                <div class="${this.CLN.navRoute} sub" data-field="reply">
-                                    <div class="${this.CLN.navRouteContent}">
+                                <div class="${this.CLN.route} sub" data-field="reply">
+                                    <div class="${this.CLN.routeContent}">
                                         <span class="text">回复我的</span>
                                         <span class="badge" data-fill="mail">--</span>
                                     </div>
                                 </div>
-                                <div class="${this.CLN.navRoute} sub" data-field="call">
-                                    <div class="${this.CLN.navRouteContent}">
+                                <div class="${this.CLN.route} sub" data-field="call">
+                                    <div class="${this.CLN.routeContent}">
                                         <span class="text">@我的</span>
                                         <span class="badge" data-fill="call">--</span>
                                     </div>
                                 </div>
-                                <div class="${this.CLN.navRoute} sub" data-field="praise">
-                                    <div class="${this.CLN.navRouteContent}">
+                                <div class="${this.CLN.route} sub" data-field="praise">
+                                    <div class="${this.CLN.routeContent}">
                                         <span class="text">收到的赞</span>
                                         <span class="badge" data-fill="praise">--</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                            <div class="${this.CLN.navRoute}" data-href="/post">
-                                <div class="${this.CLN.navRouteContent}"><span class="text">投稿</span></div>
+                            <div class="${this.CLN.route}" data-href="/post">
+                                <div class="${this.CLN.routeContent}"><span class="text">投稿</span></div>
                             </div>
-                            <div class="${this.CLN.navRoute}" data-action="login">
-                                <div class="${this.CLN.navRouteContent}"><span class="text">登录 / 注册</span></div>
+                            <div class="${this.CLN.route}" data-action="login">
+                                <div class="${this.CLN.routeContent}"><span class="text">登录 / 注册</span></div>
                             </div>
                         `
                     },
                     unlogin: {
                         tpl: `            
-                            <div class="${this.CLN.navRoute}" data-action="login">
-                                <div class="${this.CLN.navRouteContent}"><span class="text">登录 / 注册</span></div>
+                            <div class="${this.CLN.route}" data-action="login">
+                                <div class="${this.CLN.routeContent}"><span class="text">登录 / 注册</span></div>
                             </div>`,
                         param: {}
                     }
@@ -216,13 +216,13 @@ export default class NavTop extends Base {
         };
     }
     initNavContent() {
-        this.container.classList.add(this.CLN['nav-top']);
+        this.container.classList.add(this.CLN['ctn']);
         this.initBrand();
         this.initRouter();
         this.initUserProfile();
     }
     initBrand() {
-        let container = this.container.querySelector(`.${this.CLN['nav-brand']}`);
+        let container = this.container.querySelector(`.${this.CLN['brand']}`);
         if (this.option.brand) {
             container.innerHTML = this.option.brand;
         } else {
@@ -230,11 +230,11 @@ export default class NavTop extends Base {
         }
     }
     initRouter() {
-        let container = this.container.querySelector(`.${this.CLN['nav-router']}`);
+        let container = this.container.querySelector(`.${this.CLN['router']}`);
         this.option.router.routes.forEach(route => {
             let tpl = route.tpl || this.option.router.tpl;
             let dom = document.createElement('div');
-            dom.className = this.CLN.navRoute;
+            dom.className = this.CLN.route;
             dom.innerHTML = tpl.fill(route);
             if (route.action && route.action.type) {
                 dom.dataset[route.action.type] = route.action.content;
@@ -242,10 +242,10 @@ export default class NavTop extends Base {
 
             if (route.children instanceof Array && route.children.length > 0) {
                 dom.classList.add('multi');
-                dom.querySelector(`.${this.CLN.navRouteContent}`).dataset.text = route.text;
-                this.setSubRoutes(dom.querySelector(`.${this.CLN.navSubRouteList}`), route.children);
+                dom.querySelector(`.${this.CLN.routeContent}`).dataset.text = route.text;
+                this.setSubRoutes(dom.querySelector(`.${this.CLN.subRouteList}`), route.children);
             } else {
-                dom.querySelector(`.${this.CLN.navSubRouteList}`).classList.add('c-hide');
+                dom.querySelector(`.${this.CLN.subRouteList}`).classList.add('c-hide');
             }
             container.appendChild(dom);
         });
@@ -254,7 +254,7 @@ export default class NavTop extends Base {
         routes.forEach(route => {
             let tpl = route.tpl || this.option.router.tplSub;
             let dom = document.createElement('div');
-            dom.className = `sub ${this.CLN.navRoute}`;
+            dom.className = `sub ${this.CLN.route}`;
             dom.innerHTML = tpl.fill(route);
             if (route.action && route.action.type) {
                 dom.dataset[route.action.type] = route.action.content;
@@ -329,7 +329,7 @@ export default class NavTop extends Base {
             total = NumberUtil.limitMax(total, 99);
             if (total) {
                 $container
-                    .find(`.${this.CLN.navRouteContent}>.badge`)
+                    .find(`.${this.CLN.routeContent}>.badge`)
                     .removeClass('c-hide')
                     .html(total);
             } else {
@@ -354,7 +354,7 @@ export default class NavTop extends Base {
             console.error('顶部导航条用户菜单模块加载失败：未找到与' + state + '相对应状态配置。');
             return;
         }
-        let container = this.container.querySelector(`.${this.CLN['nav-user-profile']}`);
+        let container = this.container.querySelector(`.${this.CLN['user-profile']}`);
         container.dataset.state = state;
         let option = this.option.userProfile.controller[state];
         let user = option.param;

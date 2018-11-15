@@ -1,39 +1,42 @@
 import style from './spinner.scss';
 
-const template = {
-    style_1: '<div class="cp-spinner style-1"><div class="body"></div><div class="cp-spinner-overlay"></div></div>',
-    style_2: `<div class="cp-spinner style-2">               
-                <div class="unit"></div>
-                <div class="unit"></div>
-                <div class="unit"></div>
-                <div class="unit"></div>
+const CLN = style;
+const TEMPLATE = {
+    model_1: `<div class="${CLN.ctn}"><div class="${CLN.body}"></div><div class="${CLN.overlay}"></div></div>`,
+    model_2: `<div class="${CLN.ctn}">               
+                <div class="${CLN.unit}"></div>
+                <div class="${CLN.unit}"></div>
+                <div class="${CLN.unit}"></div>
+                <div class="${CLN.unit}"></div>
                 </div> 
                 `,
-    style_3: `<div class="cp-spinner style-3">               
-                <div class="unit"></div>
-                <div class="unit"></div>
-                <div class="unit"></div>
-                <div class="unit"></div>
-                <div class="unit"></div>
+    model_3: `<div class="${CLN.ctn}">               
+                <div class="${CLN.unit}"></div>
+                <div class="${CLN.unit}"></div>
+                <div class="${CLN.unit}"></div>
+                <div class="${CLN.unit}"></div>
+                <div class="${CLN.unit}"></div>
                 </div>
                 `,
-    style_4: `<div class="cp-spinner style-4">               
-                <div class="unit"></div>
-                <div class="unit"></div>
-                <div class="unit"></div>
-                <div class="unit"></div>
-                <div class="unit"></div>'
+    model_4: `<div class="${CLN.ctn}">               
+                <div class="${CLN.unit}"></div>
+                <div class="${CLN.unit}"></div>
+                <div class="${CLN.unit}"></div>
+                <div class="${CLN.unit}"></div>
+                <div class="${CLN.unit}"></div>'
                 </div>
                 `
 };
-const spin = ($ctn, template) => {
+const spin = ($ctn, model) => {
     if (!($ctn instanceof jQuery)) $ctn = $($ctn);
-    var template = this.template['style_' + (template ? template : 1)];
-    $ctn.append($(template));
+    let template = TEMPLATE['model_' + (model ? model : 1)];
+    let $dom = $(template);
+    $dom[0].dataset.model = model;
+    $ctn.append($dom);
 };
 const stop = $ctn => {
     if (!($ctn instanceof jQuery)) $ctn = $($ctn);
-    $ctn.children('.cp-spinner').remove();
+    $ctn.children(`.${CLN.ctn}`).remove();
 };
 
 export default { spin, stop };

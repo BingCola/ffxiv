@@ -1,12 +1,11 @@
-$c: nav;
-.#{$c}-bottom {
+.ctn {
     text-align: center;
     position: relative;
     width: 100%;
     max-width: 1080px;
     margin: 0 auto;
     margin-top: 120px;
-    .#{$c}-router {
+    .router {
         margin-bottom: 15px;
 
         &-col {
@@ -15,13 +14,13 @@ $c: nav;
         }
         &-section {
             margin-bottom: 20px;
-            .#{$c}-section-content {
+            .section-content {
                 color: rgba(120, 238, 222, 1);
                 font-size: 18px;
                 margin-bottom: 8px;
             }
-            .#{$c}-route-list {
-                .#{$c}-route {
+            .route-list {
+                .route {
                     color: #e4fde1;
                     display: block;
                     cursor: pointer;
@@ -31,7 +30,7 @@ $c: nav;
             }
         }
     }
-    .#{$c}-copyright {
+    .copyright {
         text-align: center;
         font-size: 12px;
     }
