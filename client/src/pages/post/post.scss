@@ -1,0 +1,523 @@
+#ctnContribute {
+    max-width: 960px;
+    margin: 0 auto;
+    height: 100%;
+    overflow: auto;
+}
+
+#ctnTitle {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+#ctnTitle .title {
+    font-size: 28px;
+}
+
+#ctnTitle .text {
+    color: #eee;
+}
+
+#ctnTitle a {
+    cursor: pointer;
+}
+
+#ctnBaseInfo {
+    display: inline-block;
+    width: 55%;
+    padding: 0 15px;
+    margin-right: 5%;
+}
+
+#ctnBaseInfo .item .itemLabel {
+    width: 80px;
+    font-size: 16px;
+    margin-bottom: 0;
+    font-weight: normal;
+}
+
+#ctnBaseInfo .item {
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    -webkit-align-items: center;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+}
+
+#ctnBaseInfo .item:last-child {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+#ctnBaseInfo .itemIpt.iptWatermark {
+    width: calc(100% - 112px);
+}
+
+#ctnBaseInfo .itemIpt {
+    display: inline-block;
+    width: calc(100% - 80px);
+    height: 28px;
+}
+
+#ctnBaseInfo .chkBox {
+    width: 28px;
+    height: 28px;
+    margin: 0 4px 0 0;
+}
+
+#ctnBaseInfo .wrapDesc {
+    align-items: flex-start;
+    -webkit-align-items: flex-start;
+}
+
+#ctnBaseInfo .iptTextaera {
+    height: 75px;
+}
+
+#ctnBaseInfo .itemTip {
+    display: block;
+    width: 100%;
+    margin-left: 80px;
+    margin-top: 10px;
+    color: #ccc;
+}
+
+#ctnImgMain {
+    display: inline-block;
+    width: 40%;
+    height: 100%;
+    vertical-align: top;
+    padding: 0 15px;
+    float: right;
+}
+
+#ctnImgMain .divImgSlide {
+    height: calc(100% - 38px);
+}
+
+.divImgSlide {
+    position: relative;
+    height: 100%;
+    box-shadow: 0 0 5px 1px white;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.divImgSlide .toolGrp {
+    display: none;
+}
+
+.divImgSlide .imgItem {
+    width: 100%;
+    height: 100%;
+    display: block;
+    cursor: pointer;
+}
+
+#ctnImgInfo .btnAdd,
+.divImgSlide .imgItem .tip {
+    font-size: 100px;
+    height: 100%;
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    -webkit-align-items: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+    color: #ccc;
+}
+
+#ctnImgInfo .btnAdd {
+    width: 48%;
+    display: inline-flex;
+    display: -webkit-inline-flex;
+    vertical-align: top;
+    box-shadow: 0 0 5px 1px white;
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+#ctnImgInfo .btnDel {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+}
+
+.wrapImgInfo {
+    height: 270px;
+}
+
+#ctnConsistInfo {
+    padding: 0 15px;
+    position: relative;
+    margin-bottom: 60px;
+}
+
+#ctnConsistInfo .btnAdd {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    display: inline-block;
+    cursor: pointer;
+    padding: 3px 15px;
+    box-shadow: 0 0 1px 1px;
+}
+
+#ctnImgInfo {
+    padding: 0 15px;
+    margin-bottom: 60px;
+}
+
+#ctnImgInfo .wrapImgGrp {
+    height: 100%;
+}
+
+#ctnImgInfo .divImgSlide {
+    width: 48%;
+    display: inline-block;
+}
+
+#ctnImgInfo .divImgSlide:nth-of-type(odd) {
+    margin-right: 2%;
+}
+
+.divModelInfo {
+    width: 50%;
+    display: inline-block;
+    float: left;
+}
+
+.divItemInfo {
+    width: calc(100% - 380px);
+    display: inline-block;
+    float: left;
+}
+
+.divItemInfo .itemSel {
+    display: block;
+    margin-left: 60px;
+}
+
+.iptItemName {
+    display: block;
+    width: 100%;
+    color: #ccc;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    position: relative;
+    margin-top: 4px;
+}
+
+.btnConsistDel {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    font-size: 20px;
+    text-shadow: 0 0 5px white;
+    cursor: pointer;
+}
+
+.leftItem,
+.rightItem {
+    width: 50%;
+    display: inline-block;
+    float: left;
+}
+
+.divConsist {
+    position: relative;
+    padding: 15px;
+    box-shadow: 0 0 5px 1px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.divConsist .divItem {
+    height: 48px;
+    width: 100%;
+    padding: 0 10px;
+    margin-bottom: 5px;
+}
+
+.divConsist .divItem:last-child {
+    margin-bottom: 0;
+}
+
+.rightItem .divItem {
+    margin-bottom: 16px;
+}
+
+.divConsist .itemPic {
+    height: 100%;
+    float: left;
+}
+
+.divConsist .itemPart {
+    display: block;
+    margin-left: 60px;
+    top: -2px;
+    position: relative;
+}
+
+.divModelInfo .toolItem {
+    display: block;
+    margin-bottom: 5px;
+    position: relative;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.divModelInfo .toolItem.selected {
+    color: white;
+}
+
+.divModelInfo .toolItem.selected::before {
+    content: '\e600';
+    font-family: 'iconfont' !important;
+    font-size: 14px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.divModelInfo .iptUserSel {
+    padding: 0 10px;
+    border: none;
+    outline: none;
+    color: #ccc;
+    background: transparent;
+}
+
+.divModelInfo {
+    width: 360px;
+    display: inline-block;
+    float: left;
+    padding-right: 15px;
+}
+
+.divModelInfo .toolGrp {
+    margin-bottom: 10px;
+}
+
+.divModelInfo .infoItem {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.divModelInfo label {
+    width: 60px;
+    margin-bottom: 0;
+    font-weight: normal;
+}
+
+.divModelInfo .iptModelInfo {
+    display: inline-block;
+    width: calc(100% - 70px);
+    height: 28px;
+}
+
+.divModelInfo select.iptModelInfo {
+    padding: 0 12px;
+}
+
+.divModelInfo .iptModelDesc {
+    vertical-align: top;
+    height: 56px;
+}
+
+.divModelInfo .content {
+    border-top: 1px solid #ccc;
+    padding-top: 15px;
+    padding-right: 15px;
+}
+
+.itemLabel {
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.itemLabel.main {
+    font-size: 20px;
+}
+
+.itemTip {
+    color: #ccc;
+}
+
+#ctnImgInfo > .itemTip {
+    margin-top: -10px;
+    margin-bottom: 15px;
+}
+
+#ctnImgInfo.disable .btnAdd {
+    display: none;
+}
+
+#btnContributeGrp {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+#btnPostSure,
+#btnPostInit {
+    display: inline-block;
+    padding: 5px 30px;
+    box-shadow: 0 0 1px 1px;
+    width: 150px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#btnPostSure {
+    margin-right: 60px;
+}
+
+.imgItem .img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.wrapUserSelect {
+    background-color: white;
+    color: black;
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+    display: none;
+}
+
+.wrapUserSelect.focus {
+    display: block;
+}
+
+.wrapUserSelect .wrapUserInfo {
+    display: none;
+}
+
+.wrapUserSelect .divSelectItem {
+    height: 58px;
+    padding-left: 70px;
+    width: 100%;
+    color: black;
+    position: relative;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    cursor: pointer;
+}
+
+.wrapUserSelect .portrait {
+    width: 48px;
+    height: 48px;
+    left: 10px;
+    position: absolute;
+}
+
+.wrapUserSelect .name {
+    margin-bottom: 8px;
+    display: block;
+    font-weight: bold;
+    word-break: break-all;
+}
+
+.wrapUserSelect .race,
+.wrapUserSelect .gender,
+.wrapUserSelect .server {
+    color: #646464;
+    font-size: 12px;
+}
+
+.wrapItemSelect {
+    position: relative;
+    z-index: 10;
+    display: none;
+}
+
+.wrapItemSelect.focus {
+    display: block;
+}
+
+.wrapItemSelect .wrapItemInfo {
+    display: none;
+}
+
+.wrapItemSelect .wrapItemInfo .itemInfo {
+    display: block;
+}
+
+.wrapItemSelect .wrapItemInfo {
+    background-color: white;
+    color: black;
+    padding: 5px 10px;
+    position: relative;
+    left: -60px;
+    width: calc(100% + 60px);
+}
+/*.wrapItemSelect.hover .wrapItemInfo {
+        display: block;
+    }*/
+/*.wrapItemSelect.hover.focus .wrapItemInfo {
+        display: none;
+    }
+    
+    .wrapItemSelect.hover .itemList {
+        display: none;
+    }
+    */
+
+.wrapItemSelect .itemList {
+    position: absolute;
+    background: white;
+    width: 100%;
+    padding: 5px;
+}
+
+.wrapItemSelect .divSelectItem {
+    height: 79px;
+    padding-left: 70px;
+    width: 100%;
+    color: black;
+    position: relative;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    cursor: pointer;
+}
+
+.wrapItemSelect .portrait {
+    width: 64px;
+    height: 64px;
+    left: 0;
+    position: absolute;
+}
+
+.wrapItemSelect .itemList .name {
+    display: block;
+    font-weight: bold;
+    height: 42px;
+    word-break: break-all;
+}
+
+.wrapItemSelect .itemList .job {
+    position: relative;
+    font-size: 12px;
+    display: inline-block;
+    width: 50%;
+    float: left;
+}
+
+.wrapItemSelect .itemList .iLevel {
+    position: relative;
+    font-size: 12px;
+    display: inline-block;
+    width: 50%;
+    float: left;
+}

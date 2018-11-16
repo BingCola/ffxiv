@@ -8,6 +8,8 @@ export default class SideTool {
         this.page = page;
         this.container = container;
         this.option = option;
+    }
+    use() {
         this.init();
     }
     init() {

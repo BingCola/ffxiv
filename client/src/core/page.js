@@ -6,8 +6,8 @@ export default class Page {
         this.initCommonVariable();
         this.initCustomVariable();
         this.initOption();
-        this.registerComponents();
         this.setLayout();
+        this.registerComponents();
     }
     get NAME() {
         return '';
@@ -23,6 +23,9 @@ export default class Page {
     }
     get CLN() {
         return this.CLASSNAMES;
+    }
+    get container() {
+        return this.router.container;
     }
     get aysnc() {
         return this._aysnc || [];

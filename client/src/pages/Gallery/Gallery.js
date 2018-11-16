@@ -6,6 +6,8 @@ import html from './gallery.html';
 import style from './gallery.scss';
 
 import SideTool from './components/sideTool';
+import Masonary from 'masonary/masonary.js';
+import Controller from './components/controller.js';
 export default class Page extends Base {
     constructor() {
         super(...arguments);
@@ -19,13 +21,13 @@ export default class Page extends Base {
     get container() {
         return this.router.container;
     }
-    registerComponents() {}
+    registerComponents() {
+        this.initSideTool();
+        this.initController();
+        this.initViewer();
+    }
     show() {
         this.initNav();
-        this.initSideTool();
-        this.initViewer();
-        this.initSearch();
-
         this.attachEvent();
     }
     initNav() {
@@ -43,8 +45,62 @@ export default class Page extends Base {
     initSideTool() {
         let contianer = document.getElementById('ctnFilter');
         this.cmpt.sideTool = new SideTool(this, contianer);
+        this.cmpt.sideTool.use();
     }
-    initViewer() {}
-    initSearch() {}
+    initViewer() {
+        let container = document.getElementById('ctnItemList');
+        let option = {
+            layout: {
+                paddingTop: 37
+            },
+            item: {
+                imageKey: 'img',
+                margin: 20
+            },
+            event: {
+                onScroll: null,
+                onClick: function(target) {
+                    let id = target.dataset.id;
+                    window.open(`/works#id=${id}`);
+                },
+                onItemCreate: function(dom, item, cmpt) {
+                    dom.dataset.id = item.id;
+                    dom.innerHTML = `
+                        <div class="${this.CLN.body}">
+                            <img class="${this.CLN.img}" src="${PATH.IMAGE}/plant/transmog/${item.img.name}">
+                            <div class="${this.CLN.infoBox}">
+                                <span class="${this.CLN.name}">${item.name}</span>
+                                <span class="${this.CLN.author}" data-id="${item.author.id}">${item.author.name}</span>
+                                <div class="${this.CLN.remark}">
+                                    <span class="${this.CLN.remarkItem}" data-action="praise">
+                                        <span class="${this.CLN.icon} iconfont icon-praise"></span>
+                                        <span class="num">${NumberUtil.limitMax(item.remark.praise, 999)}</span>
+                                    </span>
+                                    <span class="${this.CLN.remarkItem}" data-action="comment">
+                                        <span class="${this.CLN.icon} iconfont icon-comment"></span>
+                                        <span class="num">${NumberUtil.limitMax(item.remark.comment, 999)}</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>`;
+                },
+
+                beforeAysnc: null,
+                afterAysnc: null,
+
+                bindCustomEvent: null
+            },
+            aysnc: {
+                getData: this.cmpt.controller.search.bind(this.cmpt.controller),
+                handleData: null
+            }
+        };
+        this.cmpt.viewer = new Masonary(container, option);
+        this.cmpt.viewer.use();
+    }
+    initController() {
+        this.cmpt.controller = new Controller(this);
+        this.cmpt.controller.use();
+    }
     attachEvent() {}
 }

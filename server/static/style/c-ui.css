@@ -68,7 +68,7 @@ body {
     display: inline-block;
 }
 
-.c-clear-fix.fluid > .c-wrap {
+.c-ctn.fluid > .c-wrap {
     float: left;
 }
 
@@ -95,15 +95,6 @@ body {
 .c-hide {
     display: none;
 }
-
-/*img*/
-
-.c-portrait {
-    width: 100%;
-    height: 100%;
-}
-
-/*img*/
 
 /*btn*/
 

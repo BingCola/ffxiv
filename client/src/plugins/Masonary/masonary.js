@@ -1,12 +1,10 @@
-import Base from '../component';
-import html from './Login.html';
-import style from './Login.scss';
+import Base from '../plugin';
+import style from './masonary.scss';
 
 export default class Masonary extends Base {
-    constructor(container, option) {
-        this.container = container;
+    constructor() {
+        super(...arguments);
         this.$container = $(this.container);
-        this.option = option || {};
 
         this.store = [];
         this.enable = true;
@@ -55,9 +53,8 @@ export default class Masonary extends Base {
         this.aysnc();
     }
     attachEvent() {
-        var _this = this;
         this.container.onscroll = this.scroll.bind(this);
-        this.$container.off('click').on('click', '.cp-masonry-item', e => {
+        this.$container.off('click').on('click', `.${this.CLN.item}`, e => {
             this.onClick && this.onClick(e.currentTarget);
         });
 
@@ -129,7 +126,7 @@ export default class Masonary extends Base {
         this.store = store;
         return store;
     }
-    insert(result) {
+    insert() {
         this.store.forEach(item => {
             this.insertItem(item);
         });
@@ -137,7 +134,7 @@ export default class Masonary extends Base {
 
     insertItem(item) {
         let dom = document.createElement('div');
-        dom.className = 'cp-masonry-item';
+        dom.className = this.CLN.item;
 
         let size = this.getItemSize(item);
         dom.dataset.height = size.h;

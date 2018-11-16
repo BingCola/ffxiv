@@ -6,8 +6,10 @@ import path from 'path';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 export const chunks = {
-    home: [path.join(__dirname, './src/pages/Home/index.js')],
-    gallery: [path.join(__dirname, './src/pages/Gallery/index.js')]
+    home: [path.join(__dirname, './src/pages/home/index.js')],
+    gallery: [path.join(__dirname, './src/pages/gallery/index.js')],
+    works: [path.join(__dirname, './src/pages/works/index.js')],
+    post: [path.join(__dirname, './src/pages/post/index.js')]
 };
 
 export default {
@@ -198,7 +200,7 @@ export default {
         new HtmlWebpackPlugin({
             favicon: './src/images/common/favicon.ico',
             hash: true,
-            title: 'FFXIV幻化回廊',
+            title: 'Default',
             filename: './index.dev/home.html',
             template: './src/index.ejs',
             alwaysWriteToDisk: true,
@@ -209,11 +211,33 @@ export default {
         new HtmlWebpackPlugin({
             favicon: './src/images/common/favicon.ico',
             hash: true,
-            title: 'FFXIV幻化回廊',
+            title: 'Default',
             filename: './index.dev/gallery.html',
             template: './src/index.ejs',
             alwaysWriteToDisk: true,
             chunks: ['gallery'],
+            chunksSortMode: 'manual',
+            inject: false
+        }),
+        new HtmlWebpackPlugin({
+            favicon: './src/images/common/favicon.ico',
+            hash: true,
+            title: 'Default',
+            filename: './index.dev/works.html',
+            template: './src/index.ejs',
+            alwaysWriteToDisk: true,
+            chunks: ['works'],
+            chunksSortMode: 'manual',
+            inject: false
+        }),
+        new HtmlWebpackPlugin({
+            favicon: './src/images/common/favicon.ico',
+            hash: true,
+            title: 'Default',
+            filename: './index.dev/post.html',
+            template: './src/index.ejs',
+            alwaysWriteToDisk: true,
+            chunks: ['post'],
             chunksSortMode: 'manual',
             inject: false
         }),

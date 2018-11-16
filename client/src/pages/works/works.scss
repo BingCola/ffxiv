@@ -1,0 +1,317 @@
+body {
+    overflow: auto;
+}
+
+.mainContainer {
+    /*top: 0;*/
+    overflow: auto;
+}
+
+.navTop {
+    background: transparent;
+}
+
+.navTop .navField {
+    max-width: initial;
+}
+
+.navTop .navBg {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+#ctnPhotoAlbum {
+    height: calc(100vh - 44px);
+    width: 100vw;
+}
+
+#ctnMainInfo {
+    max-width: 960px;
+    margin: 0 auto;
+    margin-top: 15px;
+}
+
+#ctnMainInfo .ctnLeftInfo {
+    width: 65%;
+}
+
+#ctnMainInfo .ctnRightInfo {
+    width: 35%;
+    padding-left: 30px;
+}
+
+#ctnBaseInfo {
+    margin-bottom: 15px;
+}
+
+#ctnRemarkInfo {
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    padding-bottom: 15px;
+}
+
+#ctnRemarkInfo .divField {
+    cursor: pointer;
+}
+
+#ctnRemarkInfo .icon {
+    font-size: 20px;
+    display: inline-block;
+    margin-right: 5px;
+    float: left;
+}
+
+#ctnRemarkInfo .text {
+    margin-right: 5px;
+    display: inline-block;
+    line-height: 28px;
+}
+
+#ctnRemarkInfo .num {
+    display: inline-block;
+    line-height: 28px;
+}
+
+#ctnTagInfo .wrapTagItem {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+#ctnTagInfo .spContent {
+    cursor: pointer;
+    padding: 2px 5px;
+    display: block;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+#ctnTagInfo .wrapTagHandle {
+    margin-top: 5px;
+}
+
+#ctnTagInfo .c-btn {
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+#ctnTagInfo .divDetail {
+    padding: 5px;
+}
+
+#ctnTagInfo .divDetail > .c-clear-fix:first-child {
+    margin-bottom: 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+#ctnTagInfo .divDetail .c-text-4 {
+    color: black;
+}
+
+#ctnTagInfo .divDetail .content {
+    margin-right: 15px;
+}
+
+#ctnTagInfo .divDetail .c-btn[data-action='attention'] {
+    float: left;
+}
+
+#ctnTagInfo .divDetail .c-btn[data-action='delete'],
+#ctnTagInfo .divDetail .c-btn[data-action='report'] {
+    float: right;
+    color: #969696;
+}
+
+#ctnDescInfo {
+    text-indent: 2rem;
+    padding: 15px 0;
+    margin: 15px 0;
+}
+
+#ctnRecommend {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+#ctnRecommend .c-label {
+    font-size: 20px;
+    color: white;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+#ctnRecommend .c-slide-title {
+    margin-top: 5px;
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    float: left;
+    color: white;
+}
+
+#ctnAuthorInfo {
+    position: relative;
+}
+
+#ctnAuthorInfo .divField[data-field='portrait'] {
+    display: inline-block;
+    width: 72px;
+    position: absolute;
+}
+
+#ctnAuthorInfo .divField[data-field='name'] {
+    display: block;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+#ctnAuthorInfo .divField[data-field='desc'] {
+    display: block;
+    margin-bottom: 3px;
+}
+
+#ctnAuthorInfo .authorInfo {
+    padding-left: 90px;
+}
+
+#ctnAuthorInfo .authorInfo .detail .c-wrap {
+    margin-right: 15px;
+}
+
+#ctnAuthorInfo .authorAction {
+    position: absolute;
+    top: 0;
+    right: 5px;
+}
+
+#ctnAuthorInfo .authorAction .c-btn {
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+#ctnModelInfo {
+    margin-top: 30px;
+    position: relative;
+}
+
+#ctnModelInfo .modelToggleIndex {
+    position: absolute;
+    left: 54px;
+    top: 7px;
+}
+
+#ctnModelInfo .modelToggleIndex .spIndex {
+    display: inline-block;
+    width: 20px;
+    height: 5px;
+    border: 1px solid white;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+#ctnModelInfo .modelToggleIndex .spIndex.focus {
+    background: white;
+}
+
+#ctnModelInfo .divEqupment > .divField {
+    position: relative;
+    height: 50px;
+    margin-left: 60px;
+    margin-bottom: 10px;
+    padding: 2px 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+#ctnModelInfo .divModel {
+    display: none;
+}
+
+#ctnModelInfo .divModel.focus {
+    display: block;
+}
+
+#ctnModelInfo .divEqupment > .divField:nth-child(even) {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+#ctnModelInfo .divEqupment .icon {
+    position: absolute;
+    height: 42px;
+    width: 42px;
+    left: -57px;
+    top: 3px;
+    border-radius: 5px;
+}
+
+#ctnModelInfo .divEqupment .partName {
+    display: block;
+    margin-bottom: 4px;
+    padding-left: 24px;
+}
+
+#ctnModelInfo .divEqupment .color {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    left: 7px;
+    top: 6px;
+    border-radius: 2px;
+    box-shadow: 0 0 1px 1px white;
+}
+
+#ctnModelInfo .divEqupment .btnMore {
+    position: absolute;
+    top: 2px;
+    right: 4px;
+}
+
+#ctnModelInfo > .c-label {
+    font-size: 20px;
+    color: white;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+#ctnModelInfo .divCharacter {
+    margin-left: 60px;
+    position: relative;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+#ctnModelInfo .divCharacter .divField[data-field='portrait'] {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    left: -60px;
+    top: 4px;
+}
+
+#ctnModelInfo .divCharacter .charAction {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+}
+
+#ctnModelInfo .divCharacter .divField[data-field='race'] {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 3px;
+    padding: 0 3px;
+    color: #ccc;
+    position: relative;
+    top: 2px;
+    margin-right: 5px;
+}
+
+#ctnModelInfo .divCharacter .divField[data-field='name'] {
+    display: inline-block;
+}
+
+#ctnModelInfo .divCharacter .divField[data-field='desc'] {
+    margin-top: 3px;
+}

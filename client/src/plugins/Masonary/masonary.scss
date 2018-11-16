@@ -1,0 +1,15 @@
+.ctn {
+    position: relative;
+    overflow: auto;
+    .item {
+        position: absolute;
+        padding: 10px;
+        .img {
+            width: 100%;
+            display: block;
+        }
+        .body {
+            position: relative;
+        }
+    }
+}

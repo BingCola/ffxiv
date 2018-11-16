@@ -1,12 +1,12 @@
-.c-page-body {
+:global(.c-page-body) {
     height: 100%;
 }
 
-.cc-nav-top .cc-nav-body {
+:global(.cc-navTop-body) {
     max-width: initial;
 }
 
-.cc-nav-bottom {
+:global(.cc-navBottom-ctn) {
     display: none;
 }
 
@@ -16,61 +16,54 @@
     height: 100%;
 }
 
-#ctnItemList {
+.ctnItemList {
     width: calc(100% - 240px);
     height: 100%;
     left: 240px;
     position: relative;
+
+    .infoBox {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 5px 10px;
+        background: rgba(0, 0, 0, 0.5);
+
+        .name {
+            display: block;
+            height: 0;
+            opacity: 0;
+            transition: 0.3s;
+        }
+        .author {
+            font-size: 12px;
+        }
+
+        .remark {
+            display: inline-block;
+            font-size: 12px;
+            float: right;
+
+            .remarkItem {
+                margin-left: 5px;
+                cursor: pointer;
+            }
+        }
+    }
+    :global(.cc-masonry-item) {
+        cursor: pointer;
+        &:hover {
+            .infoBox {
+                .name {
+                    height: 22px;
+                    opacity: 1;
+                }
+            }
+        }
+    }
 }
 
-.navBottom {
-    display: none;
-}
-
-#ctnItemList .infoBox {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding: 5px 10px;
-    background: rgba(0, 0, 0, 0.5);
-}
-
-#ctnItemList .infoBox .name {
-    display: block;
-    height: 0;
-    opacity: 0;
-    transition: 0.3s;
-}
-
-#ctnItemList .cp-masonry-item {
-    cursor: pointer;
-}
-
-#ctnItemList .cp-masonry-item:hover .infoBox .name {
-    height: 22px;
-    opacity: 1;
-}
-
-#ctnItemList .infoBox .author {
-    font-size: 12px;
-}
-
-#ctnItemList .infoBox .wrapAction {
-    display: inline-block;
-    font-size: 12px;
-    float: right;
-}
-
-#ctnItemList .infoBox .actionItem {
-    margin-left: 5px;
-    cursor: pointer;
-}
-
-#ctnItemList .infoBox .icon {
-    font-size: 12px;
-}
-
-#ctnQuery {
+.ctnQuery {
     position: absolute;
     z-index: 1;
     width: calc(100% - 270px);
@@ -78,34 +71,32 @@
     top: 5px;
     background: rgba(0, 0, 0, 0.75);
     padding: 5px 20px;
-}
 
-#ctnQuery .divQueryItem {
-    display: inline-block;
-}
+    .divQueryItem {
+        display: inline-block;
+        &[data-field='keyword'] {
+            width: calc(100% - 150px);
+            position: relative;
+        }
+        .list {
+            display: none;
+        }
+    }
 
-#ctnQuery .divQueryItem[data-field='keyword'] {
-    width: calc(100% - 150px);
-    position: relative;
-}
+    .iptQuery {
+        background: transparent;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        width: 100%;
+    }
 
-#ctnQuery .divQueryItem .list {
-    display: none;
-}
-
-#ctnQuery .iptQuery {
-    background: transparent;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    width: 100%;
-}
-
-#ctnQuery .btnSearch {
-    position: absolute;
-    color: #ccc;
-    font-size: 16px;
-    line-height: 24px;
-    left: 160px;
-    cursor: pointer;
+    .btnSearch {
+        position: absolute;
+        color: #ccc;
+        font-size: 16px;
+        line-height: 24px;
+        left: 160px;
+        cursor: pointer;
+    }
 }

@@ -48,7 +48,7 @@
         attachEvent() {
             var _this = this;
             this.container.onscroll = this.scroll.bind(this);
-            this.$container.off("click").on("click", ".cp-masonry-item", e => {
+            this.$container.off('click').on('click', '.cp-masonry-item', e => {
                 this.onClick && this.onClick(e.currentTarget);
             });
 
@@ -60,12 +60,12 @@
             this.option.layout.uw = this.container.offsetWidth / this.option.layout.col;
             this.initCursor();
             this.initEvent();
-            this.container.classList.add("cp-masonry-ctn");
+            this.container.classList.add('cp-masonry-ctn');
         }
         initEvent() {
             if (this.option.event) {
                 Object.keys(this.option.event).forEach(e => {
-                    if (typeof this.option.event[e] == "function") {
+                    if (typeof this.option.event[e] == 'function') {
                         this[e] = this.option.event[e].bind(this);
                     }
                 });
@@ -86,7 +86,7 @@
         scroll() {
             this.onScroll && this.onScroll();
             if (this.option.aysnc && this.option.aysnc.getData) {
-                if (typeof this.option.aysnc.enable == "function") this.enable = this.option.aysnc.enable(this.container);
+                if (typeof this.option.aysnc.enable == 'function') this.enable = this.option.aysnc.enable(this.container);
                 if (this.enable && this.container.scrollTop + this.container.offsetHeight >= this.container.scrollHeight - this.option.layout.aysncSection) {
                     this.aysnc();
                 }
@@ -127,19 +127,19 @@
         }
 
         insertItem(item) {
-            let dom = document.createElement("div");
-            dom.className = "cp-masonry-item";
+            let dom = document.createElement('div');
+            dom.className = 'cp-masonry-item';
 
             let size = this.getItemSize(item);
             dom.dataset.height = size.h;
-            dom.style.width = 100 / this.option.layout.col + "%";
+            dom.style.width = 100 / this.option.layout.col + '%';
 
             // dom.style.height = size.h + 'px';
 
-            dom.style.left = this.cursor.col * (100 / this.option.layout.col) + "%";
-            dom.style.top = this.cursor.y + "px";
+            dom.style.left = this.cursor.col * (100 / this.option.layout.col) + '%';
+            dom.style.top = this.cursor.y + 'px';
 
-            this.onItemCreate && this.onItemCreate(dom, item);
+            this.onItemCreate && this.onItemCreate(dom, item, this);
             this.container.appendChild(dom);
 
             this.setCursor(item);
@@ -229,11 +229,11 @@
 
         clear() {
             this.store = [];
-            this.container.innerHTML = "";
+            this.container.innerHTML = '';
         }
         destory() {
             this.clear();
         }
     }
     exports.masonry = Cmpt;
-})(namespace("component"));
+})(namespace('component'));
