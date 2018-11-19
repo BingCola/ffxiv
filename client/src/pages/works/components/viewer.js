@@ -1,14 +1,70 @@
+import { PATH } from 'config';
+import CONSTANT from 'constant';
 export default class Viewer {
     constructor(page) {
         this.page = page;
+        this.container = this.page.container;
+    }
+    get TEMPLATE() {
+        return {
+            RELATE: `<img class="c-slide-img" src="{img}"><span class="c-slide-title">{title}</span>`,
+            TAG: `    
+            <span class="content">{content}</span>
+            <div class="${this.CLN.divDetail} c-popover-body">
+                <div class="c-clear-fix ${this.CLN.btnTagRemarkGrp}">
+                    <span class="${this.CLN.content}">{content}</span>
+                    <span class="c-btn" data-action="for">
+                        <span class="icon iconfont icon-thumb-up"></span>
+                        <span class="${this.CLN.text}">{for}</span>
+                    </span>
+                    <span class="c-btn iconfont icon-thumb-down" data-action="down">
+                        <span class="icon iconfont icon-thumb-down"></span>
+                        <span class="${this.CLN.text}">{against}</span>
+                    </span>
+                </div>
+                <div class="c-clear-fix">
+                    <span class="c-btn" data-action="attention">关注</span>
+                    <span class="c-btn" data-action="delete">删除</span>
+                    <span class="c-btn" data-action="report">举报</span>
+                </div>
+            </div>;`,
+            MODEL: `
+            <div class="${this.CLN.divCharacter}">
+                {character}
+            </div>
+            <div class="${this.CLN.divEquipment}">
+                {equipment}
+            </div>`,
+            MODEL_CHAR: `
+            <div class="divField" data-fill="portrait"><img src="{portrait}" onerror="this.style.display=\'none\'" class="c-portrait"></div>
+            <div class="c-clear-fix fluid">
+                <div class="c-wrap c-clear-fix ${this.CLN.btnToolGrp}">{tool}</div>
+                <div class="c-wrap divField" data-fill="race">{race}</div>
+                <div class="c-wrap divField" data-fill="name">{name}</div>
+            </div>
+            <div class="divField" data-fill="desc">{desc}</div>
+            `,
+            MODEL_EQUIP: `
+            <div class="${this.CLN.item}" data-pos="{pos}">
+                <img data-field="icon" src="{icon}" onerror="this.src != \'{partDefaultIcon}\' && (this.src=\'{partDefaultIcon}\')">\
+                <span data-field="part">{part}</span>
+                <span data-field="name">{name}</span>
+                <span data-field="color" style="background-color:{color}"></span>
+                <span data-field="c-btn btnMore">更多作品</span>
+            </div>
+            `
+        };
+    }
+    get CLN() {
+        return this.page.CLN;
     }
     setAlbum(data) {
-        var container = document.getElementById('ctnPhotoAlbum');
+        let container = this.container.querySelector(`.${this.CLN.ctnPhotoAlbum}`);
         return this;
     }
-    setBaseInfo(data) {
-        var container = document.getElementById('ctnBaseInfo');
-        var fields = ['title', 'time'].map(function(item) {
+    setBase(data) {
+        let container = this.container.querySelector(`.${this.CLN.ctnBase}`);
+        let fields = ['title', 'time'].map(function(item) {
             if (item == 'time') {
                 return {
                     name: item,
@@ -21,25 +77,25 @@ export default class Viewer {
                 };
             }
         });
-        this.setFieldData(container, fields);
+        this.fillContent(container, fields);
 
         this.setDesc(data);
         return this;
     }
     setDesc(data) {
-        var container = document.getElementById('ctnDescInfo');
-        var fields = ['desc'].map(function(item) {
+        let container = this.container.querySelector(`.${this.CLN.ctnDesc}`);
+        let fields = ['desc'].map(function(item) {
             return {
                 name: item,
                 data: data[item]
             };
         });
-        this.setFieldData(container, fields);
+        this.fillContent(container, fields);
 
         return this;
     }
     setTag(data) {
-        var container = document.getElementById('ctnTagInfo').querySelector('.wrapTagList');
+        let container = this.container.querySelector(`.${this.CLN.ctnTag} .tagItemList`);
         data.forEach(
             function(item) {
                 container.appendChild(this.createTagDom(item));
@@ -48,35 +104,26 @@ export default class Viewer {
         return this;
     }
     createTagDom(data) {
-        var dom = document.createElement('div');
-        dom.className = 'wrapTagItem c-interact';
+        let dom = document.createElement('div');
+        dom.className = `${this.CLN.item} c-popover`;
+        dom.dataset.theme = 'light';
         dom.dataset.toggle = 'hover';
-        var template =
-            '\
-    <span class="spContent">${content}</span>\
-    <div class="divDetail c-popover" data-theme="light">\
-        <div class="c-clear-fix">\
-            <span class="content">${content}</span>\
-            <span class="c-btn iconfont icon-thumb-up" data-action="for"></span>\
-            <span class="c-btn iconfont icon-thumb-down" data-action="for"></span>\
-        </div>\
-        <div class="c-clear-fix">\
-            <span class="c-btn" data-action="attention">关注</span>\
-            <span class="c-btn" data-action="delete">删除</span>\
-            <span class="c-btn" data-action="report">举报</span>\
-        </div>\
-    </div>';
 
-        dom.innerHTML = this.formatEl(template, {
-            content: data.content
+        dom.innerHTML = this.TEMPLATE.TAG.fill({
+            content: data.content,
+            for: NumberUtil.format(data.for),
+            against: NumberUtil.format(data.against)
         });
         return dom;
     }
     setRemark(data) {
-        var container = document.getElementById('ctnRemarkInfo');
-        var template = '<span class="icon ${icon}"></span><span class="text">${text}</span><span class="num">${num}</sann>';
+        let container = this.container.querySelector(`.${this.CLN.ctnRemark}`);
+        let template = `
+        <span class="icon {icon}"></span>
+        <span class="text">{text}</span>
+        <span class="num">{num}</sann>`;
 
-        var dictText = {
+        var mapRemark = {
             view: '浏览',
             praise: '赞',
             collect: '收藏',
@@ -88,153 +135,115 @@ export default class Viewer {
                 name: item,
                 data: {
                     icon: 'iconfont icon-' + item,
-                    num: data[item],
-                    text: dictText[item]
+                    num: NumberUtil.format(data[item]),
+                    text: mapRemark[item]
                 }
             };
         });
-        this.setFieldData(container, fields, template);
+        this.fillContent(container, fields, template);
         return this;
     }
     setAuthor(data) {
-        var container = document.getElementById('ctnAuthorInfo');
+        var container = this.container.querySelector(`.${this.CLN.ctnAuthor}`);
 
-        container.querySelector('.portrait').src = `${AppConfig.path.image}/user/${data.id}.png`;
+        container.querySelector('[data-fill="portrait"]').src = `${PATH.IMAGE}/user/portrait/${data.id}.png`;
         var fields = ['name', 'server', 'desc', 'works', 'fans'].map(function(item) {
-            return {
-                name: item,
-                data: item == 'server' ? CONSTANT.SERVER[data[item]].text : data[item]
+            let field = {
+                name: item
             };
+            if (item == 'server') {
+                field.data = CONSTANT.SERVER[data[item]].text;
+            } else if (item == 'works' || item == 'fans') {
+                field.data = NumberUtil.format(data[item]);
+            } else {
+                field.data = data[item];
+            }
+            return field;
         });
-        this.setFieldData(container, fields);
+        this.fillContent(container, fields);
         return this;
     }
     setModel(data) {
-        var container = document.getElementById('ctnModelInfo').querySelector('.ctnModelList');
-        var ctnIndex = document.getElementById('ctnModelInfo').querySelector('.modelToggleIndex');
+        var ctnItemList = this.container.querySelector(`.${this.CLN.ctnModel} .${this.CLN.modelItemList}`);
+        var ctnIndex = this.container.querySelector(`.${this.CLN.ctnModel} .${this.CLN.modelItemIndex}`);
         ctnIndex.innerHTML = '';
         if (data.lenth == 0) {
-            ctnIndex.classList.add('hide;');
+            ctnIndex.classList.add('c-hide');
         }
         data.forEach(
             function(item, index) {
                 var dom = this.createModelDom(item);
-                container.appendChild(dom);
+                ctnItemList.appendChild(dom);
                 if (index == 0) {
                     dom.classList.add('focus');
-                    ctnIndex.innerHTML += '<span class="spIndex focus" data-index="' + index + '"></span>';
+                    ctnIndex.innerHTML += '<span class="item focus" data-index="' + index + '"></span>';
                 } else {
-                    ctnIndex.innerHTML += '<span class="spIndex" data-index="' + index + '"></span>';
+                    ctnIndex.innerHTML += '<span class="item" data-index="' + index + '"></span>';
                 }
             }.bind(this)
         );
         return this;
     }
     createModelDom(data) {
-        var _this = this;
-        var template =
-            '\
-        <div class="divCharacter">\
-            ${char_template}\
-        </div>\
-        <div class="divEqupment">\
-            ${equip_template}\
-        </div>';
-
-        var char_template =
-            '\
-        <div class="divField" data-field="portrait"><img src="${portrait}" onerror="this.style.display=\'none\'" class="c-portrait portrait"></div>\
-        <div class="c-clear-fix fluid">\
-            <div class="c-wrap c-clear-fix charAction">${tool}</div>\
-            <div class="c-wrap divField" data-field="race">${race}</div>\
-            <div class="c-wrap divField" data-field="name">${name}</div>\
-        </div>\
-        <div class="divField" data-field="desc">${desc}</div>';
-
-        var chart_tool_template =
-            '\
-        <span class="c-btn iconfont icon-attention" data-action="attention"></span>\
-        <span class="c-btn iconfont icon-message" data-action="message"></span>';
-        var strChar = this.formatEl(char_template, {
+        let charHtml = this.TEMPLATE.MODEL_CHAR.fill({
             name: data.name,
             race: CONSTANT.CHARACTER.RACE[data.race].text,
             desc: data.desc,
-            portrait: data.id ? `${AppConfig.path.image}/user/${data.id}.png ` : `${AppConfig.path.image}/common/character/race_icon_${data.race}.png `,
-            tool: data.id ? chart_tool_template : '<span class="noRegisterTip">未注册</span>'
+            portrait: data.id ? `${PATH.IMAGE}/user/${data.id}.png ` : `${PATH.IMAGE}/common/character/race_icon_${data.race}.png `,
+            tool: data.id
+                ? `
+            <span class="c-btn iconfont icon-attention" data-action="attention"></span>
+            <span class="c-btn iconfont icon-message" data-action="message"></span>`
+                : '<span class="noRegisterTip">未注册</span>'
         });
-        template = template.replace(/\${char_template}/g, strChar);
 
-        var equip_template =
-            '\
-        <div class="divField pos-${pos}">\
-            <img class="icon" src="${pic}" onerror="this.src != \'${partDefaultImg}\' && (this.src=\'${partDefaultImg}\')">\
-            <span class="partName">${partName}</span>\
-            <span class="name">${name}</span>\
-            <span class="color" style="background-color:${extend}"></span>\
-            <span class="c-btn btnMore">更多作品</span>\
-        </div>';
-        var strEquip = Object.keys(CONSTANT.EQUIP_ITEM.PART)
-            .map(function(item) {
-                var info = data.equip[item];
-                return _this.formatEl(equip_template, {
-                    pic: ` ${AppConfig.path.image}/plant/single/${info.id}.jpg `,
-                    partDefaultImg: `${AppConfig.path.image}/common/equip/equip_icon_sm_${item}.jpg `,
-                    name: info.name,
-                    partName: CONSTANT.EQUIP_ITEM.PART[item].text,
-                    extend: info.color,
+        let equipHtml = Object.keys(CONSTANT.EQUIP_ITEM.PART)
+            .map(item => {
+                return this.TEMPLATE.MODEL_EQUIP.fill({
+                    icon: ` ${PATH.IMAGE}/plant/single/${data.equip[item].id}.jpg `,
+                    partDefaultIcon: `${PATH.IMAGE}/common/equip/equip_icon_sm_${item}.jpg `,
+                    name: data.equip[item].name,
+                    part: CONSTANT.EQUIP_ITEM.PART[item].text,
+                    color: data.equip[item].color,
                     pos: CONSTANT.EQUIP_ITEM.PART[item].pos
                 });
             })
             .join('');
-        template = template.replace(/\${equip_template}/g, strEquip);
-        var dom = document.createElement('div');
-        dom.innerHTML = template;
-        dom.className = 'divModel';
+        let dom = document.createElement('div');
+        dom.innerHTML = this.TEMPLATE.MODEL.fill({
+            character: charHtml,
+            equipment: equipHtml
+        });
+        dom.className = this.CLN['divModel'];
         if (data.id == this.page.store.author.id) {
             dom.classList.add('isSelf');
         }
         return dom;
     }
     setRelateWorks(data) {
-        var container = document.getElementById('ctnRecommend').querySelector('.c-slide-list');
+        var container = this.container.querySelector(`.${this.CLN.ctnRelate} .c-slide-list`);
         container.innerHTML = '';
         data.forEach(
             function(item) {
-                container.appendChild(this.createRecommendDom(item));
+                container.appendChild(this.createRelateWorksDom(item));
             }.bind(this)
         );
         return this;
     }
-    createRecommendDom(data) {
+    createRelateWorksDom(data) {
         var dom = document.createElement('div');
         dom.className = 'c-slide';
         dom.dataset.id = data.id;
-        var template = '<img class="c-slide-img" src="${img}"><span class="c-slide-title">${title}</span>';
-        dom.innerHTML = this.formatEl(template, {
-            img: `${AppConfig.path.image}/plant/transmog/${data.id}.jpg `,
+        dom.innerHTML = this.TEMPLATE.RELATE.fill({
+            img: `${PATH.IMAGE}/plant/transmog/${data.id}.jpg `,
             title: data.title
         });
         return dom;
     }
-    setFieldData(container, fields, template) {
-        var _this = this;
+    fillContent(container, fields, template) {
         if (!fields) return;
         fields.forEach(function(item) {
-            container.querySelector('[data-field="' + item.name + '"]').innerHTML = _this.formatEl(template, item.data);
+            container.querySelector('[data-fill="' + item.name + '"]').innerHTML = template ? template.fill(item.data) : item.data;
         });
-    }
-    formatEl() {
-        var str = arguments[0];
-        var content = arguments[1];
-        if (!content) return '';
-        if (typeof content != 'string' && typeof content != 'number') {
-            Object.keys(content).forEach(function(key) {
-                var reg = new RegExp('\\${' + key + '}', 'g');
-                str = str.replace(reg, content[key]);
-            });
-        } else {
-            str = content;
-        }
-        return str;
     }
 }

@@ -61,34 +61,32 @@ input[type='range']::-webkit-slider-thumb {
 
 /*scrollbar start*/
 
-.scrollBar::-webkit-scrollbar {
-    width: 10px;
-}
-
-.scrollBar::-webkit-scrollbar-track {
-    background-color: transparent;
-}
-
-.scrollBar::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.5);
-}
-
-.scrollBar::-webkit-scrollbar-button {
-    display: none;
-    background-color: #7c2929;
-}
-
-.scrollBar::-webkit-scrollbar-corner {
-    background-color: black;
-    display: none;
-}
-
-.noScrollBar::-webkit-scrollbar-thumb {
-    display: none;
-}
-
-.noScrollBar::-webkit-scrollbar {
-    display: none;
+.c-scrollbar {
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+    &::-webkit-scrollbar-button {
+        display: none;
+        background-color: #7c2929;
+    }
+    &::-webkit-scrollbar-corner {
+        background-color: black;
+        display: none;
+    }
+    &-hide {
+        &::-webkit-scrollbar-thumb {
+            display: none;
+        }
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
 }
 
 /*scrollbar end*/
@@ -125,6 +123,9 @@ input[type='range']::-webkit-slider-thumb {
 .c-page-footer {
     position: relative;
     width: 100%;
+}
+
+.c-ctn {
 }
 
 .c-clear-fix:before {
@@ -199,18 +200,18 @@ input[type='range']::-webkit-slider-thumb {
 /*overlay*/
 /*popover*/
 
-.c-interact .c-popover {
-    display: none;
-    position: absolute;
-}
-
-.c-interact .c-popover[data-theme='light'] {
-    background: white;
-    color: black;
-}
-
-.c-interact[data-toggle='hover']:hover .c-popover {
-    display: block;
+.c-popover {
+    &-body {
+        display: none;
+        position: absolute;
+    }
+    &[data-theme='light'] &-body {
+        background: white;
+        color: black;
+    }
+    &[data-toggle='hover']:hover &-body {
+        display: block;
+    }
 }
 
 /*popover*/
@@ -285,42 +286,37 @@ input[type='range']::-webkit-slider-thumb {
 
 /*input*/
 
-.c-wrap-input {
+.c-input-wrap {
     border-collapse: separate;
-}
-
-.c-wrap-input .c-input {
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-    color: inherit;
+    .c-input {
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+        color: inherit;
+    }
 }
 
 /*input*/
 
 /*input-check*/
 
-.c-wrap-check {
+.c-check-wrap {
     -webkit-user-select: none;
     user-select: none;
-}
-
-.c-wrap-check .c-check-icon {
-    font-family: 'iconfont' !important;
-    font-style: normal;
-    -webkit-font-smoothing: antialiased;
-    margin-right: 5px;
-}
-
-.c-wrap-check .c-check-icon::before {
-    content: '\e632';
-}
-
-.c-wrap-check.checked .c-check-icon::before {
-    content: '\e622';
-}
-
-.c-wrap-check .c-check-text {
+    .c-check-icon {
+        font-family: 'iconfont' !important;
+        font-style: normal;
+        -webkit-font-smoothing: antialiased;
+        margin-right: 5px;
+        &::before {
+            content: '\e632';
+        }
+    }
+    &.checked {
+        .c-check-icon::before {
+            content: '\e622';
+        }
+    }
 }
 
 /*input-check*/

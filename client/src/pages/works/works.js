@@ -28,17 +28,17 @@ export default class Works extends Base {
     }
     getData() {
         $.when(
-            this.api.getWorksInfo(this.id).done(result => {
+            this.api.getGalleryItemDetail(this.id).done(result => {
                 if (result.success) {
                     this.store = $.extend({}, this.store, result.data);
                 }
             }),
-            this.api.getRelateInfo(this.id).done(result => {
+            this.api.getRelateGalleryItem(this.id).done(result => {
                 if (result.success) {
                     this.store = $.extend({}, this.store, { relate: result.data });
                 }
             })
-        ).always(function() {
+        ).always(() => {
             this.setViewer();
         });
     }
@@ -50,13 +50,13 @@ export default class Works extends Base {
         this.initComment();
     }
     setViewer() {
-        this.api.getAuthorInfo(this.store.author.id).done(function(result) {
+        this.api.getUserDetail(this.store.author.id).done(result => {
             this.cmpt.viewer.setAuthor(result.data);
         });
         this.cmpt.viewer
             .setRelateWorks(this.store.relate)
             .setAlbum(this.store.img)
-            .setBaseInfo(this.store)
+            .setBase(this.store)
             .setModel(this.store.model)
             .setRemark(this.store.remark)
             .setTag(this.store.tag);
@@ -71,15 +71,15 @@ export default class Works extends Base {
         this.attachModelEvent();
     }
     attachModelEvent() {
-        var $ctn = $('#ctnModelInfo');
-        $ctn.off('click').on('click', '.spIndex', function(e) {
+        var $modelCtn = $(`.${this.CLN.ctnModel}`);
+        $modelCtn.off('click').on('click', `.${this.CLN.modelItemIndex} ${this.CLN.item}`, function(e) {
             var $target = $(e.currentTarget);
             if ($target.hasClass('focus')) return;
             var index = $target[0].dataset.index;
-            $ctn.find('.spIndex.focus').removeClass('focus');
-            $ctn.find('.divModel.focus').removeClass('focus');
+            $modelCtn.find(`.${this.CLN.modelItemIndex} ${this.CLN.item}.focus`).removeClass('focus');
+            $modelCtn.find(`.${this.CLN.divModel}.focus`).removeClass('focus');
             $target.addClass('focus');
-            $ctn.find('.divModel')
+            $ctn.find(`.${this.CLN.divModel}`)
                 .eq(index)
                 .addClass('focus');
         });

@@ -1,10 +1,11 @@
-<div id="ctnContribute" class="noScrollBar">
-    <div id="ctnTitle">
-        <div class="title">欢迎使用幻化回廊</div>
-        <div class="text">请按照提示填写以下信息进行投稿，并耐心等候管理员的进行审核，相关说明请看<a>投稿帮助</a></div>
+<div class="c-page-header"></div>
+<div class="c-page scrollbar">
+    <div class="{ctnHeader}">
+        <div class="{ttl}">欢迎使用幻化回廊</div>
+        <div class="{subTtl}">请按照提示填写以下信息进行投稿，并耐心等候管理员的进行审核，相关说明请看<a>投稿帮助</a></div>
     </div>
-    <div style="height:240px;margin-bottom: 60px">
-        <div id="ctnBaseInfo">
+    <div class="{ctnMain}">
+        <div class="{ctnBase}">
             <div class="itemLabel main">基础信息</div>
             <div class="item"><label class="itemLabel">标题：</label> <input type="text" class="form-control itemIpt" /></div>
             <div class="item wrapDesc"><label class="itemLabel">描述：</label> <textarea rows="3" class="form-control itemIpt iptTextaera"></textarea></div>
@@ -13,7 +14,7 @@
                 <input type="text" class="form-control itemIpt iptWatermark" /> <span class="itemTip">添加版权声明后图像下方将显示水印</span>
             </div>
         </div>
-        <div id="ctnImgMain">
+        <div class="ctnCoverImg">
             <div class="itemLabel main">首页图片</div>
             <div class="divImgSlide">
                 <div class="toolGrp">
@@ -31,20 +32,20 @@
             </div>
         </div>
     </div>
-    <div id="ctnImgInfo">
+    <div class="ctnImgGroup">
         <div class="itemLabel main">展示图片</div>
         <div class="itemTip">所有展示图片大小均不能大于1MB，请尽量选取高清照片，长宽比2:1为推荐大小。</div>
         <div class="wrapImgInfo"><span class="btnAdd iconfont icon-add"> </span> <input id="iptImgGrpAdd" style="display:none" type="file" /></div>
     </div>
-    <div id="ctnTagInfo">
+    <div class="ctnTag">
         <span class="wrapTagEdit"> <span class="btnTagAdd glyphicon glyphicon-add"></span> <span class="iptTagContent"></span> </span>
     </div>
-    <div id="ctnConsistInfo">
+    <div class="ctnModel">
         <div class="itemLabel main">幻化信息</div>
         <span class="btnAdd iconfont icon-add">新增模特</span>
     </div>
-    <div id="btnContributeGrp" class="toolGrp">
-        <div id="btnPostSure"><span class="glyphicon glyphicon-ok"></span> 确认</div>
-        <div id="btnPostInit">重置</div>
+    <div class="btnToolGrp">
+        <div class="c-btn" data-action="confirm"><span class="glyphicon glyphicon-ok"></span> 确认</div>
+        <div class="c-btn" data-action="revert">重置</div>
     </div>
 </div>

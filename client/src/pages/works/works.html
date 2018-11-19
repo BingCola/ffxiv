@@ -1,56 +1,56 @@
-<div class="{ctnPhotoAlbum}"></div>
-<div class="{ctnMainInfo}" class="c-clear-fix fluid">
-    <div class="c-wrap ctnLeftInfo">
-        <div class="{ctnBaseInfo}">
-            <div class="divField c-title-3" data-field="title"></div>
-            <div class="divField c-text-4" data-field="time"></div>
+<div class="{ctnAlbum}"></div>
+<div class="{ctnMain} c-clear-fix fluid">
+    <div class="c-wrap {ctnLeftBlock}">
+        <div class="{ctnBase}">
+            <div class="{divField}" data-fill="title"></div>
+            <div class="{divField}" data-fill="time"></div>
         </div>
-        <div class="{ctnRemarkInfo}" class="c-clear-fix fluid">
-            <div class="divField c-wrap c-wrap-1-5" data-field="view"></div>
-            <div class="divField c-wrap c-wrap-1-5" data-field="praise"></div>
-            <div class="divField c-wrap c-wrap-1-5" data-field="collect"></div>
-            <div class="divField c-wrap c-wrap-1-5" data-field="shield"></div>
-            <div class="divField c-wrap c-wrap-1-5" data-field="share"></div>
+        <div class="{ctnRemark} c-clear-fix fluid">
+            <div class="{divField} c-wrap" data-fill="view"></div>
+            <div class="{divField} c-wrap" data-fill="praise"></div>
+            <div class="{divField} c-wrap" data-fill="collect"></div>
+            <div class="{divField} c-wrap" data-fill="shield"></div>
+            <div class="{divField} c-wrap" data-fill="share"></div>
         </div>
-        <div class="{ctnTagInfo}">
-            <div class="wrapTagList"></div>
-            <div class="wrapTagHandle">
-                <span class="c-btn iconfont icon-add c-text-4" data-action="add"></span> <span class="c-btn c-text-4" data-action="log">修改记录</span>
-                <span class="c-btn c-text-4" data-action="help">使用说明</span>
+        <div class="{ctnTag}">
+            <div class="tagItemList"></div>
+            <div class="{btnToolGrp}">
+                <span class="c-btn iconfont icon-add" data-action="add"></span> <span class="c-btn" data-action="log">修改记录</span>
+                <span class="c-btn" data-action="help">使用说明</span>
             </div>
         </div>
-        <div class="{ctnDescInfo}"><div class="c-text-2" data-field="desc"></div></div>
-        <div class="{ctnRecommend}">
+        <div class="{ctnDesc}"><div data-fill="desc"></div></div>
+        <div class="{ctnRelate}">
             <span class="c-label">您可能还喜欢</span>
-            <div class="recommentList c-slide-wrap" data-slide-orient="horizon" data-in-view="3">
+            <div class="c-slide-wrap" data-slide-orient="horizon" data-in-view="3">
                 <span class="c-slide-btn glyphicon glyphicon-menu-left"></span>
-                <div class="c-slide-list-wrap"><div class="c-slide-list"></div></div>
+                <div class="c-slide-list-wrap"><div class="c-slide-list {relateItemList}"></div></div>
                 <span class="c-slide-btn glyphicon glyphicon-menu-right"></span>
             </div>
         </div>
         <div class="{ctnComment}"></div>
     </div>
-    <div class="c-wrap ctnRightInfo">
-        <div class="{ctnAuthorInfo}">
-            <div class="divField" data-field="portrait"><img class="c-portrait portrait" /></div>
-            <div class="c-clear-fix authorInfo">
-                <div class="divField c-wrap" data-field="name"></div>
-                <div class="divField c-wrap" data-field="desc"></div>
-                <div class="c-clear-fix fluid detail">
-                    <div class="divField c-wrap" data-field="server"></div>
-                    <div class="divField c-wrap"><span class="c-label">投稿：</span><span class="content" data-field="works"></span></div>
-                    <div class="divField c-wrap"><span class="c-label">粉丝：</span><span class="content" data-field="fans"></span></div>
+    <div class="c-wrap {ctnRightBlock}">
+        <div class="{ctnAuthor}">
+            <div class="{divField}" data-field="portrait"><img class="c-portrait" data-fill="portrait" /></div>
+            <div class="c-clear-fix {info}">
+                <div class="{divField} c-wrap" data-fill="name"></div>
+                <div class="{divField} c-wrap" data-fill="desc"></div>
+                <div class="c-clear-fix fluid {detail}">
+                    <div class="{divField} c-wrap" data-fill="server"></div>
+                    <div class="{divField} c-wrap"><span class="c-label">投稿：</span><span class="content" data-fill="works"></span></div>
+                    <div class="{divField} c-wrap"><span class="c-label">粉丝：</span><span class="content" data-fill="fans"></span></div>
                 </div>
             </div>
-            <div class="c-clear-fix authorAction">
+            <div class="c-clear-fix {btnToolGrp}">
                 <span class="c-btn iconfont icon-attention" data-action="attention"></span>
                 <span class="c-btn iconfont icon-message" data-action="message"></span>
             </div>
         </div>
-        <div id="ctnModelInfo">
+        <div class="{ctnModel}">
             <div class="c-label">模特</div>
-            <div class="c-clear-fix modelToggleIndex"></div>
-            <div class="ctnModelList"></div>
+            <div class="c-clear-fix {modelItemIndex}"></div>
+            <div class="{modelItemList}"></div>
         </div>
     </div>
 </div>

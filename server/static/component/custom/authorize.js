@@ -15,11 +15,11 @@
         },
         login: function(account) {
             var _this = this;
-            let req
+            let req;
             if (account.role == 6) {
-                req = CPlugin.api.loginInVisitor(account)
+                req = CPlugin.api.loginInVisitor(account);
             } else {
-                req = CPlugin.api.login(account)
+                req = CPlugin.api.login(account);
             }
             var $promise = $.Deferred();
             req.done(function(result) {
@@ -28,7 +28,7 @@
                     var user = {
                         id: User.id,
                         role: User.role
-                    }
+                    };
                     let loginProfile = _this.getUserLoginProfile();
                     loginProfile.account = User.account;
                     loginProfile.pwd = User.pwd;
@@ -53,17 +53,19 @@
                     window.User = window.User || {};
                     $promise.rejectWith(null, [result.msg]);
                 }
-            }).fail(function() {
-                window.User = window.User || {};
-                $promise.reject();
-            }).always(function() {
-                CPlugin.nav.initUserNav();
             })
+                .fail(function() {
+                    window.User = window.User || {};
+                    $promise.reject();
+                })
+                .always(function() {
+                    CPlugin.nav.initUserNav();
+                });
             return $promise.promise();
         },
 
-
-        panelLoginTpl: '\
+        panelLoginTpl:
+            '\
             <div class="cpc-login-cover"></div>\
             <div class="cpc-login-body">\
                 <div class="cpc-ttl">幻化回廊</div>\
@@ -73,11 +75,11 @@
                     <div class="cpc-result-msg"></div>\
                 </div>\
                 <div class="cpc-login-box">\
-                    <div class="cpc-account input-group cpc-wrap-ipt c-wrap-input">\
+                    <div class="cpc-account input-group cpc-wrap-ipt c-input-wrap">\
                         <span class="cpc-ipt-abbdon iconfont icon-user"></span>\
                         <input value="{account}" type="text" class="cpc-account-ipt cpc-ipt c-input" placeholder="账号"">\
                     </div>\
-                    <div class="cpc-pwd c-wrap-input cpc-wrap-ipt">\
+                    <div class="cpc-pwd c-input-wrap cpc-wrap-ipt">\
                         <span class="cpc-ipt-abbdon iconfont icon-lock"></span>\
                         <input value="{pwd}" type="password" class="cpc-pwd-ipt cpc-ipt c-input" placeholder="密码"">\
                     </div>\
@@ -88,7 +90,7 @@
                 </div>\
                 <div class="cpc-tool-grp c-clear-fix">\
                     <!--<span class="cpc-tool-item" data-action="visitor">游客身份登录</span>-->\
-                    <span class="cpc-tool-item c-btn c-wrap-check square {remember}" data-action="remember"><span class="c-check-icon"></span><span class="c-check-text text">记住密码</span></span>\
+                    <span class="cpc-tool-item c-btn c-check-wrap square {remember}" data-action="remember"><span class="c-check-icon"></span><span class="c-check-text text">记住密码</span></span>\
                     <span class="cpc-tool-item c-btn" data-action="foget"><span class="text">忘记密码</span></span>\
                     <span class="cpc-tool-item c-btn" data-action="register"><span class="text">注册</span></span>\
                 </div>\
@@ -100,7 +102,6 @@
 
             this.panelLogin = document.createElement('div');
             this.panelLogin.classList.add('cpc-login-panel');
-
 
             this.panelLogin.innerHTML = this.panelLoginTpl.format({
                 remember: user.remember ? 'checked' : '',
@@ -115,14 +116,14 @@
             this.panelLogin = null;
         },
         bindPanelLoginEvent: function() {
-            $(this.panelLogin).on('click', '[data-action]', (e) => {
+            $(this.panelLogin).on('click', '[data-action]', e => {
                 var target = e.currentTarget;
                 switch (target.dataset.action) {
                     case 'clear':
                         this.clearPanelLogin();
                         break;
                     case 'login':
-                        this.startLoginByPanel()
+                        this.startLoginByPanel();
                         break;
                     case 'remember':
                         target.classList.toggle('checked');
@@ -132,7 +133,7 @@
                         this.loginInVisitor();
                         break;
                 }
-            })
+            });
         },
         rememberAccount: function(check) {
             let user = this.getUserLoginProfile();
@@ -151,13 +152,13 @@
         },
         showLoginResult: function(msg) {
             let container = this.panelLogin.querySelector('.cpc-result-msg');
-            container.innerHTML = msg
+            container.innerHTML = msg;
         },
         startLoginByPanel: function(account) {
             account = account || {
                 account: this.panelLogin.querySelector('.cpc-account-ipt').value,
                 pwd: this.panelLogin.querySelector('.cpc-pwd-ipt').value
-            }
+            };
             if (account.role != 6) {
                 var isValid = this.checkLoginInfo(account);
                 // if (!isValid) return;
@@ -166,17 +167,19 @@
             let wrapLoginStatusSpinner = this.panelLogin.querySelector('.cpc-loading-spinner');
             wrapLoginStatus.classList.add('loading');
             CPlugin.spinner.spin(this.panelLogin.querySelector('.cpc-loading-spinner'), 3);
-            this.login(account).done(() => {
-                this.clearPanelLogin();
-            }).fail((msg) => {
-                CPlugin.spinner.stop(this.panelLogin.querySelector('.cpc-loading-spinner'));
-                wrapLoginStatus.classList.remove('loading');
-                if (!msg) {
-                    this.showLoginResult('服务器暂不可用');
-                } else {
-                    this.showLoginResult('登录失败，密码错误');
-                }
-            });
+            this.login(account)
+                .done(() => {
+                    this.clearPanelLogin();
+                })
+                .fail(msg => {
+                    CPlugin.spinner.stop(this.panelLogin.querySelector('.cpc-loading-spinner'));
+                    wrapLoginStatus.classList.remove('loading');
+                    if (!msg) {
+                        this.showLoginResult('服务器暂不可用');
+                    } else {
+                        this.showLoginResult('登录失败，密码错误');
+                    }
+                });
         },
         loginInVisitor: function() {
             var visitor = {};
@@ -187,9 +190,9 @@
                 visitor = {};
             }
             if (!visitor.id) {
-                this.startLoginByPanel({ role: 6 })
+                this.startLoginByPanel({ role: 6 });
             } else {
-                this.startLoginByPanel(visitor)
+                this.startLoginByPanel(visitor);
             }
         },
         checkLoginInfo: function(account) {
@@ -206,23 +209,25 @@
         onLogin: function(postData) {
             var _this = this;
             var container = this.container.querySelector('.loginStatus');
-            Spinner.spin(container, { type: 'bar' })
+            Spinner.spin(container, { type: 'bar' });
 
             var tipDom = _this.container.querySelector('.resultTip');
-            _this.login(postData).done(function() {
-                _this.event.afterLogin && _this.event.afterLogin();
-                _this.clearEvent();
-                _this.hide();
-            }).fail(function() {
-                tipDom.innerHTML = '登录失败，密码错误';
-            }).always(function() {
-                Spinner.stop(container)
-            })
+            _this
+                .login(postData)
+                .done(function() {
+                    _this.event.afterLogin && _this.event.afterLogin();
+                    _this.clearEvent();
+                    _this.hide();
+                })
+                .fail(function() {
+                    tipDom.innerHTML = '登录失败，密码错误';
+                })
+                .always(function() {
+                    Spinner.stop(container);
+                });
         },
 
-        destory: function() {
-
-        }
-    }
-    exports.authorize = Cmpt
-}(namespace('cmpt')))
+        destory: function() {}
+    };
+    exports.authorize = Cmpt;
+})(namespace('cmpt'));

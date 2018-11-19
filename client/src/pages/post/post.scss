@@ -5,22 +5,25 @@
     overflow: auto;
 }
 
-#ctnTitle {
+.ctnHeader {
     margin-top: 30px;
     margin-bottom: 30px;
     text-align: center;
+
+    .ttl {
+        font-size: 28px;
+    }
+    .subTtl {
+        color: #eee;
+        a {
+            cursor: pointer;
+        }
+    }
 }
 
-#ctnTitle .title {
-    font-size: 28px;
-}
-
-#ctnTitle .text {
-    color: #eee;
-}
-
-#ctnTitle a {
-    cursor: pointer;
+.ctnMain {
+    height: 240px;
+    margin-bottom: 60px;
 }
 
 #ctnBaseInfo {
