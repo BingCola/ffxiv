@@ -236,8 +236,10 @@ export default class NavTop extends Base {
             let dom = document.createElement('div');
             dom.className = this.CLN.route;
             dom.innerHTML = tpl.fill(route);
-            if (route.action && route.action.type) {
-                dom.dataset[route.action.type] = route.action.content;
+            if (route.action && Object.keys(route.action).length > 0) {
+                Object.keys(route.action).forEach(act => {
+                    dom.dataset[act] = route.action[act];
+                });
             }
 
             if (route.children instanceof Array && route.children.length > 0) {
@@ -256,8 +258,10 @@ export default class NavTop extends Base {
             let dom = document.createElement('div');
             dom.className = `sub ${this.CLN.route}`;
             dom.innerHTML = tpl.fill(route);
-            if (route.action && route.action.type) {
-                dom.dataset[route.action.type] = route.action.content;
+            if (route.action && Object.keys(route.action).length > 0) {
+                Object.keys(route.action).forEach(act => {
+                    dom.dataset[act] = route.action[act];
+                });
             }
             container.appendChild(dom);
         });

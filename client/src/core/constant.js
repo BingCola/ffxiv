@@ -7,11 +7,15 @@ export default {
                     routes: [
                         {
                             text: '首页',
-                            action: {}
+                            action: {
+                                href: '/'
+                            }
                         },
                         {
                             text: '幻化',
-                            action: {}
+                            action: {
+                                href: '/gallery'
+                            }
                         },
                         {
                             text: '装修',
