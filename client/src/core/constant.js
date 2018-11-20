@@ -101,7 +101,7 @@ export default {
             }
         }
     },
-    EQUIP_ITEM: {
+    EQUIPMENT: {
         PART: {
             1: { text: '主武器', pos: 1 },
             2: { text: '副武器', pos: 2 },

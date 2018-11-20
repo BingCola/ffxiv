@@ -197,15 +197,15 @@ export default class Viewer {
                 : '<span class="noRegisterTip">未注册</span>'
         });
 
-        let equipHtml = Object.keys(CONSTANT.EQUIP_ITEM.PART)
+        let equipHtml = Object.keys(CONSTANT.EQUIPMENT.PART)
             .map(item => {
                 return this.TEMPLATE.MODEL_EQUIP.fill({
                     icon: ` ${PATH.IMAGE}/plant/single/${data.equip[item].id}.jpg `,
                     partDefaultIcon: `${PATH.IMAGE}/common/equip/equip_icon_sm_${item}.jpg `,
                     name: data.equip[item].name,
-                    part: CONSTANT.EQUIP_ITEM.PART[item].text,
+                    part: CONSTANT.EQUIPMENT.PART[item].text,
                     color: data.equip[item].color,
-                    pos: CONSTANT.EQUIP_ITEM.PART[item].pos
+                    pos: CONSTANT.EQUIPMENT.PART[item].pos
                 });
             })
             .join('');
