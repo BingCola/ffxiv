@@ -7,7 +7,7 @@ const TEMPLATE = {
     `,
     INFO: `
     <div class="${CLN.body}">
-        <div class="${CLN.icon} iconfont icon-info"></div>
+        <div class="${CLN.icon} iconfont icon-alert"></div>
         <div class="${CLN.content}">{content}</div>
     </div>
     <div class="${CLN.footer}">
@@ -16,7 +16,7 @@ const TEMPLATE = {
     `,
     CONFIRM: `
     <div class="${CLN.body}">
-        <div class="${CLN.icon} iconfont icon-info"></div>
+        <div class="${CLN.icon} iconfont icon-alert"></div>
         <div class="${CLN.content}">{content}</div>
     </div>
     <div class="${CLN.footer}">
@@ -58,6 +58,24 @@ const success = (option, container) => {
         };
     }
     option.theme = 'success';
+    info(option, container);
+};
+const warning = (option, container) => {
+    if (typeof option == 'string') {
+        option = {
+            content: option
+        };
+    }
+    option.theme = 'warning';
+    info(option, container);
+};
+const danger = (option, container) => {
+    if (typeof option == 'string') {
+        option = {
+            content: option
+        };
+    }
+    option.theme = 'warning';
     info(option, container);
 };
 const confirm = (option, container) => {
@@ -134,4 +152,4 @@ const show = (template, container) => {
     container.appendChild(dom);
     return dom;
 };
-export default { info, confirm, prompt };
+export default { info, success, warning, danger, confirm, prompt };

@@ -8,6 +8,30 @@ export default class Comment extends Base {
     get CLASSNAMES() {
         return style;
     }
+    get DEFAULT_OPTION() {
+        return {
+            template: {
+                comment: `
+                <div class="content"></div>
+                `,
+                reply: ``
+            },
+            async: null,
+            handleData: null,
+            pagination: {
+                enable: true,
+                query: {
+                    limit: 20,
+                    page: 0
+                }
+            },
+            param: {},
+            event: {
+                onCommentDomCreate: null,
+                onReplyDomCreate: null
+            }
+        };
+    }
     setComment(data) {
         data.forEach(
             function() {

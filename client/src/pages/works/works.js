@@ -65,7 +65,9 @@ export default class Works extends Base {
         this.cmpt.viewer = new Viewer(this);
     }
     initComment() {
-        this.cmpt.comment = new Comment();
+        let option = {};
+        let container = this.container.querySelector(`.${this.CLN.ctnComment}`);
+        this.cmpt.comment = new Comment(container, option);
     }
     attachEvent() {
         this.attachModelEvent();
