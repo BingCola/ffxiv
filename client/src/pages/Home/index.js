@@ -1,5 +1,5 @@
-import 'c.ui.scss';
 import 'iconfont/iconfont.css';
+import 'c.ui.scss';
 import 'default.scss';
 import 'common';
 

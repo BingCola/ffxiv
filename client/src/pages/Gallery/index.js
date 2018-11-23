@@ -1,7 +1,7 @@
+import 'iconfont/iconfont.css';
 import 'c.ui.scss';
 import 'default.scss';
 import 'common';
-import 'iconfont/iconfont.css';
 import CONSTANT from 'constant';
 import Router from 'router';
 import Auth from 'auth.js';

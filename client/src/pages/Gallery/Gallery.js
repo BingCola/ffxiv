@@ -63,11 +63,11 @@ export default class Page extends Base {
                     let id = target.dataset.id;
                     window.open(`/works#id=${id}`);
                 },
-                onItemCreate: function(dom, item, cmpt) {
+                onItemCreate: (dom, item, cmpt) => {
                     dom.dataset.id = item.id;
                     dom.innerHTML = `
-                        <div class="${this.CLN.body}">
-                            <img class="${this.CLN.img}" src="${PATH.IMAGE}/plant/transmog/${item.img.name}">
+                        <div class="${cmpt.CLN.body}">
+                            <img class="${cmpt.CLN.img}" src="${PATH.IMAGE}/plant/transmog/${item.img.name}">
                             <div class="${this.CLN.infoBox}">
                                 <span class="${this.CLN.name}">${item.name}</span>
                                 <span class="${this.CLN.author}" data-id="${item.author.id}">${item.author.name}</span>

@@ -5,9 +5,6 @@ export default class Masonary extends Base {
     constructor() {
         super(...arguments);
         this.$container = $(this.container);
-
-        this.store = [];
-        this.enable = true;
     }
     get HTML() {
         return html;
@@ -48,9 +45,12 @@ export default class Masonary extends Base {
     }
 
     init() {
-        this.initOption();
         this.attachEvent();
         this.aysnc();
+    }
+    initCustomVariable() {
+        this.store = [];
+        this.enable = true;
     }
     attachEvent() {
         this.container.onscroll = this.scroll.bind(this);
@@ -66,7 +66,7 @@ export default class Masonary extends Base {
         this.option.layout.uw = this.container.offsetWidth / this.option.layout.col;
         this.initCursor();
         this.initEvent();
-        this.container.classList.add('cp-masonry-ctn');
+        this.container.classList.add(this.CLN.ctn);
     }
     initEvent() {
         if (this.option.event) {
@@ -145,7 +145,7 @@ export default class Masonary extends Base {
         dom.style.left = this.cursor.col * (100 / this.option.layout.col) + '%';
         dom.style.top = this.cursor.y + 'px';
 
-        this.onItemCreate && this.onItemCreate(dom, item);
+        this.onItemCreate && this.onItemCreate(dom, item, this);
         this.container.appendChild(dom);
 
         this.setCursor(item);
@@ -180,58 +180,6 @@ export default class Masonary extends Base {
             h: (size.h * (this.option.layout.uw - this.option.item.padding * 2)) / size.w + this.option.item.padding * 2
         };
     }
-
-    // getItemPos(size) {
-    //     let itemPos = {
-    //         x: this.cursor.x + this.view.margin,
-    //         y: this.cursor.y + this.view.margin,
-    //         w: this.view.uw - 2 * this.item.margin,
-    //         h: size.h * this.view.uw / size.w - 2 * this.view.margin
-    //     }
-    //     this.colCursor[this.cursor.col] += size.h * this.view.uw / size.w;
-    //     this.cursor = this.getMostBottomPos();
-    //     return itemPos;
-    // }
-
-    // insert(item) {
-    //     var dom = this.option.createItemDom(item.data);
-    //     var pos = this.getItemPos({
-    //         h: item.height,
-    //         w: item.width
-    //     });
-    //     dom.style.width = pos.w + 'px';
-    //     dom.style.height = pos.h + 'px';
-    //     dom.style.left = pos.x + 'px'
-    //     dom.style.top = pos.y + 'px'
-    //     dom.classList.add('cp-masonry-item');
-    //     this.container.appendChild(dom)
-    // }
-    // getMostBottomPos() {
-    //     var col = 0;
-    //     var bottom = 0;
-    //     for (var i = 0; i < this.colCursor.length; i++) {
-    //         if (i == 0) {
-    //             bottom = this.colCursor[0];
-    //         } else {
-    //             if (this.colCursor[i] < bottom) {
-    //                 col = i;
-    //                 bottom = this.colCursor[i]
-    //             }
-    //         }
-    //     }
-    //     return { col: col, x: this.view.uw * col, y: bottom }
-    // }
-    // getItemPos(size) {
-    //     let itemPos = {
-    //         x: this.cursor.x + this.view.margin,
-    //         y: this.cursor.y + this.view.margin,
-    //         w: this.view.uw - 2 * this.view.margin,
-    //         h: size.h * this.view.uw / size.w - 2 * this.view.margin
-    //     }
-    //     this.colCursor[this.cursor.col] += size.h * this.view.uw / size.w;
-    //     this.cursor = this.getMostBottomPos();
-    //     return itemPos;
-    // }
 
     clear() {
         this.store = [];

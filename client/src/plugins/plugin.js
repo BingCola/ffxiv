@@ -19,9 +19,10 @@ export default class Plugin {
     use() {
         this.initRequire();
         this.initOption();
-
+        this.initCustomVariable();
         this.init();
     }
+    initCustomVariable() {}
     initRequire() {}
     initOption() {
         this.option = $.extend(true, {}, this.DEFAULT_OPTION, this.option);
