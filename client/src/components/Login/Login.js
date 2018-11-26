@@ -1,4 +1,3 @@
-import auth from 'auth';
 import Spinner from 'spinner/spinner';
 
 import Base from '../component';
@@ -106,6 +105,7 @@ export default class Login extends Base {
         this.require.auth
             .login(account)
             .done(result => {
+                Spinner.stop(wrapLoginStatusSpinner);
                 this.option.event.afterLogin && this.option.event.afterLogin(result);
                 this.hide();
             })

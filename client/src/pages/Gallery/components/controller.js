@@ -2,8 +2,6 @@ export default class Controller {
     constructor(page) {
         this.page = page;
         this.query = undefined;
-
-        this.total = 0;
     }
     use() {
         this.init();
@@ -30,8 +28,7 @@ export default class Controller {
         }
         this.page.api.getGalleryItemList(this.query).done(result => {
             if (result.data && result.data.list) {
-                this.total = result.data.total;
-                deferred.resolveWith(this.screen, [result.data.list]);
+                deferred.resolveWith(this.screen, [result.data]);
             } else {
                 deferred.reject();
             }

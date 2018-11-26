@@ -6,7 +6,7 @@
     bottom: 0;
     z-index: 1;
     .overlay {
-        animation: fadeIn-opacity 0.3s;
+        animation: fadeIn-opacity 0.2s;
     }
     .ttl {
         font-size: 36px;
@@ -39,7 +39,7 @@
         top: 30%;
         left: 50%;
         transform: translateX(-50%);
-        animation: fadeIn-larger 0.3s;
+        animation: fadeIn-larger 0.2s;
     }
     .header {
         .result {
@@ -150,7 +150,7 @@
 
 @keyframes fadeIn-larger {
     from {
-        transform: translateX(-50%) scale(0);
+        transform: translateX(-50%) scale(1.5);
         opacity: 0;
     }
     to {

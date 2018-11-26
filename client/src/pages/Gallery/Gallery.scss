@@ -1,3 +1,7 @@
+:global(.cc-navTop-ctn) :global(.cc-navTop-body) {
+    max-width: initial;
+}
+
 :global(.c-page-body) {
     height: 100%;
 }
@@ -50,7 +54,7 @@
             }
         }
     }
-    :global(.cc-masonry-item) {
+    :global(.cp-masonary-item) {
         cursor: pointer;
         &:hover {
             .infoBox {
@@ -99,4 +103,7 @@
         left: 160px;
         cursor: pointer;
     }
+}
+.ctnPagination {
+    position: absolute;
 }

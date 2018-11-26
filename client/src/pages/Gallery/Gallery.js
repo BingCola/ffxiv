@@ -50,6 +50,7 @@ export default class Page extends Base {
     initViewer() {
         let container = document.getElementById('ctnItemList');
         let option = {
+            mode: 'plane',
             layout: {
                 paddingTop: 37
             },
@@ -93,6 +94,11 @@ export default class Page extends Base {
             aysnc: {
                 getData: this.cmpt.controller.search.bind(this.cmpt.controller),
                 handleData: null
+            },
+            plugin: {
+                pagination: {
+                    container: this.container.querySelector(`.${this.CLN.ctnPagination}`)
+                }
             }
         };
         this.cmpt.viewer = new Masonary(container, option);

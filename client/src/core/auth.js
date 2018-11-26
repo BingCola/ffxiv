@@ -19,8 +19,12 @@ export default class Auth {
     }
     login(account) {
         let $promise = $.Deferred();
-        if (!account) account = this.getUserLoginProfile();
-        if (!account || !account.remember) $promise.reject();
+        if (!account) {
+            account = this.getUserLoginProfile();
+            if (!account || !account.remember) {
+                return $.Deferred().rejectWith(null, ['账号密码未填写']);
+            }
+        }
         let req;
         if (account.account && (account.pwd || account.role == 6)) {
             req = this.api.login(account);
