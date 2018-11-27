@@ -19,7 +19,7 @@ export default class Masonary extends Base {
                 col: Math.floor(this.container.offsetWidth / 400),
                 paddingTop: 0,
                 paddingBottom: 10,
-                aysncSection: 20
+                aysncWaitingArea: 20
             },
             item: {
                 margin: 20,
@@ -49,12 +49,20 @@ export default class Masonary extends Base {
                 }
             },
             mode: {
-                masonary: {},
+                masonary: {
+                    response: {
+                        container: null,
+                        loading: '加载中，请稍等',
+                        fail: '加载失败，点击重试',
+                        end: '已到底部'
+                    }
+                },
                 plane: {}
             },
             plugin: {
                 pagination: {
-                    range: 2
+                    range: 2,
+                    terminalKeepShow: 2
                 }
             }
         };
@@ -83,7 +91,6 @@ export default class Masonary extends Base {
         this.aysncInitFlag = false;
     }
     attachEvent() {
-        this.container.onscroll = this.scroll.bind(this);
         this.$container.off('click').on('click', `.${this.CLN.item}`, e => {
             this.onClick && this.onClick(e.currentTarget);
         });
@@ -99,7 +106,6 @@ export default class Masonary extends Base {
         this.option = $.extend(true, {}, this.DEFAULT_OPTION, this.option);
 
         this.option.layout.uw = this.container.offsetWidth / this.option.layout.col;
-        this.initCursor();
         this.initEvent();
         this.container.classList.add(this.CLN.ctn);
     }
@@ -127,7 +133,11 @@ export default class Masonary extends Base {
         this.onScroll && this.onScroll();
         if (this.option.aysnc && this.option.aysnc.getData) {
             if (typeof this.option.aysnc.enable == 'function') this.aysncEnable = this.option.aysnc.enable(this.container);
-            if (this.aysncEnable && this.container.scrollTop + this.container.offsetHeight >= this.container.scrollHeight - this.option.layout.aysncSection) {
+            if (
+                this.aysncEnable &&
+                this.container.scrollTop + this.container.offsetHeight >= this.container.scrollHeight - this.option.layout.aysncWaitingArea
+            ) {
+                this.page++;
                 this.aysnc();
             }
         }
@@ -147,8 +157,20 @@ export default class Masonary extends Base {
                             this.aysnc();
                         }, 0);
                     }
+                    if (this.option.mode.masonary.response.container) {
+                        if (this.stack.length == 0) {
+                            this.option.mode.masonary.response.container.dataset.mode = 'end';
+                        } else {
+                            this.option.mode.masonary.response.container.dataset.mode = 'loading';
+                        }
+                    }
                 } else {
                     if (!this.aysncInitFlag) this.setPagination();
+                }
+            })
+            .fail(() => {
+                if (this.option.mode.masonary.response.container) {
+                    this.option.mode.masonary.response.container.dataset.mode = 'fail';
                 }
             })
             .always(() => {
@@ -163,26 +185,31 @@ export default class Masonary extends Base {
             store = this.option.aysnc.handleData(data);
         }
         this.stack = store;
-        this.store = this.store.concat(this.stack);
+        if (this.mode == 'masonary') {
+            this.store = this.store.concat(this.stack);
+        } else {
+            for (let i = 0; i < this.stack.length; i++) {
+                this.store[this.page * this.limit + i] = this.stack[i];
+            }
+        }
         if (!this.aysncInitFlag) {
             this.query.limit = this.store.length;
-            // this.query.total = data.total;
-            this.query.total = 150;
+            this.query.total = data.total;
         }
-        this.query.page = this.store.length / this.query.limit - 1;
+        // this.query.page = this.store.length / this.query.limit - 1;
 
         return store;
     }
     insert() {
-        this.stack.forEach(item => {
-            this.insertItem(item);
+        this.stack.forEach((item, index) => {
+            let dom = this.insertItem(item);
+            dom.dataset.index = this.page * this.limit + index;
         });
     }
 
     insertItem(item) {
         let dom = document.createElement('div');
         dom.className = this.CLN.item;
-
         let size = this.getItemSize(item);
         dom.dataset.height = size.h;
         dom.style.width = 100 / this.option.layout.col + '%';
@@ -196,6 +223,7 @@ export default class Masonary extends Base {
         this.container.appendChild(dom);
 
         this.setCursor(item);
+        return dom;
     }
 
     setCursor(item) {
@@ -245,9 +273,23 @@ export default class Masonary extends Base {
         }
         this.event.onModeToggle && this.event.onModeToggle(this.mode);
         this.reset();
+        if (this.mode == 'masonary') {
+            this.initMasonarMode();
+        } else {
+            this.initPlaneMode();
+        }
         this.aysnc();
     }
-
+    initMasonarMode() {
+        this.store = [];
+        this.stack = [];
+        this.query.page = 0;
+        this.initCursor();
+        this.container.onscroll = this.scroll.bind(this);
+    }
+    initPlaneMode() {
+        this.container.find(`.${this.CLN.item}`).each(dom => {});
+    }
     setPagination() {
         let container;
         if (this.option.plugin && this.option.plugin.pagination && this.option.plugin.pagination.container) {
@@ -269,29 +311,36 @@ export default class Masonary extends Base {
         this.togglePage(1);
     }
     togglePage(index) {
+        this.query.page = index - 1;
         this.option.plugin.pagination.container.querySelector(`.${this.CLN.list}`).innerHTML = (() => {
             let html = ``;
-            let end = Math.floor(this.query.total / this.query.limit);
-            let range = this.option.plugin.pagination.range;
-            if (end - range <= 0) {
+            let end = Math.ceil(this.query.total / this.query.limit);
+            let { range, terminalKeepShow } = this.option.plugin.pagination;
+            if (end - (range * 2 + 1) <= 0) {
                 for (let i = 1; i < end + 1; i++) {
                     html += `<span class="${this.CLN.index}" data-page="${i}">${i}</span>`;
                 }
             } else {
-                if (index - range > 1) {
+                html += `<span class="${this.CLN.index}" data-page="${1}">${1}</span>`;
+                html += `<span class="${this.CLN.index}" data-page="${2}">${2}</span>`;
+                if (index - range > terminalKeepShow + 1) {
                     html += `<span class="${this.CLN.indexEllipsis} iconfont icon-ellipsis"></span>`;
                 }
-                for (let i = Math.min(1, index - range); i < Math.max(end, index + range); i++) {
+                for (let i = Math.max(terminalKeepShow + 1, index - range); i < Math.min(end - terminalKeepShow, index + range + 1); i++) {
                     html += `<span class="${this.CLN.index}" data-page="${i}">${i}</span>`;
                 }
-                if (index + range < end - 1) {
+                if (index + range < end - terminalKeepShow) {
                     html += `<span class="${this.CLN.indexEllipsis} iconfont icon-ellipsis"></span>`;
                 }
+                html += `<span class="${this.CLN.index}" data-page="${end - 1}">${end - 1}</span>`;
+                html += `<span class="${this.CLN.index}" data-page="${end}">${end}</span>`;
             }
             return html;
         })();
     }
-    reset() {}
+    reset() {
+        this.container.onscroll = null;
+    }
     destory() {
         this.clear();
     }
