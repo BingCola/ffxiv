@@ -12,7 +12,7 @@ export default class Controller {
     initQuery() {
         this.query = {
             page: 0,
-            limit: 20,
+            limit: 60,
             sort: 'id',
             asc: true,
             filter: ''

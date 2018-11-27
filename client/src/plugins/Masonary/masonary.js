@@ -108,6 +108,7 @@ export default class Masonary extends Base {
         this.option.layout.uw = this.container.offsetWidth / this.option.layout.col;
         this.initEvent();
         this.container.classList.add(this.CLN.ctn);
+        this.container.style.paddingTop = this.option.layout.paddingTop + 'px';
     }
     initEvent() {
         if (this.option.event) {
@@ -284,11 +285,16 @@ export default class Masonary extends Base {
         this.store = [];
         this.stack = [];
         this.query.page = 0;
-        this.initCursor();
         this.container.onscroll = this.scroll.bind(this);
     }
     initPlaneMode() {
-        this.container.find(`.${this.CLN.item}`).each(dom => {});
+        $(this.container)
+            .find(`.${this.CLN.item}`)
+            .each(dom => {
+                if (this.query.page * this.query.limit < dom.dataset.index || dom.dataset.index > (this.query.page + 1) * this.query.limit) {
+                    $(dom).remove();
+                }
+            });
     }
     setPagination() {
         let container;
@@ -340,6 +346,7 @@ export default class Masonary extends Base {
     }
     reset() {
         this.container.onscroll = null;
+        this.initCursor();
     }
     destory() {
         this.clear();
