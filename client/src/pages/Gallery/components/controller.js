@@ -12,9 +12,9 @@ export default class Controller {
     initQuery() {
         this.query = {
             page: 0,
-            limit: 60,
+            limit: 20,
             sort: 'id',
-            asc: true,
+            asc: false,
             filter: ''
         };
     }
@@ -35,5 +35,4 @@ export default class Controller {
         });
         return deferred.promise();
     }
-    setHistory() {}
 }

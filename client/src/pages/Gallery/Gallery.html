@@ -8,31 +8,35 @@
             <div id="ctnRecommend">
                 <div class="wrapRecommendSlide"></div>
             </div>
-            <div id="ctnQuery" class="{ctnQuery}">
-                <div class="{divQueryItem}" data-field="keyword">
+            <div id="ctnQueryConfig" class="{ctnQueryConfig}">
+                <div class="{divQueryConfigItem}" data-field="keyword">
                     <input class="{iptQuery}" type="text" placeholder="请输入名字/作者/标签">
-                    <span class="{btnSearch} glyphicon glyphicon-search"></span>
+                    <span class="c-btn iconfont icon-search"></span>
                 </div>
-                <div class="{divQueryItem}" data-field="sort">
-                    <div class="{value}">综合排序</div>
-                    <div class="{list}">
-                        <span class="{item}">综合排序</span>
-                        <span class="{item}">最多点赞</span>
-                        <span class="{item}">最多收藏</span>
-                        <span class="{item}">最多阅览</span>
-                        <span class="{item}">最多评论</span>
+                <div class="{divQueryConfigItem} c-dropdown" data-field="sort">
+                    <div class="{value} cp-dropdown-content">综合排序</div>
+                    <div class="{list} cp-dropdown-list">
+                        <span class="{item}" data-value="overview">综合热度</span>
+                        <span class="{item}" data-value="praise">最多点赞</span>
+                        <span class="{item}" data-value="collect">最多收藏</span>
+                        <span class="{item}" data-value="view">最多阅览</span>
+                        <span class="{item}" data-value="comment">最多评论</span>
+                        <span class="{item}" data-value="time">发布时间</span>
+                    </div>
+                    <span class="c-btn iconfont icon-sort" data-action="sort"></div>
+                </div>
+                <div class="{divQueryConfigItem} c-dropdown-ctn" data-field="time">
+                    <div class="{value} cp-dropdown-content">全部时间</div>
+                    <div class="{list} cp-dropdown-list">
+                        <span class="{item}" data-value="all">全部时间</span>
+                        <span class="{item}" data-value="d1">一日</span>
+                        <span class="{item}" data-value="d3">三日</span>
+                        <span class="{item}" dara-value="w1">一周</span>
                     </div>
                 </div>
-                <div class="{divQueryItem}" data-field="sort">
-                    <div class="{value}">全部时间</div>
-                    <div class="{list}">
-                        <span class="{item}">全部时间</span>
-                        <span class="{item}">一日</span>
-                        <span class="{item}">三日</span>
-                        <span class="{item}">一周</span>
-                    </div>
-                </div>
-                <div class="{divQueryItem} c-btn iconfont icon-user" data-action="mode">
+                <div class="{divQueryConfigItem}" data-field="view" data-mode="masonary">
+                    <span class="iconfont icon-masonary c-btn" data-action="masonary"></span>   
+                    <span class="iconfont icon-plane c-btn" data-action="plane"></span>                     
                 </div>
             </div>
             <div id="ctnFilter"></div>

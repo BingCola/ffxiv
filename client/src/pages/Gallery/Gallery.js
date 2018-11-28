@@ -5,8 +5,10 @@ import Base from 'page';
 import html from './gallery.html';
 import style from './gallery.scss';
 
-import SideTool from './components/sideTool';
 import Masonary from 'masonary/masonary.js';
+import Dropdown from 'dropdown/dropdown.js';
+
+import SideTool from './components/sideTool';
 import Controller from './components/controller.js';
 export default class Page extends Base {
     constructor() {
@@ -28,6 +30,7 @@ export default class Page extends Base {
     }
     show() {
         this.initNav();
+        this.initQueryConfig();
         this.attachEvent();
     }
     initNav() {
@@ -92,8 +95,13 @@ export default class Page extends Base {
                 bindCustomEvent: null
             },
             aysnc: {
-                getData: this.cmpt.controller.search.bind(this.cmpt.controller),
-                handleData: null
+                getData: request => {
+                    return this.cmpt.controller.search.call(this.cmpt.controller, request.page);
+                },
+                handleData: null,
+                handleRequest: query => {
+                    this.cmpt.controller.query.limit = query.limit;
+                }
             },
             plugin: {
                 pagination: {
@@ -109,4 +117,45 @@ export default class Page extends Base {
         this.cmpt.controller.use();
     }
     attachEvent() {}
+    initQueryConfig() {
+        let $container = $(this.container).find(`.${this.CLN.ctnQueryConfig}`);
+        $container.find('[data-field="keyword"]');
+
+        let $btnSort = $container.find(`[data-action="sort"]`);
+        Dropdown.init($container.find('[data-field="sort"]'), {
+            event: {
+                onItemClick: e => {
+                    this.cmpt.controller.sort = target.dataset.value;
+                    this.cmpt.controller.asc = false;
+                    $btnSort.removeClass('asc');
+                    this.cmpt.viewer.refresh();
+                }
+            }
+        });
+        $btnSort.on('click', e => {
+            this.cmpt.controller.asc = !this.cmpt.controller.asc;
+            e.currentTarget.classList.toggle('asc');
+        });
+
+        Dropdown.init($container.find('[data-field="time"]'), {
+            event: {
+                onItemClick: target => {
+                    this.cmpt.controller.time = target.dataset.value;
+                    this.cmpt.viewer.refresh();
+                }
+            }
+        });
+
+        let $btnMasonary = $container.find('[data-action="masonary"]');
+        let $btnPlane = $container.find('[data-action="plane"]');
+        let $domForView = $container.find('[data-field="view"]');
+        $btnMasonary.on('click', () => {
+            $domForView[0].dataset.mode = 'masonary';
+            this.cmpt.viewer.toggleMode();
+        });
+        $btnPlane.on('click', () => {
+            $domForView[0].dataset.mode = 'plane';
+            this.cmpt.viewer.toggleMode();
+        });
+    }
 }

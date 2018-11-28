@@ -1,0 +1,15 @@
+.ctn {
+    .content {
+    }
+    .list {
+        display: none;
+    }
+
+    &[data-toggle='hover']:hover,
+    &:global(.focus) {
+        .list {
+            display: block;
+            position: absolute;
+        }
+    }
+}

@@ -41,6 +41,7 @@ export default class Masonary extends Base {
             aysnc: {
                 enable: null,
                 getData: null,
+                handleRequest: null,
                 handleData: null,
                 reset: null,
                 query: {
@@ -61,6 +62,7 @@ export default class Masonary extends Base {
             },
             plugin: {
                 pagination: {
+                    container: null,
                     range: 2,
                     terminalKeepShow: 2
                 }
@@ -101,6 +103,10 @@ export default class Masonary extends Base {
             });
 
         this.bindCustomEvent && this.bindCustomEvent(this.container);
+
+        $(window).on('resize.masonary', () => {
+            this.onResize();
+        });
     }
     initOption() {
         this.option = $.extend(true, {}, this.DEFAULT_OPTION, this.option);
@@ -138,7 +144,7 @@ export default class Masonary extends Base {
                 this.aysncEnable &&
                 this.container.scrollTop + this.container.offsetHeight >= this.container.scrollHeight - this.option.layout.aysncWaitingArea
             ) {
-                this.page++;
+                this.query.page++;
                 this.aysnc();
             }
         }
@@ -147,8 +153,12 @@ export default class Masonary extends Base {
     aysnc() {
         this.aysncEnable = false;
         this.beforeAysnc && this.beforeAysnc();
+        let request = this.query;
+        let tmp = request;
+        this.option.aysnc.handleRequest && (tmp = this.option.aysnc.handleRequest(request));
+        if (tmp) request = tmp;
         this.option.aysnc
-            .getData()
+            .getData(request)
             .done(data => {
                 this.handleData(data);
                 this.insert();
@@ -160,9 +170,9 @@ export default class Masonary extends Base {
                     }
                     if (this.option.mode.masonary.response.container) {
                         if (this.stack.length == 0) {
-                            this.option.mode.masonary.response.container.dataset.mode = 'end';
+                            this.setResponseInfo('end');
                         } else {
-                            this.option.mode.masonary.response.container.dataset.mode = 'loading';
+                            this.setResponseInfo('loading');
                         }
                     }
                 } else {
@@ -170,9 +180,7 @@ export default class Masonary extends Base {
                 }
             })
             .fail(() => {
-                if (this.option.mode.masonary.response.container) {
-                    this.option.mode.masonary.response.container.dataset.mode = 'fail';
-                }
+                this.setResponseInfo('fail');
             })
             .always(() => {
                 this.event.afterAysnc && this.event.afterAysnc();
@@ -190,11 +198,10 @@ export default class Masonary extends Base {
             this.store = this.store.concat(this.stack);
         } else {
             for (let i = 0; i < this.stack.length; i++) {
-                this.store[this.page * this.limit + i] = this.stack[i];
+                this.store[this.query.page * this.query.limit + i] = this.stack[i];
             }
         }
         if (!this.aysncInitFlag) {
-            this.query.limit = this.store.length;
             this.query.total = data.total;
         }
         // this.query.page = this.store.length / this.query.limit - 1;
@@ -204,7 +211,7 @@ export default class Masonary extends Base {
     insert() {
         this.stack.forEach((item, index) => {
             let dom = this.insertItem(item);
-            dom.dataset.index = this.page * this.limit + index;
+            dom.dataset.index = this.query.page * this.query.limit + index;
         });
     }
 
@@ -285,24 +292,22 @@ export default class Masonary extends Base {
         this.store = [];
         this.stack = [];
         this.query.page = 0;
+        this.query.limit = this.option.layout.col * 10;
         this.container.onscroll = this.scroll.bind(this);
+        this.option.plugin.pagination.container.classList.remove('active');
     }
     initPlaneMode() {
-        $(this.container)
-            .find(`.${this.CLN.item}`)
-            .each(dom => {
-                if (this.query.page * this.query.limit < dom.dataset.index || dom.dataset.index > (this.query.page + 1) * this.query.limit) {
-                    $(dom).remove();
-                }
-            });
+        this.query.limit = 12 * Math.floor(this.container.offsetHeight / 300);
+        this.option.plugin.pagination.container.classList.add('active');
+        this.togglePage(1);
     }
     setPagination() {
         let container;
-        if (this.option.plugin && this.option.plugin.pagination && this.option.plugin.pagination.container) {
-            container = this.option.plugin.pagination.container;
-        } else {
-            return;
+        if (!(this.option.plugin && this.option.plugin.pagination && this.option.plugin.pagination.container)) {
+            this.option.plugin.pagination.container = document.createElement('div');
+            this.option.plugin.pagination.container.classList.add(`${this.CLN.pagination}`);
         }
+        container = this.option.plugin.pagination.container;
         container.classList.add(this.CLN.pagination);
         container.innerHTML = `
         <span class="c-btn iconfont icon-double-arrow-left" data-action="prev"></span>
@@ -315,6 +320,11 @@ export default class Masonary extends Base {
         </span>
         `;
         this.togglePage(1);
+    }
+    setResponseInfo(mode) {
+        if (!this.option.mode.masonary.response.container) return;
+        this.option.mode.masonary.response.container.dataset.mode = mode;
+        this.option.mode.masonary.response.container.innerHTML = this.option.mode.masonary.response[mode];
     }
     togglePage(index) {
         this.query.page = index - 1;
@@ -348,7 +358,35 @@ export default class Masonary extends Base {
         this.container.onscroll = null;
         this.initCursor();
     }
+    refresh() {
+        this.toggleMode(this.mode);
+    }
+    onResize() {
+        if (this.mode == 'masonary') {
+            this.resizeItem();
+        }
+    }
+    resizeItem() {
+        this.option.layout.col = Math.floor(this.container.offsetWidth / 400);
+        this.initCursor();
+        $(this.container)
+            .find(`.${this.CLN.item}`)
+            .each((index, dom) => {
+                let item = this.store[index];
+                let size = this.getItemSize(item);
+                dom.dataset.height = size.h;
+                dom.style.width = 100 / this.option.layout.col + '%';
+
+                // dom.style.height = size.h + 'px';
+
+                dom.style.left = this.cursor.col * (100 / this.option.layout.col) + '%';
+                dom.style.top = this.cursor.y + 'px';
+
+                this.setCursor(item);
+            });
+    }
     destory() {
         this.clear();
+        $(window).off('resize.masonary');
     }
 }
