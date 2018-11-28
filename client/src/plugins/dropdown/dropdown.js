@@ -23,9 +23,9 @@ const expand = container => {
 };
 const attachEvent = (container, option) => {
     let $container = $(container);
-    $container.find(`.${this.CLN.list} .${this.CLN.item}`).on('click', e => {
-        $container.find(`.${this.CLN.content}`).innerHTML = e.currentTarget.innerHTML;
+    $container.find(`.${CLN.list} .${CLN.item}`).on('click', e => {
+        $container.find(`.${CLN.content}`).innerHTML = e.currentTarget.innerHTML;
         option.event.onItemClick && option.event.onItemClick(e.currentTarget);
     });
 };
-export { init, expand };
+export default { init, expand };

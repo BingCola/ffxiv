@@ -81,6 +81,9 @@
             width: calc(100% - 150px);
             position: relative;
         }
+        .value {
+            display: inline-block;
+        }
         .list {
             display: none;
         }

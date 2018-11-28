@@ -299,7 +299,7 @@ export default class Masonary extends Base {
     initPlaneMode() {
         this.query.limit = 12 * Math.floor(this.container.offsetHeight / 300);
         this.option.plugin.pagination.container.classList.add('active');
-        this.togglePage(1);
+        // this.togglePage(1);
     }
     setPagination() {
         let container;

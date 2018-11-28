@@ -122,7 +122,7 @@ export default class Page extends Base {
         $container.find('[data-field="keyword"]');
 
         let $btnSort = $container.find(`[data-action="sort"]`);
-        Dropdown.init($container.find('[data-field="sort"]'), {
+        Dropdown.init($container.find('[data-field="sort"]')[0], {
             event: {
                 onItemClick: e => {
                     this.cmpt.controller.sort = target.dataset.value;
@@ -137,7 +137,7 @@ export default class Page extends Base {
             e.currentTarget.classList.toggle('asc');
         });
 
-        Dropdown.init($container.find('[data-field="time"]'), {
+        Dropdown.init($container.find('[data-field="time"]')[0], {
             event: {
                 onItemClick: target => {
                     this.cmpt.controller.time = target.dataset.value;
