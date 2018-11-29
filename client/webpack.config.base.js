@@ -56,6 +56,7 @@ export default {
                             camelCase: true,
                             modules: true,
                             importLoaders: 1,
+                            sourceMap: true,
                             localIdentName: 'cp-[name]-[local]'
                         }
                     },
@@ -77,6 +78,7 @@ export default {
                             camelCase: true,
                             modules: true,
                             importLoaders: 1,
+                            sourceMap: true,
                             localIdentName: 'cc-[name]-[local]'
                         }
                     },

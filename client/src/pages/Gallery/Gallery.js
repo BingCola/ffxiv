@@ -119,7 +119,15 @@ export default class Page extends Base {
     attachEvent() {}
     initQueryConfig() {
         let $container = $(this.container).find(`.${this.CLN.ctnQueryConfig}`);
-        $container.find('[data-field="keyword"]');
+        let $iptKeyword = $container.find(`[data-field="keyword"] .${this.CLN.iptQuery}`);
+        $container.find('[data-action="keyword"]').on('click', () => {
+            this.cmpt.controller.keyword = $iptKeyword.val();
+        });
+
+        let $iptEquipment = $container.find(`[data-field="equipment"] .${this.CLN.iptQuery}`);
+        $container.find('[data-action="equipment"]').on('click', () => {
+            this.cmpt.controller.keyword = $iptEquipment.val();
+        });
 
         let $btnSort = $container.find(`[data-action="sort"]`);
         Dropdown.init($container.find('[data-field="sort"]')[0], {

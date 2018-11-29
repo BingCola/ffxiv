@@ -65,6 +65,9 @@ export default class Masonary extends Base {
                     container: null,
                     range: 2,
                     terminalKeepShow: 2
+                },
+                top: {
+                    container: null
                 }
             }
         };

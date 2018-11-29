@@ -11,12 +11,17 @@ export default class Controller {
     }
     initQuery() {
         this.query = {
+            keyword: '',
+            equipment: '',
             page: 0,
             limit: 20,
             sort: 'id',
             asc: false,
             filter: ''
         };
+    }
+    revert() {
+        this.initQuery();
     }
     setQueryToCommand() {}
     search(page) {

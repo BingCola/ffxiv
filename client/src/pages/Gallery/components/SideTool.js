@@ -28,7 +28,8 @@ export default class SideTool {
         this.option = [
             {
                 field: 'job',
-                text: '职业',
+                title: '职业',
+                toggle: 'extend',
                 mode: 'single',
                 list: Object.keys(CONSTANT.CHARACTER.JOB).map(key => {
                     return {
@@ -39,7 +40,7 @@ export default class SideTool {
             },
             {
                 field: 'gender',
-                text: '性别',
+                title: '性别',
                 mode: 'single',
                 list: Object.keys(CONSTANT.CHARACTER.GENDER).map(key => {
                     return {
@@ -50,7 +51,7 @@ export default class SideTool {
             },
             {
                 field: 'race',
-                text: '种族',
+                title: '种族',
                 mode: 'single',
                 list: Object.keys(CONSTANT.CHARACTER.RACE).map(key => {
                     return {
@@ -61,13 +62,13 @@ export default class SideTool {
             },
             {
                 field: 'tag',
-                text: '标签',
+                title: '标签',
                 mode: 'multi',
                 list: [{ text: '清新', val: 1 }, { text: '多人', val: 2 }, { text: '搞笑', val: 3 }, { text: '稀有', val: 4 }, { text: '非洲人', val: 5 }]
             },
             {
                 field: 'color',
-                text: '色系',
+                title: '色系',
                 mode: 'multi',
                 hover: false,
                 list: [
@@ -103,14 +104,22 @@ export default class SideTool {
     }
     createFieldCtn(field) {
         let container = document.createElement('div');
-        container.className = this.CLN['wrapQueryField'];
+        container.className = this.CLN['wrapFilterField'];
         container.dataset.field = field.field;
         container.dataset.mode = field.mode;
+        if (field.toggle) container.dataset.toggle = field.toggle;
         container.innerHTML = `
-            <span class="${this.CLN.text}">${field.text}</span>
-            <div class="${this.CLN.divQueryItemList} c-clear-fix"></div>
+            <div class="${this.CLN.header}">
+                <span class="${this.CLN.title}">${field.title}</span>
+                <div class="${this.CLN.btnToolGrp}">
+                    <span class="c-btn" data-action="revert">重置</span>
+                    <span class="c-btn" data-action="multi">多选</span>
+                    <span class="c-btn iconfont icon-arrow-right"></span>
+                </div>
+            </div>
+            <div class="${this.CLN.divItemList} c-clear-fix"></div>
             `;
-        let listCtn = container.querySelector(`.${this.CLN.divQueryItemList}`);
+        let listCtn = container.querySelector(`.${this.CLN.divItemList}`);
         if (field.hover !== false) listCtn.classList.add('hover');
         field.list.forEach(item => {
             let dom = document.createElement('span');
@@ -131,17 +140,17 @@ export default class SideTool {
                 let $target = $(e.currentTarget);
                 let $parent = $target.parentsUntil(`.${this.CLN.workspace}`, `.${this.CLN.wrapQueryField}`);
                 $target.toggleClass('selected');
-                this.setQuery($parent);
+                this.setFilter($parent);
             });
     }
-    setQuery($dom) {
+    setFilter($dom) {
         let field = $dom.data().field;
         this.query[field] = [];
         $dom.find(`.${this.CLN.item}.selected`).each((index, dom) => {
             this.query[field].push(parseInt(dom.dataset.value));
         });
     }
-    getQuery() {
+    getFilter() {
         return this.query;
     }
 }
