@@ -1,7 +1,7 @@
 import CONSTANT from 'constant';
 
-import html from './SideTool.html';
-import style from './SideTool.scss';
+import html from './sideTool.html';
+import style from './sideTool.scss';
 
 export default class SideTool {
     constructor(page, container, option) {
