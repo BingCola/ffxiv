@@ -103,6 +103,10 @@
                     }
                 }
             }
+            .btnToolGrp {
+                display: inline-block;
+                font-size: 12px;
+            }
         }
         &[data-field='color'] {
             .item {

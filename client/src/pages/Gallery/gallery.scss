@@ -77,8 +77,9 @@
 
     .divQueryConfigItem {
         display: inline-block;
-        &[data-field='keyword'] {
-            width: calc(100% - 150px);
+        &[data-field='keyword'],
+        &[data-field='equipment'] {
+            width: calc(50% - 150px);
             position: relative;
         }
         .value {
