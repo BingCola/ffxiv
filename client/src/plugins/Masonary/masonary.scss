@@ -13,6 +13,7 @@
         }
     }
     &[data-mode='plane'] {
+        padding-bottom: 40px;
         .item {
             position: relative;
             top: 0 !important;
@@ -30,9 +31,43 @@
     }
 }
 .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    color: #78eede;
+    font-size: 12px;
+    transition: transform 0.2s;
+    transform: translateY(100%);
+    &:global(.active) {
+        transform: translateY(0);
+    }
     .list {
+        margin: 0 15px;
         .index {
-            color: white;
+            margin: 0 3px;
+            padding: 0 3px;
+            color: #e4fde1;
+            &:global(.active) {
+                color: #78eede;
+                border-bottom: 1px solid #78eede;
+            }
         }
     }
+    .wrap-skip {
+        margin-left: 30px;
+        .ipt-skip {
+            background: transparent;
+            outline: none;
+            border: none;
+            color: #e4fde1;
+            padding: 0;
+            width: 20px;
+            text-align: center;
+            border-bottom: 1px solid #78eede;
+        }
+    }
+}
+.response-info {
+    position: absolute;
 }

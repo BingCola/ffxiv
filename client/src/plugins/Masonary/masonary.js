@@ -49,15 +49,8 @@ export default class Masonary extends Base {
                     limit: 20
                 }
             },
-            mode: {
-                masonary: {
-                    response: {
-                        container: null,
-                        loading: '加载中，请稍等',
-                        fail: '加载失败，点击重试',
-                        end: '已到底部'
-                    }
-                },
+            mode_config: {
+                masonary: {},
                 plane: {}
             },
             plugin: {
@@ -65,6 +58,12 @@ export default class Masonary extends Base {
                     container: null,
                     range: 2,
                     terminalKeepShow: 2
+                },
+                response: {
+                    container: null,
+                    loading: '加载中，请稍等',
+                    fail: '加载失败，点击重试',
+                    end: '已到底部'
                 },
                 top: {
                     container: null
@@ -92,6 +91,8 @@ export default class Masonary extends Base {
     initCustomVariable() {
         this.store = [];
         this.stack = [];
+
+        this.requestForAysnc;
         this.aysncEnable = true;
         this.aysncInitFlag = false;
     }
@@ -140,9 +141,9 @@ export default class Masonary extends Base {
         }
     }
     scroll() {
-        this.onScroll && this.onScroll();
-        if (this.option.aysnc && this.option.aysnc.getData) {
-            if (typeof this.option.aysnc.enable == 'function') this.aysncEnable = this.option.aysnc.enable(this.container);
+        this.onScroll && this.onScroll(this);
+        if (this.option.aysnc && this.option.aysnc.getData && this.aysncEnable) {
+            if (typeof this.option.aysnc.enable == 'function') this.aysncEnable = this.option.aysnc.enable(this);
             if (
                 this.aysncEnable &&
                 this.container.scrollTop + this.container.offsetHeight >= this.container.scrollHeight - this.option.layout.aysncWaitingArea
@@ -152,44 +153,60 @@ export default class Masonary extends Base {
             }
         }
     }
-
     aysnc() {
+        if (this.mode == 'masonary') {
+            this.aysncInMasonaryMode();
+        } else {
+            this.aysncInPlaneMode();
+        }
+    }
+    aysncInMasonaryMode() {
+        if (!this.aysncEnable) return;
         this.aysncEnable = false;
         this.beforeAysnc && this.beforeAysnc();
         let request = this.query;
         let tmp = request;
         this.option.aysnc.handleRequest && (tmp = this.option.aysnc.handleRequest(request));
         if (tmp) request = tmp;
-        this.option.aysnc
+        this.requestForAysnc = this.option.aysnc
             .getData(request)
             .done(data => {
                 this.handleData(data);
+                if (this.query.page >= 1) this.stack = [];
                 this.insert();
-                if (this.mode == 'masonary') {
-                    if (this.container.scrollHeight - Math.max.apply(null, this.bottoms) > 0) {
-                        window.setTimeout(() => {
-                            this.aysnc();
-                        }, 0);
-                    }
-                    if (this.option.mode.masonary.response.container) {
-                        if (this.stack.length == 0) {
-                            this.setResponseInfo('end');
-                        } else {
-                            this.setResponseInfo('loading');
-                        }
-                    }
+                if (this.stack.length == 0) {
+                    this.setResponseInfo('end');
                 } else {
-                    if (!this.aysncInitFlag) this.setPagination();
+                    this.aysncEnable = true;
+                    this.setResponseInfo('loading');
                 }
+                if (!this.aysncInitFlag) {
+                    this.setPagination();
+                    if (Math.max(...this.bottoms) - this.container.offsetHeight > -this.option.layout.aysncWaitingArea) {
+                        this.aysnc();
+                    }
+                    this.aysncInitFlag = true;
+                }
+                this.event.afterAysnc && this.event.afterAysnc();
             })
             .fail(() => {
                 this.setResponseInfo('fail');
-            })
-            .always(() => {
-                this.event.afterAysnc && this.event.afterAysnc();
-                this.aysncEnable = true;
-                this.aysncInitFlag = true;
             });
+    }
+    aysncInPlaneMode() {
+        if (!this.aysncEnable) return;
+        this.aysncEnable = false;
+        this.beforeAysnc && this.beforeAysnc();
+        let request = this.query;
+        let tmp = request;
+        this.option.aysnc.handleRequest && (tmp = this.option.aysnc.handleRequest(request));
+        if (tmp) request = tmp;
+        this.requestForAysnc = this.option.aysnc.getData(request).done(data => {
+            this.handleData(data);
+            this.insert();
+            if (!this.aysncInitFlag) this.setPagination();
+            this.event.afterAysnc && this.event.afterAysnc();
+        });
     }
     handleData(data) {
         let store = data.list;
@@ -298,6 +315,7 @@ export default class Masonary extends Base {
         this.query.limit = this.option.layout.col * 10;
         this.container.onscroll = this.scroll.bind(this);
         this.option.plugin.pagination.container.classList.remove('active');
+        this.setResponseInfo('loading');
     }
     initPlaneMode() {
         this.query.limit = 12 * Math.floor(this.container.offsetHeight / 300);
@@ -317,17 +335,30 @@ export default class Masonary extends Base {
         <div class="${this.CLN.list}"></div>
         <span class="c-btn iconfont icon-double-arrow-right" data-action="next"></span>
 
-        <span class="wrapPageSkip">
-            <input type="" class="c-input">
+        <span class="${this.CLN.wrapSkip}">
+            <span>第</span>
+            <input type="text" class="c-input ${this.CLN.iptSkip}">
+            <span>页</span>
             <span class="c-btn" data-action="skip">跳转</span>
         </span>
         `;
         this.togglePage(1);
     }
     setResponseInfo(mode) {
-        if (!this.option.mode.masonary.response.container) return;
-        this.option.mode.masonary.response.container.dataset.mode = mode;
-        this.option.mode.masonary.response.container.innerHTML = this.option.mode.masonary.response[mode];
+        let container = this.option.plugin.response.container;
+        if (!container) {
+            container = document.createElement('div');
+            container.className = this.CLN.responseInfo;
+            this.container.appendChild(container);
+            this.option.plugin.response.container = container;
+        }
+        container.dataset.mode = mode;
+        container.innerHTML = this.option.plugin.response[mode];
+        if (this.mode == 'masonary') {
+            container.style.top = Math.max.apply(null, this.bottoms) + 'px';
+        } else {
+            container.style.top = 0;
+        }
     }
     togglePage(index) {
         this.query.page = index - 1;
@@ -337,27 +368,32 @@ export default class Masonary extends Base {
             let { range, terminalKeepShow } = this.option.plugin.pagination;
             if (end - (range * 2 + 1) <= 0) {
                 for (let i = 1; i < end + 1; i++) {
-                    html += `<span class="${this.CLN.index}" data-page="${i}">${i}</span>`;
+                    html += `<span class="${this.CLN.index} c-btn" data-page="${i}">${i}</span>`;
                 }
+                this.option.plugin.pagination.container.dataset.mode = 'whole';
             } else {
-                html += `<span class="${this.CLN.index}" data-page="${1}">${1}</span>`;
-                html += `<span class="${this.CLN.index}" data-page="${2}">${2}</span>`;
+                this.option.plugin.pagination.container.dataset.mode = '';
+                html += `<span class="${this.CLN.index} c-btn" data-page="${1}">${1}</span>`;
+                html += `<span class="${this.CLN.index} c-btn" data-page="${2}">${2}</span>`;
                 if (index - range > terminalKeepShow + 1) {
                     html += `<span class="${this.CLN.indexEllipsis} iconfont icon-ellipsis"></span>`;
                 }
                 for (let i = Math.max(terminalKeepShow + 1, index - range); i < Math.min(end - terminalKeepShow, index + range + 1); i++) {
-                    html += `<span class="${this.CLN.index}" data-page="${i}">${i}</span>`;
+                    html += `<span class="${this.CLN.index} c-btn" data-page="${i}">${i}</span>`;
                 }
                 if (index + range < end - terminalKeepShow) {
                     html += `<span class="${this.CLN.indexEllipsis} iconfont icon-ellipsis"></span>`;
                 }
-                html += `<span class="${this.CLN.index}" data-page="${end - 1}">${end - 1}</span>`;
-                html += `<span class="${this.CLN.index}" data-page="${end}">${end}</span>`;
+                html += `<span class="${this.CLN.index} c-btn" data-page="${end - 1}">${end - 1}</span>`;
+                html += `<span class="${this.CLN.index} c-btn" data-page="${end}">${end}</span>`;
             }
             return html;
         })();
+        this.option.plugin.pagination.container.querySelector(`.${this.CLN.index}[data-page="${index}"]`).classList.add('active');
     }
     reset() {
+        this.store = [];
+        this.aysncInitFlag = false;
         this.container.onscroll = null;
         this.initCursor();
     }

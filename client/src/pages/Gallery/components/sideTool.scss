@@ -54,13 +54,13 @@
                 padding: 3px;
 
                 &:global(.selected) {
-                    text-shadow: 0 0 5px #f45b69;
-                    color: #f45b69;
+                    // text-shadow: 0 0 5px darkorange;
+                    color: darkorange;
 
                     .text {
                         &::before {
                             content: attr(text);
-                            color: #f45b69;
+                            color: darkorange;
                         }
                     }
                 }
@@ -101,7 +101,7 @@
                     &:global(.selected) {
                         ::before,
                         ::after {
-                            background: #f45b69;
+                            background: darkorange;
                         }
                     }
                 }

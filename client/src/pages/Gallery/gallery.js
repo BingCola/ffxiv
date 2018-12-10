@@ -53,7 +53,6 @@ export default class Page extends Base {
     initViewer() {
         let container = document.getElementById('ctnItemList');
         let option = {
-            mode: 'plane',
             layout: {
                 paddingTop: 37
             },
@@ -159,11 +158,11 @@ export default class Page extends Base {
         let $domForView = $container.find('[data-field="view"]');
         $btnMasonary.on('click', () => {
             $domForView[0].dataset.mode = 'masonary';
-            this.cmpt.viewer.toggleMode();
+            this.cmpt.viewer.toggleMode('masonary');
         });
         $btnPlane.on('click', () => {
             $domForView[0].dataset.mode = 'plane';
-            this.cmpt.viewer.toggleMode();
+            this.cmpt.viewer.toggleMode('plane');
         });
     }
 }
