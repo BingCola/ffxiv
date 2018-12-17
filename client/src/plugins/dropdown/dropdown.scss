@@ -3,6 +3,9 @@
     }
     .list {
         display: none;
+
+        .item {
+        }
     }
 
     &[data-toggle='hover']:hover,

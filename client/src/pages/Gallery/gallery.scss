@@ -67,48 +67,6 @@
     }
 }
 
-.ctnQueryConfig {
-    position: absolute;
-    z-index: 1;
-    width: calc(100% - 270px);
-    left: 250px;
-    top: 5px;
-    background: rgba(0, 0, 0, 0.75);
-    padding: 5px 20px;
-
-    .divQueryConfigItem {
-        display: inline-block;
-        &[data-field='keyword'],
-        &[data-field='equipment'] {
-            width: calc(50% - 150px);
-            position: relative;
-        }
-        .value {
-            display: inline-block;
-        }
-        .list {
-            display: none;
-        }
-    }
-
-    .ipt {
-        background: transparent;
-        border: none;
-        outline: none;
-        font-size: 16px;
-        width: 100%;
-    }
-
-    [data-action='keyword'],
-    [data-action='equipment'] {
-        position: absolute;
-        color: #ccc;
-        font-size: 16px;
-        line-height: 24px;
-        left: 160px;
-        cursor: pointer;
-    }
-}
 .ctnPagination {
     position: absolute;
     width: calc(100% - 150px);

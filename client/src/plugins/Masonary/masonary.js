@@ -1,6 +1,8 @@
 import Base from '../plugin';
 import style from './masonary.scss';
 
+import Theme from 'theme/theme.js';
+
 export default class Masonary extends Base {
     constructor() {
         super(...arguments);
@@ -349,11 +351,20 @@ export default class Masonary extends Base {
         if (!container) {
             container = document.createElement('div');
             container.className = this.CLN.responseInfo;
+            container.innerHTML = '<span class="text"></span>';
+            Theme.set('border.1', container).set('button.1', container);
             this.container.appendChild(container);
             this.option.plugin.response.container = container;
+            container.onclick = e => {
+                if (e.currentTarget.dataset.mode == 'fail') {
+                    this.aysnc();
+                }
+            };
         }
-        container.dataset.mode = mode;
-        container.innerHTML = this.option.plugin.response[mode];
+        if (mode) {
+            container.dataset.mode = mode;
+            container.querySelector('.text').innerHTML = this.option.plugin.response[mode];
+        }
         if (this.mode == 'masonary') {
             container.style.top = Math.max.apply(null, this.bottoms) + 'px';
         } else {

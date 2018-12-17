@@ -1,0 +1,173 @@
+$col-primary: #78eede;
+[data-themed='true'] {
+    // position: relative;
+}
+.ctn {
+    &[data-theme-border='true'] {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        &[data-theme-model='1'] {
+            display: inline-block;
+            position: absolute;
+            transition: 0.2s ease-in-out;
+            .part {
+                display: inline-block;
+            }
+            .part {
+                &::before,
+                &::after {
+                    content: '';
+                    background: $col-primary;
+                    display: inline-block;
+                    position: absolute;
+                    transition: 0.2s;
+                }
+            }
+            .part:nth-of-type(odd) {
+                &::before,
+                &::after {
+                    width: 20px;
+                    max-width: 50%;
+                    height: 1px;
+                }
+                &::before {
+                    top: 0;
+                }
+                &::after {
+                    bottom: 0;
+                }
+            }
+            .part:nth-of-type(even) {
+                &::before,
+                &::after {
+                    height: 50%;
+                    max-height: 50%;
+                    width: 1px;
+                }
+                &::before {
+                    left: 0;
+                }
+                &::after {
+                    right: 0;
+                }
+            }
+            .part:nth-of-type(1) {
+                &::before,
+                &::after {
+                    left: 0;
+                }
+            }
+            .part:nth-of-type(2) {
+                &::before,
+                &::after {
+                    top: 0;
+                }
+            }
+            .part:nth-of-type(3) {
+                &::before,
+                &::after {
+                    right: 0;
+                }
+            }
+            .part:nth-of-type(4) {
+                &::before,
+                &::after {
+                    bottom: 0;
+                }
+            }
+            &:hover {
+                // transform: scale(1.1);
+                .part:nth-of-type(1) {
+                    &::before {
+                        transform: translate(-10px, -10px);
+                    }
+                    &::after {
+                        transform: translate(-10px, 10px);
+                    }
+                }
+                .part:nth-of-type(2) {
+                    &::before {
+                        transform: translate(-10px, -10px);
+                    }
+                    &::after {
+                        transform: translate(10px, -10px);
+                    }
+                }
+                .part:nth-of-type(3) {
+                    &::before {
+                        transform: translate(10px, -10px);
+                    }
+                    &::after {
+                        transform: translate(10px, 10px);
+                    }
+                }
+                .part:nth-of-type(4) {
+                    &::before {
+                        transform: translate(-10px, 10px);
+                    }
+                    &::after {
+                        transform: translate(10px, 10px);
+                    }
+                }
+            }
+        }
+    }
+    &[data-theme-button='true'] {
+        text-decoration: none;
+        text-transform: uppercase;
+        font-family: 'Exo 2', sans-serif;
+        font-weight: 300;
+
+        display: inline-block;
+        position: relative;
+        text-align: center;
+        // color: $col-primary;
+        // border: 1px solid $col-primary;
+
+        box-shadow: 0 0 0 0 transparent;
+
+        &::before {
+            content: '';
+            display: block;
+            width: 0px;
+            height: 86%;
+            position: absolute;
+            top: 7%;
+            left: 0%;
+            opacity: 0;
+            background: white;
+            box-shadow: 0 0 15px 3px white;
+            transform: skewX(-20deg);
+        }
+
+        &:hover {
+            color: black;
+            box-shadow: 0 0 30px 0 transparentize($col-primary, 0.5);
+            background-color: $col-primary;
+
+            transition: all 0.2s ease-out;
+
+            &:before {
+                animation: shine 0.5s 0s linear;
+            }
+        }
+    }
+}
+
+@keyframes shine {
+    from {
+        opacity: 0;
+        left: 0%;
+    }
+
+    50% {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        left: 100%;
+    }
+}

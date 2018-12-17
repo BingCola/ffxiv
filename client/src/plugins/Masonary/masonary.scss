@@ -75,5 +75,15 @@
     width: 250px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.1);
+    // border: 1px solid;
+    // border-image: linear-gradient(to right, #78eede, transparent 30%, transparent 70%, #78eede 100%) 10;
+    margin: 15px 0;
+    transition: 0.3s;
+    pointer-events: none;
+
+    &[data-mode='fail'] {
+        pointer-events: auto;
+        cursor: pointer;
+    }
 }

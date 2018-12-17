@@ -3,14 +3,25 @@ import style from './dropdown.scss';
 const CLN = style;
 
 const init = (container, option) => {
-    container.classList.add(`.${CLN.ctn}`);
-    if (option.toggle == 'click')
+    container.classList.add(`${CLN.ctn}`);
+    setElement(container, option);
+    if (option.toggle == 'click') {
         $(container)
             .find(`.${CLN.content}`)
             .click(() => {
                 expand(container);
             });
-    attachEvent(...arguments);
+        container.dataset.toggle = 'click';
+    } else {
+        container.dataset.toggle = 'hover';
+    }
+    attachEvent(container, option);
+};
+
+const setElement = (container, option) => {
+    $(container)
+        .find(option.ele.item)
+        .addClass(CLN.item);
 };
 const expand = container => {
     container.classList.add(`.focus`);
@@ -28,4 +39,4 @@ const attachEvent = (container, option) => {
         option.event.onItemClick && option.event.onItemClick(e.currentTarget);
     });
 };
-export default { init, expand };
+export default { init, expand, CLN };

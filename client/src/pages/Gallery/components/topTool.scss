@@ -1,0 +1,55 @@
+$col-primary: #78eede;
+
+.ctn {
+    display: flex;
+    position: absolute;
+    z-index: 1;
+    width: calc(100% - 270px);
+    left: 250px;
+    top: 5px;
+    background: rgba(0, 0, 0, 0.75);
+    white-space: nowrap;
+    .divConfigItem {
+        padding: 5px;
+        display: inline-block;
+        &.divInputItem {
+            border-left: 1px solid $col-primary;
+            border-right: 1px solid $col-primary;
+        }
+
+        &.divBtnItem {
+            border: 1px solid $col-primary;
+        }
+        &[data-field='keyword'],
+        &[data-field='equipment'] {
+            width: 100%;
+            position: relative;
+        }
+        .value {
+            display: inline-block;
+        }
+        .list {
+            .item {
+                font-size: 12px;
+            }
+        }
+    }
+
+    .ipt {
+        background: transparent;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        width: 100%;
+    }
+
+    [data-action='keyword'],
+    [data-action='equipment'] {
+        position: absolute;
+        color: #ccc;
+        font-size: 16px;
+        line-height: 24px;
+        left: 160px;
+        cursor: pointer;
+    }
+}

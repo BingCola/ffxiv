@@ -92,7 +92,7 @@ export default class SideTool {
         this.query = {};
     }
     setLayout() {
-        this.container.classList.add(this.CLN.sideTool);
+        this.container.classList.add(this.CLN.ctn);
         this.container.innerHTML = this.HTML.fill(this.CLN);
     }
     fillContent() {

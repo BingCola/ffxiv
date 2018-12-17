@@ -6,9 +6,9 @@ import html from './gallery.html';
 import style from './gallery.scss';
 
 import Masonary from 'masonary/masonary.js';
-import Dropdown from 'dropdown/dropdown.js';
 
 import SideTool from './components/sideTool';
+import TopTool from './components/topTool';
 import Controller from './components/controller.js';
 export default class Page extends Base {
     constructor() {
@@ -25,12 +25,12 @@ export default class Page extends Base {
     }
     registerComponents() {
         this.initSideTool();
+        this.initTopTool();
         this.initController();
         this.initViewer();
     }
     show() {
         this.initNav();
-        this.initQueryConfig();
         this.attachEvent();
     }
     initNav() {
@@ -46,7 +46,7 @@ export default class Page extends Base {
         this.cmpt.navbar.use();
     }
     initSideTool() {
-        let contianer = document.getElementById('ctnFilter');
+        let contianer = document.getElementById('ctnSideTool');
         this.cmpt.sideTool = new SideTool(this, contianer);
         this.cmpt.sideTool.use();
     }
@@ -116,53 +116,9 @@ export default class Page extends Base {
         this.cmpt.controller.use();
     }
     attachEvent() {}
-    initQueryConfig() {
-        let $container = $(this.container).find(`.${this.CLN.ctnQueryConfig}`);
-        let $iptKeyword = $container.find(`[data-field="keyword"] .${this.CLN.iptQuery}`);
-        $container.find('[data-action="keyword"]').on('click', () => {
-            this.cmpt.controller.keyword = $iptKeyword.val();
-        });
-
-        let $iptEquipment = $container.find(`[data-field="equipment"] .${this.CLN.iptQuery}`);
-        $container.find('[data-action="equipment"]').on('click', () => {
-            this.cmpt.controller.keyword = $iptEquipment.val();
-        });
-
-        let $btnSort = $container.find(`[data-action="sort"]`);
-        Dropdown.init($container.find('[data-field="sort"]')[0], {
-            event: {
-                onItemClick: e => {
-                    this.cmpt.controller.sort = target.dataset.value;
-                    this.cmpt.controller.asc = false;
-                    $btnSort.removeClass('asc');
-                    this.cmpt.viewer.refresh();
-                }
-            }
-        });
-        $btnSort.on('click', e => {
-            this.cmpt.controller.asc = !this.cmpt.controller.asc;
-            e.currentTarget.classList.toggle('asc');
-        });
-
-        Dropdown.init($container.find('[data-field="time"]')[0], {
-            event: {
-                onItemClick: target => {
-                    this.cmpt.controller.time = target.dataset.value;
-                    this.cmpt.viewer.refresh();
-                }
-            }
-        });
-
-        let $btnMasonary = $container.find('[data-action="masonary"]');
-        let $btnPlane = $container.find('[data-action="plane"]');
-        let $domForView = $container.find('[data-field="view"]');
-        $btnMasonary.on('click', () => {
-            $domForView[0].dataset.mode = 'masonary';
-            this.cmpt.viewer.toggleMode('masonary');
-        });
-        $btnPlane.on('click', () => {
-            $domForView[0].dataset.mode = 'plane';
-            this.cmpt.viewer.toggleMode('plane');
-        });
+    initTopTool() {
+        let contianer = document.getElementById('ctnTopTool');
+        this.cmpt.topTool = new TopTool(this, contianer);
+        this.cmpt.topTool.use();
     }
 }
