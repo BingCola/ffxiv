@@ -10,9 +10,15 @@ $col-primary: #78eede;
     background: rgba(0, 0, 0, 0.75);
     white-space: nowrap;
     .divConfigItem {
+        margin-right: 5px;
         padding: 5px;
         display: inline-block;
+        &:last-of-type {
+            margin-right: 0;
+        }
+
         &.divInputItem {
+            display: inline-flex;
             border-left: 1px solid $col-primary;
             border-right: 1px solid $col-primary;
         }
@@ -41,6 +47,7 @@ $col-primary: #78eede;
         outline: none;
         font-size: 16px;
         width: 100%;
+        padding-left: 24px;
     }
 
     [data-action='keyword'],
@@ -49,7 +56,6 @@ $col-primary: #78eede;
         color: #ccc;
         font-size: 16px;
         line-height: 24px;
-        left: 160px;
         cursor: pointer;
     }
 }
