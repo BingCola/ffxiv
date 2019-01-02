@@ -2,6 +2,7 @@ import html from './topTool.html';
 import style from './topTool.scss';
 
 import Dropdown from 'dropdown/dropdown.js';
+import Theme from 'theme/theme.js';
 
 export default class TopTool {
     constructor(page, container, option) {
@@ -32,11 +33,13 @@ export default class TopTool {
         $container.find('[data-action="keyword"]').on('click', () => {
             this.page.cmpt.controller.keyword = $iptKeyword.val();
         });
+        Theme.set('border.2', $container.find(`[data-field="keyword"]`)[0]);
 
         let $iptEquipment = $container.find(`[data-field="equipment"] .${this.CLN.iptQuery}`);
         $container.find('[data-action="equipment"]').on('click', () => {
             this.page.cmpt.controller.keyword = $iptEquipment.val();
         });
+        Theme.set('border.2', $container.find(`[data-field="equipment"]`)[0]);
 
         let $btnSort = $container.find(`[data-action="sort"]`);
         Dropdown.init($container.find('[data-field="sort"]')[0], {

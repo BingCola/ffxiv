@@ -352,7 +352,7 @@ export default class Masonary extends Base {
             container = document.createElement('div');
             container.className = this.CLN.responseInfo;
             container.innerHTML = '<span class="text"></span>';
-            Theme.set('border.1', container).set('button.1', container);
+            Theme.set('border.1', container).set('button.1', container, { hover: true });
             this.container.appendChild(container);
             this.option.plugin.response.container = container;
             container.onclick = e => {
