@@ -127,8 +127,9 @@ $col-text-light: #e4fde1;
                     width: 100%;
                     height: 100%;
                     fill: transparent;
+                    stroke: $col-primary;
                     stroke-width: 2px;
-                    stroke: #e5e5e5;
+                    stroke-dashoffset: 25%;
                     -webkit-animation: border_2 0.6s cubic-bezier(0.86, 0, 0.07, 1) forwards;
                     animation: border_2 0.6s cubic-bezier(0.86, 0, 0.07, 1) forwards;
                 }
@@ -255,21 +256,19 @@ $col-text-light: #e4fde1;
 
 @keyframes border_2 {
     0% {
-        stroke-dasharray: 40 180;
+        stroke-dasharray: 425%;
     }
     100% {
-        stroke-dasharray: 20 40;
-        stroke: #3b5998;
+        stroke-dasharray: 50%;
     }
 }
 
 @keyframes border_2_out {
     0% {
-        stroke-dasharray: 20 40;
-        stroke: #3b5998;
+        stroke-dasharray: 50%;
     }
     100% {
-        stroke-dasharray: 40 180;
+        stroke-dasharray: 425%;
     }
 }
 

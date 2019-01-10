@@ -78,8 +78,13 @@ export default class TopTool {
             this.page.cmpt.viewer.toggleMode('plane');
         });
 
-        $container.find(`.${this.CLN.divDropdownItem}`).each((index, dom) => {
+        $container.find(`.${this.CLN.divBtnItem}`).each((index, dom) => {
+            if (dom.classList.contains(`${this.CLN.divBtnGrp}`)) return;
             Theme.set('button.1', dom);
+        });
+        $container.find(`.${this.CLN.divBtnGrp} .${this.CLN.item}`).each((index, dom) => {
+            if (dom.classList.contains(`${this.CLN.divBtnGrp}`)) return;
+            Theme.set('border.2', dom, { hover: true }).set('button.1', dom);
         });
     }
 }

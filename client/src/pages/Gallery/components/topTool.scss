@@ -1,5 +1,7 @@
 $col-primary: #78eede;
 $col-bg-primary: rgba(120, 238, 222, 0.75);
+// $col-bg-dark: rgba(0, 25, 50, 0.75);
+$col-bg-dark: rgba(0, 0, 0, 0.75);
 $col-text-light: #e4fde1;
 .ctn {
     display: flex;
@@ -9,12 +11,12 @@ $col-text-light: #e4fde1;
     left: 250px;
     top: 5px;
     white-space: nowrap;
-    font-size: 14px;
+    font-size: 12px;
     .divConfigItem {
         margin-right: 10px;
-        padding: 5px;
+        padding: 2.5px 5px;
         display: inline-block;
-        background-color: rgba(0, 25, 50, 0.75);
+        background-color: $col-bg-dark;
         &:last-of-type {
             margin-right: 0;
         }
@@ -24,8 +26,9 @@ $col-text-light: #e4fde1;
             box-shadow: none !important;
             width: 100%;
             position: relative;
-            padding-left: 35px;
+            padding: 5px 5px 5px 35px;
             z-index: 1;
+            align-items: center;
             color: $col-text-light;
             &:hover {
                 background-clip: content-box;
@@ -56,13 +59,37 @@ $col-text-light: #e4fde1;
                 font-size: 12px;
             }
         }
+        &.divBtnGrp {
+            border-color: transparent;
+            background: transparent;
+            .item {
+                margin-right: 20px;
+                height: 24px;
+                width: 24px;
+                transform: rotate(45deg);
+                background: rgba(0, 0, 0, 0.5);
+                padding: 1px;
+                background-clip: content-box;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                .icon {
+                    transform: rotate(-45deg);
+                }
+                &:hover {
+                    background: $col-bg-primary;
+                }
+            }
+            .item:last-of-type {
+                margin-right: 0;
+            }
+        }
     }
 
     .ipt {
         background: transparent;
         border: none;
         outline: none;
-        font-size: 14px;
         line-height: 24px;
         width: 100%;
         margin-right: 5px;
