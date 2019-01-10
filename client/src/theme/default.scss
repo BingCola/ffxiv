@@ -1,10 +1,13 @@
 body {
     background: linear-gradient(black, #161823);
     color: white;
-    visibility: hidden;
+    // visibility: hidden;
     // background: url('/page/gallery/background.jpg');
 }
 
 .iconfont {
     font-size: inherit;
+}
+.debug {
+    opacity: 0 !important;
 }

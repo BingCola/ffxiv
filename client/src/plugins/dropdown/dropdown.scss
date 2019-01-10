@@ -1,10 +1,23 @@
 .ctn {
+    position: relative;
     .content {
+        cursor: pointer;
     }
     .list {
         display: none;
-
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 100%;
+        transform: translateY(-1px);
         .item {
+            display: block;
+            text-align: center;
+            padding: 2.5px 0;
+            cursor: pointer;
+        }
+        .item ~ .item {
+            border-top: 1px solid white;
         }
     }
 

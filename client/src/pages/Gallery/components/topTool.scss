@@ -1,5 +1,6 @@
 $col-primary: #78eede;
-
+$col-bg-primary: rgba(120, 238, 222, 0.75);
+$col-text-light: #e4fde1;
 .ctn {
     display: flex;
     position: absolute;
@@ -7,30 +8,45 @@ $col-primary: #78eede;
     width: calc(100% - 270px);
     left: 250px;
     top: 5px;
-    background: rgba(0, 0, 0, 0.75);
     white-space: nowrap;
     font-size: 14px;
     .divConfigItem {
-        margin-right: 5px;
+        margin-right: 10px;
         padding: 5px;
         display: inline-block;
+        background-color: rgba(0, 25, 50, 0.75);
         &:last-of-type {
             margin-right: 0;
         }
 
         &.divInputItem {
             display: inline-flex;
-            // border-left: 1px solid $col-primary;
-            // border-right: 1px solid $col-primary;
+            box-shadow: none !important;
+            width: 100%;
+            position: relative;
+            padding-left: 35px;
+            z-index: 1;
+            color: $col-text-light;
+            &:hover {
+                background-clip: content-box;
+                .ipt::placeholder {
+                    color: $col-text-light;
+                }
+                [data-action] {
+                    background: $col-bg-primary;
+                    transition: 0.2s;
+                }
+            }
         }
 
         &.divBtnItem {
+            // background: $col-primary;
+            // color: black;
+            color: $col-text-light;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             border: 1px solid $col-primary;
-        }
-        &[data-field='keyword'],
-        &[data-field='equipment'] {
-            width: 100%;
-            position: relative;
         }
         .value {
             display: inline-block;
@@ -46,17 +62,27 @@ $col-primary: #78eede;
         background: transparent;
         border: none;
         outline: none;
-        font-size: 16px;
+        font-size: 14px;
+        line-height: 24px;
         width: 100%;
-        padding-left: 24px;
+        margin-right: 5px;
+        z-index: 1;
+        padding: 0 5px;
+        &::placeholder {
+            transition: 0.2s;
+            color: $col-text-light;
+        }
     }
 
     [data-action='keyword'],
     [data-action='equipment'] {
         position: absolute;
-        color: #ccc;
-        font-size: 16px;
-        line-height: 24px;
         cursor: pointer;
+        left: 5px;
+        line-height: 24px;
+        width: 24px;
+        z-index: 1;
+        font-weight: bold;
+        background: transparent;
     }
 }

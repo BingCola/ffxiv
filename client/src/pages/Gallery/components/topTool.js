@@ -41,7 +41,6 @@ export default class TopTool {
         });
         Theme.set('border.3', $container.find(`[data-field="equipment"]`)[0], { hover: true }).set('button.1', $container.find(`[data-field="equipment"]`)[0]);
 
-        let $btnSort = $container.find(`[data-action="sort"]`);
         Dropdown.init($container.find('[data-field="sort"]')[0], {
             ele: {
                 item: `.${this.CLN.item}`
@@ -50,14 +49,9 @@ export default class TopTool {
                 onItemClick: e => {
                     this.page.cmpt.controller.sort = target.dataset.value;
                     this.page.cmpt.controller.asc = false;
-                    $btnSort.removeClass('asc');
                     this.page.cmpt.viewer.refresh();
                 }
             }
-        });
-        $btnSort.on('click', e => {
-            this.page.cmpt.controller.asc = !this.page.cmpt.controller.asc;
-            e.currentTarget.classList.toggle('asc');
         });
 
         Dropdown.init($container.find('[data-field="time"]')[0], {
@@ -82,6 +76,10 @@ export default class TopTool {
         $btnPlane.on('click', () => {
             $domForView[0].dataset.mode = 'plane';
             this.page.cmpt.viewer.toggleMode('plane');
+        });
+
+        $container.find(`.${this.CLN.divDropdownItem}`).each((index, dom) => {
+            Theme.set('button.1', dom);
         });
     }
 }
