@@ -1,5 +1,6 @@
 import CLN from '../theme.scss';
 
+const theme = 'border';
 const TEMPLATE = {
     1: `
     <span class="${CLN.part}"></span>
@@ -22,17 +23,23 @@ const TEMPLATE = {
 const createDom = (ctn, option = {}, model) => {
     let dom = document.createElement('div');
     dom.className = CLN['ctn'];
-    dom.dataset.themeBorder = true;
-    dom.dataset.themeModel = model;
+    dom.setAttribute(`themed-${theme}`, '');
+    dom.setAttribute(`themed-${theme}-${model}`, '');
     dom.innerHTML = TEMPLATE[model];
-    ctn.dataset.themed = true;
+    ctn.setAttribute('themed', '');
     return dom;
 };
 
+const clear = ctn => {
+    ctn.removeAttribute(`themed-${theme}`);
+    ctn.removeAttribute(`themed-${theme}-${model}`);
+    ctn.removeAttribute('themed');
+};
 const destroy = ctn => {
     $(ctn)
-        .find(`.${CLN.ctn}`)
+        .find(`.${CLN.ctn}:not([themed])`)
         .remove();
+    clear();
 };
 export default {
     1: {

@@ -55,6 +55,7 @@ $col-text-light: #e4fde1;
             display: inline-block;
         }
         .list {
+            transform: translate(-50%, 1px);
             .item {
                 font-size: 12px;
             }
@@ -64,18 +65,7 @@ $col-text-light: #e4fde1;
             background: transparent;
             .item {
                 margin-right: 20px;
-                height: 24px;
-                width: 24px;
-                transform: rotate(45deg);
-                background: rgba(0, 0, 0, 0.5);
-                padding: 1px;
-                background-clip: content-box;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                .icon {
-                    transform: rotate(-45deg);
-                }
+                background: $col-bg-dark;
                 &:hover {
                     background: $col-bg-primary;
                 }

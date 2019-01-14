@@ -84,7 +84,7 @@ export default class TopTool {
         });
         $container.find(`.${this.CLN.divBtnGrp} .${this.CLN.item}`).each((index, dom) => {
             if (dom.classList.contains(`${this.CLN.divBtnGrp}`)) return;
-            Theme.set('border.2', dom, { hover: true }).set('button.1', dom);
+            Theme.set('button.2', dom);
         });
     }
 }
