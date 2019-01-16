@@ -117,10 +117,26 @@ export default class SideTool {
                     <span class="c-btn iconfont icon-arrow-right"></span>
                 </div>
             </div>
-            <div class="${this.CLN.divItemList} c-clear-fix"></div>
+            <div class="${this.CLN.body}"></div>
             `;
-        let listCtn = container.querySelector(`.${this.CLN.divItemList}`);
-        if (field.hover !== false) listCtn.classList.add('hover');
+        container.dataset.mode = field.mode || 'plane';
+        switch (field.mode) {
+            case 'dropdown':
+                container.appendChild(this.createFieldListInDropdown(field));
+                break;
+            case 'popover':
+                container.appendChild(this.createFieldListInPopover(field));
+                break;
+            case 'palne':
+            default:
+                container.appendChild(this.createFieldListInPlane(field));
+                break;
+        }
+        return container;
+    }
+    createFieldListInDropdown(field, ctn) {
+        let wrap = document.createElement('div');
+        wrap.className = `${this.CLN.divItemList}`;
         field.list.forEach(item => {
             let dom = document.createElement('span');
             dom.className = this.CLN['item'];
@@ -129,9 +145,31 @@ export default class SideTool {
             // item.text && (dom.innerHTML = `<span class="text" data-text="${item.text}">${item.text}</span>`);
             item.text && (dom.innerHTML = `${item.text}`);
             field.onItemDomCreate && field.onItemDomCreate(dom, item);
-            listCtn.appendChild(dom);
+            wrap.appendChild(dom);
         });
-        return container;
+        wrap.appendChild();
+        return wrap;
+    }
+    createFieldListInPlane(field, ctn) {
+        let wrap = document.createElement('div');
+        wrap.className = `${this.CLN.body} c-clear-fix `;
+        field.list.forEach(item => {
+            wrap.appendChild(this.createFieldItemInBody(item, field));
+        });
+        return wrap;
+    }
+    createFieldListInPopover(field, ctn) {
+        let wrap = document.createElement('div');
+        return wrap;
+    }
+    createFieldItemInBody(item, field) {
+        let dom = document.createElement('span');
+        dom.className = this.CLN['item'];
+        dom.dataset.field = field.field;
+        dom.dataset.mode = field.mode;
+        // item.text && (dom.innerHTML = `<span class="text" data-text="${item.text}">${item.text}</span>`);
+        item.text && (dom.innerHTML = `${item.text}`);
+        field.onItemDomCreate && field.onItemDomCreate(dom, item);
     }
     attachEvent() {
         $(this.container)

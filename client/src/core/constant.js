@@ -135,6 +135,9 @@ export default {
             6: { text: '奥拉' }
         },
         JOB: {
+            1: { text: '战斗精英', val: 1 },
+            2: { text: '骑士', val: 2 },
+            3: { text: '骑士', val: 1 },
             1: { text: '骑士', val: 1 },
             2: { text: '黑骑士', val: 2 },
             3: { text: '战士', val: 3 },
