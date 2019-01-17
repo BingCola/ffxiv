@@ -34,7 +34,7 @@ export default class SideTool {
                     return {
                         val: key,
                         text: CONSTANT.CHARACTER.JOB[key].text,
-                        parent: CONSTANT.CHARACTER.RACE[key].parent || 0
+                        parent: CONSTANT.CHARACTER.JOB[key].parent || 0
                     };
                 })
             },
@@ -127,7 +127,7 @@ export default class SideTool {
                 break;
             case 'plane':
             default:
-                this.createFieldListInPlane(field);
+                this.createFieldListInPlane(field, container.querySelector(`.${this.CLN.body}`));
                 break;
         }
         return container;
@@ -166,7 +166,7 @@ export default class SideTool {
     }
     createFieldListInPlane(field, ctn) {
         let wrap = ctn;
-        wrap.classList.add(`${this.CLN.body} c-clear-fix`);
+        $(wrap).addClass(`${this.CLN.body} c-clear-fix`);
         field.list.forEach(item => {
             wrap.appendChild(this.createFieldItemInBody(item, field));
         });
@@ -184,6 +184,7 @@ export default class SideTool {
         // item.text && (dom.innerHTML = `<span class="text" data-text="${item.text}">${item.text}</span>`);
         item.text && (dom.innerHTML = `${item.text}`);
         field.onItemDomCreate && field.onItemDomCreate(dom, item);
+        return dom;
     }
     attachEvent() {
         $(this.container)
