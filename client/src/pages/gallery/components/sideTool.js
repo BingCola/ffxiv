@@ -29,19 +29,18 @@ export default class SideTool {
             {
                 field: 'job',
                 title: '职业',
-                toggle: 'extend',
-                mode: 'single',
+                mode: 'dropdown',
                 list: Object.keys(CONSTANT.CHARACTER.JOB).map(key => {
                     return {
                         val: key,
-                        text: CONSTANT.CHARACTER.JOB[key].text
+                        text: CONSTANT.CHARACTER.JOB[key].text,
+                        parent: CONSTANT.CHARACTER.RACE[key].parent || 0
                     };
                 })
             },
             {
                 field: 'gender',
                 title: '性别',
-                mode: 'single',
                 list: Object.keys(CONSTANT.CHARACTER.GENDER).map(key => {
                     return {
                         val: key,
@@ -52,24 +51,23 @@ export default class SideTool {
             {
                 field: 'race',
                 title: '种族',
-                mode: 'single',
+                mode: 'dropdown',
                 list: Object.keys(CONSTANT.CHARACTER.RACE).map(key => {
                     return {
                         val: key,
-                        text: CONSTANT.CHARACTER.RACE[key].text
+                        text: CONSTANT.CHARACTER.RACE[key].text,
+                        parent: CONSTANT.CHARACTER.RACE[key].parent || 0
                     };
                 })
             },
             {
                 field: 'tag',
                 title: '标签',
-                mode: 'multi',
                 list: [{ text: '清新', val: 1 }, { text: '多人', val: 2 }, { text: '搞笑', val: 3 }, { text: '稀有', val: 4 }, { text: '非洲人', val: 5 }]
             },
             {
                 field: 'color',
                 title: '色系',
-                mode: 'multi',
                 hover: false,
                 list: [
                     { content: '红', color: 'red', val: 1 },
@@ -127,9 +125,9 @@ export default class SideTool {
             case 'popover':
                 container.appendChild(this.createFieldListInPopover(field));
                 break;
-            case 'palne':
+            case 'plane':
             default:
-                container.appendChild(this.createFieldListInPlane(field));
+                this.createFieldListInPlane(field);
                 break;
         }
         return container;
@@ -137,22 +135,38 @@ export default class SideTool {
     createFieldListInDropdown(field, ctn) {
         let wrap = document.createElement('div');
         wrap.className = `${this.CLN.divItemList}`;
+        let stack = {};
         field.list.forEach(item => {
-            let dom = document.createElement('span');
-            dom.className = this.CLN['item'];
-            dom.dataset.field = field.field;
-            dom.dataset.mode = field.mode;
-            // item.text && (dom.innerHTML = `<span class="text" data-text="${item.text}">${item.text}</span>`);
-            item.text && (dom.innerHTML = `${item.text}`);
-            field.onItemDomCreate && field.onItemDomCreate(dom, item);
-            wrap.appendChild(dom);
+            if (stack[item.val]) return;
+            if (!item.parent) {
+                wrap.appendChild(this.createFieldItemInDropdown(item, field));
+            } else {
+                if (!stack[item.parent]) {
+                    stack[item.parent] = {
+                        val: item.val,
+                        text: item.text,
+                        parent: item.parent,
+                        dom: this.createFieldItemInDropdown(item, field)
+                    };
+                    stack[item.parent].subListDom = stack[item.parent].dom.querySelector(`.${this.CLN.divSubItemList}`);
+                }
+                stack[item.parent].dom.appendChild(this.createFieldItemInDropdown(item, field));
+            }
         });
-        wrap.appendChild();
         return wrap;
     }
+    createFieldItemInDropdown(item, field) {
+        let dom = document.createElement('div');
+        dom.className = `${this.CLN.divItem}`;
+        dom.innerHTML = `
+        <div class="${this.CLN.content}" data-value="${item.value}">${item.text}</div>
+        <div class=${this.CLN.divSubItemList}></div>
+        `;
+        return dom;
+    }
     createFieldListInPlane(field, ctn) {
-        let wrap = document.createElement('div');
-        wrap.className = `${this.CLN.body} c-clear-fix `;
+        let wrap = ctn;
+        wrap.classList.add(`${this.CLN.body} c-clear-fix`);
         field.list.forEach(item => {
             wrap.appendChild(this.createFieldItemInBody(item, field));
         });
