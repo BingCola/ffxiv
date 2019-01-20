@@ -121,9 +121,11 @@ export default class SideTool {
         switch (field.mode) {
             case 'dropdown':
                 container.appendChild(this.createFieldListInDropdown(field));
+                container.querySelector(`.${this.CLN.body}`).appendChild(this.createFieldItemInBody({ val: 0, text: '不限' }, field));
                 break;
             case 'popover':
                 container.appendChild(this.createFieldListInPopover(field));
+                container.querySelector(`.${this.CLN.body}`).appendChild(this.createFieldItemInBody({ val: 0, text: '不限' }, field));
                 break;
             case 'plane':
             default:
@@ -139,7 +141,14 @@ export default class SideTool {
         field.list.forEach(item => {
             if (stack[item.val]) return;
             if (!item.parent) {
-                wrap.appendChild(this.createFieldItemInDropdown(item, field));
+                stack[item.val] = {
+                    val: item.val,
+                    text: item.text,
+                    parent: item.parent,
+                    dom: this.createFieldItemInDropdown(item, field)
+                };
+                stack[item.val].subListDom = stack[item.val].dom.querySelector(`.${this.CLN.divSubItemList}`);
+                wrap.appendChild(stack[item.val].dom);
             } else {
                 if (!stack[item.parent]) {
                     stack[item.parent] = {
@@ -150,7 +159,7 @@ export default class SideTool {
                     };
                     stack[item.parent].subListDom = stack[item.parent].dom.querySelector(`.${this.CLN.divSubItemList}`);
                 }
-                stack[item.parent].dom.appendChild(this.createFieldItemInDropdown(item, field));
+                stack[item.parent].subListDom.appendChild(this.createFieldItemInDropdown(item, field));
             }
         });
         return wrap;
@@ -159,7 +168,7 @@ export default class SideTool {
         let dom = document.createElement('div');
         dom.className = `${this.CLN.divItem}`;
         dom.innerHTML = `
-        <div class="${this.CLN.content}" data-value="${item.value}">${item.text}</div>
+        <div class="${this.CLN.content}" data-value="${item.val ? item.val : 0}">${item.text}</div>
         <div class=${this.CLN.divSubItemList}></div>
         `;
         return dom;
