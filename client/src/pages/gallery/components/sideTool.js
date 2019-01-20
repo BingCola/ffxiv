@@ -3,6 +3,8 @@ import CONSTANT from 'constant';
 import html from './sideTool.html';
 import style from './sideTool.scss';
 
+import Dropdown from 'dropdown/dropdown.js';
+
 export default class SideTool {
     constructor(page, container, option) {
         this.page = page;
@@ -120,7 +122,7 @@ export default class SideTool {
         container.dataset.mode = field.mode || 'plane';
         switch (field.mode) {
             case 'dropdown':
-                container.appendChild(this.createFieldListInDropdown(field));
+                this.createFieldListInDropdown(field, container);
                 container.querySelector(`.${this.CLN.body}`).appendChild(this.createFieldItemInBody({ val: 0, text: '不限' }, field));
                 break;
             case 'popover':
@@ -134,7 +136,16 @@ export default class SideTool {
         }
         return container;
     }
-    createFieldListInDropdown(field, ctn) {
+    createFieldListInDropdown(field, container) {
+        Dropdown.init(container, {
+            data: field.list,
+            key: {
+                content: 'text',
+                value: 'val'
+            }
+        });
+    }
+    createFieldListInDropdown_bak(field, ctn) {
         let wrap = document.createElement('div');
         wrap.className = `${this.CLN.divItemList}`;
         let stack = {};

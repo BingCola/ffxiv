@@ -13,7 +13,7 @@ const DEFAULT_OPTION = {
     ele: {}
 };
 const init = (container, opt) => {
-    let option = $.extend({}, true, DEFAULT_OPTION, opt);
+    let option = $.extend(true, {}, DEFAULT_OPTION, opt);
     container.classList.add(`${CLN.ctn}`);
     !container.dataset.toggle && (container.dataset.toggle = option.toggle);
     !option.position && (cotnainer.dataset.position = option.position);
@@ -30,21 +30,32 @@ const initElementByData = (container, option) => {
         wrap.classList.add(`${CLN.menu}`);
         container.appendChild(wrap);
     }
-    opiton.data.forEach(item => {
+    option.data.forEach(item => {
         if (container.querySelector(`.${CLN.item}[data-value="${option.key.value}"]`)) return;
         let parentDom;
         if (item[option.key.parent]) {
-            parentDom = container.querySelector(`.${CLN.item}[data-value="${option.key.value}"]>.${CLN.menu}`);
+            parentDom = container.querySelector(`.${CLN.item}[data-value="${item[option.key.parent]}"]>.${CLN.menu}`);
             if (!parentDom) {
-                parentDom;
+                parentDom = createItemDom(
+                    (() => {
+                        for (let i = 0; i < option.data.length; i++) {
+                            if (option.data[i][option.key.value] == item[option.key.parent]) {
+                                return option.data[i];
+                            }
+                        }
+                    })(),
+                    option
+                );
+                if (parentDom) parentDom = $(parentDom).find(`>.${CLN.menu}`)[0];
             }
         } else {
             parentDom = wrap;
         }
-        parentDom.appendChild(createItemDom(item, option));
+        parentDom && parentDom.appendChild(createItemDom(item, option));
     });
 };
 const createItemDom = (item, option) => {
+    if (!item) return;
     let dom = document.createElement('div');
     dom.className = `${CLN.item}`;
     dom.dataset.value = item[option.key.value];
