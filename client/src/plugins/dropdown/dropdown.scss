@@ -9,10 +9,9 @@ $col-bg-dark: rgba(0, 0, 0, 0.75);
     .menu {
         display: none;
         position: absolute;
-        top: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        .item {
+        > .item {
+            position: relative;
+            white-space: nowrap;
             position: relative;
             display: block;
             text-align: center;
@@ -20,6 +19,8 @@ $col-bg-dark: rgba(0, 0, 0, 0.75);
             cursor: pointer;
             background: $col-bg-dark;
             color: $col-text-light;
+            opacity: 0;
+            transform: translate(0, 0);
             &:hover {
                 color: $col-primary;
             }
@@ -32,19 +33,39 @@ $col-bg-dark: rgba(0, 0, 0, 0.75);
                 background: linear-gradient(to right, rgba(255, 255, 255, 0) 0, rgba(120, 238, 222, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
                 left: 0;
             }
-            .content {
-                display: block;
-            }
-            > .menu {
+            &:first-of-type::before {
                 display: none;
             }
         }
     }
     &[data-toggle='hover']:hover,
     &:global(.focus) {
-        .menu {
+        .menu.root {
             display: block;
-            position: absolute;
+        }
+    }
+    &[data-toggle='hover'] .item:hover,
+    &:global(.focus) .item {
+        > .menu {
+            display: block;
+        }
+    }
+    &[data-position='bottom'] {
+        .menu {
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            .item {
+                .content {
+                    display: block;
+                }
+                > .menu {
+                    display: none;
+                }
+            }
+        }
+        &[data-toggle='hover']:hover,
+        &:global(.focus) {
             .item {
                 &:nth-of-type(odd) {
                     animation: fadeInFromLeft 0.2s cubic-bezier(0.86, 0, 0.07, 1) forwards;
@@ -54,26 +75,54 @@ $col-bg-dark: rgba(0, 0, 0, 0.75);
                 }
             }
         }
-    }
-    @keyframes fadeInFromLeft {
-        0% {
-            opacity: 0;
-            transform: translateX(-100%);
+        @keyframes fadeInFromLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0%);
+            }
         }
-        100% {
-            opacity: 1;
-            transform: translateX(0%);
-        }
-    }
 
-    @keyframes fadeInFromRight {
-        0% {
-            opacity: 0;
-            transform: translateX(100%);
+        @keyframes fadeInFromRight {
+            0% {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0%);
+            }
         }
-        100% {
-            opacity: 1;
-            transform: translateX(0%);
+    }
+    &[data-position='left'],
+    &[data-position='right'] {
+        .menu {
+            left: 100%;
+            top: 0;
+            > .item {
+                display: none;
+            }
+        }
+    }
+    &[data-position='left'] {
+        &[data-toggle='hover']:hover,
+        &:global(.focus) {
+            .menu > .item {
+                display: block;
+                animation: fadeInFromLeft 0.2s cubic-bezier(0.86, 0, 0.07, 1) forwards;
+            }
+        }
+    }
+    &[data-position='right'] {
+        &[data-toggle='hover']:hover,
+        &:global(.focus) {
+            .menu > .item {
+                display: block;
+                animation: fadeInFromRight 0.2s cubic-bezier(0.86, 0, 0.07, 1) forwards;
+            }
         }
     }
 }

@@ -16,9 +16,10 @@ const init = (container, opt) => {
     let option = $.extend(true, {}, DEFAULT_OPTION, opt);
     container.classList.add(`${CLN.ctn}`);
     !container.dataset.toggle && (container.dataset.toggle = option.toggle);
-    !option.position && (cotnainer.dataset.position = option.position);
-    initElementByClass(container, option);
+    !container.dataset.position && (container.dataset.position = option.position);
     initElementByData(container, option);
+    initElementByClass(container, option);
+    setItemAnimateDelay(container, option);
     attachEvent(container, option);
 };
 const initElementByData = (container, option) => {
@@ -27,7 +28,7 @@ const initElementByData = (container, option) => {
     let wrap = container.querySelector(`.${CLN.menu}`);
     if (!wrap) {
         wrap = document.createElement('div');
-        wrap.classList.add(`${CLN.menu}`);
+        $(wrap).addClass(`${CLN.menu} ${CLN.root}`);
         container.appendChild(wrap);
     }
     option.data.forEach(item => {
@@ -79,6 +80,18 @@ const expand = container => {
             $(document.body).off('click.dropdown');
         }
     });
+};
+const setItemAnimateDelay = (container, option) => {
+    if (option.position !== 'right' && option.position !== 'left') return;
+    $(container)
+        .find(`.${CLN.menu}`)
+        .each((i, menu) => {
+            $(menu)
+                .children(`.${CLN.item}`)
+                .each((index, item) => {
+                    item.style.animationDelay = index * 0.1 + 's';
+                });
+        });
 };
 const attachEvent = (container, option) => {
     let $container = $(container);

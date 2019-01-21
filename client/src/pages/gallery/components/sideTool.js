@@ -117,7 +117,7 @@ export default class SideTool {
                     <span class="c-btn iconfont icon-arrow-right"></span>
                 </div>
             </div>
-            <div class="${this.CLN.body}"></div>
+            <div class="${this.CLN.body} c-clear-fix"></div>
             `;
         container.dataset.mode = field.mode || 'plane';
         switch (field.mode) {
@@ -138,6 +138,7 @@ export default class SideTool {
     }
     createFieldListInDropdown(field, container) {
         Dropdown.init(container, {
+            position: 'right',
             data: field.list,
             key: {
                 content: 'text',
@@ -186,7 +187,6 @@ export default class SideTool {
     }
     createFieldListInPlane(field, ctn) {
         let wrap = ctn;
-        $(wrap).addClass(`${this.CLN.body} c-clear-fix`);
         field.list.forEach(item => {
             wrap.appendChild(this.createFieldItemInBody(item, field));
         });
