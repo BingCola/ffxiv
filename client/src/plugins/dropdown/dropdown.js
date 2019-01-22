@@ -89,7 +89,7 @@ const setItemAnimateDelay = (container, option) => {
             $(menu)
                 .children(`.${CLN.item}`)
                 .each((index, item) => {
-                    item.style.animationDelay = index * 0.1 + 's';
+                    item.style.animationDelay = index * 0.05 + 's';
                 });
         });
 };
