@@ -14,28 +14,38 @@
         margin-bottom: 10px;
         padding: 10px;
         .header {
+            position: relative;
             .title {
                 position: relative;
                 padding-left: 15px;
                 font-size: 16px;
                 color: rgba(120, 238, 222, 1);
                 text-shadow: 0 0 1px rgba(120, 238, 222, 1);
-
-                &::before {
-                    content: '';
-                    display: inline-block;
-                    position: absolute;
-                    height: 14px;
-                    top: 50%;
-                    left: 0;
-                    width: 3px;
-                    background: rgba(120, 238, 222, 1);
-                    transform: translateY(-50%);
-                }
+            }
+            &::before {
+                content: '';
+                display: inline-block;
+                position: absolute;
+                height: 14px;
+                top: 50%;
+                left: 0;
+                width: 3px;
+                background: rgba(120, 238, 222, 1);
+                transform: translateY(-50%);
+                transition: 0.2s;
             }
             .btnToolGrp {
                 display: inline-block;
                 font-size: 12px;
+            }
+            &:hover {
+                &::before {
+                    top: 0;
+                    transform: rotate(-90deg) translateX(-24px);
+                    transform-origin: top;
+                    height: 220px;
+                    width: 2px;
+                }
             }
         }
         .body {
